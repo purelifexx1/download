@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   
+    <link rel="stylesheet" href="style.css">
+    <script src = "socket.io/socket.io.js"></script>
+    <script src = "process.js">
+        
+    </script>
+</head>
+
+<body class="container">
+    <!-- Create tab with Bootstrap -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#real-time">
+                Real-Time Data
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#statistics">
+                Statistics Data
+            </a>
+        </li>
+    </ul>
+
+    <!-- Content for Tabs above -->
+    <div class="tab-content">
+        <!-- Content for Real-Time Data-->
+        <div class="tab-pane active pl-0 pr-0" id="real-time">
+            <div class="row">
+                <div class="col">
+                    <label>PV Input Voltage:</label>
+                    <div>
+                        <textarea readonly id="solar_voltage" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label>Battery Power:</label>
+                    <div>
+                        <textarea readonly id="bat_power" rows="1">150</textarea>
+                        <label class="unit">(W)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>PV Input Current:</label>
+                    <div>
+                        <textarea readonly id="solar_current" rows="1">150</textarea>
+                        <label class="unit">(A)</label>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label>Battery Percentage:</label>
+                    <div>
+                        <textarea readonly id="bat_percent" rows="1">150</textarea>
+                        <label class="unit">(%)</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>PV Input Power:</label>
+                    <div>
+                        <textarea readonly id="solar_power" rows="1">150</textarea>
+                        <label class="unit">(W)</label>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label>Battery Voltage:</label>
+                    <div>
+                        <textarea readonly id="bat_voltage" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>Load Power:</label>
+                    <div>
+                        <textarea readonly id="load_power" rows="1">150</textarea>
+                        <label class="unit">(W)</label>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label>Battery Current:</label>
+                    <div>
+                        <textarea readonly id="bat_current" rows="1">150</textarea>
+                        <label class="unit">(A)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>Load Voltage:</label>
+                    <div>
+                        <textarea readonly id="load_voltage" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label>Battery Temperature:</label>
+                    <div>
+                        <textarea readonly id="bat_temp_status" rows="1">150</textarea>
+                        <label class="unit">(&#8451)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label>Load Current:</label>
+                    <div>
+                        <textarea readonly id="load_current" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <label>Battery Inner Resistance:</label>
+                    <div>
+                        <textarea readonly id="bat_temp_status" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Content for Statistics Data -->
+        <div class="tab-pane fade pl-0 pr-0" id="statistics">
+            <!-- Today -->
+            <div class="heading">
+                <b>Today</b>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>PV Voltage:</label>
+                    <div class="row">
+                        <div class="col">
+                            <textarea readonly id="min_pv_vol_today" rows="1">150</textarea>
+                            <label class="separator ml-1 mr-1" style="text-align: center;">-</label>
+                            <textarea readonly id="max_pv_vol_today" rows="1">150</textarea>
+                            <label class="unit ml-1">(V)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Consumed Energy:</label>
+                    <div>
+                        <textarea readonly id="con_energy_today" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Generated Energy:</label>
+                    <div>
+                        <textarea readonly id="gen_energy_today" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- This month -->
+            <div class="heading">
+                <b>This Month</b>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>PV Voltage:</label>
+                    <div class="row">
+                        <div class="col">
+                            <textarea readonly id="min_pv_vol_month" rows="1">100</textarea>
+                            <label class="separator ml-1 mr-1">-</label>
+                            <textarea readonly id="max_pv_vol_month" rows="1">150</textarea>
+                            <label class="unit ml-1">(V)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Consumed Energy:</label>
+                    <div>
+                        <textarea readonly id="con_energy_month" rows="1">100</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Generated Energy:</label>
+                    <div>
+                        <textarea readonly id="gen_energy_month" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- This year -->
+            <div class="heading">
+                <b>This year</b>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>PV Voltage:</label>
+                    <div class="row">
+                        <div class="col">
+                            <textarea readonly id="min_pv_vol_year" rows="1">100</textarea>
+                            <label class="separator ml-1 mr-1">-</label>
+                            <textarea readonly id="max_pv_vol_year" rows="1">150</textarea>
+                            <label class="unit ml-1">(V)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Consumed Energy:</label>
+                    <div>
+                        <textarea readonly id="con_energy_year" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Generated Energy - This Year:</label>
+                    <div>
+                        <textarea readonly id="gen_energy_year" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="heading">
+                <b>Total</b>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>PV Voltage:</label>
+                    <div class="row">
+                        <div class="col">
+                            <textarea readonly id="min_pv_vol_total" rows="1">100</textarea>
+                            <label class="separator ml-1 mr-1">-</label>
+                            <textarea readonly id="max_pv_vol_total" rows="1">150</textarea>
+                            <label class="unit ml-1">(V)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Consumed Energy:</label>
+                    <div>
+                        <textarea readonly id="con_energy_total" rows="1">050</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Generated Energy:</label>
+                    <div>
+                        <textarea readonly id="gen_energy_total" rows="1">150</textarea>
+                        <label class="unit">(V)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
