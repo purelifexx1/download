@@ -5,27 +5,31 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-server.listen(3000);
+server.listen(3069);
 var mqtt = require('mqtt');
-var user_number = 0;
-var latch = true;
 var options = {
   port: 1883,
   clientId: 'x1999',
   username: "web_client",
   password: "01262755347",
 };
-var timer_latch;
 
-function timer(){
-	io.sockets.emit("ar", counter);
-}
+var user_number = 0;
+var latch = true;
+var timer_latch;
+var mqtt_status = false;
+
 var client = mqtt.connect('mqtt://node02.myqtthub.com', options);
-var current;
+function timer(){
+	if (mqtt_status == true) {
+		client.publish('realtime_data_request', "3e68");
+	}
+}
+
 io.on('connection', function(socket){
 	user_number++;
-	socket.on("package", function(data){
-		console.log(data);
+	socket.on("statistic_request", function(data){
+		client.publish('statistic_data_request', "3f69"); // dummy data, should transfer the id of requested client
 	})
 	socket.on("disconnect", function(){
 		user_number--;
@@ -36,19 +40,28 @@ io.on('connection', function(socket){
 	})
 	if (user_number != 0 && latch == true) {
 		latch = false;
-		timer_latch = setInterval(timer, 1000);
+		timer_latch = setInterval(timer, 10000);
 	}
 })
-io.on('disconnect', function(socket){
-	console.log("disconnect");
-})
+
 client.on('connect', function(){
+	mqtt_status = true;
 	console.log("mqtt broker connected");
-	client.subscribe('another');
+	client.subscribe('realtime_data');
+	client.subscribe('statistic_data');
 	client.on('message', function(topic, message){
-	   if(topic == 'another') {
-	   	io.to(current).emit('ar', message.toString());
+
+	   if(topic == 'realtime_data') {
+	   	io.sockets.emit("realtime_data", message);	
 	   }
+
+	   if(topic == 'statistic_data') {
+   		io.to(message).emit("statistic_data", message)
+	   }
+    })
+
+    client.on('disconnect', function(){
+    	mqtt_status = false;
     })
 })
 
