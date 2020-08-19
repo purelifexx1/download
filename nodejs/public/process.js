@@ -27,10 +27,13 @@ socket.on("realtime_data", function(data){
 	$("#load_current").val((struct_realtime_data.load_current/100).toString());
 })
 socket.on("statistic_data", function(data){
-
+	data.copy(statistic_union_buf, 0, 0, statistic_union_buf.length);
 })
 $(document).ready(function(){
 	$("#statistic_request").click(function(){
 		socket.emit("statistic_request");
+	})
+	$("#onoff_load").click(function(){
+		socket.emit("load_relay");
 	})
 });
