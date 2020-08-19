@@ -1,0 +1,105 @@
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
+#include "schedule.h"
+#include <EEPROM.h>
+#include <String.h>
+#define mqtt_server "node02.myqtthub.com"
+#define mqtt_user "client1" 
+#define mqtt_pwd "167943522"
+const uint16_t mqtt_port = 1883; 
+WiFiClient ESP8266Client;
+PubSubClient client(ESP8266Client);
+String ssid, password;
+byte checked = 5;
+byte data_buffer[128];
+byte check_header = 1;
+bool LED_status = false;
+void setup() {
+  mSerial.Begin(115200);
+  pinMode(D0, OUTPUT);
+  pinMode(D1, INPUT_PULLUP);
+  EEPROM.begin(512);
+  delay(50);
+  if(digitalRead(D1) == LOW) {
+    mSerial.set_callback(ssid_password);
+    while(1) {
+      mSerial.Receive_CallBack(checked);
+    }
+  }else{
+    byte t = 0, data;
+    while((data = EEPROM.read(t++)) != '\r'){
+      ssid.concat((char)data);
+      delay(2);
+    }
+    while((data = EEPROM.read(t++)) != '\r'){
+      password.concat((char)data);
+      delay(2);
+    }
+  } 
+  mSerial.set_callback(data_handler);
+  setup_wifi();
+  client.setServer(mqtt_server, mqtt_port); 
+  client.setCallback(callback);
+}
+
+
+void setup_wifi() {
+  delay(10);
+  WiFi.begin(ssid, password); 
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    digitalWrite(D0, LED_status = !LED_status);
+  }
+  
+}
+void ssid_password(byte* package, int Length){
+  if(package[0] == 'p' && package[1] == 'c' && package[2] == 'd' && package[3] == 't' && check_header == 1) {
+    if (Length > checked) {
+      check_header = Length - checked;
+      memcpy(data_buffer, &package[checked], check_header);
+    }else
+      check_header = 0;
+    checked = package[4];
+  }else if (check_header == 0) {
+    memcpy(data_buffer, &package[0], Length);
+    for(byte t = 0; t<Length; t++) {
+      EEPROM.write(t, data_buffer[t]);
+      delay(2);
+    }
+    EEPROM.commit();
+  }else{
+    memcpy(&data_buffer[check_header], &package[0], Length);
+    for(byte t = 0; t<check_header + Length; t++) {
+      EEPROM.write(t, data_buffer[t]);
+      delay(2);
+    }
+    EEPROM.commit();
+  }
+}
+void callback(char* topic, byte* payload, unsigned int length) {
+  
+}
+void data_handler(byte* package, int Length) {
+  if(Length == 32) {
+    client.publish("data_receive", package, Length);
+  }else{
+    //throw error
+  }
+}
+void reconnect() {
+  while (!client.connected()) {
+    if (client.connect("ESP",mqtt_user, mqtt_pwd)) {
+       
+    } else {
+      digitalWrite(D0, LED_status = !LED_status);
+      delay(5000);
+    }
+  }
+}
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+  mSerial.Receive_CallBack(32);
+}
