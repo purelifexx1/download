@@ -5,7 +5,7 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-server.listen(3069);
+server.listen(3000);
 var mqtt = require('mqtt');
 var options = {
   port: 1883,
@@ -27,9 +27,13 @@ function timer(){
 }
 
 io.on('connection', function(socket){
+	console.log("con");
 	user_number++;
 	socket.on("statistic_request", function(data){
 		client.publish('statistic_data_request', "3f69"); // dummy data, should transfer the id of requested client
+	})
+	socket.on("load_relay", function(data){
+		console.log(data);
 	})
 	socket.on("disconnect", function(){
 		user_number--;
@@ -45,18 +49,22 @@ io.on('connection', function(socket){
 })
 
 client.on('connect', function(){
-	mqtt_status = true;
+	//mqtt_status = true;
 	console.log("mqtt broker connected");
 	client.subscribe('realtime_data');
+	client.subscribe('realtime_data_request');
 	client.subscribe('statistic_data');
 	client.on('message', function(topic, message){
 
 	   if(topic == 'realtime_data') {
 	   	io.sockets.emit("realtime_data", message);	
+	   }else{
+	   	io.sockets.emit("statistic_data", message);
 	   }
 
 	   if(topic == 'statistic_data') {
-   		io.to(message).emit("statistic_data", message)
+	   	var okthen = Buffer.from([12, 34, 45]);
+   		io.to(message).emit("statistic_data", okthen);
 	   }
     })
 
@@ -66,5 +74,5 @@ client.on('connect', function(){
 })
 
 app.get("/", function(req, res){
-	res.render("index");
+	res.render("trangchu");
 })
