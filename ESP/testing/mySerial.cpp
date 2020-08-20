@@ -19,6 +19,20 @@ void mySerial::Send(byte* Buffer, int Length)
 {
   Serial.write(Buffer, Length);
 }
+void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t footer, byte command)
+{
+  byte* temper_buffer;
+  temper_buffer = new byte[Length + 6];
+  temper_buffer[0] = (byte)((header >> 8) & 0xff);
+  temper_buffer[1] = (byte)(header & 0xff);
+  temper_buffer[2] = command;
+  temper_buffer[3] = Length;
+  memcpy(&temper_buffer[4], Buffer, Length);
+  temper_buffer[4+Length] = (byte)((footer >> 8) & 0xff);
+  temper_buffer[5+Length] = (byte)(footer & 0xff);
+  Send(temper_buffer, Length + 6);
+  delete[]temper_buffer;
+}
 void mySerial::Print(String input)
 {
   Serial.println(input);

@@ -35,7 +35,15 @@ void setup_wifi() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
-  digitalWrite(D0, LED_status = !LED_status);
+  switch (String(topic)) {
+    case "realtime_data_request":
+      
+      break;
+    case "statistic_data_request":
+
+      break;
+    
+  }
 }
 void data_handler(byte* package, int Length) { // for uart
   if(Length == 8) {
@@ -47,7 +55,8 @@ void data_handler(byte* package, int Length) { // for uart
 void reconnect() {
   while (!client.connected()) {
     if (client.connect(device_setup.client_id.c_str(),device_setup.mqtt_user.c_str(), device_setup.mqtt_pwd.c_str())) {
-       client.subscribe("another");
+       client.subscribe("realtime_data_request");
+       client.subscribe("statistic_data_request");
     } else {
       digitalWrite(D0, LED_status = !LED_status);
       delay(5000);

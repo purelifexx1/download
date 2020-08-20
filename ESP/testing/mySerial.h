@@ -17,6 +17,7 @@ class mySerial
     void Begin(long Baudrate);
     void Print(String input);
     void Send(uint8_t* Buffer, int Length);
+    void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t footer, byte command);
     void set_callback(Callback);
     void Receive_CallBack(int th_byte);//in loop
     void Receive_Package();   //in loop
