@@ -37,20 +37,16 @@ void setup_wifi() {
 void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
   switch (String(topic)) {
     case "realtime_data_request":
-      
+      Modbus.modbus_request(0x01, 0x04, new byte[2]{0x31, 0x00}, 15);
       break;
     case "statistic_data_request":
-
+      Modbus.modbus_request(0x01, 0x04, new byte[2]{0x33, 0x00}, 20);
       break;
     
   }
 }
 void data_handler(byte* package, int Length) { // for uart
-  if(Length == 8) {
-    digitalWrite(D0, LED_status = !LED_status);
-  }else{
-    //throw error
-  }
+  
 }
 void reconnect() {
   while (!client.connected()) {

@@ -19,7 +19,7 @@ void modbus::CRC_16(byte* input, byte Length, byte* output)
   output[0] = (byte)(reg_crc & 0xff);
 }
 
-void modbus::modbus_request(byte slave_id, byte function_code, byte* register_address, uint16_t register_count, byte* CRC)
+void modbus::modbus_request(byte slave_id, byte function_code, byte* register_address, uint16_t register_count)
 {
   request_frame[0] = slave_id;
   request_frame[1] = function_code;
@@ -28,7 +28,7 @@ void modbus::modbus_request(byte slave_id, byte function_code, byte* register_ad
   request_frame[4] = (byte)((register_count >> 8) & 0xff);
   request_frame[5] = (byte)(register_count & 0xff);
   CRC_16(request_frame, 6, &request_frame[6]);
-  mySerial.Send_packet(request_frame, 8, 23169, 34476);
+  mySerial.Send_packet(request_frame, 8, 23169, 34476, 34);
 }
 
 bool modbus::check_valid_package(byte* packet, byte Length, byte* data_frame)
