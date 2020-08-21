@@ -1,13 +1,13 @@
 #include "setup_configure.h"
-mySerial debug_configure_serial(true, 22345, 47898);
+
 setup_configure::setup_configure()
 {
-	EEPROM.begin(512);
-  //debug_configure_serial.set_callback(get_mqtt_data);
+	EEPROM.begin(512);  
 }
 
 void setup_configure::in_setup()
 {
+  //debug_configure_serial.set_callback(get_mqtt_data);
 	while(1) {
     /*debug_configure_serial.Receive(data_buffer, &Length);
     if (Length >= checked) {

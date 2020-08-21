@@ -27,5 +27,6 @@ class mySerial
     void timer_runout_function();
     void testing();
 };
-extern mySerial data_serial(false, 12345, 34567);
+extern mySerial data_serial;
+extern mySerial debug_configure_serial;
 #endif

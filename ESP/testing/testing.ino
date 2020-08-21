@@ -3,7 +3,10 @@
 //#include "schedule.h"
 #include "setup_configure.h"
 #include "mySerial.h"
+#include "modbus.h"
 
+mySerial data_serial(false, 12345, 34567);
+mySerial debug_configure_serial(true, 22345, 47898);
 const uint16_t mqtt_port = 1883; 
 WiFiClient ESP32Client;
 PubSubClient client(ESP32Client);
@@ -15,8 +18,9 @@ void setup() {
   pinMode(23, INPUT_PULLUP);
   delay(50);
   data_serial.set_callback(data_handler);
-  setup_mqtt();
   setup_wifi();
+  setup_mqtt();
+  
   client.setServer(device_setup.mqtt_server.c_str(), device_setup.mqtt_port.toInt()); 
   client.setCallback(callback);
 }
@@ -27,6 +31,7 @@ void setup_wifi() {
   if(digitalRead(22) == LOW) {
     status = ESP32WiFi.autoConnect("ESP32 Configuration", "password");
   }else{
+    digitalWrite(2, LED_status = !LED_status);
     status = ESP32WiFi.startConfigPortal("ESP32 Configuration", "password");
   } 
   if (status)  //connect successfully, blink led to inform user
@@ -75,7 +80,8 @@ void reconnect() {
   while (!client.connected()) {
     if (client.connect(device_setup.client_id.c_str(),device_setup.mqtt_user.c_str(), device_setup.mqtt_pwd.c_str())) {
        client.subscribe("realtime_data_request");
-       client.subscribe("statistic_data_request");     
+       client.subscribe("statistic_data_request");   
+       debug_configure_serial.Print("connect mqtt");  
     } else {
       digitalWrite(2, LED_status = !LED_status);
       delay(5000);

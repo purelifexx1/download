@@ -26,5 +26,5 @@ public:
 };
 
 extern setup_configure device_setup;
-//extern mySerial debug_configure_serial(true, 22345, 47898);
+
 #endif
