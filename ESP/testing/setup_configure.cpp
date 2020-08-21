@@ -2,7 +2,6 @@
 
 setup_configure::setup_configure()
 {
-	mSerial.Begin(115200);
 	EEPROM.begin(512);
 }
 

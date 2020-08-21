@@ -1,4 +1,4 @@
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include <PubSubClient.h>
 #include "schedule.h"
 #include "setup_configure.h"
@@ -10,7 +10,7 @@ PubSubClient client(ESP8266Client);
 byte data_buffer[128];
 bool LED_status = false;
 void setup() {
-  pinMode(D0, OUTPUT);
+  pinMode(2, OUTPUT);
   pinMode(D1, INPUT_PULLUP);  
   delay(50);
   if(digitalRead(D1) == LOW) {
@@ -30,7 +30,7 @@ void setup_wifi() {
   WiFi.begin(device_setup.ssid, device_setup.password); 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    digitalWrite(D0, LED_status = !LED_status);
+    digitalWrite(2, LED_status = !LED_status);
   }
 }
 
@@ -54,7 +54,7 @@ void reconnect() {
        client.subscribe("realtime_data_request");
        client.subscribe("statistic_data_request");
     } else {
-      digitalWrite(D0, LED_status = !LED_status);
+      digitalWrite(2, LED_status = !LED_status);
       delay(5000);
     }
   }

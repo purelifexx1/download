@@ -1,5 +1,5 @@
 #include "modbus.h"
-
+mySerial data_serial(false);
 modbus::modbus()
 {
   
@@ -28,7 +28,7 @@ void modbus::modbus_request(byte slave_id, byte function_code, byte* register_ad
   request_frame[4] = (byte)((register_count >> 8) & 0xff);
   request_frame[5] = (byte)(register_count & 0xff);
   CRC_16(request_frame, 6, &request_frame[6]);
-  mySerial.Send_packet(request_frame, 8, 23169, 34476, 34);
+  data_serial.Send_packet(request_frame, 8, 23169, 34476, 34);
 }
 
 bool modbus::check_valid_package(byte* packet, byte Length, byte* data_frame)

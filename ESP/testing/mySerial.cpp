@@ -1,23 +1,19 @@
 #include "mySerial.h"
 
-schedule Timer1(50); 
-byte *sync_po;
-byte *sync_fl;
-byte *data_po; 
-mySerial::mySerial()
+mySerial::mySerial(bool selection)
 {
-  Timer1.set_callback(timer_runout);
-  sync_po = &this->sync_pointer;
-  sync_fl = &this->sync_flag;
-  data_po = &this->data_pointer;
+  if (selection == true) {
+    mSerial = &Serial;
+    mSerial->begin(115200);
+  }else{
+    mSerial = &Serial2;
+    mSerial->begin(115200, SERIAL_8N1, 25, 27);
+  }
 }
-void mySerial::Begin(long Baudrate)
-{
-  Serial.begin(Baudrate);
-}
+
 void mySerial::Send(byte* Buffer, int Length)
 {
-  Serial.write(Buffer, Length);
+  mSerial->write(Buffer, Length);
 }
 void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t footer, byte command)
 {
@@ -35,13 +31,13 @@ void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t f
 }
 void mySerial::Print(String input)
 {
-  Serial.println(input);
+  mSerial->println(input);
 }
 void mySerial::Receive_CallBack(int th_byte)
 {
   int number;
-  while(number = Serial.available())
-    Serial.readBytes(&data_buffer[(pointer+=number)-1], number);
+  while(number = mSerial->available())
+    mSerial->readBytes(&data_buffer[(pointer+=number)-1], number);
   if(pointer >= th_byte) {
      number = pointer;
      pointer = 0;
@@ -60,14 +56,14 @@ void mySerial::Pointer_Reset()
 void mySerial::Receive(byte* Buffer, int* Length)
 {  
   int number;
-  while(number = Serial.available())
-    Serial.readBytes(&Buffer[(pointer+=number) - 1], number); 
+  while(number = mSerial->available())
+    mSerial->readBytes(&Buffer[(pointer+=number) - 1], number); 
   *Length = pointer;  
 }
 void mySerial::Receive_Package()
 {
-  while(Serial.available()){
-    byte temper_byte = Serial.read();
+  while(mSerial->available()){
+    byte temper_byte = mSerial->read();
     if(temper_byte == sync_header[sync_pointer] && sync_flag == 0) {
       sync_pointer++;
       if(sync_pointer == 4) {
@@ -75,7 +71,8 @@ void mySerial::Receive_Package()
         sync_flag = 1;
         data_pointer = 0;
         //start timer
-        Timer1.start_timer();
+        time_value = millis();
+        timeout_enable = true;
       }
     }else if(temper_byte != sync_header[sync_pointer] && sync_flag == 0){
       sync_pointer = 0;
@@ -87,7 +84,7 @@ void mySerial::Receive_Package()
           sync_pointer = 0;
           sync_flag = 0;
           byte_number = data_pointer - 4;
-          Timer1.stop_timer();
+          timeout_enable = false;
           this->callback_function(data_buffer, byte_number);
           return;
         }
@@ -98,18 +95,20 @@ void mySerial::Receive_Package()
       }
     }
   }
-  Timer1.looping();
+  timer_runout_function();
 }
-void timer_runout()
+
+void mySerial::timer_runout_function() 
 {
-  Timer1.stop_timer();
-  *data_po = 0;
-  *sync_fl = 0;
-  *sync_po = 0;
-  //error handler
+  if(timeout_enable && (uint16_t)(millis() - time_value) > 50) {
+    timeout_enable = false;
+    data_pointer = 0;
+    sync_flag = 0;
+    sync_pointer = 0;
+    //error handler after this
+  }
 }
 void mySerial::testing()
 {
   
 }
-mySerial mSerial;

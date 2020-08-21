@@ -32,5 +32,5 @@ class modbus
 };
 
 
-
+extern mySerial data_serial(false);
 #endif
