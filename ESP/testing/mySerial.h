@@ -1,7 +1,6 @@
 #ifndef INC_MYSERIAL_
 #define INC_MYSERIAL_
 #include <Arduino.h>
-#include "schedule.h"
 #define Callback void(*callback_function)(byte*,int)
 class mySerial 
 {
@@ -16,7 +15,7 @@ class mySerial
     bool timeout_enable = false;
     HardwareSerial* mSerial;
   public:
-    mySerial();
+    mySerial(bool selection, uint16_t header, uint16_t footer);
     void Print(String input);
     void Send(uint8_t* Buffer, int Length);
     void Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t footer, byte command);
@@ -28,4 +27,5 @@ class mySerial
     void timer_runout_function();
     void testing();
 };
+extern mySerial data_serial(false, 12345, 34567);
 #endif

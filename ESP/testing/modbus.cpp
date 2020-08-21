@@ -1,5 +1,5 @@
 #include "modbus.h"
-mySerial data_serial(false, 12345, 34567);
+
 modbus::modbus()
 {
   
@@ -39,3 +39,4 @@ bool modbus::check_valid_package(byte* packet, byte Length, byte* data_frame)
   }else
     return 0;
 }
+modbus Modbus;

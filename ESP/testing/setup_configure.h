@@ -1,6 +1,5 @@
 #ifndef INC_SETUPCONFIGURE_
 #define INC_SETUPCONFIGURE_
-#include <Arduino.h>
 #include "mySerial.h"
 #include <EEPROM.h>
 #include <String.h>
@@ -27,5 +26,5 @@ public:
 };
 
 extern setup_configure device_setup;
-extern mySerial debug_configure_serial(true, 22345, 47898);
+//extern mySerial debug_configure_serial(true, 22345, 47898);
 #endif

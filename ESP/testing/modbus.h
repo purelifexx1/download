@@ -1,6 +1,5 @@
 #ifndef INC_MODBUS_
 #define INC_MODBUS_
-#include <Arduino.h>
 #include "mySerial.h"
 #define read_coil 1
 #define read_discrete 2
@@ -31,6 +30,6 @@ class modbus
     void CRC_16(byte* input, byte Length, byte* output);
 };
 
-
-extern mySerial data_serial(false, 12345, 34567);
+extern modbus Modbus;
+//extern mySerial data_serial(false, 12345, 34567);
 #endif

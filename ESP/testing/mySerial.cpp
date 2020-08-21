@@ -6,13 +6,8 @@ mySerial::mySerial(bool selection, uint16_t header, uint16_t footer)
   sync_header[1] = (byte)(header & 0xff);
   sync_end[0] = (byte)(header>>8 & 0xff);
   sync_end[1] = (byte)(header & 0xff);
-  if (selection == true) {
-    mSerial = &Serial;
-    mSerial->begin(115200);
-  }else{
-    mSerial = &Serial2;
-    mSerial->begin(115200, SERIAL_8N1, 25, 27);
-  }
+  if(selection == true) mSerial = &Serial; else mSerial = &Serial2;
+  mSerial->begin(115200);
 }
 
 void mySerial::Send(byte* Buffer, int Length)

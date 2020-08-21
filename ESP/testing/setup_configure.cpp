@@ -1,9 +1,9 @@
 #include "setup_configure.h"
-
+mySerial debug_configure_serial(true, 22345, 47898);
 setup_configure::setup_configure()
 {
 	EEPROM.begin(512);
-  debug_configure_serial.set_callback(get_mqtt_data);
+  //debug_configure_serial.set_callback(get_mqtt_data);
 }
 
 void setup_configure::in_setup()
