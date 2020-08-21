@@ -9,8 +9,8 @@ class mySerial
     Callback;   
     int pointer = 0;
     byte data_buffer[255];
-    byte sync_header[4] = {84, 26, 78, 254};
-    byte sync_end[4] = {1, 26, 27, 55};
+    byte sync_header[2];
+    byte sync_end[2];
     byte sync_flag, sync_pointer, data_pointer, byte_number;
     uint16_t time_value;
     bool timeout_enable = false;

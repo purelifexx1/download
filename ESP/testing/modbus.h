@@ -32,5 +32,5 @@ class modbus
 };
 
 
-extern mySerial data_serial(false);
+extern mySerial data_serial(false, 12345, 34567);
 #endif

@@ -9,9 +9,10 @@ class setup_configure
 private:
 	byte checked = 5;
 	byte data_buffer[128];
-  byte data_buffer1[128];
+  	byte data_buffer1[128];
 	byte check_header = 1;
-  int Length;
+  	int Length;
+  	void get_mqtt_data(byte* packet, int Length);
 public:
 	setup_configure();
 	String ssid = "";
@@ -26,5 +27,5 @@ public:
 };
 
 extern setup_configure device_setup;
-
+extern mySerial debug_configure_serial(true, 22345, 47898);
 #endif

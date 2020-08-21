@@ -1,7 +1,11 @@
 #include "mySerial.h"
 
-mySerial::mySerial(bool selection)
+mySerial::mySerial(bool selection, uint16_t header, uint16_t footer)
 {
+  sync_header[0] = (byte)(header>>8 & 0xff);
+  sync_header[1] = (byte)(header & 0xff);
+  sync_end[0] = (byte)(header>>8 & 0xff);
+  sync_end[1] = (byte)(header & 0xff);
   if (selection == true) {
     mSerial = &Serial;
     mSerial->begin(115200);
@@ -66,7 +70,7 @@ void mySerial::Receive_Package()
     byte temper_byte = mSerial->read();
     if(temper_byte == sync_header[sync_pointer] && sync_flag == 0) {
       sync_pointer++;
-      if(sync_pointer == 4) {
+      if(sync_pointer == 2) {
         sync_pointer = 0;
         sync_flag = 1;
         data_pointer = 0;
@@ -80,10 +84,10 @@ void mySerial::Receive_Package()
       if(temper_byte == sync_end[sync_pointer]) {
         sync_pointer++;
         data_buffer[data_pointer++] = temper_byte;
-        if(sync_pointer == 4) {
+        if(sync_pointer == 2) {
           sync_pointer = 0;
           sync_flag = 0;
-          byte_number = data_pointer - 4;
+          byte_number = data_pointer - 2;
           timeout_enable = false;
           this->callback_function(data_buffer, byte_number);
           return;

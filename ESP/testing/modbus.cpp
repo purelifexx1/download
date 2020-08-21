@@ -1,5 +1,5 @@
 #include "modbus.h"
-mySerial data_serial(false);
+mySerial data_serial(false, 12345, 34567);
 modbus::modbus()
 {
   

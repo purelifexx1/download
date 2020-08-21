@@ -3,7 +3,7 @@
 #include "schedule.h"
 #include "setup_configure.h"
 
-mySerial debug_configure_serial(true);
+mySerial debug_configure_serial(true, 22345, 47898);
 const uint16_t mqtt_port = 1883; 
 WiFiClient ESP32Client;
 PubSubClient client(ESP32Client);
@@ -13,7 +13,7 @@ void setup() {
   pinMode(2, OUTPUT);
   pinMode(22, INPUT_PULLUP);  
   delay(50);
-  mSerial.set_callback(data_handler);
+  data_serial.set_callback(data_handler);
   setup_wifi();
   client.setServer(device_setup.mqtt_server.c_str(), device_setup.mqtt_port.toInt()); 
   client.setCallback(callback);
@@ -78,5 +78,5 @@ void loop() {
     reconnect();
   }
   client.loop();
-  mSerial.Receive_Package();
+  data_serial.Receive_Package();
 }
