@@ -12,8 +12,10 @@ bool LED_status = false;
 void setup() {
   pinMode(2, OUTPUT);
   pinMode(22, INPUT_PULLUP);  
+  pinMode(23, INPUT_PULLUP);
   delay(50);
   data_serial.set_callback(data_handler);
+  setup_mqtt();
   setup_wifi();
   client.setServer(device_setup.mqtt_server.c_str(), device_setup.mqtt_port.toInt()); 
   client.setCallback(callback);
@@ -45,6 +47,13 @@ void setup_wifi() {
       digitalWrite(2, LED_status = !LED_status);
       delay(100);
     }
+  }
+}
+void setup_mqtt() {
+  if(digitalRead(23) == LOW) {
+    device_setup.in_setup();
+  }else{
+    device_setup.device_commence();
   }
 }
 
