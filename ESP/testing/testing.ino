@@ -4,7 +4,7 @@
 #include "setup_configure.h"
 #include "mySerial.h"
 #include "modbus.h"
-
+byte new_test[4] = {23, 34, 234, 89};
 mySerial data_serial(false, 12345, 34567);
 mySerial debug_configure_serial(true, 22345, 47898);
 const uint16_t mqtt_port = 1883; 
@@ -76,8 +76,9 @@ void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
 //    
 //  }
 }
-void data_handler(byte* package, int Length) { // for uart
+void data_handler(byte* package, int Length) { // for uart lora
   digitalWrite(2, LED_status = !LED_status);
+  client.publish("realtime_data", new_test, 4);
 }
 void reconnect() {
   while (!client.connected()) {

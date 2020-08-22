@@ -1,5 +1,5 @@
 var express = require("express");
-var mot = require("./second");
+var data_handler = require("./second");
 var app = express();
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -16,7 +16,6 @@ var options = {
 };
 
 
-
 var user_number = 0;
 var latch = true;
 var timer_latch;
@@ -28,11 +27,12 @@ function timer(){
 		client.publish('realtime_data_request', "3e68");
 	}
 }
+var realtime_buf = data_handler.realtime_buf;
+var statistic_buf = data_handler.statistic_buf;
 
 io.on('connection', function(socket){
 	console.log("con");
 	user_number++;
-	socket.emit("ar", "123/456");
 	socket.on("statistic_request", function(data){
 		client.publish('statistic_data_request', "3f69"); // dummy data, should transfer the id of requested client
 	})
@@ -61,14 +61,13 @@ client.on('connect', function(){
 	client.on('message', function(topic, message){
 
 	   if(topic == 'realtime_data') {
-	   	io.sockets.emit("realtime_data", message);	
-	   }else{
-	   	io.sockets.emit("statistic_data", message);
+	   	message.copy(realtime_buf, 0, 0, message.length);
+	   	data_handler.realtime_send(io);	
 	   }
 
 	   if(topic == 'statistic_data') {
-	   	var okthen = Buffer.from([12, 34, 45]);
-   		io.to(message).emit("statistic_data", okthen);
+	   	message.copy(statistic_buf, 0, 0, message.length);
+	   	data_handler.statistic_send(io);
 	   }
     })
 
