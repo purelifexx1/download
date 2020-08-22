@@ -1,4 +1,5 @@
 var express = require("express");
+var mot = require("./second");
 var app = express();
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -13,6 +14,8 @@ var options = {
   username: "web_client",
   password: "01262755347",
 };
+
+
 
 var user_number = 0;
 var latch = true;
@@ -29,6 +32,7 @@ function timer(){
 io.on('connection', function(socket){
 	console.log("con");
 	user_number++;
+	socket.emit("ar", "123/456");
 	socket.on("statistic_request", function(data){
 		client.publish('statistic_data_request', "3f69"); // dummy data, should transfer the id of requested client
 	})

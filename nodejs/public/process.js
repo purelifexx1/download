@@ -1,6 +1,6 @@
 var socket = io("http://localhost:3000");
-var Struct = require("struct");
-var realtime_data = Struct.word16Sbe('pv_vol').word16Sbe('pv_current').word32Sle('pv_power').word16Sbe('bat_vol').word16Sbe('bat_current').word32Sle('bat_power')
+//var Struct = require("struct");
+/*var realtime_data = Struct.word16Sbe('pv_vol').word16Sbe('pv_current').word32Sle('pv_power').word16Sbe('bat_vol').word16Sbe('bat_current').word32Sle('bat_power')
 								.word16Sbe('load_vol').word16Sbe('load_current').word32Sle('load_power').word16Sbe('bat_temp').word16Sbe('temp_in').word16Sbe('bat_percent');
 var statistic_data = Struct.word16Sbe('max_pv_vol_today').word16Sbe('min_pv_vol_today').word16Sbe('max_bat_vol_today').word16Sbe('min_bat_vol_today').word32Sle('con_energy_today')
 								.word32Sle('bat_power').word32Sle('con_energy_month').word32Sle('con_energy_year').word32Sle('total_con_energy').word32Sle('gen_energy_today')
@@ -29,6 +29,11 @@ socket.on("realtime_data", function(data){
 socket.on("statistic_data", function(data){
 	//data.copy(statistic_union_buf, 0, 0, statistic_union_buf.length);
 	socket.emit("load_relay", data);
+})*/
+socket.on("ar", function(data){
+	var temp = data.split('/');
+	$("#input").val(temp[0]);
+	$("#input1").val(temp[1]);
 })
 $(document).ready(function(){
 	socket.emit("load_relay", test_buffer);
