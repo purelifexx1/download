@@ -4,8 +4,8 @@ mySerial::mySerial(bool selection, uint16_t header, uint16_t footer)
 {
   sync_header[0] = (byte)(header>>8 & 0xff);
   sync_header[1] = (byte)(header & 0xff);
-  sync_end[0] = (byte)(header>>8 & 0xff);
-  sync_end[1] = (byte)(header & 0xff);
+  sync_end[0] = (byte)(footer>>8 & 0xff);
+  sync_end[1] = (byte)(footer & 0xff);
   if(selection == true) mSerial = &Serial; else mSerial = &Serial2;
   mSerial->begin(115200);
 }
@@ -89,7 +89,7 @@ void mySerial::Receive_Package()
         }
       }
       else{
-        sync_pointer = 0;
+        sync_pointer = (sync_pointer != 0 &&  temper_byte == sync_end[0])?1:0;
         data_buffer[data_pointer++] = temper_byte;
       }
     }
@@ -99,7 +99,7 @@ void mySerial::Receive_Package()
 
 void mySerial::timer_runout_function() 
 {
-  if(timeout_enable && (uint16_t)(millis() - time_value) > 50) {
+  if(timeout_enable == true && (unsigned long)(millis() - time_value) > 50) {
     timeout_enable = false;
     data_pointer = 0;
     sync_flag = 0;

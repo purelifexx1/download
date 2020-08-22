@@ -11,7 +11,7 @@ class mySerial
     byte sync_header[2];
     byte sync_end[2];
     byte sync_flag, sync_pointer, data_pointer, byte_number;
-    uint16_t time_value;
+    unsigned long time_value;
     bool timeout_enable = false;
     HardwareSerial* mSerial;
   public:

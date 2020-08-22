@@ -2,12 +2,15 @@
 
 setup_configure::setup_configure()
 {
-	EEPROM.begin(512);  
+	  
 }
-
-void setup_configure::in_setup()
+void setup_configure::begin_setup()
 {
-  //debug_configure_serial.set_callback(get_mqtt_data);
+  EEPROM.begin(512);
+  debug_configure_serial.set_callback(get_mqtt_configuration);
+}
+void setup_configure::in_setup()
+{  
 	while(1) {
     /*debug_configure_serial.Receive(data_buffer, &Length);
     if (Length >= checked) {
@@ -64,14 +67,13 @@ void setup_configure::device_commence()
   }    
 }
 
-void setup_configure::get_mqtt_data(byte* packet, int Length)
+void setup_configure::get_mqtt_configuration(byte* packet, int Length)
 {
   for(byte t = 0; t < Length; t++) {
     EEPROM.write(t, packet[t]);
     delay(2);
   }
   EEPROM.commit();
-  while(1);
 }
 
 setup_configure device_setup;

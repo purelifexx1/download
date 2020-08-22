@@ -18,8 +18,9 @@ void setup() {
   pinMode(23, INPUT_PULLUP);
   delay(50);
   data_serial.set_callback(data_handler);
-  setup_wifi();
   setup_mqtt();
+  
+  setup_wifi(); 
   
   client.setServer(device_setup.mqtt_server.c_str(), device_setup.mqtt_port.toInt()); 
   client.setCallback(callback);
@@ -50,11 +51,13 @@ void setup_wifi() {
   }else{   //connect fail, blink led continuously
     while(1) {
       digitalWrite(2, LED_status = !LED_status);
-      delay(100);
+      delay(200);
     }
   }
 }
 void setup_mqtt() {
+  device_setup.begin_setup();
+  delay(2);
   if(digitalRead(23) == LOW) {
     device_setup.in_setup();
   }else{
@@ -74,7 +77,7 @@ void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
 //  }
 }
 void data_handler(byte* package, int Length) { // for uart
-  
+  digitalWrite(2, LED_status = !LED_status);
 }
 void reconnect() {
   while (!client.connected()) {
