@@ -74,6 +74,11 @@ void setup_configure::get_mqtt_configuration(byte* packet, int Length)
     delay(2);
   }
   EEPROM.commit();
+  digitalWrite(2, 0);
+  delay(500);
+  digitalWrite(2, 1);
+  delay(500);
+  digitalWrite(2, 0);
 }
 
 setup_configure device_setup;
