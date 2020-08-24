@@ -41,12 +41,8 @@ void modbus::modbus_write_scoil(byte slave_id, byte function_code, uint16_t regi
   CRC_16(request_frame, 6, &request_frame[6]);
   data_serial.Send_packet(request_frame, 8, 23169, 34476, 34);
 }
-bool modbus::check_valid_package(byte* packet, byte Length, byte* data_frame)
+bool modbus::packet_handler(byte* packet, byte Length)
 {
-  if(packet[2] == Length - 5) {
-
-    return 1;
-  }else
-    return 0;
+  if(packet[1] == )
 }
 modbus Modbus;

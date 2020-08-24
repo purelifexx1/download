@@ -24,7 +24,7 @@ public:
 	String mqtt_port = "";
 	void in_setup();
 	void device_commence();
- void static get_mqtt_configuration(byte* packet, int Length);
+ 	void static get_mqtt_configuration(byte* packet, int Length);
 };
 
 extern setup_configure device_setup;

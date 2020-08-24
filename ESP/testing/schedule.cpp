@@ -1,27 +1,35 @@
 #include "schedule.h"
 
-schedule::schedule(int Timer)
+schedule::schedule()
 {
-  T = Timer;
 }
-void schedule::start_timer()
+void schedule::start_timeout(Callback, int timeout)
 {
-  t = millis();
+  T = timeout;
   enable = true;
+  this->callback_function = callback_function;
+  status = true;
+  t = millis();
+  
 }
 void schedule::stop_timer()
 {
   enable = false;
 }
-void schedule::set_callback(Callback)
+void schedule::start_interval(Callback, int cycle)
 {
+  T = cycle;
+  enable = true;
   this->callback_function = callback_function;
+  status = false;
+  t = millis();
 }
 
 void schedule::looping()
 {
   if((unsigned long)(millis() - t) >= T && enable == true) {
     t = millis();
-    this->callback_function();
+    enable = (status == false)?true:false;
+    this->callback_function();    
   }
 }

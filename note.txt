@@ -1,0 +1,4 @@
+display text for packet ongoing
+control button and animation
+control status update
+some textbox is unnecessary
