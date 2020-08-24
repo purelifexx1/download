@@ -20,8 +20,8 @@ void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t f
   temper_buffer = new byte[Length + 6];
   temper_buffer[0] = (byte)((header >> 8) & 0xff);
   temper_buffer[1] = (byte)(header & 0xff);
-  temper_buffer[2] = command;
-  temper_buffer[3] = Length;
+  temper_buffer[2] = Length;
+  temper_buffer[3] = command;
   memcpy(&temper_buffer[4], Buffer, Length);
   temper_buffer[4+Length] = (byte)((footer >> 8) & 0xff);
   temper_buffer[5+Length] = (byte)(footer & 0xff);

@@ -9,7 +9,7 @@ mySerial debug_configure_serial(true, 22345, 47898);
 const uint16_t mqtt_port = 1883; 
 WiFiClient ESP32Client;
 PubSubClient client(ESP32Client);
-byte data_buffer[128];
+
 bool LED_status = false;
 void setup() {
   pinMode(2, OUTPUT);
@@ -66,11 +66,13 @@ void setup_mqtt() {
 
 void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
   if(String(topic) == "realtime_data_request") {
-    Modbus.modbus_request(0x01, 0x04, new byte[2]{0x31, 0x00}, 15);
+    Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x31, 0x00}, 15, 32);
   }else if(String(topic) == "statistic_data_request"){
-    Modbus.modbus_request(0x01, 0x04, new byte[2]{0x33, 0x00}, 20);
+    Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x33, 0x00}, 20, 34);
   }else if(String(topic) == "control_status_request"){
-    Modbus.modbus_request(0x01, 0x01, new byte[2]{0x00, 0x00}, 6);
+    Modbus.modbus_request(0x01, read_coil, new byte[2]{0x00, 0x00}, 6, 36);
+  }else if(String(topic) == "onoff_load") {
+    Modbus.modbus_write_scoil(0x01, write_coil, 6, payload[0], 38);
   }
 }
 void data_handler(byte* package, int Length) { // for uart lora
@@ -81,7 +83,8 @@ void reconnect() {
   while (!client.connected()) {
     if (client.connect(device_setup.client_id.c_str(),device_setup.mqtt_user.c_str(), device_setup.mqtt_pwd.c_str())) {
        client.subscribe("realtime_data_request");
-       client.subscribe("statistic_data_request");   
+       client.subscribe("statistic_data_request");
+       client.subscribe("control_status_request");   
        debug_configure_serial.Print("connect mqtt");  
     } else {
       digitalWrite(2, LED_status = !LED_status);

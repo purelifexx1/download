@@ -25,7 +25,47 @@ socket.on("ar", function(data){
 socket.on("control_status_data", function(data){
 	//color status for button
 	var control_value = data.name;
-	console.log(typeof control_value);
+	if((control_value & 1) == 1) {
+
+	}else{
+
+	}
+
+	if((control_value >> 1) & 1) == 1 {
+
+	}else{
+		
+	}
+
+	if((control_value >> 2) & 1) == 1 {
+
+	}else{
+		
+	}
+
+	if((control_value >> 3) & 1) == 1 {
+
+	}else{
+		
+	}
+
+	if((control_value >> 4) & 1) == 1 {
+
+	}else{
+		
+	}
+
+	if((control_value >> 5) & 1) == 1 {
+
+	}else{
+		
+	}
+
+	if((control_value >> 6) & 1) == 1 {
+
+	}else{
+		
+	}
 	
 })
 socket.on("packet_ongoing", function(data){

@@ -82,8 +82,9 @@ client.on('connect', function(){
 	//mqtt_status = true;
 	console.log("mqtt broker connected");
 	client.subscribe('realtime_data');
-	client.subscribe('realtime_data_request');
 	client.subscribe('statistic_data');
+	client.subscribe('control_status_data');
+	client.subscribe('onoff_load_confirm');
 	client.on('message', function(topic, message){
 
 	   if(topic == 'realtime_data') {
@@ -107,6 +108,14 @@ client.on('connect', function(){
 	   	io.sockets.emit("control_status_data", message);
 	   	re_send(storage_packet);
 	   }
+
+	   if(topic == 'onoff_load_confirm'){
+	   	clearTimeout(timeout_latch);
+	   	io.sockets.emit("onoff_load_confirm", message);
+	   	re_send(storage_packet);
+	   }
+
+	   if()
     })
 
     client.on('disconnect', function(){

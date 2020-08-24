@@ -19,7 +19,7 @@ void modbus::CRC_16(byte* input, byte Length, byte* output)
   output[0] = (byte)(reg_crc & 0xff);
 }
 
-void modbus::modbus_request(byte slave_id, byte function_code, byte* register_address, uint16_t register_count)
+void modbus::modbus_request(byte slave_id, byte function_code, byte* register_address, uint16_t register_count, byte data_code)
 {
   request_frame[0] = slave_id;
   request_frame[1] = function_code;
@@ -30,7 +30,7 @@ void modbus::modbus_request(byte slave_id, byte function_code, byte* register_ad
   CRC_16(request_frame, 6, &request_frame[6]);
   data_serial.Send_packet(request_frame, 8, 23169, 34476, 34);
 }
-void modbus::modbus_write_scoil(byte slave_id, byte function_code, uint16_t register_address, bool write_status)
+void modbus::modbus_write_scoil(byte slave_id, byte function_code, uint16_t register_address, bool write_status, byte data_code)
 {
   request_frame[0] = slave_id;
   request_frame[1] = function_code;
@@ -43,6 +43,33 @@ void modbus::modbus_write_scoil(byte slave_id, byte function_code, uint16_t regi
 }
 bool modbus::packet_handler(byte* packet, byte Length)
 {
-  if(packet[1] == )
+  if(packet[3] == Length - 5) {
+    byte* CRC_checking;
+    CRC_checking = new byte[2];
+    CRC_16(packet, Length, CRC_checking);
+    if(CRC_checking[0] == 0 && CRC_checking[1] == 0){
+      switch (packet[0]) {
+        case 32:
+          client.publish("realtime_data", &packet[4], packet[3]);
+        break;
+
+        case 34
+          client.publish("statistic_data", &packet[4], packet[3]);
+        break;
+
+        case 36:
+          client.publish("control_status_data", &packet[4], packet[3]);
+        break;
+
+        case 38:
+          client.publish("onoff_load_confirm", &packet[4], packet[3]);
+        break;
+      }
+    }else{
+      //CRC error
+    }
+  }else{
+    //packet length error
+  }
 }
 modbus Modbus;
