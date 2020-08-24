@@ -15,18 +15,23 @@ var options = {
   username: "web_client",
   password: "01262755347",
 };
-
+var storage_packet = {
+	"topic": "",
+	"message": ""
+};
 
 var user_number = 0;
 var latch = true;
 var timer_latch;
+var timeout_latch;
 var mqtt_status = false;
 
 var client = mqtt.connect('mqtt://node02.myqtthub.com', options);
 function timer(){
 	if (mqtt_status == true && waitfor_reply == false) {
+		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 		waitfor_reply = true;
-		client.publish('realtime_data_request', "3e68");
+		client.publish('realtime_data_request');
 	}
 }
 var realtime_buf = data_handler.realtime_buf;
@@ -36,21 +41,28 @@ io.on('connection', function(socket){
 	user_number++;
 	socket.on("statistic_request", function(data){
 		if(waitfor_reply == false){
+			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;
-			client.publish('statistic_data_request', "3f69"); // dummy data, should transfer the id of requested client
+			client.publish('statistic_data_request'); // dummy data, should transfer the id of requested client
 		}else{
 			socket.emit("packet_ongoing");
+			storage_packet.topic = "statistic_data_request";
+			storage_packet.message = "";
 		}
 		
 	})
-	socket.on("onoff_load", function(data){
-		if(waitfor_reply == false){//run timeout
+	socket.on("control_status_request", function(data){
+		if(waitfor_reply == false){
+			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;
-			client.publish("get_status", "0");
+			client.publish("control_status_request");
 		}else{
 			socket.emit("packet_ongoing");
+			storage_packet.topic = "control_status_request";
+			storage_packet.message = "";
 		}
 	})
+
 
 
 	socket.on("disconnect", function(){
@@ -75,18 +87,25 @@ client.on('connect', function(){
 	client.on('message', function(topic, message){
 
 	   if(topic == 'realtime_data') {
+	   	clearTimeout(timeout_latch);
 	   	message.copy(realtime_buf, 0, 0, message.length);
 	   	data_handler.realtime_send(io);	
 	   	waitfor_reply = false;
+	   	re_send(storage_packet);
 	   }
 
 	   if(topic == 'statistic_data') {
+	   	clearTimeout(timeout_latch);
 	   	message.copy(statistic_buf, 0, 0, message.length);
 	   	data_handler.statistic_send(io);
+	   	waitfor_reply = false;
+	   	re_send(storage_packet);
 	   }
 
 	   if(topic == 'control_status_data'){
-	   	
+	   	clearTimeout(timeout_latch);
+	   	io.sockets.emit("control_status_data", message);
+	   	re_send(storage_packet);
 	   }
     })
 
@@ -94,6 +113,21 @@ client.on('connect', function(){
     	mqtt_status = false;
     })
 })
+
+function re_send(storage_packet){
+	if(storage_packet.topic != "" && storage_packet.message != ""){
+		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
+		waitfor_reply = true;
+		client.publish(storage_packet.topic, storage_packet.message);
+		storage_packet.topic = "";
+		storage_packet.message = "";
+	}	
+}
+function timeout_function(storage_packet){
+	io.sockets.emit("packet_lost");
+	waitfor_reply = false
+	re_send(storage_packet);
+}
 
 app.get("/", function(req, res){
 	res.render("index");

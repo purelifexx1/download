@@ -1,5 +1,5 @@
-var socket = io("http://localhost:3000");
-
+var socket = io("localhost:3069");
+//var socket = io("http://localhost:3069");
 socket.on("realtime_data", function(data){
     var temper = data.split('/');
 	$("#solar_voltage").val(temper[0]);
@@ -17,16 +17,25 @@ socket.on("statistic_data", function(data){
 	var temper = data.split('/');
 })
 socket.on("ar", function(data){
-	var temp = data.split('/');
-	$("#input").val(temp[0]);
-	$("#input1").val(temp[1]);
+
+	var buff = new Uint8Array(data.name);
+	$("#input").val(buff[0]);
+	
+})
+socket.on("control_status_data", function(data){
+	//color status for button
+	var control_value = data.name;
+	console.log(typeof control_value);
+	
 })
 socket.on("packet_ongoing", function(data){
 	//status text
 	//run timer for text
 })
 $(document).ready(function(){
-	socket.emit("load_relay", test_buffer);
+	$("#nut").click(function(){
+		socket.emit("hello");
+	})
 	$("#statistic_request").click(function(){
 		socket.emit("statistic_request");
 	})
@@ -46,7 +55,5 @@ $(document).ready(function(){
 		socket.emit("load_testmode");
 	})
 
-	$("#real-time").on("click", function(){
-		$("#solar_voltage").val("6969");
-	})
+
 });

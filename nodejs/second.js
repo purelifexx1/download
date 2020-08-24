@@ -45,6 +45,7 @@ module.exports = {
 		send_string += (struct_statistic_data.total_gen_energy/100).toString() + "/";
 		io.sockets.emit("statistic_data", send_string);
 	}
+
 };
 
 module.exports.realtime_buf = realtime_union_buf;
