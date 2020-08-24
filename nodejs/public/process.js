@@ -1,5 +1,5 @@
 var socket = io("localhost:3069");
-//var socket = io("http://localhost:3069");
+//var socket = io("http://localhost:3000");
 var realtime_data_id = ["solar_voltage", "bat_power", "bat_percent", "solar_power", "bat_voltage", 
 						"load_power", "bat_current", "load_voltage", "bat_temp_status", "load_current"];
 var statistic_data_id;
