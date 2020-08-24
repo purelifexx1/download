@@ -1,6 +1,7 @@
 #ifndef INC_MODBUS_
 #define INC_MODBUS_
 #include "mySerial.h"
+#include <PubSubClient.h>
 #define read_coil 1
 #define read_discrete 2
 #define read_holding_register 3
@@ -32,5 +33,5 @@ class modbus
 };
 
 extern modbus Modbus;
-
+extern PubSubClient client;
 #endif

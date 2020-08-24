@@ -53,7 +53,7 @@ bool modbus::packet_handler(byte* packet, byte Length)
           client.publish("realtime_data", &packet[4], packet[3]);
         break;
 
-        case 34
+        case 34:
           client.publish("statistic_data", &packet[4], packet[3]);
         break;
 
