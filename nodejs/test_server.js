@@ -7,10 +7,10 @@ var server = require("http").Server(app);
 var io = require("socket.io")(server);
 server.listen(3069);
 var buf = Buffer.from([23, 234, 51]);
-var obj = {name:23};
+var obj = {name:buf};
 io.on('connection', function(socket){
 	console.log("co nguoi connect");
-	io.sockets.emit("control_status_data", obj);
+	io.sockets.emit("ar", obj);
 	socket.on("hello", function(data){
 		console.log("da nhan");
 	})
@@ -18,5 +18,5 @@ io.on('connection', function(socket){
 
 
 app.get("/", function(req, res){
-	res.render("trangchu");
+	res.render("index");
 })

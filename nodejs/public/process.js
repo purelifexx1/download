@@ -1,71 +1,31 @@
 var socket = io("localhost:3069");
 //var socket = io("http://localhost:3069");
+var realtime_data_id = ["solar_voltage", "bat_power", "bat_percent", "solar_power", "bat_voltage", 
+						"load_power", "bat_current", "load_voltage", "bat_temp_status", "load_current"];
+var statistic_data_id;
+var control_button_id = []
 socket.on("realtime_data", function(data){
+	var count = 0;
     var temper = data.split('/');
-	$("#solar_voltage").val(temper[0]);
-	$("#bat_power").val(temper[1]);
-	$("#bat_percent").val(temper[2]);
-	$("#solar_power").val(temper[3]);
-	$("#bat_voltage").val(temper[4]);
-	$("#load_power").val(temper[5]);
-	$("#bat_current").val(temper[6]);
-	$("#load_voltage").val(temper[7]);
-	$("#bat_temp_status").val(temper[8]);
-	$("#load_current").val(temper[9]);
+    realtime_data_id.forEach(function(x){
+    	$("#" + x).val(temper[count++]);
+    });
 })
 socket.on("statistic_data", function(data){
 	var temper = data.split('/');
 })
 socket.on("ar", function(data){
 
-	var buff = new Uint8Array(data.name);
-	$("#input").val(buff[0]);
 	
+})
+socket.on("onoff_load_confirm", function(data){
+	//display button status at here
 })
 socket.on("control_status_data", function(data){
 	//color status for button
 	var control_value = data.name;
-	if((control_value & 1) == 1) {
+	
 
-	}else{
-
-	}
-
-	if((control_value >> 1) & 1) == 1 {
-
-	}else{
-		
-	}
-
-	if((control_value >> 2) & 1) == 1 {
-
-	}else{
-		
-	}
-
-	if((control_value >> 3) & 1) == 1 {
-
-	}else{
-		
-	}
-
-	if((control_value >> 4) & 1) == 1 {
-
-	}else{
-		
-	}
-
-	if((control_value >> 5) & 1) == 1 {
-
-	}else{
-		
-	}
-
-	if((control_value >> 6) & 1) == 1 {
-
-	}else{
-		
-	}
 	
 })
 socket.on("packet_ongoing", function(data){
