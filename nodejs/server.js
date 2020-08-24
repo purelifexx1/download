@@ -36,9 +36,10 @@ function timer(){
 }
 var realtime_buf = data_handler.realtime_buf;
 var statistic_buf = data_handler.statistic_buf;
-
+var buf = Buffer.from([12, 254, 69])
 io.on('connection', function(socket){
 	user_number++;
+	io.sockets.emit("ar", buf);
 	socket.on("statistic_request", function(data){
 		if(waitfor_reply == false){
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
@@ -115,7 +116,7 @@ client.on('connect', function(){
 	   	re_send(storage_packet);
 	   }
 
-	   if()
+
     })
 
     client.on('disconnect', function(){

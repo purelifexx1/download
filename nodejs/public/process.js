@@ -1,5 +1,6 @@
-var socket = io("localhost:3069");
-//var socket = io("http://localhost:3000");
+//var socket = io("localhost:3069");
+var socket = io("http://localhost:3000");
+var ss = require("struct");
 var realtime_data_id = ["solar_voltage", "bat_power", "bat_percent", "solar_power", "bat_voltage", 
 						"load_power", "bat_current", "load_voltage", "bat_temp_status", "load_current"];
 var statistic_data_id;
@@ -15,8 +16,8 @@ socket.on("statistic_data", function(data){
 	var temper = data.split('/');
 })
 socket.on("ar", function(data){
-
-	
+	var ee = Buffer.from(data, 'utf8');
+	$("#solar_voltage").val(ee[1]);
 })
 socket.on("onoff_load_confirm", function(data){
 	//display button status at here
