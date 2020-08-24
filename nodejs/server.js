@@ -8,6 +8,7 @@ var server = require("http").Server(app);
 var io = require("socket.io")(server);
 server.listen(3000);
 var mqtt = require('mqtt');
+var waitfor_reply = false;
 var options = {
   port: 1883,
   clientId: 'x1999',
@@ -23,7 +24,8 @@ var mqtt_status = false;
 
 var client = mqtt.connect('mqtt://node02.myqtthub.com', options);
 function timer(){
-	if (mqtt_status == true) {
+	if (mqtt_status == true && waitfor_reply == false) {
+		waitfor_reply = true;
 		client.publish('realtime_data_request', "3e68");
 	}
 }
@@ -31,14 +33,26 @@ var realtime_buf = data_handler.realtime_buf;
 var statistic_buf = data_handler.statistic_buf;
 
 io.on('connection', function(socket){
-	console.log("con");
 	user_number++;
 	socket.on("statistic_request", function(data){
-		client.publish('statistic_data_request', "3f69"); // dummy data, should transfer the id of requested client
+		if(waitfor_reply == false){
+			waitfor_reply = true;
+			client.publish('statistic_data_request', "3f69"); // dummy data, should transfer the id of requested client
+		}else{
+			socket.emit("packet_ongoing");
+		}
+		
 	})
-	socket.on("load_relay", function(data){
-		console.log(data);
+	socket.on("onoff_load", function(data){
+		if(waitfor_reply == false){//run timeout
+			waitfor_reply = true;
+			client.publish("get_status", "0");
+		}else{
+			socket.emit("packet_ongoing");
+		}
 	})
+
+
 	socket.on("disconnect", function(){
 		user_number--;
 		if (user_number == 0) {
@@ -63,11 +77,16 @@ client.on('connect', function(){
 	   if(topic == 'realtime_data') {
 	   	message.copy(realtime_buf, 0, 0, message.length);
 	   	data_handler.realtime_send(io);	
+	   	waitfor_reply = false;
 	   }
 
 	   if(topic == 'statistic_data') {
 	   	message.copy(statistic_buf, 0, 0, message.length);
 	   	data_handler.statistic_send(io);
+	   }
+
+	   if(topic == 'control_status_data'){
+	   	
 	   }
     })
 
@@ -77,5 +96,5 @@ client.on('connect', function(){
 })
 
 app.get("/", function(req, res){
-	res.render("trangchu");
+	res.render("index");
 })

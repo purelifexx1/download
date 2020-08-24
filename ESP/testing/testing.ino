@@ -4,7 +4,6 @@
 #include "setup_configure.h"
 #include "mySerial.h"
 #include "modbus.h"
-byte new_test[4] = {23, 34, 234, 89};
 mySerial data_serial(false, 12345, 34567);
 mySerial debug_configure_serial(true, 22345, 47898);
 const uint16_t mqtt_port = 1883; 
@@ -66,19 +65,17 @@ void setup_mqtt() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
-//  switch (String(topic)) {
-//    case "realtime_data_request":
-//      Modbus.modbus_request(0x01, 0x04, new byte[2]{0x31, 0x00}, 15);
-//      break;
-//    case "statistic_data_request":
-//      Modbus.modbus_request(0x01, 0x04, new byte[2]{0x33, 0x00}, 20);
-//      break;
-//    
-//  }
+  if(String(topic) == "realtime_data_request") {
+    Modbus.modbus_request(0x01, 0x04, new byte[2]{0x31, 0x00}, 15);
+  }else if(String(topic) == "statistic_data_request"){
+    Modbus.modbus_request(0x01, 0x04, new byte[2]{0x33, 0x00}, 20);
+  }else if(String(topic) == "control_status_request"){
+    Modbus.modbus_request(0x01, 0x01, new byte[2]{0x00, 0x00}, 6);
+  }
 }
 void data_handler(byte* package, int Length) { // for uart lora
   digitalWrite(2, LED_status = !LED_status);
-  client.publish("realtime_data", new_test, 4);
+  
 }
 void reconnect() {
   while (!client.connected()) {

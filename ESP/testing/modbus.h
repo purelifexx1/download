@@ -27,6 +27,7 @@ class modbus
     modbus();
     bool check_valid_package(byte* packet, byte Length, byte* data_frame);
     void modbus_request(byte slave_id, byte function_code, byte* register_address, uint16_t register_count);
+    void modbus_write_scoil(byte slave_id, byte function_code, uint16_t register_address, bool write_status);
     void CRC_16(byte* input, byte Length, byte* output);
 };
 

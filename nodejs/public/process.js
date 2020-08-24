@@ -21,16 +21,32 @@ socket.on("ar", function(data){
 	$("#input").val(temp[0]);
 	$("#input1").val(temp[1]);
 })
+socket.on("packet_ongoing", function(data){
+	//status text
+	//run timer for text
+})
 $(document).ready(function(){
 	socket.emit("load_relay", test_buffer);
 	$("#statistic_request").click(function(){
 		socket.emit("statistic_request");
 	})
 	$("#onoff_load").click(function(){
-		socket.emit("load_relay");
+		socket.emit("onoff_load");
 	})
-	$("#nut").click(function(){
-		$("#input").val("hahaha");
-		socket.emit("load_relay",test_buffer);
+	$("#output_control").click(function(){
+		socket.emit("output_control");
+	})
+	$("#manual_control").click(function(){
+		socket.emit("manual_control");
+	})
+	$("#default_control").click(function(){
+		socket.emit("default_control");
+	})
+	$("#load_testmode").click(function(){
+		socket.emit("load_testmode");
+	})
+
+	$("#real-time").on("click", function(){
+		$("#solar_voltage").val("6969");
 	})
 });
