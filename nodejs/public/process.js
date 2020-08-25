@@ -1,23 +1,22 @@
-//var socket = io("localhost:3069");
-var socket = io("http://localhost:3000");
-var ss = require("struct");
+var socket = io("localhost:3069");
+//var socket = io("http://localhost:3000");
+
 var realtime_data_id = ["solar_voltage", "bat_power", "bat_percent", "solar_power", "bat_voltage", 
 						"load_power", "bat_current", "load_voltage", "bat_temp_status", "load_current"];
 var statistic_data_id;
-var control_button_id = []
+var control_button_id;
 socket.on("realtime_data", function(data){
 	var count = 0;
-    var temper = data.split('/');
-    realtime_data_id.forEach(function(x){
-    	$("#" + x).val(temper[count++]);
-    });
+	Object.entries(data).forEach(function(element){
+		$("#" + element[0]).val(element[1]);
+	});
 })
 socket.on("statistic_data", function(data){
 	var temper = data.split('/');
 })
 socket.on("ar", function(data){
-	var ee = Buffer.from(data, 'utf8');
-	$("#solar_voltage").val(ee[1]);
+	
+	$("#solar_voltage").val(data.mot);
 })
 socket.on("onoff_load_confirm", function(data){
 	//display button status at here

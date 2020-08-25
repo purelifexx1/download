@@ -13,10 +13,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   
     <link rel="stylesheet" href="style.css">
     <script src = "socket.io/socket.io.js"></script>
-    <script src="output.js"></script>
-    <script src = "output.js">
-        
-    </script>
+    <script src="process.js"></script>
+
 </head>
 
 <body class="container">
@@ -123,7 +121,7 @@
                 <div class="col">
                     <label>Battery Temperature:</label>
                     <div>
-                        <textarea readonly id="bat_temp_status" rows="1">150</textarea>
+                        <textarea readonly id="bat_temp" rows="1">150</textarea>
                         <label class="unit">(&#8451)</label>
                     </div>
                 </div>
@@ -141,7 +139,7 @@
                 <div class="col">
                     <label>Battery Inner Resistance:</label>
                     <div>
-                        <textarea readonly id="bat_temp_status" rows="1">150</textarea>
+                        <textarea readonly id="temp_in" rows="1">150</textarea>
                         <label class="unit">(V)</label>
                     </div>
                 </div>
