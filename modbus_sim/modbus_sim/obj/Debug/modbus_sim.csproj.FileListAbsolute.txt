@@ -1,0 +1,9 @@
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\bin\Debug\modbus_sim.exe.config
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\bin\Debug\modbus_sim.exe
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\bin\Debug\modbus_sim.pdb
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.Form1.resources
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.Properties.Resources.resources
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.csproj.GenerateResource.Cache
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.exe
+C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.pdb
