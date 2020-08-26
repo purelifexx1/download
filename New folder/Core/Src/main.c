@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "modbus.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,10 +60,14 @@ static void MX_USART2_UART_Init(void);
 static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN PFP */
 uint8_t data_lora[64];
-uint8_t data_modbus[64];
+uint8_t data_modbus[128];
+uint8_t length_function;
+uint8_t packet_command;
 uint8_t header_lora[3];
 uint8_t testing[2] = {1, 1};
 uint8_t header_sync;
+uint16_t send_header = 12345;
+uint16_t send_footer = 34567;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -104,7 +108,8 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_UART_Receive_DMA(&huart2, header_lora, 3);
-
+  data_modbus[0] = (uint8_t)(send_header >> 8 & 0xff);
+  data_modbus[1] = (uint8_t)(send_header & 0xff);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -277,18 +282,26 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	HAL_UART_AbortReceive_IT(huart);
+	
 	if(huart->Instance == USART2) {
+		HAL_UART_AbortReceive_IT(&huart2);
 		if((uint16_t)(header_lora[0] << 8 ^ header_lora[1]) == 23169 && header_sync == 0) {
 			HAL_UART_Receive_DMA(&huart2, data_lora, header_lora[2] + 3);
 			header_sync = 1;
-		}else if(header_sync == 1){
-			HAL_UART_Transmit_DMA(&huart3, &data_lora[1], header_lora[2]);
+		}else if(header_sync == 1){		
+			packet_command = data_lora[0];
+			length_function = get_receive_length(&data_lora[1], header_lora[2])
+			HAL_UART_Receive_DMA(&huart3, &data_modbus[3], length_function);
 			HAL_UART_Receive_DMA(&huart2, header_lora, 3);
+			HAL_UART_Transmit_DMA(&huart3, &data_lora[1], header_lora[2]);
+			header_sync = 0;
 		}
 	}else{
-
-		//HAL_UART_Receive_DMA(&huart3, data1, 10);
+		HAL_UART_DMAStop(&huart3);
+		data_modbus[2] = packet_command;
+		data_modbus[3 + length_function] = (uint8_t)(send_footer >> 8 & 0xff);
+		data_modbus[4 + length_function] = (uint8_t)(send_footer & 0xff);
+		HAL_UART_Transmit_DMA(&huart2, data_modbus, length_function + 5);
 		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	}
 }
