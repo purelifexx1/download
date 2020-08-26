@@ -5,7 +5,7 @@ mang.allocate();
 var mang1 = mang.buffer();
 var mang2 = mang.fields;
 
-var temp_buf = Buffer.from([23, 34, 34, 33]);
+var temp_buf = Buffer.from([23, 34]);
 temp_buf.copy(mang1, 0, 0, 4);
 
 var app = express();
@@ -16,10 +16,14 @@ var server = require("http").Server(app);
 var io = require("socket.io")(server);
 server.listen(3069);
 var buf = Buffer.from([23, 234, 51]);
-var obj = {name:buf};
+
+var te = 0;
+var obj = {solar_voltage:23, bat_power:12};
+
 io.on('connection', function(socket){
 	console.log("co nguoi connect");
-	io.sockets.emit("ar", mang2);
+
+	io.sockets.emit("ar", obj);
 	socket.on("hello", function(data){
 		console.log("da nhan");
 	})

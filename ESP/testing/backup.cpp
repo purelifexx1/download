@@ -1,6 +1,6 @@
 #include <WiFiManager.h>
 #include <PubSubClient.h>
-//#include "schedule.h"
+#include "schedule.h"
 #include "setup_configure.h"
 #include "mySerial.h"
 #include "modbus.h"
@@ -65,14 +65,34 @@ void setup_mqtt() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
-  if(String(topic) == "realtime_data_request") {
-    Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x31, 0x00}, 15, 32);
-  }else if(String(topic) == "statistic_data_request"){
-    Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x33, 0x00}, 20, 34);
-  }else if(String(topic) == "control_status_request"){
-    Modbus.modbus_request(0x01, read_coil, new byte[2]{0x00, 0x00}, 6, 36);
-  }else if(String(topic) == "onoff_load") {
-    Modbus.modbus_write_scoil(0x01, write_coil, 6, payload[0], 38);
+  if(String(topic) == "data_request") {
+	switch(payload[0]) {
+		case '0':
+			Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x31, 0x00}, 15, 32);
+			//real time data request
+		break;
+		case '1':
+			Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x33, 0x00}, 20, 34);
+			//statistic data request
+		break;
+		case '2':
+			Modbus.modbus_request(0x01, read_coil, new byte[2]{0x00, 0x00}, 7, 36);
+			//control status request
+		break;
+	}
+    
+  }else if(String(topic) == "write_coils"){
+	  switch(payload[0]) {
+		  case '0':
+			//on off load 
+			Modbus.modbus_write_scoil(0x01, write_coil, 6, payload[0], 38);
+		  break;
+		  case '1':
+		  
+		  break;
+		  
+	  }
+    
   }
 }
 void data_handler(byte* package, int Length) { // for uart lora
@@ -82,9 +102,7 @@ void data_handler(byte* package, int Length) { // for uart lora
 void reconnect() {
   while (!client.connected()) {
     if (client.connect(device_setup.client_id.c_str(),device_setup.mqtt_user.c_str(), device_setup.mqtt_pwd.c_str())) {
-       client.subscribe("realtime_data_request");
-       client.subscribe("statistic_data_request");
-       client.subscribe("control_status_request");   
+       client.subscribe("data_request");  
        debug_configure_serial.Print("connect mqtt");  
     } else {
       digitalWrite(2, LED_status = !LED_status);

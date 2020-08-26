@@ -1,31 +1,36 @@
 var socket = io("localhost:3069");
 //var socket = io("http://localhost:3000");
-
-var realtime_data_id = ["solar_voltage", "bat_power", "bat_percent", "solar_power", "bat_voltage", 
-						"load_power", "bat_current", "load_voltage", "bat_temp_status", "load_current"];
-var statistic_data_id;
-var control_button_id;
+var button_status;
 socket.on("realtime_data", function(data){
-	var count = 0;
 	Object.entries(data).forEach(function(element){
 		$("#" + element[0]).val(element[1]);
 	});
 })
 socket.on("statistic_data", function(data){
-	var temper = data.split('/');
+	Object.entries(data).forEach(function(element){
+		$("#" + element[0]).val(element[1]);
+	});
 })
 socket.on("ar", function(data){
-	
-	$("#solar_voltage").val(data.mot);
+	document.getElementById("solar_voltage").style.background = "#2e0101";
 })
+
+
 socket.on("onoff_load_confirm", function(data){
 	//display button status at here
 })
 socket.on("control_status_data", function(data){
 	//color status for button
-	var control_value = data.name;
-	
-
+	Object.entries(data).forEach(function(element){
+		if(element[1] == true){
+			button_status.push("1");
+			document.getElementById(element[0]).style.background='#4aff36';
+		}
+		else{
+			button_status.push("0");
+			document.getElementById(element[0]).style.background='#e83017';
+		}
+	})
 	
 })
 socket.on("packet_ongoing", function(data){
@@ -40,7 +45,7 @@ $(document).ready(function(){
 		socket.emit("statistic_request");
 	})
 	$("#onoff_load").click(function(){
-		socket.emit("onoff_load");
+		socket.emit("onoff_load", button_status[5]);
 	})
 	$("#output_control").click(function(){
 		socket.emit("output_control");
@@ -54,6 +59,8 @@ $(document).ready(function(){
 	$("#load_testmode").click(function(){
 		socket.emit("load_testmode");
 	})
-
+	$("#onoff_charging").click(function(){
+		socket.emit("onoff_charging");
+	})
 
 });

@@ -43,10 +43,10 @@ void modbus::modbus_write_scoil(byte slave_id, byte function_code, uint16_t regi
 }
 bool modbus::packet_handler(byte* packet, byte Length)
 {
-  if(packet[3] == Length - 5) {
+  if(packet[3] == Length - 6) {
     byte* CRC_checking;
     CRC_checking = new byte[2];
-    CRC_16(packet, Length, CRC_checking);
+    CRC_16(&packet[1], Length - 1, CRC_checking);
     if(CRC_checking[0] == 0 && CRC_checking[1] == 0){
       switch (packet[0]) {
         case 32:

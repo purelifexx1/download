@@ -31,11 +31,12 @@ function timer(){
 	if (mqtt_status == true && waitfor_reply == false) {
 		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 		waitfor_reply = true;
-		client.publish('realtime_data_request');
+		client.publish('data_request', "0");
 	}
 }
 var realtime_buf = data_handler.realtime_buf;
 var statistic_buf = data_handler.statistic_buf;
+var real_time = data_handler.real_time;
 
 io.on('connection', function(socket){
 	user_number++;
@@ -44,11 +45,11 @@ io.on('connection', function(socket){
 		if(waitfor_reply == false){
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;
-			client.publish('statistic_data_request'); // dummy data, should transfer the id of requested client
+			client.publish('data_request', "1"); // dummy data, should transfer the id of requested client
 		}else{
 			socket.emit("packet_ongoing");
-			storage_packet.topic = "statistic_data_request";
-			storage_packet.message = "";
+			storage_packet.topic = "data_request";
+			storage_packet.message = "1";
 		}
 		
 	})
@@ -56,15 +57,25 @@ io.on('connection', function(socket){
 		if(waitfor_reply == false){
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;
-			client.publish("control_status_request");
+			client.publish("data_request", 2);
 		}else{
 			socket.emit("packet_ongoing");
-			storage_packet.topic = "control_status_request";
-			storage_packet.message = "";
+			storage_packet.topic = "data_request";
+			storage_packet.message = "2";
 		}
 	})
 
-
+	socket.on("onoff_load", function(data){
+		if(waitfor_reply == false) {
+			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
+			waitfor_reply = true;
+			client.publish("write_coils", "0" + data);
+		}else{
+			socket.emit("packet_ongoing");
+			storage_packet.topic = "onoff_load";
+			storage_packet.message = "0" + data;
+		}
+	})
 
 	socket.on("disconnect", function(){
 		user_number--;
@@ -106,7 +117,7 @@ client.on('connect', function(){
 
 	   if(topic == 'control_status_data'){
 	   	clearTimeout(timeout_latch);
-	   	io.sockets.emit("control_status_data", message);
+	   	data_handler.control_status_send(io, message);
 	   	re_send(storage_packet);
 	   }
 

@@ -11,6 +11,22 @@ var statistic_union_buf = statistic_data.buffer();
 var struct_statistic_data = statistic_data.fields;
 var struct_realtime_data = realtime_data.fields;
 
+var real_time = {
+	sec: new Date().getSeconds(),
+	min: new Date().getMinutes(),
+	hour: new Date().getHours(),
+	day: new Date().getDate(),
+	month: new Date().getMonth(),
+	year: new Date().getFullYear()
+};
+var coils_status = {
+	onoff_charging: false,
+	output_control: false,
+	manual_control: false,
+	default_control: false,
+	load_testmode: false,
+	onoff_load: false
+};
 module.exports = {
 
 	realtime_send: function(io){
@@ -19,6 +35,16 @@ module.exports = {
 	statistic_send: function(io){
 		io.sockets.emit("statistic_data", struct_statistic_data);
 	}
+	control_status_send: function(io, status){
+		var count_shift = 0;
+		Objects.keys(coils_status).forEach(function(element){
+			if (((status >> count_shift++) & 1) == 1)
+				coils_status[element] = true;
+			else
+				coils_status[element] = false;			
+		});
+		io.sockets.emit("control_status_data", coils_status);
+	}
 
 };
 
@@ -26,4 +52,5 @@ module.exports.realtime_buf = realtime_union_buf;
 
 module.exports.statistic_buf = statistic_union_buf;
 
+module.exports.real_time = real_time;
 
