@@ -34,7 +34,7 @@ module.exports = {
 	},
 	statistic_send: function(io){
 		io.sockets.emit("statistic_data", struct_statistic_data);
-	}
+	},
 	control_status_send: function(io, status){
 		var count_shift = 0;
 		Objects.keys(coils_status).forEach(function(element){

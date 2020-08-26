@@ -1,5 +1,5 @@
-var socket = io("localhost:3069");
-//var socket = io("http://localhost:3000");
+//var socket = io("localhost:3069");
+var socket = io("http://localhost:3000");
 var button_status;
 socket.on("realtime_data", function(data){
 	Object.entries(data).forEach(function(element){
@@ -38,7 +38,7 @@ socket.on("packet_ongoing", function(data){
 	//run timer for text
 })
 $(document).ready(function(){
-	$("#nut").click(function(){
+	/*$("#nut").click(function(){
 		socket.emit("hello");
 	})
 	$("#statistic_request").click(function(){
@@ -61,6 +61,6 @@ $(document).ready(function(){
 	})
 	$("#onoff_charging").click(function(){
 		socket.emit("onoff_charging");
-	})
+	})*/
 
 });

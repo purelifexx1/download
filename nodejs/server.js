@@ -28,6 +28,7 @@ var mqtt_status = false;
 
 var client = mqtt.connect('mqtt://node02.myqtthub.com', options);
 function timer(){
+	console.log("gui data");
 	if (mqtt_status == true && waitfor_reply == false) {
 		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 		waitfor_reply = true;
@@ -40,7 +41,7 @@ var real_time = data_handler.real_time;
 
 io.on('connection', function(socket){
 	user_number++;
-	io.sockets.emit("ar", buf);
+
 	socket.on("statistic_request", function(data){
 		if(waitfor_reply == false){
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
@@ -91,7 +92,7 @@ io.on('connection', function(socket){
 })
 
 client.on('connect', function(){
-	//mqtt_status = true;
+	mqtt_status = true;
 	console.log("mqtt broker connected");
 	client.subscribe('realtime_data');
 	client.subscribe('statistic_data');
