@@ -74,10 +74,6 @@ void check_edge(){
 		B_state = digitalRead(B_pulse);
 		if(A_state != pre_A_state && A_state == HIGH && B_state == HIGH) { //rising a edge, clockwise
 			*volume_counter += 1;
-		}else if(A_state != pre_A_state && A_state == LOW && B_state == LOW) { //falling a edge, clockwise
-			//*volume_counter += 1;
-		}else if(A_state != pre_A_state && A_state == HIGH && B_state == LOW) { //rising a edge, anti cw
-			//*volume_counter -= 1;
 		}else if(A_state != pre_A_state && A_state == LOW && B_state == HIGH) { //falling a edge, anti cw
 			*volume_counter -= 1;
 		}
@@ -86,12 +82,8 @@ void check_edge(){
 	}else{
     A_state = digitalRead(A_pulse);
     B_state = digitalRead(B_pulse);
-    if(A_state != pre_A_state && A_state == HIGH && B_state == HIGH) { //rising a edge, clockwise
+    if(A_state != pre_A_state && A_state == HIGH && B_state == HIGH) { //rising a edge, clockwise            
       selection = false;
-    }else if(A_state != pre_A_state && A_state == LOW && B_state == LOW) { //falling a edge, clockwise
-      //selection = false;
-    }else if(A_state != pre_A_state && A_state == HIGH && B_state == LOW) { //rising a edge, anti cw
-      //selection = true;
     }else if(A_state != pre_A_state && A_state == LOW && B_state == HIGH) { //falling a edge, anti cw
       selection = true;
     }
@@ -142,13 +134,13 @@ void select_screen(){
 		lcd.print(minute%10);
 		lcd.print(':');
 		lcd.print(second/10);
-		lcd.print(second%10);
+		lcd.print(second%10);  
     lcd.print("       ");
     lcd.setCursor(8, 0);
     if(selection == true) lcd.print('.');
 		lcd.setCursor(11, 0);
-		if(relay_status == false) lcd.print("off");
-		else lcd.print("on");
+		if(relay_status == false) lcd.print("on");
+		else lcd.print("off");
     if(selection == false) lcd.print('.');
 		lcd.setCursor(0,1);
 		lcd.print("main screen");
