@@ -71,6 +71,7 @@ io.on('connection', function(socket){
 		if(waitfor_reply == false) {
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;
+			if (data == "1") {}
 			client.publish("write_coils", "0" + data);
 		}else{
 			socket.emit("packet_ongoing");
@@ -78,6 +79,10 @@ io.on('connection', function(socket){
 			storage_packet.message = "0" + data;
 		}
 	})
+
+	socket.on("output_control").click(function(){
+
+	});
 
 	socket.on("disconnect", function(){
 		user_number--;
@@ -125,7 +130,8 @@ client.on('connect', function(){
 
 	   if(topic == 'onoff_load_confirm'){
 	   	clearTimeout(timeout_latch);
-	   	io.sockets.emit("onoff_load_confirm", message);
+	   	if(message[0] == 256) io.sockets.emit("onoff_load_confirm", "1");
+	   	else io.sockets.emit("onoff_load_confirm", "0");
 	   	re_send(storage_packet);
 	   }
 

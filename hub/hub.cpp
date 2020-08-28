@@ -135,13 +135,13 @@ void select_screen(){
 		lcd.print(':');
 		lcd.print(second/10);
 		lcd.print(second%10);  
-    lcd.print("       ");
-    lcd.setCursor(8, 0);
-    if(selection == true) lcd.print('.');
+		lcd.print("       ");
+		lcd.setCursor(8, 0);
+		if(selection == true) lcd.print('.');
 		lcd.setCursor(11, 0);
 		if(relay_status == false) lcd.print("on");
 		else lcd.print("off");
-    if(selection == false) lcd.print('.');
+		if(selection == false) lcd.print('.');
 		lcd.setCursor(0,1);
 		lcd.print("main screen");
 	}else{

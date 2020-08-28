@@ -68,6 +68,8 @@ uint8_t testing[2] = {1, 1};
 uint8_t header_sync;
 uint16_t send_header = 12345;
 uint16_t send_footer = 34567;
+uint32_t millis = 0;
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/

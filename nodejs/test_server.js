@@ -1,4 +1,14 @@
 var express = require("express");
+var firebase = require("firebase");
+firebase.initializeApp({
+	databaseURL: "https://data-59fcf.firebaseio.com"
+});
+
+var ref = firebase.database().ref('power_consume');
+var sec_ref = ref.child("Octobor");
+var day = "{" + JSON.stringify("Date 1") + ":" + 123 + "}";
+var json = JSON.parse(day);
+sec_ref.update(json);
 var ss = require("struct");
 var mang = ss().word16Sbe("mot").word16Sbe("hai");
 mang.allocate();

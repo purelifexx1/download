@@ -18,6 +18,14 @@ socket.on("ar", function(data){
 
 socket.on("onoff_load_confirm", function(data){
 	//display button status at here
+	if(data == "1") {
+		document.getElementById("onoff_load").style.background = '#4aff36';
+		button_status[5] = "1";
+	}
+	else {
+		button_status[5] = "0";
+		document.getElementById("onoff_load").style.background = "#e83017";
+	}
 })
 socket.on("control_status_data", function(data){
 	//color status for button
@@ -38,14 +46,15 @@ socket.on("packet_ongoing", function(data){
 	//run timer for text
 })
 $(document).ready(function(){
-	/*$("#nut").click(function(){
+	$("#nut").click(function(){
 		socket.emit("hello");
 	})
 	$("#statistic_request").click(function(){
 		socket.emit("statistic_request");
 	})
 	$("#onoff_load").click(function(){
-		socket.emit("onoff_load", button_status[5]);
+		if(button_status[5] == "1") socket.emit("onoff_load", "0");
+		else socket.emit("onoff_load", "1");
 	})
 	$("#output_control").click(function(){
 		socket.emit("output_control");
@@ -61,6 +70,7 @@ $(document).ready(function(){
 	})
 	$("#onoff_charging").click(function(){
 		socket.emit("onoff_charging");
-	})*/
+	})
+	
 
 });
