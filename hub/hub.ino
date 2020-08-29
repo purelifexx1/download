@@ -120,7 +120,7 @@ void timeout(){
   component_select = 0;
 	switch_event = true;
 	hold_status = false;
-	switch_screen = !switch_screen;
+	if(pause_countdown == true) switch_screen = !switch_screen;
 }
 void select_screen(){
   
