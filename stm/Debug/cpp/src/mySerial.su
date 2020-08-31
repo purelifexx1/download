@@ -1,0 +1,4 @@
+mySerial.cpp:9:1:mySerial::mySerial()	16	static
+mySerial.cpp:14:6:void mySerial::begin(UART_HandleTypeDef*, uint16_t, uint16_t, void (*)(uint8_t*, int))	24	static
+mySerial.cpp:25:6:void mySerial::looping()	16	static
+mySerial.cpp:54:6:void mySerial::buffer_overflow()	16	static
