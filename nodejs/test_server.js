@@ -1,14 +1,6 @@
 var express = require("express");
-var firebase = require("firebase");
-firebase.initializeApp({
-	databaseURL: "https://data-59fcf.firebaseio.com"
-});
 
-var ref = firebase.database().ref('power_consume');
-var sec_ref = ref.child("Octobor");
-var day = "{" + JSON.stringify("Date 1") + ":" + 123 + "}";
-var json = JSON.parse(day);
-sec_ref.update(json);
+
 var ss = require("struct");
 var mang = ss().word16Sbe("mot").word16Sbe("hai");
 mang.allocate();
@@ -28,12 +20,14 @@ server.listen(3069);
 var buf = Buffer.from([23, 234, 51]);
 
 var te = 0;
-var obj = {solar_voltage:23, bat_power:12};
+var obj = {"date 13": 12.96};
 
+var day = "{" + JSON.stringify("date 13") + ":" + 12.96 + "}";
+var json = JSON.parse(day);
+console.log(obj);
 io.on('connection', function(socket){
 	console.log("co nguoi connect");
-
-	io.sockets.emit("ar", obj);
+	io.sockets.emit("ar");
 	socket.on("hello", function(data){
 		console.log("da nhan");
 	})

@@ -1,5 +1,9 @@
 var express = require("express");
 var firebase = require("firebase");
+firebase.initializeApp({
+	databaseURL: "https://data-59fcf.firebaseio.com"
+});
+var main_branch = firebase.database().ref("Data");
 var data_handler = require("./second");
 var app = express();
 app.use(express.static("public"));
@@ -26,10 +30,23 @@ var latch = true;
 var timer_latch;
 var timeout_latch;
 var mqtt_status = false;
+var server_update = false;
+var sec_value = 0;
+
+setInterval(function(){
+	if(server_update == true) {
+		sec_value++;
+		if(sec_value > 3600) {
+			//send data to firebase
+			data_handler.update_server(main_branch);
+			sec_value = 0;
+		}
+	}
+}, 1000);
 
 var client = mqtt.connect('mqtt://node02.myqtthub.com', options);
 function timer(){
-	console.log("gui data");
+
 	if (mqtt_status == true && waitfor_reply == false) {
 		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 		waitfor_reply = true;
@@ -42,6 +59,12 @@ var real_time = data_handler.real_time;
 
 io.on('connection', function(socket){
 	user_number++;
+	io.sockets.emit("server_update_enable", server_update);
+	socket.on("change_update_enable", function(data){
+		server_update = !server_update;
+		io.sockets.emit("server_update_enable", server_update);
+		sec_value = 0;
+	})
 
 	socket.on("statistic_request", function(data){
 		if(waitfor_reply == false){

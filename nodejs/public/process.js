@@ -1,5 +1,5 @@
-//var socket = io("localhost:3069");
-var socket = io("http://localhost:3000");
+var socket = io("localhost:3069");
+//var socket = io("http://localhost:3000");
 var button_status;
 socket.on("realtime_data", function(data){
 	Object.entries(data).forEach(function(element){
@@ -12,7 +12,7 @@ socket.on("statistic_data", function(data){
 	});
 })
 socket.on("ar", function(data){
-	document.getElementById("solar_voltage").style.background = "#2e0101";
+	$("#solar_voltage").style.background = "#2e0101";
 })
 
 
@@ -44,6 +44,14 @@ socket.on("control_status_data", function(data){
 socket.on("packet_ongoing", function(data){
 	//status text
 	//run timer for text
+})
+
+socket.on("server_update_enable", function(data){
+	if(data == true) {
+		//update button green or checkbox's ticked
+	}else{
+		//update button red or checkbox's unticked
+	}
 })
 $(document).ready(function(){
 	$("#nut").click(function(){

@@ -44,6 +44,12 @@ module.exports = {
 				coils_status[element] = false;			
 		});
 		io.sockets.emit("control_status_data", coils_status);
+	},
+	update_server: function(main_branch){
+		var date = real_time.day + "/" + (real_time.month+1) + "/" + real_time.year;
+		var time = real_time.hour + ":" + real_time.min + ":" + real_time.sec;
+		var date_branch = main_branch.child(date + " at " + time);
+		date_branch.update(struct_realtime_data);
 	}
 
 };
