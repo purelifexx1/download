@@ -7,24 +7,33 @@
 
 #include "main.h"
 #include "mySerial.h"
+#include "modbus.h"
 
-mySerial Serial;
+mySerial Serial2;
+modbus modbus1;
 void setup() {
-	Serial.begin(&huart2, 12345, 12345, data_received);
+	Serial2.begin(&huart2, 12345, 12345, data_received2);
+	modbus1.begin(&huart3, modbus_received);
 }
 
 void loop() {
-	Serial.looping();
+	Serial2.looping();
+	modbus1.looping();
 }
 
-void data_received(byte* data_buffer, int length) {
-	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	overflow_flag = false;
+void data_received2(byte* data_buffer, int length) {
+	modbus1.request_handler(data_buffer, length);
 }
 
-void UART_CallBack() {
+void modbus_received(byte* data_buffer, int length) {
+	modbus1.send_packet(12345, 34567, data_buffer, length);
+}
 
-	Serial.buffer_overflow();
+void UART_CallBack(UART_HandleTypeDef *huart) {
+	if (huart->Instance == USART2)
+		Serial2.buffer_overflow();
+	else if(huart->Instance == USART3)
+		modbus1.buffer_overflow();
 }
 
 

@@ -9,7 +9,7 @@ mySerial debug_configure_serial(true, 22345, 47898);
 const uint16_t mqtt_port = 1883; 
 WiFiClient ESP32Client;
 PubSubClient client(ESP32Client);
-
+schedule sync_load_status;
 bool LED_status = false;
 void setup() {
   pinMode(2, OUTPUT);
@@ -88,7 +88,7 @@ void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
     switch(payload[0]) {
       case '0':
       //on off load 
-      Modbus.modbus_write_scoil(0x01, write_coil, 6, payload[0], 38);
+      Modbus.modbus_write_scoil(0x01, write_coil, 6, payload[1] - '0', 38);
       break;
       case '1':
       
@@ -98,6 +98,7 @@ void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
     
   }
 }
+
 void data_handler(byte* package, int Length) { // for uart lora
   digitalWrite(2, LED_status = !LED_status); 
   Modbus.packet_handler(package, Length);
@@ -119,4 +120,5 @@ void loop() {
   }
   client.loop();
   data_serial.Receive_Package();
+  sync_load_status.looping();
 }

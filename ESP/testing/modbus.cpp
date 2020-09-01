@@ -30,20 +30,20 @@ void modbus::modbus_request(byte slave_id, byte function_code, byte* register_ad
   CRC_16(request_frame, 6, &request_frame[6]);
   data_serial.Send_packet(request_frame, 8, 23169, 34476, data_code);
 }
-void modbus::modbus_write_scoil(byte slave_id, byte function_code, uint16_t register_address, bool write_status, byte data_code)
+void modbus::modbus_write_scoil(byte slave_id, byte function_code, uint16_t register_address, byte write_status, byte data_code)
 {
   request_frame[0] = slave_id;
   request_frame[1] = function_code;
   request_frame[2] = (byte)((register_address >> 8) & 0xff);
   request_frame[3] = (byte)(register_address & 0xff);
-  request_frame[4] = (write_status == true)?0xff:0x00;
+  request_frame[4] = (write_status == 1)?0xff:0x00;
   request_frame[5] = 0;
   CRC_16(request_frame, 6, &request_frame[6]);
   data_serial.Send_packet(request_frame, 8, 23169, 34476, data_code);
 }
 bool modbus::packet_handler(byte* packet, byte Length)
 {
-  if(packet[3] == Length - 6) {
+  if(packet[3] == Length - 6 || packet[2] > 4) {
     byte* CRC_checking;
     CRC_checking = new byte[2];
     CRC_16(&packet[1], Length - 1, CRC_checking);
@@ -70,7 +70,7 @@ bool modbus::packet_handler(byte* packet, byte Length)
     }
 	delete[] CRC_checking;
   }else{
-    //packet length error
+    //packet length error or format error
   }
 }
 modbus Modbus;

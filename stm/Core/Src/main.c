@@ -64,8 +64,8 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-byte data_buffer[300];
-uint8_t ok = 255;
+
+
 /* USER CODE END 0 */
 
 /**
@@ -101,7 +101,7 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
   setup();
-ok+=5;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -272,10 +272,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+  HAL_UART_AbortTransmit_IT(huart);
+}
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-
-  UART_CallBack();
+  UART_CallBack(huart);
 }
 /* USER CODE END 4 */
 

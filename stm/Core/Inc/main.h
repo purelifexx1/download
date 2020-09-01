@@ -35,7 +35,7 @@ extern "C" {
 #define byte uint8_t
 void setup();
 void loop();
-void UART_CallBack();
+void UART_CallBack(UART_HandleTypeDef *huart);
 void data_received(byte* data_buffer, int length);
 /* USER CODE END Includes */
 
@@ -43,7 +43,7 @@ void data_received(byte* data_buffer, int length);
 /* USER CODE BEGIN ET */
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
-extern byte data_buffer[300];
+
 
 /* USER CODE END ET */
 
