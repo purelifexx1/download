@@ -5,7 +5,7 @@ modbus::modbus()
 	
 }
 
-void modbus::begin(UART_HandleTypeDef* uart, modbus_received)
+void modbus::begin(UART_HandleTypeDef* uart, receive_modbus)
 {
 	this->uart = uart;
 	this->callback = callback;
@@ -84,3 +84,5 @@ void modbus::request_handler(byte* input, int length)
 void modbus::buffer_overflow()
 {
 	overflow_flag = true;
+}
+

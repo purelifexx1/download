@@ -6,8 +6,9 @@
  */
 
 #include "main.h"
-#include "mySerial.h"
 #include "modbus.h"
+#include "mySerial.h"
+
 
 mySerial Serial2;
 modbus modbus1;

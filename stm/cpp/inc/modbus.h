@@ -3,17 +3,20 @@
 #ifndef INC_MODBUS_H_
 #define INC_MODBUS_H_
 #include "main.h"
+#include "string.h"
 #define byte uint8_t
 #define uart_dma HAL_UART_Receive_DMA
 #define uart_send HAL_UART_Transmit_DMA
-#define modbus_received void(*callback)(byte*, int)
+#define receive_modbus void(*callback)(byte*,int)
+
 #define buffer_length 256
 class modbus
 {
 	private:
-		modbus_received;
+		receive_modbus;
 		bool overflow_flag = false;
 		bool sync_status = false;
+		bool fixed_receive_length = false;
 		byte write_pointer, read_pointer;
 		byte receive_length;
 		byte packet_id;
@@ -23,7 +26,7 @@ class modbus
 		UART_HandleTypeDef* uart;
 	public:
 		modbus();
-		void begin(UART_HandleTypeDef* uart, modbus_received);
+		void begin(UART_HandleTypeDef* uart, receive_modbus);
 		void CRC_16(byte* input, byte length, byte* output);
 		void request_handler(byte* input, int length);
 		void send_packet(uint16_t header, uint16_t footer, byte* data, int length);

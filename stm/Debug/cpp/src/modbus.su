@@ -1,0 +1,7 @@
+modbus.cpp:3:1:modbus::modbus()	16	static
+modbus.cpp:8:6:void modbus::begin(UART_HandleTypeDef*, void (*)(uint8_t*, int))	24	static
+modbus.cpp:15:6:void modbus::CRC_16(uint8_t*, uint8_t, uint8_t*)	32	static
+modbus.cpp:29:6:void modbus::looping()	16	static
+modbus.cpp:57:6:void modbus::send_packet(uint16_t, uint16_t, uint8_t*, int)	32	static
+modbus.cpp:70:6:void modbus::request_handler(uint8_t*, int)	24	static
+modbus.cpp:84:6:void modbus::buffer_overflow()	16	static
