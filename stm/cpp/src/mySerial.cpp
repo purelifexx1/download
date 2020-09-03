@@ -19,26 +19,27 @@ void mySerial::begin(UART_HandleTypeDef* uart, uint16_t header, uint16_t footer,
 	this->footer[1] = (byte)(footer & 0xff);
 	this->uart = uart;
 	this->callback = callback;
-	uart_dma(this->uart, data_buffer, buffer_length);
+	uart_dma(this->uart, data_buffer1, buffer_length);
 }
 
 void mySerial::looping()
 {
 	write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
 	if(sync_status == false && (byte)(write_pointer - read_pointer) >= 3) {
-		if(data_buffer[read_pointer++] == header[0] && data_buffer[read_pointer++] == header[1]) {
-			receive_length = data_buffer[read_pointer++];
+		if(data_buffer1[read_pointer++] == header[0] && data_buffer1[read_pointer++] == header[1]) {
+			receive_length = data_buffer1[read_pointer++];
 			sync_status = true;
 		}else{
 			read_pointer++;
 		}
 		overflow_flag = false;
 	}else if(sync_status == true && (byte)(write_pointer - read_pointer) >= receive_length + 2) {
-		if(data_buffer[(byte)(write_pointer-2)] == footer[0] && data_buffer[(byte)(write_pointer-1)] == footer[1]){
+		if(data_buffer1[(byte)(write_pointer-2)] == footer[0] && data_buffer1[(byte)(write_pointer-1)] == footer[1]){
 			sync_status = false;
 			if(overflow_flag == true)
-				memcpy(&data_buffer[256], data_buffer, write_pointer);
-			this->callback(&data_buffer[read_pointer+=(receive_length + 2)], receive_length);
+				memcpy(&data_buffer1[256], data_buffer1, write_pointer);
+			this->callback(&data_buffer1[read_pointer], receive_length);
+			read_pointer+=(receive_length + 2);
 			overflow_flag = false;
 		}else{
 			//error handle packet format

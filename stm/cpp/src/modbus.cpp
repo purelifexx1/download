@@ -45,7 +45,8 @@ void modbus::looping()
 			sync_status = false;
 			if(overflow_flag == true)
 				memcpy(&data_buffer[256], data_buffer, write_pointer);
-			this->callback(&data_buffer[read_pointer+=(receive_length + 2)], receive_length);
+			this->callback(&data_buffer[read_pointer], receive_length);
+			read_pointer+=(receive_length + 2);
 			overflow_flag = false;
 		}else{
 			//error handle packet format
@@ -56,7 +57,7 @@ void modbus::looping()
 
 void modbus::send_packet(uint16_t header, uint16_t footer, byte* data, int length)
 {
-	byte* temper_packet;
+	byte *temper_packet;
 	temper_packet = new byte[length + 6];
 	temper_packet[0] = (byte)(header >>8 & 0xff);
 	temper_packet[1] = (byte)(header & 0xff);
@@ -65,7 +66,7 @@ void modbus::send_packet(uint16_t header, uint16_t footer, byte* data, int lengt
 	memcpy(&temper_packet[4], data, length);
 	temper_packet[length+4] = (byte)(footer >>8 & 0xff);
 	temper_packet[length+5] = (byte)(footer & 0xff);
-	uart_send(uart, temper_packet, length+6);
+	uart_send(&huart2, temper_packet, length+6);
 	delete[] temper_packet;
 }
 
@@ -74,19 +75,20 @@ void modbus::request_handler(byte* input, int length)
 	packet_id = input[0];
 	header[0] = input[1];
 	header[1] = input[2];
-	if(header[1] <= 4) 
+	if(header[1] <= 4) {
 		sync_number = 3;
 		fixed_receive_length = true;
-	else {
+	}else {
 		sync_number = 2;
 		fixed_receive_length = false;
 		receive_length = 4;
 	}		
 	uart_send(this->uart, &input[1], length - 1);
+
 }
 
 void modbus::buffer_overflow()
 {
 	overflow_flag = true;
 }
-
+byte data_buffer[300];

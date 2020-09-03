@@ -22,16 +22,12 @@ var io = require("socket.io")(server);
 server.listen(3069);
 var buf = Buffer.from([23, 234, 51]);
 
-var te = 0;
-var obj = {"Date 13": 2.96};
-var testt = main_branch.child("October");
-var day = "{" + JSON.stringify("Date 13") + ":" + 12.96 + "}";
-var json = JSON.parse(day);
-testt.update(obj);
+
+
 
 io.on('connection', function(socket){
 	console.log("co nguoi connect");
-	io.sockets.emit("ar");
+
 	socket.on("hello", function(data){
 		console.log("da nhan");
 	})

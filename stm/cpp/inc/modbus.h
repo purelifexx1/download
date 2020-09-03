@@ -23,9 +23,10 @@ class modbus
 		byte sync_number = 3;
 		byte header[2];
 		byte footer[2];
-		byte data_buffer[300];
+
 		UART_HandleTypeDef* uart;
 	public:
+
 		modbus();
 		void begin(UART_HandleTypeDef* uart, receive_modbus);
 		void CRC_16(byte* input, byte length, byte* output);
@@ -34,6 +35,6 @@ class modbus
 		void looping();
 		void buffer_overflow();
 };
-
+extern byte data_buffer[300];
 
 #endif

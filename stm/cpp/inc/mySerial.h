@@ -24,10 +24,10 @@ private:
 	byte receive_length;
 	byte header[2];
 	byte footer[2];
-	byte data_buffer[300];
+	byte data_buffer1[300];
 	UART_HandleTypeDef* uart;
 public:
-	
+
 	mySerial();
 	void begin(UART_HandleTypeDef* uart, uint16_t header, uint16_t footer, uart_received);
 	void looping();

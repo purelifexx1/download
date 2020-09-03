@@ -51,6 +51,7 @@ function timer(){
 		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 		waitfor_reply = true;
 		client.publish('data_request', "0");
+		console.log("da gui");
 	}
 }
 var realtime_buf = data_handler.realtime_buf;
@@ -58,8 +59,9 @@ var statistic_buf = data_handler.statistic_buf;
 var real_time = data_handler.real_time;
 
 io.on('connection', function(socket){
+	console.log("co nguoi connect");
 	user_number++;
-	io.sockets.emit("server_update_enable", server_update);
+	//io.sockets.emit("server_update_enable", server_update);
 	socket.on("change_update_enable", function(data){
 		server_update = !server_update;
 		io.sockets.emit("server_update_enable", server_update);
@@ -103,9 +105,6 @@ io.on('connection', function(socket){
 		}
 	})
 
-	socket.on("output_control").click(function(){
-
-	});
 
 	socket.on("disconnect", function(){
 		user_number--;
