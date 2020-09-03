@@ -43,32 +43,26 @@ void modbus::modbus_write_scoil(byte slave_id, byte function_code, uint16_t regi
 }
 bool modbus::packet_handler(byte* packet, byte Length)
 {
-  if(packet[3] == Length - 6 || packet[2] > 4) {
-    byte* CRC_checking;
-    CRC_checking = new byte[2];
-    CRC_16(&packet[1], Length - 1, CRC_checking);
-    if(CRC_checking[0] == 0 && CRC_checking[1] == 0){
-      switch (packet[0]) {
-        case 32:
-          client.publish("realtime_data", &packet[4], packet[3]);
-        break;
+  if(packet[0] == Length - 1) {
 
-        case 34:
-          client.publish("statistic_data", &packet[4], packet[3]);
-        break;
+	  switch (packet[1]) {
+		case 32:
+		  client.publish("realtime_data", &packet[2], Length - 2);
+		break;
 
-        case 36:
-          client.publish("control_status_data", &packet[4], packet[3]);
-        break;
+		case 34:
+		  client.publish("realtime_data", &packet[2], Length - 2);
+		break;
 
-        case 38:
-          client.publish("onoff_load_confirm", &packet[4], packet[3]);
-        break;
-      }
-    }else{
-      //CRC error
-    }
-	delete[] CRC_checking;
+		case 36:
+		  client.publish("realtime_data", &packet[2], Length - 2);
+		break;
+
+		case 38:
+		  client.publish("realtime_data", &packet[2], Length - 2);
+		break;
+	  }
+
   }else{
     //packet length error or format error
   }

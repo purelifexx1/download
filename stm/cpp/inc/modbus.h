@@ -20,6 +20,7 @@ class modbus
 		byte write_pointer, read_pointer;
 		byte receive_length;
 		byte packet_id;
+		byte sync_number = 3;
 		byte header[2];
 		byte footer[2];
 		byte data_buffer[300];

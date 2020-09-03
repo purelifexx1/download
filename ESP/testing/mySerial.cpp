@@ -20,7 +20,7 @@ void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t f
   temper_buffer = new byte[Length + 6];
   temper_buffer[0] = (byte)((header >> 8) & 0xff);
   temper_buffer[1] = (byte)(header & 0xff);
-  temper_buffer[2] = Length;
+  temper_buffer[2] = Length + 1;
   temper_buffer[3] = command;
   memcpy(&temper_buffer[4], Buffer, Length);
   temper_buffer[4+Length] = (byte)((footer >> 8) & 0xff);
@@ -99,7 +99,7 @@ void mySerial::Receive_Package()
 
 void mySerial::timer_runout_function() 
 {
-  if(timeout_enable == true && (unsigned long)(millis() - time_value) > 50) {
+  if(timeout_enable == true && (unsigned long)(millis() - time_value) > 40) {
     timeout_enable = false;
     data_pointer = 0;
     sync_flag = 0;

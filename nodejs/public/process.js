@@ -46,6 +46,10 @@ socket.on("packet_ongoing", function(data){
 	//run timer for text
 })
 
+socket.on("packet_lost", function(data){
+	
+})
+
 socket.on("server_update_enable", function(data){
 	if(data == true) {
 		//update button green or checkbox's ticked

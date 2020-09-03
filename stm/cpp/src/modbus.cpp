@@ -29,7 +29,7 @@ void modbus::CRC_16(byte* input, byte Length, byte* output)
 void modbus::looping()
 {
 	write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
-	if(sync_status == false && (byte)(write_pointer - read_pointer) >= 3) {
+	if(sync_status == false && (byte)(write_pointer - read_pointer) >= sync_number) {
 		if(data_buffer[read_pointer++] == header[0] && data_buffer[read_pointer++] == header[1]) {
 			if(fixed_receive_length == true) receive_length = data_buffer[read_pointer++];
 			sync_status = true;
@@ -57,13 +57,15 @@ void modbus::looping()
 void modbus::send_packet(uint16_t header, uint16_t footer, byte* data, int length)
 {
 	byte* temper_packet;
-	temper_packet = new byte[length + 5];
+	temper_packet = new byte[length + 6];
 	temper_packet[0] = (byte)(header >>8 & 0xff);
 	temper_packet[1] = (byte)(header & 0xff);
-	memcpy(&temper_packet[2], data, length);
-	temper_packet[length+2] = (byte)(footer >>8 & 0xff);
-	temper_packet[length+3] = (byte)(footer & 0xff);
-	uart_send(uart, temper_packet, length+5);
+	temper_packet[2] = length + 1;
+	temper_packet[3] = packet_id;
+	memcpy(&temper_packet[4], data, length);
+	temper_packet[length+4] = (byte)(footer >>8 & 0xff);
+	temper_packet[length+5] = (byte)(footer & 0xff);
+	uart_send(uart, temper_packet, length+6);
 	delete[] temper_packet;
 }
 
@@ -73,8 +75,10 @@ void modbus::request_handler(byte* input, int length)
 	header[0] = input[1];
 	header[1] = input[2];
 	if(header[1] <= 4) 
+		sync_number = 3;
 		fixed_receive_length = true;
 	else {
+		sync_number = 2;
 		fixed_receive_length = false;
 		receive_length = 4;
 	}		

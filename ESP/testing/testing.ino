@@ -65,12 +65,9 @@ void setup_mqtt() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
-  Serial.println("in");
-  if(String(topic) == "data_request") {
-    
+  if(String(topic) == "data_request") { 
   switch(payload[0]) {
     case '0':
-    Serial.println("da nhan");
       Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x31, 0x00}, 15, 32);
       //real time data request
     break;

@@ -82,7 +82,7 @@ io.on('connection', function(socket){
 		if(waitfor_reply == false){
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;
-			client.publish("data_request", 2);
+			client.publish("data_request", "2");
 		}else{
 			socket.emit("packet_ongoing");
 			storage_packet.topic = "data_request";
