@@ -19,8 +19,8 @@ void setup() {
 }
 
 void loop() {
-	Serial2.looping();
-	modbus1.looping();
+	Serial2.looping2();
+	//modbus1.looping();
 
 }
 
@@ -31,15 +31,24 @@ void data_received2(byte* data_buffer, int length) {
 
 void modbus_received(byte* data_buffer, int length) {
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-
-	modbus1.send_packet(12345, 34567, data_buffer, length);
+    Serial2.send_packet(12345, 34567, data_buffer, length);
 }
 
 void UART_CallBack(UART_HandleTypeDef *huart) {
 	if (huart->Instance == USART2)
 		Serial2.buffer_overflow();
-	else if(huart->Instance == USART3)
-		modbus1.buffer_overflow();
+	else if(huart->Instance == USART3){
+		HAL_UART_AbortReceive_IT(huart);
+		byte* temp1;
+		int* temp2;
+		modbus1.get_data(temp1, temp2);
+		Serial2.send_modbus_packet(temp1, *temp2);
+	}
+		//modbus1.buffer_overflow();
+}
+
+void external_interrupt(uint16_t pin) {
+	
 }
 
 

@@ -64,8 +64,8 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-
+byte transmit_complete_flag = 1;
+byte receive_complete_flag = 0;
 /* USER CODE END 0 */
 
 /**
@@ -279,6 +279,14 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   UART_CallBack(huart);
+}
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if(transmit_complete_flag == 0) {
+		transmit_complete_flag = 1;
+	}else{
+		receive_complete_flag = 1;
+	}
 }
 /* USER CODE END 4 */
 

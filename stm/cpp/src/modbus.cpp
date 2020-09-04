@@ -55,20 +55,7 @@ void modbus::looping()
 	}
 }
 
-void modbus::send_packet(uint16_t header, uint16_t footer, byte* data, int length)
-{
-	byte *temper_packet;
-	temper_packet = new byte[length + 6];
-	temper_packet[0] = (byte)(header >>8 & 0xff);
-	temper_packet[1] = (byte)(header & 0xff);
-	temper_packet[2] = length + 1;
-	temper_packet[3] = packet_id;
-	memcpy(&temper_packet[4], data, length);
-	temper_packet[length+4] = (byte)(footer >>8 & 0xff);
-	temper_packet[length+5] = (byte)(footer & 0xff);
-	uart_send(&huart2, temper_packet, length+6);
-	delete[] temper_packet;
-}
+
 
 void modbus::request_handler(byte* input, int length)
 {
@@ -82,13 +69,45 @@ void modbus::request_handler(byte* input, int length)
 		sync_number = 2;
 		fixed_receive_length = false;
 		receive_length = 4;
-	}		
+	}	
+	transmit_complete_flag = 0;
 	uart_send(this->uart, &input[1], length - 1);
+}
 
+void modbus::request_handler1(byte* input, int length)
+{
+	packet_id = input[0];
+	uint16_t number_of_coil;
+	uint16_t number_of_register;
+	switch(input[2]) {
+		case 1:
+			number_of_coil = (packet[4] << 8) ^ packet[5];
+			temper_length = (number_of_coil/8) + 6;// number of coil round up +1, +5 address and function code and length and CRC,
+		break;
+			
+		case 4:
+			number_of_register = (packet[5] << 8) ^ packet[6];
+			temper_length = number_of_register*2 + 5;
+		break;
+		
+		case 5:
+			temper_length = 8;
+		break;
+	}
+	uart_dma(this->uart, data_buffer, temper_length);
+	transmit_complete_flag = 0;
+	uart_send(this->uart, &input[1], length - 1);
+	
 }
 
 void modbus::buffer_overflow()
 {
 	overflow_flag = true;
+}
+
+void modbus::get_data(byte* temp1, int* temp2)
+{
+	temp1 = data_buffer;
+	temp2 = &temper_length;
 }
 byte data_buffer[300];

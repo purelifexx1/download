@@ -43,11 +43,76 @@ void mySerial::looping()
 			overflow_flag = false;
 		}else{
 			//error handle packet format
+			sync_status = false;
 			overflow_flag = false;
 		}
 	}
 }
 
+void mySerial::looping2()
+{
+	if(receive_packet_flag == 1) {
+		write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
+		if(data_buffer1[read_pointer] == header[0] && data_buffer1[read_pointer+1] == header[1] && data_buffer1[write_pointer-2] == footer[0] && data_buffer1[write_pointer-1] == footer[1]){
+			if(data_buffer1[read_pointer+2] == (write_pointer - read_pointer) - 5) {
+				if(overflow_flag == true)
+					memcpy(&data_buffer1[256], data_buffer1, write_pointer);
+				length_error_integral = 0; head_foot_error_integral = 0;			
+				overflow_flag = false;
+				receive_packet_flag = 0;
+				this->callback(&data_buffer1[read_pointer+3], data_buffer1[read_pointer+2]);
+				read_pointer = write_pointer;
+				return;
+			}else{
+				//packet length error
+				receive_packet_flag = 0;
+				length_error_integral++;
+				overflow_flag = false;
+				read_pointer = write_pointer;
+			}
+		}else{
+			//header footer error
+			receive_packet_flag = 0;
+			head_foot_error_integral++;
+			overflow_flag = false;
+			read_pointer = write_pointer;			
+		}
+	}
+	
+}
+
+void mySerial::send_packet(uint16_t header, uint16_t footer, byte* data, int length)
+{
+	byte *temper_packet;
+	temper_packet = new byte[length + 6];
+	temper_packet[0] = (byte)(header >>8 & 0xff);
+	temper_packet[1] = (byte)(header & 0xff);
+	temper_packet[2] = length + 1;
+	temper_packet[3] = packet_id;
+	memcpy(&temper_packet[4], data, length);
+	temper_packet[length+4] = (byte)(footer >>8 & 0xff);
+	temper_packet[length+5] = (byte)(footer & 0xff);
+	transmit_complete_flag = 0;
+	uart_send(this->uart, temper_packet, length+6);
+	delete[] temper_packet;
+}
+
+void mySerial::send_modbus_packet(uint16_t header, uint16_t footer, byte* data, int length)
+{
+	byte *temper_packet;
+	byte temper_length = (data[1] <= 4?length - 5:4;
+	temper_packet = new byte[temper_length + 6];
+	temper_packet[0] = (byte)(header >> 8 & 0xff);
+	temper_packet[1] = (byte)(header & 0xff);
+	temper_packet[2] = temper_length + 1;
+	temper_packet[3] = packet_id;
+	memcpy(&temper_packet[4], &data[length-temper_length-2], temper_length);
+	temper_packet[temper_length+4] = (byte)(footer >> 8 & 0xff);
+	temper_packet[temper_length+5] = (byte)(footer && 0xff);
+	transmit_complete_flag = 0;
+	uart_send(this->uart, temper_packet, temper_length + 6);
+	delete[] temper_packet;
+}
 
 void mySerial::buffer_overflow()
 {

@@ -7,6 +7,7 @@
 #define byte uint8_t
 #define uart_dma HAL_UART_Receive_DMA
 #define uart_send HAL_UART_Transmit_DMA
+#define uart_receive_abort HAL_UART_AbortReceive_IT
 #define receive_modbus void(*callback)(byte*,int)
 
 #define buffer_length 256
@@ -23,7 +24,7 @@ class modbus
 		byte sync_number = 3;
 		byte header[2];
 		byte footer[2];
-
+		int temper_length;
 		UART_HandleTypeDef* uart;
 	public:
 
@@ -31,7 +32,8 @@ class modbus
 		void begin(UART_HandleTypeDef* uart, receive_modbus);
 		void CRC_16(byte* input, byte length, byte* output);
 		void request_handler(byte* input, int length);
-		void send_packet(uint16_t header, uint16_t footer, byte* data, int length);
+		void request_handler1(byte* input, int length);
+		void get_data(byte* temp1, int* temp2);
 		void looping();
 		void buffer_overflow();
 };
