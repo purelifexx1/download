@@ -81,7 +81,7 @@ void modbus::request_handler1(byte* input, int length)
 	uint16_t number_of_register;
 	switch(input[2]) {
 		case 1:
-			number_of_coil = (packet[4] << 8) ^ packet[5];
+			number_of_coil = (packet[5] << 8) ^ packet[6];
 			temper_length = (number_of_coil/8) + 6;// number of coil round up +1, +5 address and function code and length and CRC,
 		break;
 			
@@ -91,6 +91,7 @@ void modbus::request_handler1(byte* input, int length)
 		break;
 		
 		case 5:
+			
 			temper_length = 8;
 		break;
 	}

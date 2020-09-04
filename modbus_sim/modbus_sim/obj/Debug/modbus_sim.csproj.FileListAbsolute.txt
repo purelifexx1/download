@@ -7,3 +7,13 @@ C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_
 C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.csproj.GenerateResource.Cache
 C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.exe
 C:\Users\Admin\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.pdb
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\bin\Debug\modbus_sim.exe.config
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\bin\Debug\modbus_sim.exe
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\bin\Debug\modbus_sim.pdb
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.csprojAssemblyReference.cache
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.Form1.resources
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.Properties.Resources.resources
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.csproj.GenerateResource.cache
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.csproj.CoreCompileInputs.cache
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.exe
+C:\Users\AAI81HC\Documents\GitHub\download\modbus_sim\modbus_sim\obj\Debug\modbus_sim.pdb

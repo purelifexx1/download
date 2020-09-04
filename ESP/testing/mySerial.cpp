@@ -70,16 +70,20 @@ void mySerial::Receive_Package()
         sync_flag = 1;
         data_pointer = 0;
         //start timer
-        time_value = millis();
-        timeout_enable = true;
+        time_value = millis();       
       }
     }else if(temper_byte != sync_header[sync_pointer] && sync_flag == 0){
       sync_pointer = 0;
     }else if(sync_flag == 1){
+	  if(temper_lock == false) {
+		  timeout_enable = true; temper_lock = true; 
+		  standard_timeout = 8 + (int)(temper_byte*7e-2);
+	  }
       if(temper_byte == sync_end[sync_pointer]) {
         sync_pointer++;
         data_buffer[data_pointer++] = temper_byte;
         if(sync_pointer == 2) {
+		  temper_lock = false;
           sync_pointer = 0;
           sync_flag = 0;
           byte_number = data_pointer - 2;
@@ -99,12 +103,13 @@ void mySerial::Receive_Package()
 
 void mySerial::timer_runout_function() 
 {
-  if(timeout_enable == true && (unsigned long)(millis() - time_value) > 40) {
+  if(timeout_enable == true && (unsigned long)(millis() - time_value) > standard_timeout) {
     timeout_enable = false;
     data_pointer = 0;
     sync_flag = 0;
-    sync_pointer = 0;
+    sync_pointer = 0;	
     //error handler after this
+	client.publish("error", '0'); //packet received timeout at centrall node
   }
 }
 void mySerial::testing()

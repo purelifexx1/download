@@ -17,7 +17,7 @@ namespace modbus_sim
     public partial class Form1 : Form
     {
         int number;
-        byte[] buffer;
+        byte[] buffer = new byte[300];
         Random rnd = new Random();
 
         int data_push_pointer;
@@ -60,12 +60,17 @@ namespace modbus_sim
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             number = serialPort1.BytesToRead;
-            if(number == 8)
+            if(number != 0)
             {
-                buffer = new byte[number];
-                serialPort1.Read(buffer, 0, number);
-                this.Invoke(new EventHandler(data_handler));
+                serialPort1.Read(buffer, data_push_pointer, number);
+                data_push_pointer += number;
+                if(data_push_pointer >= 8)
+                {
+                    data_push_pointer = 0;
+                    this.Invoke(new EventHandler(data_handler));
+                }
             }
+
         }
 
         private void data_handler(object sender, EventArgs e)

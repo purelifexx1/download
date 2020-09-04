@@ -9,7 +9,8 @@
 #include "modbus.h"
 #include "mySerial.h"
 #define byte uint8_t
-
+#define start_timeout HAL_TIM_Base_Start_IT
+#deinfe stop_timer HAL_TIM_Base_Stop_IT
 mySerial Serial2;
 modbus modbus1;
 
@@ -26,7 +27,7 @@ void loop() {
 
 void data_received2(byte* data_buffer, int length) {
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	modbus1.request_handler(data_buffer, length);
+	modbus1.request_handler1(data_buffer, length);
 }
 
 void modbus_received(byte* data_buffer, int length) {
@@ -43,12 +44,10 @@ void UART_CallBack(UART_HandleTypeDef *huart) {
 		int* temp2;
 		modbus1.get_data(temp1, temp2);
 		Serial2.send_modbus_packet(temp1, *temp2);
-	}
 		//modbus1.buffer_overflow();
+	}
+		
 }
 
-void external_interrupt(uint16_t pin) {
-	
-}
 
 

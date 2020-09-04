@@ -36,7 +36,7 @@ extern "C" {
 void setup();
 void loop();
 void UART_CallBack(UART_HandleTypeDef *huart);
-void external_interrupt(uint16_t pin);
+
 void modbus_received(byte* data_buffer, int length);
 void data_received2(byte* data_buffer, int length);
 

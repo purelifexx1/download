@@ -11,7 +11,8 @@ private:
   	byte data_buffer1[128];
 	byte check_header = 1;
   	int Length;
-  	
+  	bool temper_lock = false;
+	int standard_timeout;
 public:
   void begin_setup();
 	setup_configure();
