@@ -7,7 +7,7 @@
 #define led_pin 2
 #define wifi_config_pin 22
 #define mqtt_config_pin 23
-#define aux_pin 13
+#define aux_pin 21
 mySerial data_serial(false, 12345, 34567);
 mySerial debug_configure_serial(true, 22345, 47898);
 const uint16_t mqtt_port = 1883; 
@@ -18,7 +18,7 @@ bool LED_status = false;
 bool receive_complete_flag = false;
 bool transmit_complete_flag = true;
 void setup() {
-  pinMode(led_pin OUTPUT);
+  pinMode(led_pin, OUTPUT);
   pinMode(aux_pin, INPUT_PULLUP);
   pinMode(wifi_config_pin, INPUT_PULLUP);  
   pinMode(mqtt_config_pin, INPUT_PULLUP);
@@ -39,25 +39,25 @@ void setup_wifi() {
   if(digitalRead(wifi_config_pin) == LOW) {
     status = ESP32WiFi.autoConnect("ESP32 Configuration", "password");
   }else{
-    digitalWrite(led_pin LED_status = !LED_status);
+    digitalWrite(led_pin, LED_status = !LED_status);
     status = ESP32WiFi.startConfigPortal("ESP32 Configuration", "password");
   } 
   if (status)  //connect successfully, blink led to inform user
   {
     for (int i = 0; i < 6; ++i)
     {
-      digitalWrite(led_pin LED_status = !LED_status);
+      digitalWrite(led_pin, LED_status = !LED_status);
       delay(50);
     }
     delay(2000);
     for (int i = 0; i < 6; ++i)
     {
-      digitalWrite(led_pin LED_status = !LED_status);
+      digitalWrite(led_pin, LED_status = !LED_status);
       delay(50);
     }   
   }else{   //connect fail, blink led continuously
     while(1) {
-      digitalWrite(led_pin LED_status = !LED_status);
+      digitalWrite(led_pin, LED_status = !LED_status);
       delay(200);
     }
   }
@@ -107,7 +107,7 @@ void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
 
 void data_handler(byte* package, int Length) { // for uart lora
   receive_complete_flag = false;
-  digitalWrite(led_pin LED_status = !LED_status); 
+  digitalWrite(led_pin, LED_status = !LED_status); 
   Modbus.packet_handler(package, Length);
 }
 void reconnect() {
@@ -116,7 +116,7 @@ void reconnect() {
        client.subscribe("data_request");  
        debug_configure_serial.Print("connect mqtt");  
     } else {
-      digitalWrite(led_pin LED_status = !LED_status);
+      digitalWrite(led_pin, LED_status = !LED_status);
       delay(5000);
     }
   }
@@ -131,6 +131,7 @@ void loop() {
 }
 
 void receive_edge() {
+  Serial.println("co ngat");
 	if(transmit_complete_flag == false) {
 		transmit_complete_flag = true;
 	}else{

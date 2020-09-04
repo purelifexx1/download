@@ -9,7 +9,7 @@ void modbus::begin(UART_HandleTypeDef* uart, receive_modbus)
 {
 	this->uart = uart;
 	this->callback = callback;
-	uart_dma(this->uart, data_buffer, buffer_length);
+	//uart_dma(this->uart, data_buffer, buffer_length);
 }
 
 void modbus::CRC_16(byte* input, byte Length, byte* output)
@@ -76,26 +76,26 @@ void modbus::request_handler(byte* input, int length)
 
 void modbus::request_handler1(byte* input, int length)
 {
-	packet_id = input[0];
+	packet_id1 = input[0];
 	uint16_t number_of_coil;
 	uint16_t number_of_register;
 	switch(input[2]) {
 		case 1:
-			number_of_coil = (packet[5] << 8) ^ packet[6];
-			temper_length = (number_of_coil/8) + 6;// number of coil round up +1, +5 address and function code and length and CRC,
+			number_of_coil = (input[5] << 8) ^ input[6];
+			temper_length1 = (number_of_coil/8) + 6;// number of coil round up +1, +5 address and function code and length and CRC,
 		break;
 			
 		case 4:
-			number_of_register = (packet[5] << 8) ^ packet[6];
-			temper_length = number_of_register*2 + 5;
+			number_of_register = (input[5] << 8) ^ input[6];
+			temper_length1 = number_of_register*2 + 5;
 		break;
 		
 		case 5:
 			
-			temper_length = 8;
+			temper_length1 = 8;
 		break;
 	}
-	uart_dma(this->uart, data_buffer, temper_length);
+	uart_dma(this->uart, data_buffer, temper_length1);
 	transmit_complete_flag = 0;
 	uart_send(this->uart, &input[1], length - 1);
 	
@@ -109,6 +109,7 @@ void modbus::buffer_overflow()
 void modbus::get_data(byte* temp1, int* temp2)
 {
 	temp1 = data_buffer;
-	temp2 = &temper_length;
+	temp2 = &temper_length1;
 }
 byte data_buffer[300];
+int temper_length1;

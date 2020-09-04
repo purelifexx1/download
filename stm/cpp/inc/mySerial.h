@@ -11,6 +11,7 @@
 #include "string.h"
 #define byte uint8_t
 #define uart_dma HAL_UART_Receive_DMA
+#define uart_send HAL_UART_Transmit_DMA
 #define uart_received void(*callback)(byte*,int)
 #define buffer_length 256
 class mySerial
@@ -21,6 +22,7 @@ private:
 	bool sync_status = false;
 	bool fixed_receive_length = false;
 	byte write_pointer, read_pointer;	
+
 	byte receive_length;
 	byte length_error_integral;
 	byte head_foot_error_integral;
@@ -37,7 +39,8 @@ public:
 	void send_packet(uint16_t header, uint16_t footer, byte* data, int length);
 	void send_modbus_packet(uint16_t header, uint16_t footer, byte* data, int length);
 	void buffer_overflow(); // put this function in coresponding complete callback uart
+
 };
 
-
+extern byte packet_id1;
 #endif /* INC_MYSERIAL_H_ */

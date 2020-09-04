@@ -65,7 +65,7 @@ bool modbus::packet_handler(byte* packet, byte Length)
 
   }else{
     //packet length error or format error
-	client.publish("error", '1'); // length error
+	client.publish("error", "1"); // length error
   }
 }
 modbus Modbus;

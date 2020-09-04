@@ -88,7 +88,7 @@ void mySerial::send_packet(uint16_t header, uint16_t footer, byte* data, int len
 	temper_packet[0] = (byte)(header >>8 & 0xff);
 	temper_packet[1] = (byte)(header & 0xff);
 	temper_packet[2] = length + 1;
-	temper_packet[3] = packet_id;
+	temper_packet[3] = packet_id1;
 	memcpy(&temper_packet[4], data, length);
 	temper_packet[length+4] = (byte)(footer >>8 & 0xff);
 	temper_packet[length+5] = (byte)(footer & 0xff);
@@ -105,10 +105,10 @@ void mySerial::send_modbus_packet(uint16_t header, uint16_t footer, byte* data, 
 	temper_packet[0] = (byte)(header >> 8 & 0xff);
 	temper_packet[1] = (byte)(header & 0xff);
 	temper_packet[2] = temper_length + 1;
-	temper_packet[3] = packet_id;
+	temper_packet[3] = packet_id1;
 	memcpy(&temper_packet[4], &data[length-temper_length-2], temper_length);
 	temper_packet[temper_length+4] = (byte)(footer >> 8 & 0xff);
-	temper_packet[temper_length+5] = (byte)(footer && 0xff);
+	temper_packet[temper_length+5] = (byte)(footer & 0xff);
 	transmit_complete_flag = 0;
 	uart_send(this->uart, temper_packet, temper_length + 6);
 	delete[] temper_packet;
@@ -118,5 +118,6 @@ void mySerial::buffer_overflow()
 {
 	overflow_flag = true;
 }
+byte packet_id1;
 
 

@@ -24,7 +24,7 @@ class modbus
 		byte sync_number = 3;
 		byte header[2];
 		byte footer[2];
-		int temper_length;
+
 		UART_HandleTypeDef* uart;
 	public:
 
@@ -38,5 +38,6 @@ class modbus
 		void buffer_overflow();
 };
 extern byte data_buffer[300];
-
+extern int temper_length1;
+extern byte packet_id1;
 #endif

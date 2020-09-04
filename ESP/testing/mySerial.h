@@ -1,6 +1,7 @@
 #ifndef INC_MYSERIAL_
 #define INC_MYSERIAL_
 #include <Arduino.h>
+#include <PubSubClient.h>
 #define Callback void(*callback_function)(byte*,int)
 class mySerial 
 {
@@ -13,6 +14,8 @@ class mySerial
     byte sync_flag, sync_pointer, data_pointer, byte_number;
     unsigned long time_value;
     bool timeout_enable = false;
+    bool temper_lock = false;
+    int standard_timeout;
     HardwareSerial* mSerial;
   public:
     mySerial(bool selection, uint16_t header, uint16_t footer);
@@ -29,4 +32,5 @@ class mySerial
 };
 extern mySerial data_serial;
 extern mySerial debug_configure_serial;
+extern PubSubClient client;
 #endif

@@ -60,15 +60,10 @@ namespace modbus_sim
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             number = serialPort1.BytesToRead;
-            if(number != 0)
+            if(number >= 8)
             {
-                serialPort1.Read(buffer, data_push_pointer, number);
-                data_push_pointer += number;
-                if(data_push_pointer >= 8)
-                {
-                    data_push_pointer = 0;
-                    this.Invoke(new EventHandler(data_handler));
-                }
+                serialPort1.Read(buffer, 0, number);
+                this.Invoke(new EventHandler(data_handler));
             }
 
         }
