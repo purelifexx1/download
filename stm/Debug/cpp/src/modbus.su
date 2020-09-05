@@ -4,5 +4,5 @@ modbus.cpp:15:6:void modbus::CRC_16(uint8_t*, uint8_t, uint8_t*)	32	static
 modbus.cpp:29:6:void modbus::looping()	16	static
 modbus.cpp:60:6:void modbus::request_handler(uint8_t*, int)	24	static
 modbus.cpp:77:6:void modbus::request_handler1(uint8_t*, int)	32	static
-modbus.cpp:104:6:void modbus::buffer_overflow()	16	static
-modbus.cpp:109:6:void modbus::get_data(uint8_t*, int*)	24	static
+modbus.cpp:103:6:void modbus::buffer_overflow()	16	static
+modbus.cpp:108:6:void modbus::get_data(uint8_t*, int*)	24	static

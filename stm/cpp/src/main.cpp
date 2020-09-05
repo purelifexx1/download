@@ -42,9 +42,7 @@ void UART_CallBack(UART_HandleTypeDef *huart) {
 		Serial2.buffer_overflow();
 	else if(huart->Instance == USART3){
 		HAL_UART_AbortReceive_IT(huart);
-
-		modbus1.get_data(temp1, temp2);
-		Serial2.send_modbus_packet(12345, 34567, data_buffer, 35);
+		Serial2.send_modbus_packet(12345, 34567, modbus1.data_buffer, modbus1.temper_length);
 		//modbus1.buffer_overflow();
 	}
 		

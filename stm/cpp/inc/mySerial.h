@@ -22,13 +22,13 @@ private:
 	bool sync_status = false;
 	bool fixed_receive_length = false;
 	byte write_pointer, read_pointer;	
-
+	byte packet_id;
 	byte receive_length;
 	byte length_error_integral;
 	byte head_foot_error_integral;
 	byte header[2];
 	byte footer[2];
-	byte data_buffer1[300];
+	byte data_buffer[300];
 	UART_HandleTypeDef* uart;
 public:
 
@@ -42,5 +42,4 @@ public:
 
 };
 
-extern byte packet_id1;
 #endif /* INC_MYSERIAL_H_ */

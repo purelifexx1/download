@@ -19,26 +19,26 @@ void mySerial::begin(UART_HandleTypeDef* uart, uint16_t header, uint16_t footer,
 	this->footer[1] = (byte)(footer & 0xff);
 	this->uart = uart;
 	this->callback = callback;
-	uart_dma(this->uart, data_buffer1, buffer_length);
+	uart_dma(this->uart, data_buffer, buffer_length);
 }
 
 void mySerial::looping()
 {
 	write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
 	if(sync_status == false && (byte)(write_pointer - read_pointer) >= 3) {
-		if(data_buffer1[read_pointer++] == header[0] && data_buffer1[read_pointer++] == header[1]) {
-			receive_length = data_buffer1[read_pointer++];
+		if(data_buffer[read_pointer++] == header[0] && data_buffer[read_pointer++] == header[1]) {
+			receive_length = data_buffer[read_pointer++];
 			sync_status = true;
 		}else{
 			read_pointer++;
 		}
 		overflow_flag = false;
 	}else if(sync_status == true && (byte)(write_pointer - read_pointer) >= receive_length + 2) {
-		if(data_buffer1[(byte)(write_pointer-2)] == footer[0] && data_buffer1[(byte)(write_pointer-1)] == footer[1]){
+		if(data_buffer[(byte)(write_pointer-2)] == footer[0] && data_buffer[(byte)(write_pointer-1)] == footer[1]){
 			sync_status = false;
 			if(overflow_flag == true)
-				memcpy(&data_buffer1[256], data_buffer1, write_pointer);
-			this->callback(&data_buffer1[read_pointer], receive_length);
+				memcpy(&data_buffer[256], data_buffer, write_pointer);
+			this->callback(&data_buffer[read_pointer], receive_length);
 			read_pointer+=(receive_length + 2);
 			overflow_flag = false;
 		}else{
@@ -53,14 +53,15 @@ void mySerial::looping2()
 {
 	if(receive_complete_flag == 1) {
 		write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
-		if(data_buffer1[read_pointer] == header[0] && data_buffer1[read_pointer+1] == header[1] && data_buffer1[write_pointer-2] == footer[0] && data_buffer1[write_pointer-1] == footer[1]){
-			if(data_buffer1[read_pointer+2] == (write_pointer - read_pointer) - 5) {
+		if(data_buffer[read_pointer] == header[0] && data_buffer[read_pointer+1] == header[1] && data_buffer[write_pointer-2] == footer[0] && data_buffer[write_pointer-1] == footer[1]){
+			if(data_buffer[read_pointer+2] == (write_pointer - read_pointer) - 5) {
 				if(overflow_flag == true)
-					memcpy(&data_buffer1[256], data_buffer1, write_pointer);
+					memcpy(&data_buffer[256], data_buffer, write_pointer);
 				length_error_integral = 0; head_foot_error_integral = 0;			
 				overflow_flag = false;
 				receive_complete_flag = 0;
-				this->callback(&data_buffer1[read_pointer+3], data_buffer1[read_pointer+2]);
+				this->callback(&data_buffer[read_pointer+3], data_buffer[read_pointer+2]);
+				packet_id = data_buffer[read_pointer+3];
 				read_pointer = write_pointer;
 				return;
 			}else{
@@ -88,7 +89,7 @@ void mySerial::send_packet(uint16_t header, uint16_t footer, byte* data, int len
 	temper_packet[0] = (byte)(header >>8 & 0xff);
 	temper_packet[1] = (byte)(header & 0xff);
 	temper_packet[2] = length + 1;
-	temper_packet[3] = packet_id1;
+	temper_packet[3] = packet_id;
 	memcpy(&temper_packet[4], data, length);
 	temper_packet[length+4] = (byte)(footer >>8 & 0xff);
 	temper_packet[length+5] = (byte)(footer & 0xff);
@@ -105,7 +106,7 @@ void mySerial::send_modbus_packet(uint16_t header, uint16_t footer, byte* data, 
 	temper_packet[0] = (byte)(header >> 8 & 0xff);
 	temper_packet[1] = (byte)(header & 0xff);
 	temper_packet[2] = temper_length + 1;
-	temper_packet[3] = packet_id1;
+	temper_packet[3] = packet_id;
 	memcpy(&temper_packet[4], &data[length-temper_length-2], temper_length);
 	temper_packet[temper_length+4] = (byte)(footer >> 8 & 0xff);
 	temper_packet[temper_length+5] = (byte)(footer & 0xff);
@@ -118,6 +119,6 @@ void mySerial::buffer_overflow()
 {
 	overflow_flag = true;
 }
-byte packet_id1;
+
 
 

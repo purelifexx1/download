@@ -20,14 +20,14 @@ class modbus
 		bool fixed_receive_length = false;
 		byte write_pointer, read_pointer;
 		byte receive_length;
-		byte packet_id;
 		byte sync_number = 3;
 		byte header[2];
 		byte footer[2];
 
 		UART_HandleTypeDef* uart;
 	public:
-
+		byte data_buffer[300];
+		int temper_length;
 		modbus();
 		void begin(UART_HandleTypeDef* uart, receive_modbus);
 		void CRC_16(byte* input, byte length, byte* output);
@@ -37,7 +37,5 @@ class modbus
 		void looping();
 		void buffer_overflow();
 };
-extern byte data_buffer[300];
-extern int temper_length1;
-extern byte packet_id1;
+
 #endif
