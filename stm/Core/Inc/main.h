@@ -36,7 +36,7 @@ extern "C" {
 void setup();
 void loop();
 void UART_CallBack(UART_HandleTypeDef *huart);
-
+void GPIO_Interrupt_Callback(uint16_t pin);
 void modbus_received(byte* data_buffer, int length);
 void data_received2(byte* data_buffer, int length);
 
@@ -46,6 +46,9 @@ void data_received2(byte* data_buffer, int length);
 /* USER CODE BEGIN ET */
 extern byte transmit_complete_flag;
 extern byte receive_complete_flag;
+extern byte receive_status;
+extern byte backup_buffer[125];
+extern int length;
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
 /* USER CODE END ET */

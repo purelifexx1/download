@@ -22,7 +22,9 @@ var options = {
 };
 var storage_packet = {
 	"topic": "",
-	"message": ""
+	"message": "",
+	"topic_timeout": "",
+	"content_timeout": ""
 };
 
 var user_number = 0;
@@ -32,6 +34,7 @@ var timeout_latch;
 var mqtt_status = false;
 var server_update = false;
 var sec_value = 0;
+var connection_status_interval = 0;
 
 setInterval(function(){
 	if(server_update == true) {
@@ -46,11 +49,12 @@ setInterval(function(){
 
 var client = mqtt.connect('mqtt://node02.myqtthub.com', options);
 function timer(){
-
 	if (mqtt_status == true && waitfor_reply == false) {
-		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
-		waitfor_reply = true;
 		client.publish('data_request', "0");
+		storage_packet.topic_timeout = 'data_request';
+		storage_packet.content_timeout = "0";
+		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
+		waitfor_reply = true;		
 		console.log("da gui");
 	}
 }
@@ -70,9 +74,11 @@ io.on('connection', function(socket){
 
 	socket.on("statistic_request", function(data){
 		if(waitfor_reply == false){
+			client.publish('data_request', "1"); 
+			storage_packet.topic_timeout = 'data_request';
+			storage_packet.content_timeout = "1";
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
-			waitfor_reply = true;
-			client.publish('data_request', "1"); // dummy data, should transfer the id of requested client
+			waitfor_reply = true;			
 		}else{
 			socket.emit("packet_ongoing");
 			storage_packet.topic = "data_request";
@@ -82,6 +88,7 @@ io.on('connection', function(socket){
 	})
 	socket.on("control_status_request", function(data){
 		if(waitfor_reply == false){
+			
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;
 			client.publish("data_request", "2");
@@ -129,6 +136,7 @@ client.on('connect', function(){
 	client.on('message', function(topic, message){
 
 	   if(topic == 'realtime_data') {
+	   	connection_status_interval = 0;
 	   	clearTimeout(timeout_latch);
 	   	message.copy(realtime_buf, 0, 0, message.length);
 	   	data_handler.realtime_send(io);	
@@ -137,6 +145,7 @@ client.on('connect', function(){
 	   }
 
 	   if(topic == 'statistic_data') {
+	   	connection_status_interval = 0;
 	   	clearTimeout(timeout_latch);
 	   	message.copy(statistic_buf, 0, 0, message.length);
 	   	data_handler.statistic_send(io);
@@ -145,6 +154,7 @@ client.on('connect', function(){
 	   }
 
 	   if(topic == 'control_status_data'){
+	   	connection_status_interval = 0;
 	   	clearTimeout(timeout_latch);
 	   	data_handler.control_status_send(io, message);
 	   	re_send(storage_packet);
@@ -175,6 +185,13 @@ function re_send(storage_packet){
 	}	
 }
 function timeout_function(storage_packet){
+	if(storage_packet.topic_timeout == "data_request") {		
+		connection_status_interval++;
+	}
+	if(connection_status_interval > 5) {
+		io.sockets.emit("error", "2")
+	}
+
 	io.sockets.emit("packet_lost");
 	waitfor_reply = false
 	re_send(storage_packet);

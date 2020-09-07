@@ -33,4 +33,7 @@ class mySerial
 extern mySerial data_serial;
 extern mySerial debug_configure_serial;
 extern PubSubClient client;
+extern bool receive_status;
+extern byte backup_buffer[125];
+extern int backup_length;
 #endif

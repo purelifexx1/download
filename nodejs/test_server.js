@@ -1,9 +1,5 @@
 var express = require("express");
-var firebase = require("firebase");
-firebase.initializeApp({
-	databaseURL: "https://data-59fcf.firebaseio.com"
-});
-var main_branch = firebase.database().ref("power_consume");
+
 var ss = require("struct");
 var mang = ss().word16Sbe("mot").word16Sbe("hai");
 mang.allocate();

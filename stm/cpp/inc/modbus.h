@@ -26,13 +26,18 @@ class modbus
 
 		UART_HandleTypeDef* uart;
 	public:
+		byte* temper_request;
+		bool request_type = false;
 		byte data_buffer[300];
+		byte request_length[4];
 		int temper_length;
+		int temper_length1;
 		modbus();
 		void begin(UART_HandleTypeDef* uart, receive_modbus);
 		void CRC_16(byte* input, byte length, byte* output);
 		void request_handler(byte* input, int length);
 		void request_handler1(byte* input, int length);
+		void multiple_request_handler(byte* input, int length);//not support for write multiple coil, up to 4 request
 		void get_data(byte* temp1, int* temp2);
 		void looping();
 		void buffer_overflow();

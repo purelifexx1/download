@@ -24,7 +24,7 @@ public:
 	String client_id = "";
 	String mqtt_port = "";
 	void in_setup();
-	void device_commence();
+	bool device_commence();
  	void static get_mqtt_configuration(byte* packet, int Length);
 };
 

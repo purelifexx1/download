@@ -34,5 +34,5 @@ class mySerial
 	void looping(); // put this in loop;
 };
 
-
+extern transmit_complete_flag;
 #endif

@@ -51,7 +51,7 @@ void mySerial::looping()
 
 void mySerial::looping2()
 {
-	if(receive_complete_flag == 1) {
+	if(receive_complete_flag == On_received) {
 		write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
 		if(data_buffer[read_pointer] == header[0] && data_buffer[read_pointer+1] == header[1] && data_buffer[write_pointer-2] == footer[0] && data_buffer[write_pointer-1] == footer[1]){
 			if(data_buffer[read_pointer+2] == (write_pointer - read_pointer) - 5) {
@@ -59,21 +59,20 @@ void mySerial::looping2()
 					memcpy(&data_buffer[256], data_buffer, write_pointer);
 				length_error_integral = 0; head_foot_error_integral = 0;			
 				overflow_flag = false;
-				receive_complete_flag = 0;
-				this->callback(&data_buffer[read_pointer+3], data_buffer[read_pointer+2]);
 				packet_id = data_buffer[read_pointer+3];
+				this->callback(&data_buffer[read_pointer+3], data_buffer[read_pointer+2]);				
 				read_pointer = write_pointer;
 				return;
 			}else{
 				//packet length error
-				receive_complete_flag = 0;
+				receive_complete_flag = IDLE_receive;
 				length_error_integral++;
 				overflow_flag = false;
 				read_pointer = write_pointer;
 			}
 		}else{
 			//header footer error
-			receive_complete_flag = 0;
+			receive_complete_flag = IDLE_receive;
 			head_foot_error_integral++;
 			overflow_flag = false;
 			read_pointer = write_pointer;			
@@ -111,7 +110,13 @@ void mySerial::send_modbus_packet(uint16_t header, uint16_t footer, byte* data, 
 	temper_packet[temper_length+4] = (byte)(footer >> 8 & 0xff);
 	temper_packet[temper_length+5] = (byte)(footer & 0xff);
 	transmit_complete_flag = 0;
-	uart_send(this->uart, temper_packet, temper_length + 6);
+	if(receive_status == On_received) {
+		memcpy(backup_buffer, temper_packet, temper_length + 6);
+		back_length = temper_length + 6;
+	}else{	
+		transmit_complete_flag = On_transmit;
+		uart_send(this->uart, temper_packet, temper_length + 6);
+	}	
 	delete[] temper_packet;
 }
 

@@ -65,6 +65,7 @@ bool modbus::packet_handler(byte* packet, byte Length)
 
   }else{
     //packet length error or format error
+	debug_configure_serial.print("received packet has invalid data length");
 	client.publish("error", "1"); // length error
   }
 }

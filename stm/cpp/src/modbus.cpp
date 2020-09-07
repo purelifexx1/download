@@ -59,7 +59,6 @@ void modbus::looping()
 
 void modbus::request_handler(byte* input, int length)
 {
-
 	header[0] = input[1];
 	header[1] = input[2];
 	if(header[1] <= 4) {
@@ -70,7 +69,6 @@ void modbus::request_handler(byte* input, int length)
 		fixed_receive_length = false;
 		receive_length = 4;
 	}	
-	transmit_complete_flag = 0;
 	uart_send(this->uart, &input[1], length - 1);
 }
 
@@ -94,10 +92,32 @@ void modbus::request_handler1(byte* input, int length)
 			temper_length = 8;
 		break;
 	}
+	request_type = false;
 	uart_dma(this->uart, data_buffer, temper_length);
-	transmit_complete_flag = 0;
-	uart_send(this->uart, &input[1], length - 1);
-	
+	uart_send(this->uart, &input[1], length - 1);	
+}
+
+void modbus::multiple_request_handler(byte* input, int length)
+{
+	byte temp_pointer = 1;
+	for(temper_length1 = 0; temper_length1 < length/8; temper_length1++) {
+		switch(input[temp_pointer]) {
+			case 1:
+				request_length[temper_length1] = ((input[4] << 8) ^ input[5])/8 + 6;
+			break;
+			
+			case 4:
+				request_length[temper_length1] = ((input[4] << 8) ^ input[5])*2 + 5;
+			break;
+ 
+		}
+		temp_pointer += 8;
+	}
+	temper_request = &input[8];
+	request_type = true;
+	uart_dma(this->uart, data_buffer, request_length[0]);
+	uart_send(this->uart, input, 8);
+	temper_length1--;
 }
 
 void modbus::buffer_overflow()

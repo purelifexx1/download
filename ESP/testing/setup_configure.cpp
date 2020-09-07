@@ -12,33 +12,47 @@ void setup_configure::begin_setup()
 void setup_configure::in_setup()
 {  
 	while(1) {
-    debug_configure_serial.Receive_Package();
+	  debug_configure_serial.Receive_Package();
 	}
 }
 
-void setup_configure::device_commence()
+bool setup_configure::device_commence()
 {
-	byte t = 0, data;
+  byte t = 0, data, max_character;
   while((data = EEPROM.read(t++)) != '\r'){
     mqtt_server.concat((char)data);
     delay(2);
+	if(max_character++ >= 30) return false;
   }
+  max_character = 0;
   while((data = EEPROM.read(t++)) != '\r'){
+	max_character++;
     mqtt_user.concat((char)data);
     delay(2);
+	if(max_character++ >= 30) return false;
   }
+  max_character = 0;
   while((data = EEPROM.read(t++)) != '\r'){
+	max_character++;
     mqtt_pwd.concat((char)data);
     delay(2);
+	if(max_character++ >= 30) return false;
   }
+  max_character = 0;
   while((data = EEPROM.read(t++)) != '\r'){
+	max_character++;
     client_id.concat((char)data);
     delay(2);
+	if(max_character++ >= 30) return false;
   }
+  max_character = 0;
   while((data = EEPROM.read(t++)) != '\r'){
+	max_character++;
     mqtt_port.concat((char)data);
     delay(2);
-  }    
+	if(max_character++ >= 30) return false;
+  }
+  return true;
 }
 
 void setup_configure::get_mqtt_configuration(byte* packet, int Length)

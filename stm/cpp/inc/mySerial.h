@@ -12,6 +12,10 @@
 #define byte uint8_t
 #define uart_dma HAL_UART_Receive_DMA
 #define uart_send HAL_UART_Transmit_DMA
+#define IDLE_receive false
+#define IDLE_transmit true
+#define On_received true
+#define On_transmit false
 #define uart_received void(*callback)(byte*,int)
 #define buffer_length 256
 class mySerial
@@ -21,8 +25,7 @@ private:
 	bool overflow_flag = false;
 	bool sync_status = false;
 	bool fixed_receive_length = false;
-	byte write_pointer, read_pointer;	
-	byte packet_id;
+	byte write_pointer, read_pointer;		
 	byte receive_length;
 	byte length_error_integral;
 	byte head_foot_error_integral;
@@ -31,7 +34,7 @@ private:
 	byte data_buffer[300];
 	UART_HandleTypeDef* uart;
 public:
-
+	byte packet_id;
 	mySerial();
 	void begin(UART_HandleTypeDef* uart, uint16_t header, uint16_t footer, uart_received);
 	void looping();
@@ -41,5 +44,5 @@ public:
 	void buffer_overflow(); // put this function in coresponding complete callback uart
 
 };
-
+extern bool receive_complete_flag;
 #endif /* INC_MYSERIAL_H_ */
