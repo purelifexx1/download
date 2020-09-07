@@ -44,11 +44,11 @@ void data_received2(byte* data_buffer, int length);
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-extern byte transmit_complete_flag;
-extern byte receive_complete_flag;
-extern byte receive_status;
+
+
+
 extern byte backup_buffer[125];
-extern int length;
+extern int backup_length;
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
 /* USER CODE END ET */

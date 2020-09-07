@@ -44,5 +44,7 @@ public:
 	void buffer_overflow(); // put this function in coresponding complete callback uart
 
 };
+extern bool transmit_complete_flag;
 extern bool receive_complete_flag;
+extern bool receive_status;
 #endif /* INC_MYSERIAL_H_ */

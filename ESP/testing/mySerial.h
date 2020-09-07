@@ -36,4 +36,5 @@ extern PubSubClient client;
 extern bool receive_status;
 extern byte backup_buffer[125];
 extern int backup_length;
+extern bool transmit_complete_flag;
 #endif

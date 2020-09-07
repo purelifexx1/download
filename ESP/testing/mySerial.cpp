@@ -27,7 +27,7 @@ void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t f
   temper_buffer[5+Length] = (byte)(footer & 0xff);
   if(receive_status == true) {
 	memcpy(backup_buffer, temper_buffer, Length + 6);
-	back_length = Length + 6;
+	backup_length = Length + 6;
   }else{
 	transmit_complete_flag = false;
 	Send(temper_buffer, Length + 6);
@@ -115,7 +115,7 @@ void mySerial::timer_runout_function()
     sync_flag = 0;
     sync_pointer = 0;	
     //error handler after this
-	debug_configure_serial.print("packet received timeout at central node");
+	debug_configure_serial.Print("packet received timeout at central node");
 	client.publish("error", "0"); //packet received timeout at centrall node
   }
 }

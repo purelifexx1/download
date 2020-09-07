@@ -66,7 +66,7 @@ static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN 0 */
 
 byte backup_buffer[125];
-int length;
+int backup_length;
 /* USER CODE END 0 */
 
 /**
@@ -273,7 +273,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : PA1 */
   GPIO_InitStruct.Pin = GPIO_PIN_1;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 

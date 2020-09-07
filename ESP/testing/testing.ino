@@ -11,7 +11,7 @@
 #define wifi_config_pin 22
 #define mqtt_config_pin 23
 #define aux_pin 21
-#define aux_pin 19
+#define aux_pin1 19
 #define IDLE_receive false
 #define IDLE_transmit true
 #define On_received true
@@ -75,7 +75,7 @@ void setup_mqtt() {
     device_setup.in_setup();
   }else{
     if(device_setup.device_commence() == false) {
-		debug_configure_serial.print("get mqtt configuration fail, EEPROM packet invalid");
+		debug_configure_serial.Print("get mqtt configuration fail, EEPROM packet invalid");
 		while(1) {
 			digitalWrite(led_pin, LED_status = !LED_status);
 			delay(500);
@@ -128,7 +128,7 @@ void reconnect() {
        client.subscribe("data_request");  
        debug_configure_serial.Print("mqtt broker connected");  
     } else {
-	  debug_configure_serial.print("try to reconnect mqtt broker");
+	  debug_configure_serial.Print("try to reconnect mqtt broker");
       digitalWrite(led_pin, LED_status = !LED_status);
       delay(500);
     }

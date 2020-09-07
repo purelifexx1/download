@@ -112,7 +112,7 @@ void mySerial::send_modbus_packet(uint16_t header, uint16_t footer, byte* data, 
 	transmit_complete_flag = 0;
 	if(receive_status == On_received) {
 		memcpy(backup_buffer, temper_packet, temper_length + 6);
-		back_length = temper_length + 6;
+		backup_length = temper_length + 6;
 	}else{	
 		transmit_complete_flag = On_transmit;
 		uart_send(this->uart, temper_packet, temper_length + 6);
