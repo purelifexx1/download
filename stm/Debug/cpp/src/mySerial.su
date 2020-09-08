@@ -4,4 +4,4 @@ mySerial.cpp:25:6:void mySerial::looping()	16	static
 mySerial.cpp:52:6:void mySerial::looping2()	16	static
 mySerial.cpp:84:6:void mySerial::send_packet(uint16_t, uint16_t, uint8_t*, int)	32	static
 mySerial.cpp:100:6:void mySerial::send_modbus_packet(uint16_t, uint16_t, uint8_t*, int)	32	static
-mySerial.cpp:123:6:void mySerial::buffer_overflow()	16	static
+mySerial.cpp:122:6:void mySerial::buffer_overflow()	16	static

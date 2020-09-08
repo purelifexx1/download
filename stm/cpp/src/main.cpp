@@ -69,14 +69,14 @@ void UART_CallBack(UART_HandleTypeDef *huart) {
 	}		
 }
 void GPIO_Interrupt_Callback(uint16_t pin){
-	if(HAL_GPIO_ReadPin(GPIOA, pin) == 1) {
+	if(HAL_GPIO_ReadPin(GPIOA, pin) == 1) {//RISING
 		if(transmit_complete_flag == On_transmit) {
 			transmit_complete_flag = IDLE_transmit;
 		}else{
 			receive_complete_flag = On_received;
 			receive_status = IDLE_receive;
 		}
-	}else{
+	}else{//FALLING
 		if(transmit_complete_flag == On_transmit) {
 			// confuse if On_transmit before falling receive falling edge
 		}else{

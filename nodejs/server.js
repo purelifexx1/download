@@ -122,7 +122,7 @@ io.on('connection', function(socket){
 	})
 	if (user_number != 0 && latch == true) {
 		latch = false;
-		timer_latch = setInterval(timer, 10000);
+		timer_latch = setInterval(timer, 5000);
 	}
 })
 
@@ -185,6 +185,7 @@ function re_send(storage_packet){
 	}	
 }
 function timeout_function(storage_packet){
+	console.log("timeout");
 	if(storage_packet.topic_timeout == "data_request") {		
 		connection_status_interval++;
 	}

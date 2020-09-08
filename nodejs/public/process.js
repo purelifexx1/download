@@ -1,5 +1,5 @@
-var socket = io("localhost:3069");
-//var socket = io("http://localhost:3000");
+//var socket = io("localhost:3069");
+var socket = io("http://localhost:3000");
 var button_status;
 socket.on("realtime_data", function(data){
 	Object.entries(data).forEach(function(element){

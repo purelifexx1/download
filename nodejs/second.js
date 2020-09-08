@@ -1,6 +1,6 @@
 var Struct = require("struct");
 var realtime_data = Struct().word16Sbe('solar_voltage').word16Sbe('solar_current').word32Sle('solar_power').word16Sbe('bat_voltage').word16Sbe('bat_current').word32Sle('bat_power')
-								.word16Sbe('load_vol').word16Sbe('load_current').word32Sle('load_power').word16Sbe('bat_temp').word16Sbe('temp_in').word16Sbe('bat_percent');
+								.word16Sbe('load_voltage').word16Sbe('load_current').word32Sle('load_power').word16Sbe('bat_temp').word16Sbe('temp_in').word16Sbe('bat_percent');
 var statistic_data = Struct().word16Sbe('max_pv_vol_today').word16Sbe('min_pv_vol_today').word16Sbe('max_bat_vol_today').word16Sbe('min_bat_vol_today').word32Sle('con_energy_today')
 								.word32Sle('con_energy_month').word32Sle('con_energy_year').word32Sle('total_con_energy').word32Sle('gen_energy_today')
 								.word32Sle('gen_energy_month').word32Sle('gen_energy_year').word32Sle('total_gen_energy');
