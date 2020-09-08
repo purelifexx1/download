@@ -69,7 +69,7 @@ void UART_CallBack(UART_HandleTypeDef *huart) {
 	}		
 }
 void GPIO_Interrupt_Callback(uint16_t pin){
-	if(HAL_GPIO_ReadPin(GPIOA, pin) == 1) {//RISING
+	if(pin == GPIO_PIN_1) {//RISING
 		if(transmit_complete_flag == On_transmit) {
 			transmit_complete_flag = IDLE_transmit;
 		}else{
