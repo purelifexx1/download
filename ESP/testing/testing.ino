@@ -89,6 +89,7 @@ void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
   if(String(topic) == "data_request") { 
     switch(payload[0]) {
 	  case '0':
+      debug_configure_serial.Print("da gui");
 	    Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x31, 0x00}, 15, 32);
 	    //real time data request
 	  break;
