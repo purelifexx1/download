@@ -76,7 +76,7 @@ void GPIO_Interrupt_Callback(uint16_t pin){
 			receive_complete_flag = On_received;
 			receive_status = IDLE_receive;
 		}
-	}else{//FALLING
+	}else if(pin == GPIO_PIN_0) {//FALLING
 		if(transmit_complete_flag == On_transmit) {
 			// confuse if On_transmit before falling receive falling edge
 		}else{

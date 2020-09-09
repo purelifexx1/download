@@ -53,14 +53,14 @@ void mySerial::looping2()
 {
 	if(receive_complete_flag == On_received) {
 		write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
-		if(data_buffer[read_pointer] == header[0] && data_buffer[read_pointer+1] == header[1] && data_buffer[write_pointer-2] == footer[0] && data_buffer[write_pointer-1] == footer[1]){
-			if(data_buffer[read_pointer+2] == (write_pointer - read_pointer) - 5) {
+		if(data_buffer[read_pointer] == header[0] && data_buffer[(byte)(read_pointer+1)] == header[1] && data_buffer[(byte)(write_pointer-2)] == footer[0] && data_buffer[(byte)(write_pointer-1)] == footer[1]){
+			if(data_buffer[(byte)(read_pointer+2)] == ((byte)(write_pointer - read_pointer) - 5)) {
 				if(overflow_flag == true)
 					memcpy(&data_buffer[256], data_buffer, write_pointer);
 				length_error_integral = 0; head_foot_error_integral = 0;			
 				overflow_flag = false;
-				packet_id = data_buffer[read_pointer+3];
-				this->callback(&data_buffer[read_pointer+3], data_buffer[read_pointer+2]);				
+				packet_id = data_buffer[(byte)(read_pointer+3)];
+				this->callback(&data_buffer[(byte)(read_pointer+3)], data_buffer[(byte)(read_pointer+2)]);				
 				read_pointer = write_pointer;
 				return;
 			}else{

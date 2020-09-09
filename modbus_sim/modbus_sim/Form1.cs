@@ -90,7 +90,15 @@ namespace modbus_sim
                             //real time data
                             break;
                         case 20:
-                            
+                            data_send = new byte[45];
+                            data_send[0] = 1;
+                            data_send[1] = 4;
+                            Array.Copy(random_data(20), 0, data_send, 3, 40);
+                            ti = CRC_16(data_send);
+                            data_send[33] = ti[0];
+                            data_send[34] = ti[1];
+                            serialPort1.Write(data_send, 0, 45);
+
                             //statistic data
                             break;
                         case 6:
