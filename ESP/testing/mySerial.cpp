@@ -26,6 +26,7 @@ void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t f
   temper_buffer[4+Length] = (byte)((footer >> 8) & 0xff);
   temper_buffer[5+Length] = (byte)(footer & 0xff);
   if(receive_status == true) {
+    debug_configure_serial.Print("back up data");
 	memcpy(backup_buffer, temper_buffer, Length + 6);
 	backup_length = Length + 6;
   }else{
@@ -116,9 +117,11 @@ void mySerial::packet_received()
 			this->callback_function(&data_buffer[2], number_of_byte-4);
 			return;
 		}else{
+      receive_complete_flag = false;
 			debug_configure_serial.Print("header and footer error");
 		}
 	}else
+    receive_complete_flag = false;
 		debug_configure_serial.Print("hardware serial failure (hardware damage)");
 }
 

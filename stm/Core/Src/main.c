@@ -67,6 +67,7 @@ static void MX_USART3_UART_Init(void);
 
 byte backup_buffer[125];
 int backup_length;
+byte error_debug_buffer[12];
 /* USER CODE END 0 */
 
 /**

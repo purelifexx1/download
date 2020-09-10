@@ -65,6 +65,10 @@ void mySerial::looping2()
 				return;
 			}else{
 				//packet length error
+				error_debug_buffer[0] = write_pointer;
+				error_debug_buffer[1] = read_pointer;
+				error_debug_buffer[2] = data_buffer[(byte)(read_pointer+2)];
+				error_debug_buffer[3] = (byte)(uart->hdmarx->Instance->CNDTR);
 				receive_complete_flag = IDLE_receive;
 				length_error_integral++;
 				overflow_flag = false;
@@ -72,6 +76,12 @@ void mySerial::looping2()
 			}
 		}else{
 			//header footer error
+			error_debug_buffer[0] = write_pointer;
+			error_debug_buffer[1] = read_pointer;
+			error_debug_buffer[2] = data_buffer[read_pointer];
+			error_debug_buffer[3] = data_buffer[(byte)(read_pointer+1)];
+			error_debug_buffer[4] = data_buffer[(byte)(write_pointer-2)];
+			error_debug_buffer[5] = data_buffer[(byte)(write_pointer-1)];
 			receive_complete_flag = IDLE_receive;
 			head_foot_error_integral++;
 			overflow_flag = false;

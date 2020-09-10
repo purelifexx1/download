@@ -15,9 +15,9 @@ class mySerial
     unsigned long time_value;
     bool timeout_enable = false;
     bool temper_lock = false;
-    int standard_timeout;
-    HardwareSerial* mSerial;
+    int standard_timeout;    
   public:
+    HardwareSerial* mSerial;
     mySerial(bool selection, uint16_t header, uint16_t footer);
     void Print(String input);
     void Send(uint8_t* Buffer, int Length);
@@ -35,6 +35,7 @@ extern mySerial data_serial;
 extern mySerial debug_configure_serial;
 extern PubSubClient client;
 extern bool receive_status;
+extern bool receive_complete_flag;
 extern byte backup_buffer[125];
 extern int backup_length;
 extern bool transmit_complete_flag;

@@ -26,7 +26,7 @@ var storage_packet = {
 	"topic_timeout": "",
 	"content_timeout": ""
 };
-
+var packet_number = 1;
 var user_number = 0;
 var latch = true;
 var timer_latch;
@@ -46,16 +46,19 @@ setInterval(function(){
 		}
 	}
 }, 1000);
-
+var buf = Buffer.from([48, 0, 0]);
 var client = mqtt.connect('mqtt://node02.myqtthub.com', options);
 function timer(){
 	if (mqtt_status == true && waitfor_reply == false) {
-		client.publish('data_request', "0");
+		buf[1] = packet_number >> 8 & 0xff;
+		buf[2] = packet_number & 0xff;
+		client.publish('data_request', buf);		
 		storage_packet.topic_timeout = 'data_request';
 		storage_packet.content_timeout = "0";
 		timeout_latch = setTimeout(timeout_function, 10000, storage_packet);
 		waitfor_reply = true;		
-		console.log("da gui");
+		console.log("da gui " + packet_number);
+		packet_number++;
 	}
 }
 var realtime_buf = data_handler.realtime_buf;

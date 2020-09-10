@@ -23,6 +23,7 @@ int* temp2;
 bool transmit_complete_flag = IDLE_transmit;
 bool receive_complete_flag = IDLE_receive;
 bool receive_status = IDLE_receive;
+
 void setup() {
 	Serial2.begin(&huart2, 23169, 34476, data_received2);
 	modbus1.begin(&huart3, modbus_received);

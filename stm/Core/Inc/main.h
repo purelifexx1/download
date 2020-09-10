@@ -49,6 +49,7 @@ void data_received2(byte* data_buffer, int length);
 
 extern byte backup_buffer[125];
 extern int backup_length;
+extern byte error_debug_buffer[12];
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
 /* USER CODE END ET */

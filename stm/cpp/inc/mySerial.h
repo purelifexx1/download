@@ -47,4 +47,5 @@ extern bool receive_complete_flag;
 extern bool receive_status;
 extern byte length_error_integral;
 extern byte head_foot_error_integral;
+
 #endif /* INC_MYSERIAL_H_ */

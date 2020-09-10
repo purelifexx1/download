@@ -89,7 +89,7 @@ void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
   if(String(topic) == "data_request") { 
     switch(payload[0]) {
 	  case '0':
-      debug_configure_serial.Print("da gui");
+      debug_configure_serial.mSerial->print("da gui packet: "); debug_configure_serial.mSerial->println(payload[1]*256+payload[2]);
 	    Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x31, 0x00}, 15, 32);
 	    //real time data request
 	  break;
@@ -140,7 +140,7 @@ void loop() {
     reconnect();
   }
   client.loop();
-  if(receive_complete_flag == On_received) data_serial.Receive_Package();
+  if(receive_complete_flag == On_received) data_serial.packet_received();
   if(backup_length != 0 && receive_status == IDLE_receive) {
 	transmit_complete_flag = On_transmit;
 	data_serial.Send(backup_buffer, backup_length);
