@@ -28,6 +28,7 @@ class mySerial
     void Receive(byte*Buffer, int* Length);
     void Pointer_Reset();
     void timer_runout_function();
+	void packet_received();
     void testing();
 };
 extern mySerial data_serial;

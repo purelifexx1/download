@@ -107,6 +107,21 @@ void mySerial::Receive_Package()
   timer_runout_function();
 }
 
+void mySerial::packet_received()
+{
+	int number_of_byte = mSerial->available();
+	if(number_of_byte) {
+		mSerial->readBytes(data_buffer, number_of_byte);
+		if(data_buffer[0] == sync_header[0] && data_buffer[1] == sync_header[1] && data_buffer[number_of_byte-2] == sync_end[0] && data_buffer[number_of_byte-1] == sync_end[1]) {
+			this->callback_function(&data_buffer[2], number_of_byte-4);
+			return;
+		}else{
+			debug_configure_serial.Print("header and footer error");
+		}
+	}else
+		debug_configure_serial.Print("hardware serial failure (hardware damage)");
+}
+
 void mySerial::timer_runout_function() 
 {
   if(timeout_enable == true && (unsigned long)(millis() - time_value) > standard_timeout) {
