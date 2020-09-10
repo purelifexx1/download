@@ -55,7 +55,7 @@ function timer(){
 		client.publish('data_request', buf);		
 		storage_packet.topic_timeout = 'data_request';
 		storage_packet.content_timeout = "0";
-		timeout_latch = setTimeout(timeout_function, 10000, storage_packet);
+		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 		waitfor_reply = true;		
 		console.log("da gui " + packet_number);
 		packet_number++;
@@ -125,7 +125,7 @@ io.on('connection', function(socket){
 	})
 	if (user_number != 0 && latch == true) {
 		latch = false;
-		timer_latch = setInterval(timer, 5000);
+		timer_latch = setInterval(timer, 8000);
 	}
 })
 
