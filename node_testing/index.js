@@ -1,9 +1,16 @@
 var express = require("express");
+
 var MongoClient = require('mongodb').MongoClient;
 var options = {
     useUnifiedTopology: true,
+    useNewUrlParser: true
 };
-MongoClient.connect('mongodb://localhost:27017/testdb', options, function(){
+MongoClient.connect('mongodb://localhost:27017/', options, function(err, db){
+    var dbo = db.db('testDB');
+    var te = dbo.collection("testDB").find({}).toArray(function(err, result){
+        console.log(result);
+    });
+
     console.log("connect");
 })
 var app = express();
