@@ -5,9 +5,10 @@ var options = {
     useUnifiedTopology: true,
     useNewUrlParser: true
 };
+var search = {title:"hello"};
 MongoClient.connect('mongodb://localhost:27017/', options, function(err, db){
     var dbo = db.db('testDB');
-    var te = dbo.collection("testDB").find({}).toArray(function(err, result){
+    dbo.collection("testDB").find(search).toArray(function(error, result){
         console.log(result);
     });
 

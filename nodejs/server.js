@@ -1,7 +1,7 @@
 var express = require("express");
 var firebase = require("firebase");
 firebase.initializeApp({
-	databaseURL: "https://data-59fcf.firebaseio.com"
+	databaseURL: "https://archive-34c94.firebaseio.com"
 });
 var main_branch = firebase.database().ref("Data");
 var data_handler = require("./second");
@@ -14,12 +14,10 @@ var io = require("socket.io")(server);
 server.listen(3000);
 var mqtt = require('mqtt');
 var waitfor_reply = false;
-var options = {
-  port: 1883,
-  clientId: 'x1999',
-  username: "web_client",
-  password: "01262755347",
-};
+
+var mqtt_branch = firebase.database().ref("mqtt configuration");
+
+var client;
 var storage_packet = {
 	"topic": "",
 	"message": "",
@@ -47,7 +45,7 @@ setInterval(function(){
 	}
 }, 1000);
 var buf = Buffer.from([48, 0, 0]);
-var client = mqtt.connect('mqtt://node02.myqtthub.com', options);
+
 function timer(){
 	if (mqtt_status == true && waitfor_reply == false) {
 		buf[1] = packet_number >> 8 & 0xff;
@@ -129,53 +127,55 @@ io.on('connection', function(socket){
 	}
 })
 
-client.on('connect', function(){
-	mqtt_status = true;
-	console.log("mqtt broker connected");
-	client.subscribe('realtime_data');
-	client.subscribe('statistic_data');
-	client.subscribe('control_status_data');
-	client.subscribe('onoff_load_confirm');
-	client.on('message', function(topic, message){
+mqtt_branch.once('value', function(snap){
+	client = mqtt.connect("mqtt://node02.myqtthub.com", snap.val());
+	client.on('connect', function(){
+		mqtt_status = true;
+		console.log("mqtt broker connected");
+		client.subscribe('realtime_data');
+		client.subscribe('statistic_data');
+		client.subscribe('control_status_data');
+		client.subscribe('onoff_load_confirm');
+		client.on('message', function(topic, message){
 
-	   if(topic == 'realtime_data') {
-	   	connection_status_interval = 0;
-	   	clearTimeout(timeout_latch);
-	   	message.copy(realtime_buf, 0, 0, message.length);
-	   	data_handler.realtime_send(io);	
-	   	waitfor_reply = false;
-	   	re_send(storage_packet);
-	   }
+			if(topic == 'realtime_data') {
+				connection_status_interval = 0;
+				clearTimeout(timeout_latch);
+				message.copy(realtime_buf, 0, 0, message.length);
+				data_handler.realtime_send(io);	
+				waitfor_reply = false;
+				re_send(storage_packet);
+			}
 
-	   if(topic == 'statistic_data') {
-	   	connection_status_interval = 0;
-	   	clearTimeout(timeout_latch);
-	   	message.copy(statistic_buf, 0, 0, message.length);
-	   	data_handler.statistic_send(io);
-	   	waitfor_reply = false;
-	   	re_send(storage_packet);
-	   }
+			if(topic == 'statistic_data') {
+				connection_status_interval = 0;
+				clearTimeout(timeout_latch);
+				message.copy(statistic_buf, 0, 0, message.length);
+				data_handler.statistic_send(io);
+				waitfor_reply = false;
+				re_send(storage_packet);
+			}
 
-	   if(topic == 'control_status_data'){
-	   	connection_status_interval = 0;
-	   	clearTimeout(timeout_latch);
-	   	data_handler.control_status_send(io, message);
-	   	re_send(storage_packet);
-	   }
+			if(topic == 'control_status_data'){
+				connection_status_interval = 0;
+				clearTimeout(timeout_latch);
+				data_handler.control_status_send(io, message);
+				re_send(storage_packet);
+			}
 
-	   if(topic == 'onoff_load_confirm'){
-	   	clearTimeout(timeout_latch);
-	   	if(message[0] == 256) io.sockets.emit("onoff_load_confirm", "1");
-	   	else io.sockets.emit("onoff_load_confirm", "0");
-	   	re_send(storage_packet);
-	   }
+			if(topic == 'onoff_load_confirm'){
+				clearTimeout(timeout_latch);
+				if(message[0] == 256) io.sockets.emit("onoff_load_confirm", "1");
+				else io.sockets.emit("onoff_load_confirm", "0");
+				re_send(storage_packet);
+			}
+		})
 
-
-    })
-
-    client.on('disconnect', function(){
-    	mqtt_status = false;
-    })
+		client.on('disconnect', function(){
+			mqtt_status = false;
+			console.log("mqtt disconnect");
+		})
+	})
 })
 
 function re_send(storage_packet){
