@@ -328,8 +328,7 @@ Public Class Form1
     End Function
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Dim okw As String = " xinchao "
-        Dim oket = okw.Replace(" ", ControlChars.Quote)
-        Dim reverse = oket.Replace(ControlChars.Quote, " ")
+        Dim ok As Decimal = 489
+        Dim testt As String = Convert.ToInt32(ok).ToString("X")
     End Sub
 End Class

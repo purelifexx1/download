@@ -4,7 +4,7 @@ htt1,T1D,R4.0,RC02
 
 List of precondition
 Name,Message,Multiplexing/Group,Startbit,Length [Bit],Byte Order,Value Type,Initial Value,Factor,Offset,Minimum,Maximum,Unit,Raw Value, Enable String
-ABSAHSC2,SCS_HSC2_FrP05,-,30,1,Motorola,Unsigned,0,1,0,0,1,,12,
+ABSAHSC2,SCS_HSC2_FrP05,-,30,1,Motorola,Unsigned,0,1,0,0,1,,12
 
 List of other signals
 Name,Message,Multiplexing/Group,Startbit,Length [Bit],Byte Order,Value Type,Initial Value,Factor,Offset,Minimum,Maximum,Unit

@@ -27,6 +27,7 @@
     Public function_type As String
     Public scope As String 'prirate can or public can
     Public signal_type As String
+    Public ID As String
     Public Sub New(input As String(), extend As Decimal)
         MyBase.New()
         Name = input(0)

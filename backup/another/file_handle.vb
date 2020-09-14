@@ -212,6 +212,7 @@ Public Class file_handle
 
         Dim lines As String() = file_object.ReadToEnd().Split(vbCrLf)
         Dim current_message As String
+        Dim current_id As String
         Dim check_node As String
         Dim env As Boolean = False
         For Each line As String In lines
@@ -222,13 +223,15 @@ Public Class file_handle
                 If components.Last.Contains(check_node) Then
                     env = True
                 End If
+                current_id = Convert.ToInt32(components(1)).ToString("X")
                 current_message = components(2).Replace(":", "")
             ElseIf components(1) = "SG_" And env = True Then
                 Dim htt As keyword = sketch.Find(Function(x) components(2).ToUpper.Contains(x.keyword_name) And components(7).Replace(ControlChars.Quote, "").ToUpper.Contains(x.keyword_unit))
                 Dim kt As New mapped_rx_signal(components, 1, 0)
                 kt.Message = current_message
+                kt.ID = current_id
                 kt.scope = "prirate"
-                kt.signal_type = "TX"
+                kt.signal_type = "Rx message"
                 If htt Is Nothing Then
                     special.Add(kt)
                 Else
@@ -238,12 +241,13 @@ Public Class file_handle
                     kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
                     mandatory.Add(kt)
                 End If
-            ElseIf components(1) = "SG_" And components.Last = check_node Then
+            ElseIf components(1) = "SG_" And components.Last.Contains(check_node) Then
                 Dim htt As keyword = sketch.Find(Function(x) components(2).ToUpper.Contains(x.keyword_name) And components(7).Replace(ControlChars.Quote, "").ToUpper.Contains(x.keyword_unit))
                 Dim kt As New mapped_rx_signal(components, 1, 0)
                 kt.Message = current_message
+                kt.ID = current_id
                 kt.scope = "prirate"
-                kt.signal_type = "TX"
+                kt.signal_type = "Tx message"
                 If htt Is Nothing Then
                     special.Add(kt)
                 Else
