@@ -34,7 +34,7 @@ Public Class xml_main
         For Each current_speed As Decimal In listof_speed
             Dim dummy As List(Of XElement) = New List(Of XElement)
             dummy.Add(external_ref)
-            For Each element As mapped_rx_signal In mandatory.FindAll(Function(p) p.Name.Contains("Speed") And p.unit = "km/h")
+            For Each element As mapped_rx_signal In Form1.necessary_sp
                 dummy.Add(create_testcase(element, reference, current_speed))
             Next
             speed.Add(create_tag("testgroup", New XAttribute("title", "Both speeds = " & CStr(current_speed) & "kph"), dummy))
@@ -88,49 +88,49 @@ Public Class xml_main
     Public Function create_testcase(map_rx As mapped_rx_signal, reference As List(Of rx_message), physical_value As Decimal) As XElement
         Dim dummy As List(Of XElement) = New List(Of XElement)
         Dim rx_part As rx_message = reference.Find(Function(x) x.Name = map_rx.Message)
-        Dim set_tag As XElement = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((physical_value - map_rx.offset) / map_rx.factor))
+        Dim set_tag As XElement = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((physical_value - map_rx.offset) / map_rx.factor))
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_tx", "-", "1")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "1")
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_tx", "-", "0")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "0")
         dummy.Add(set_tag)
-        Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", "Tx Message:" & map_rx.Message & "(ID:" & rx_part.ID & ")::" & map_rx.Name & ": " & CStr(physical_value)), New XAttribute("ident", "-")}), dummy)
+        Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", map_rx.signal_type & map_rx.Message & "(ID:" & map_rx.ID & ")::" & map_rx.Name & ": " & CStr(physical_value)), New XAttribute("ident", "-")}), dummy)
     End Function
 
     Public Function create_testcase(map_rx As mapped_rx_signal, reference As List(Of rx_message), physical_value As Decimal, input_string As String) As XElement
         Dim dummy As List(Of XElement) = New List(Of XElement)
         Dim rx_part As rx_message = reference.Find(Function(x) x.Name = map_rx.Message)
-        Dim set_tag As XElement = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((physical_value - map_rx.offset) / map_rx.factor))
+        Dim set_tag As XElement = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((physical_value - map_rx.offset) / map_rx.factor))
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_tx", "-", "1")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "1")
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_tx", "-", "0")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "0")
         dummy.Add(set_tag)
         dummy.AddRange(string_testcase(input_string, "EnvLogInLevel1", "", "enable"))
-        Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", "Tx Message:" & map_rx.Message & "(ID:" & rx_part.ID & ")::" & map_rx.Name & ": " & CStr(physical_value)), New XAttribute("ident", "-")}), dummy)
+        Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", map_rx.signal_type & map_rx.Message & "(ID:" & map_rx.ID & ")::" & map_rx.Name & ": " & CStr(physical_value)), New XAttribute("ident", "-")}), dummy)
     End Function
     Public Function create_testcase(map_rx As mapped_rx_signal, reference As List(Of rx_message), high_value As Decimal, low_value As Decimal, duration As Decimal, press_counter As Decimal) As XElement
         Dim dummy As List(Of XElement) = New List(Of XElement)
         Dim rx_part As rx_message = reference.Find(Function(x) x.Name = map_rx.Message)
         Dim set_tag As XElement
         For count As Decimal = 1 To press_counter
-            set_tag = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((high_value - map_rx.offset) / map_rx.factor))
+            set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((high_value - map_rx.offset) / map_rx.factor))
             dummy.Add(set_tag)
             dummy.Add(wait_tag(CStr(duration)))
-            set_tag = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((low_value - map_rx.offset) / map_rx.factor))
+            set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((low_value - map_rx.offset) / map_rx.factor))
             dummy.Add(set_tag)
             dummy.Add(Wait_default)
         Next
-        set_tag = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_tx", "-", "1")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "1")
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & rx_part.transmiter & "_" & map_rx.Message & "_tx", "-", "0")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "0")
         dummy.Add(set_tag)
-        Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", "Tx Message:" & map_rx.Message & "(ID:" & rx_part.ID & ")::" & map_rx.Name & ": " & CStr(high_value) & " to " & CStr(low_value) & " in " & CStr(duration) & "ms"), New XAttribute("ident", "-")}), dummy)
+        Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", map_rx.signal_type & map_rx.Message & "(ID:" & map_rx.ID & ")::" & map_rx.Name & ": " & CStr(high_value) & " to " & CStr(low_value) & " in " & CStr(duration) & "ms"), New XAttribute("ident", "-")}), dummy)
     End Function
     Public Function create_testcase_string(input As String, function_enable As String, enable_disable As String) As XElement
         Dim temper_tag As List(Of XElement) = New List(Of XElement)

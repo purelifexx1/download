@@ -35,8 +35,8 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.rx_signal = New System.Windows.Forms.TextBox()
-        Me.map_rx_signal = New System.Windows.Forms.TextBox()
+        Me.private_can = New System.Windows.Forms.TextBox()
+        Me.public_can = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -59,6 +59,9 @@ Partial Class Form1
         Me.LKS = New System.Windows.Forms.Button()
         Me.LWD = New System.Windows.Forms.Button()
         Me.speed_group = New System.Windows.Forms.GroupBox()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.speed_signal = New System.Windows.Forms.ComboBox()
+        Me.all_signal = New System.Windows.Forms.ComboBox()
         Me.speed1_label = New System.Windows.Forms.Label()
         Me.speed_1th = New System.Windows.Forms.TextBox()
         Me.Button17 = New System.Windows.Forms.Button()
@@ -74,6 +77,7 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -198,37 +202,37 @@ Partial Class Form1
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Project"
         '
-        'rx_signal
+        'private_can
         '
-        Me.rx_signal.Location = New System.Drawing.Point(77, 16)
-        Me.rx_signal.Name = "rx_signal"
-        Me.rx_signal.Size = New System.Drawing.Size(217, 20)
-        Me.rx_signal.TabIndex = 5
+        Me.private_can.Location = New System.Drawing.Point(77, 16)
+        Me.private_can.Name = "private_can"
+        Me.private_can.Size = New System.Drawing.Size(217, 20)
+        Me.private_can.TabIndex = 5
         '
-        'map_rx_signal
+        'public_can
         '
-        Me.map_rx_signal.Location = New System.Drawing.Point(77, 41)
-        Me.map_rx_signal.Name = "map_rx_signal"
-        Me.map_rx_signal.Size = New System.Drawing.Size(217, 20)
-        Me.map_rx_signal.TabIndex = 6
+        Me.public_can.Location = New System.Drawing.Point(77, 41)
+        Me.public_can.Name = "public_can"
+        Me.public_can.Size = New System.Drawing.Size(217, 20)
+        Me.public_can.TabIndex = 6
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Location = New System.Drawing.Point(6, 18)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(63, 13)
+        Me.Label5.Size = New System.Drawing.Size(60, 13)
         Me.Label5.TabIndex = 4
-        Me.Label5.Text = "rx_message"
+        Me.Label5.Text = "private can"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(6, 44)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(74, 13)
+        Me.Label6.Size = New System.Drawing.Size(56, 13)
         Me.Label6.TabIndex = 4
-        Me.Label6.Text = "map_rx_signal"
+        Me.Label6.Text = "public can"
         '
         'Button4
         '
@@ -410,16 +414,44 @@ Partial Class Form1
         'speed_group
         '
         Me.speed_group.BackColor = System.Drawing.Color.Aqua
+        Me.speed_group.Controls.Add(Me.Button9)
+        Me.speed_group.Controls.Add(Me.speed_signal)
+        Me.speed_group.Controls.Add(Me.all_signal)
         Me.speed_group.Controls.Add(Me.speed1_label)
         Me.speed_group.Controls.Add(Me.speed_1th)
         Me.speed_group.Controls.Add(Me.Button1)
         Me.speed_group.Controls.Add(Me.Button6)
         Me.speed_group.Location = New System.Drawing.Point(612, 19)
         Me.speed_group.Name = "speed_group"
-        Me.speed_group.Size = New System.Drawing.Size(172, 258)
+        Me.speed_group.Size = New System.Drawing.Size(340, 258)
         Me.speed_group.TabIndex = 18
         Me.speed_group.TabStop = False
         Me.speed_group.Text = "necessary speed"
+        '
+        'Button9
+        '
+        Me.Button9.Location = New System.Drawing.Point(295, 19)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(39, 49)
+        Me.Button9.TabIndex = 12
+        Me.Button9.Text = "Add"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
+        'speed_signal
+        '
+        Me.speed_signal.FormattingEnabled = True
+        Me.speed_signal.Location = New System.Drawing.Point(168, 47)
+        Me.speed_signal.Name = "speed_signal"
+        Me.speed_signal.Size = New System.Drawing.Size(121, 21)
+        Me.speed_signal.TabIndex = 11
+        '
+        'all_signal
+        '
+        Me.all_signal.FormattingEnabled = True
+        Me.all_signal.Location = New System.Drawing.Point(168, 21)
+        Me.all_signal.Name = "all_signal"
+        Me.all_signal.Size = New System.Drawing.Size(121, 21)
+        Me.all_signal.TabIndex = 11
         '
         'speed1_label
         '
@@ -436,6 +468,7 @@ Partial Class Form1
         Me.speed_1th.Name = "speed_1th"
         Me.speed_1th.Size = New System.Drawing.Size(75, 20)
         Me.speed_1th.TabIndex = 1
+        Me.speed_1th.Text = "1"
         '
         'Button17
         '
@@ -452,8 +485,8 @@ Partial Class Form1
         Me.GroupBox4.Controls.Add(Me.Button17)
         Me.GroupBox4.Controls.Add(Me.Button5)
         Me.GroupBox4.Controls.Add(Me.Button4)
-        Me.GroupBox4.Controls.Add(Me.map_rx_signal)
-        Me.GroupBox4.Controls.Add(Me.rx_signal)
+        Me.GroupBox4.Controls.Add(Me.public_can)
+        Me.GroupBox4.Controls.Add(Me.private_can)
         Me.GroupBox4.Controls.Add(Me.Label6)
         Me.GroupBox4.Controls.Add(Me.Label5)
         Me.GroupBox4.Location = New System.Drawing.Point(222, 19)
@@ -564,18 +597,28 @@ Partial Class Form1
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(852, 341)
+        Me.Button8.Location = New System.Drawing.Point(703, 509)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(75, 23)
         Me.Button8.TabIndex = 34
         Me.Button8.Text = "Button8"
         Me.Button8.UseVisualStyleBackColor = True
         '
+        'Button10
+        '
+        Me.Button10.Location = New System.Drawing.Point(843, 350)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(75, 23)
+        Me.Button10.TabIndex = 35
+        Me.Button10.Text = "Button10"
+        Me.Button10.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1012, 567)
+        Me.ClientSize = New System.Drawing.Size(964, 537)
+        Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.Label11)
@@ -621,8 +664,8 @@ Partial Class Form1
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents rx_signal As TextBox
-    Friend WithEvents map_rx_signal As TextBox
+    Friend WithEvents private_can As TextBox
+    Friend WithEvents public_can As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Button4 As Button
@@ -660,4 +703,8 @@ Partial Class Form1
     Friend WithEvents Button3 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
+    Friend WithEvents Button9 As Button
+    Friend WithEvents speed_signal As ComboBox
+    Friend WithEvents all_signal As ComboBox
+    Friend WithEvents Button10 As Button
 End Class

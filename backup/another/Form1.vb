@@ -5,6 +5,7 @@ Imports System.IO
 Imports System.Text
 Public Class Form1
     Public mandatory As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
+    Public necessary_sp As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
     Public special As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
     Public reference As List(Of rx_message) = New List(Of rx_message)
     Public name_list As List(Of String) = New List(Of String)
@@ -12,7 +13,7 @@ Public Class Form1
     Public selection As Decimal = 0
     Public speed_th As Decimal = 1
     Public current_pos As Decimal = 48
-    Public group_indices As List(Of Int16) = New List(Of Int16)({1})
+    Public group_indices As List(Of Int16) = New List(Of Int16)({4})
     Public listof_speed As List(Of Decimal) = New List(Of Decimal)
     Dim convert_pressed As Boolean = False
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -67,9 +68,9 @@ Public Class Form1
 
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
         If selection = 1 Then
-            rx_signal.Text = OpenFileDialog1.FileName
+            private_can.Text = OpenFileDialog1.FileName
         ElseIf selection = 0 Then
-            map_rx_signal.Text = OpenFileDialog1.FileName
+            public_can.Text = OpenFileDialog1.FileName
         End If
     End Sub
 
@@ -97,12 +98,12 @@ Public Class Form1
 
         listof_speed = New List(Of Decimal)
         For Each run As Int16 In group_indices
-            Try
-                listof_speed.Add(CDec(Me.speed_group.Controls.Item(run).Text))
-            Catch ex As Exception
-                console.Text += "- " & "some necessary speed empty or invalid, convert fail" & vbCrLf
-                Return
-            End Try
+            'Try
+            listof_speed.Add(CDec(Me.speed_group.Controls.Item(run).Text))
+            'Catch ex As Exception
+            'console.Text += "- " & "some necessary speed empty or invalid, convert fail" & vbCrLf
+            'Return
+            'End Try
         Next
         Dim testgroup_speed As XElement = xml_handle.xml_construct_speed(mandatory, reference, listof_speed)
 
@@ -145,10 +146,10 @@ Public Class Form1
     End Sub
     Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
         Try
-            If rx_signal.Text <> "" And map_rx_signal.Text <> "" Then
+            If private_can.Text <> "" And public_can.Text <> "" Then
                 renew()
                 Dim result As Boolean = True
-                Dim csv_data As file_handle = New file_handle(rx_signal.Text, map_rx_signal.Text, result)
+                Dim csv_data As file_handle = New file_handle(private_can.Text, public_can.Text, "helo", "hei")
                 If result = True Then
                     mandatory = csv_data.mandatory
                     special = csv_data.special
@@ -159,6 +160,7 @@ Public Class Form1
                     signal_dtc.DataSource = special.Select(Function(x) x.Name).ToList
                     console.Text += "- " & "signal list updated" & vbCrLf
                     sf_signal.DataSource = supported_function.Select(Function(x) x.Name).ToList
+                    all_signal.DataSource = mandatory.Concat(special).Select(Function(x) x.Name).ToList
                 Else
                     console.Text += "- " & "Failed to import file" & vbCrLf
                 End If
@@ -194,13 +196,13 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        save_data()
+        'save_data()
     End Sub
 
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         If Not System.IO.File.Exists("search.csv") Then
             Dim fs As FileStream = File.Create("search.csv")
-            Dim data As Byte() = Encoding.GetEncoding("iso-8859-1").GetBytes("keyword to search for name,keyword to search for unit,physical value" _
+            Dim data As Byte() = Encoding.GetEncoding("iso-8859-1").GetBytes("keyword to search for name***,keyword to search for unit***,physical value***" _
                                                                              & vbCrLf & "speed,km/h,85" & vbCrLf & "temperature,¡æ,23" & vbCrLf _
                                                                              & "acceleration,g,0" & vbCrLf & "wheelspeed,m/s,0" _
                                                                              & vbCrLf & "angle,deg,0" & vbCrLf & "angle,deg/sec,0" & vbCrLf _
@@ -217,6 +219,7 @@ Public Class Form1
     Private Sub renew()
         mandatory = New List(Of mapped_rx_signal)
         special = New List(Of mapped_rx_signal)
+        necessary_sp = New List(Of mapped_rx_signal)
         reference = New List(Of rx_message)
         supported_function = New List(Of mapped_rx_signal)
         For part As Decimal = 1 To group_indices.Count
@@ -270,7 +273,7 @@ Public Class Form1
     End Sub
 
     Private Sub GroupBox2_Leave(sender As Object, e As EventArgs) Handles GroupBox2.Leave
-        If value_dtc.Text <> "" And signal_dtc.Text <> "" Then
+        If value_dtc.Text <> "" Or string_enable.Text <> "" Then
             Dim temper_signal As mapped_rx_signal = special.Find(Function(x) x.Name = signal_dtc.Text)
             Try
                 temper_signal.raw_value = CDec(value_dtc.Text)
@@ -299,8 +302,6 @@ Public Class Form1
             value_dtc.BackColor = System.Drawing.SystemColors.Window
             string_enable.BackColor = System.Drawing.SystemColors.Window
             convert_pressed = False
-        ElseIf value_dtc.Text <> "" And signal_dtc.Text <> "" And string_enable.Text = "" Then
-
         Else
             console.Text += "- " & "some textbox is empty. Failed to add signal " & signal_dtc.Text & vbCrLf
         End If
@@ -328,7 +329,22 @@ Public Class Form1
     End Function
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Dim ok As Decimal = 489
-        Dim testt As String = Convert.ToInt32(ok).ToString("X")
+        Dim ok() As String = {"aa", "ab", "ac", "be", "ahi"}
+        Dim teste = ok.ToList.FindAll(Function(x) x.Contains("a")).Select(Function(x) Array.IndexOf(ok, x)).ToArray
+
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Dim temper_element = mandatory.Find(Function(x) x.Name = all_signal.Text)
+        If temper_element Is Nothing Then
+            necessary_sp.Add(special.Find(Function(x) x.Name = all_signal.Text))
+        Else
+            necessary_sp.Add(temper_element)
+        End If
+        speed_signal.DataSource = necessary_sp.Select(Function(x) x.Name).ToList
+    End Sub
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+
     End Sub
 End Class

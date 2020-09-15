@@ -1,6 +1,4 @@
-﻿Imports Microsoft.Office
-Imports Microsoft.Office.Interop
-Imports System.IO
+﻿Imports System.IO
 Imports System.Text
 
 Public Class file_handle
@@ -26,18 +24,145 @@ Public Class file_handle
         rx_reference
         speed_list
         sp_function
+        sp_signal
         none_above
     End Enum
 
     Public Sub New()
         MyBase.New()
     End Sub
-    Public Sub New(rx_message As String, mapped_rx_message As String, ByRef result As Boolean)
-        MyBase.New()
-        mandatory = New List(Of mapped_rx_signal)
-        special = New List(Of mapped_rx_signal)
-        reference = New List(Of rx_message)
-        name_list = New List(Of String)
+    'Public Sub New(rx_message As String, mapped_rx_message As String, ByRef result As Boolean)
+    '    MyBase.New()
+    '    mandatory = New List(Of mapped_rx_signal)
+    '    special = New List(Of mapped_rx_signal)
+    '    reference = New List(Of rx_message)
+    '    name_list = New List(Of String)
+
+    '    Dim sketch As List(Of keyword) = New List(Of keyword)
+    '    Dim fl
+    '    For attemp As Decimal = 1 To 4
+    '        Try
+    '            fl = New System.IO.StreamReader("search.csv", Encoding.GetEncoding("iso-8859-1"))
+    '            Exit For
+    '        Catch ex As Exception
+    '            MessageBox.Show("Close search.csv before importing files")
+    '        End Try
+    '        If attemp = 4 Then
+    '            Form1.console.Text += "- Failed to import search.csv"
+    '            Return
+    '        End If
+    '    Next
+
+    '    Dim data1 = fl.ReadToEnd.Split(vbCrLf)
+
+    '    Dim dumm As Boolean = False
+    '    For Each part As String In data1
+    '        Dim added_row(2) As String
+    '        If dumm = False Then
+    '            'Dim keyword_index = part.Replace(vbLf, "").ToUpper.Split(",")
+
+    '            dumm = True
+    '        Else
+    '            If part <> vbLf Then
+
+    '                Array.Copy(part.Replace(vbLf, "").ToUpper.Split(","), added_row, part.Replace(vbLf, "").ToUpper.Split(",").Length)
+    '                sketch.Add(New keyword(added_row))
+    '            End If
+    '        End If
+    '    Next
+    '    fl.Close()
+
+    '    Dim file_object
+    '    For attemp As Decimal = 1 To 4
+    '        Try
+    '            file_object = New System.IO.StreamReader(mapped_rx_message, Encoding.GetEncoding("iso-8859-1"))
+    '            Exit For
+    '        Catch ex As Exception
+    '            MessageBox.Show("Close mapped rx message file before importing files")
+    '        End Try
+    '        If attemp = 4 Then
+    '            Form1.console.Text += "- Failed to import mapped rx message file" & vbCrLf
+    '            Return
+    '        End If
+    '    Next
+
+    '    Dim lines As String() = file_object.ReadToEnd.Split(vbCrLf)
+    '    Dim dummy As Boolean = True
+    '    For Each line As String In lines
+    '        If line = "" Then
+    '            Exit For
+    '        ElseIf dummy = False And line <> vbLf Then
+    '            Dim components As String() = line.Replace(vbLf, "").Split(",")
+    '            If components.Count < 13 Then
+    '                MessageBox.Show("Invalid mapped_rx_file format")
+    '                result = False
+    '                Return
+    '            End If
+
+    '            Dim htt As keyword = sketch.Find(Function(x) components(0).ToUpper.Contains(x.keyword_name) And components(12).ToUpper.Contains(x.keyword_unit))
+    '            Dim kt As New mapped_rx_signal(components, 0)
+
+    '            If htt Is Nothing Then
+    '                special.Add(kt)
+    '            Else
+    '                If htt.keyword_physical_value = "" Then
+    '                    htt.keyword_physical_value = "0"
+    '                End If
+    '                kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
+    '                mandatory.Add(kt)
+    '            End If
+    '        ElseIf dummy = True Then
+    '            If (Not line.Contains("Name")) Or (Not line.Contains("Message")) Or (Not line.Contains("Factor")) Or (Not line.Contains("Offset")) Or (Not line.Contains("Unit")) Then
+    '                MessageBox.Show("Invalid mapped_rx_file format")
+    '                result = False
+    '                Return
+    '            End If
+    '        End If
+    '        dummy = False
+    '    Next
+    '    file_object.Close()
+    '    '''''''''''''''''''''''''''''''''''''''''''''
+
+    '    Dim file_object1
+    '    For attemp As Decimal = 1 To 4
+    '        Try
+    '            file_object1 = New System.IO.StreamReader(rx_message, Encoding.GetEncoding("iso-8859-1"))
+    '            Exit For
+    '        Catch ex As Exception
+    '            MessageBox.Show("Close rx message file before importing files")
+    '        End Try
+    '        If attemp = 4 Then
+    '            Form1.console.Text += "- Failed to import rx message file" & vbCrLf
+    '            Return
+    '        End If
+    '    Next
+
+    '    lines = file_object1.ReadToEnd().Split(vbCrLf)
+    '    dummy = True
+    '    For Each line As String In lines
+    '        If line = "" Then
+    '            Exit For
+    '        ElseIf dummy = False And line <> vbLf Then
+    '            Dim components As String() = line.Replace(vbLf, "").Split(",")
+    '            If components.Count < 7 Then
+    '                MessageBox.Show("Invalid rx_file format")
+    '                result = False
+    '                Return
+    '            End If
+    '            reference.Add(New rx_message(components))
+    '        ElseIf dummy = True Then
+    '            If (Not line.Contains("Name")) Or (Not line.Contains("ID")) Or (Not line.Contains("Transmitter")) Then
+    '                MessageBox.Show("Invalid rx_file format")
+    '                result = False
+    '                Return
+    '            End If
+    '        End If
+    '        dummy = False
+    '    Next
+    '    file_object1.Close()
+    'End Sub
+
+    Public Sub New(private_dbc As String, public_dbc As String, keyword_for_private As String, keyword_for_public As String)
 
         Dim sketch As List(Of keyword) = New List(Of keyword)
         Dim fl
@@ -53,216 +178,121 @@ Public Class file_handle
                 Return
             End If
         Next
-
         Dim data1 = fl.ReadToEnd.Split(vbCrLf)
-
         Dim dumm As Boolean = False
+        Dim keyword_index
         For Each part As String In data1
-            Dim added_row(2) As String
             If dumm = False Then
-                'Dim keyword_index = part.Replace(vbLf, "").ToUpper.Split(",")
-
+                Dim title_array = part.Replace(vbLf, "").Split(",")
+                keyword_index = title_array.ToList.FindAll(Function(x) x.Contains("***")).Select(Function(y) Array.IndexOf(title_array, y)).ToArray
                 dumm = True
             Else
                 If part <> vbLf Then
-
-                    Array.Copy(part.Replace(vbLf, "").ToUpper.Split(","), added_row, part.Replace(vbLf, "").ToUpper.Split(",").Length)
+                    Dim added_row(2) As String
+                    Dim content_array = part.Replace(vbLf, "").Split(",")
+                    added_row(0) = content_array(keyword_index(0)).ToUpper
+                    added_row(1) = content_array(keyword_index(1)).ToUpper
+                    added_row(2) = content_array(keyword_index(2)).ToUpper
                     sketch.Add(New keyword(added_row))
                 End If
             End If
         Next
         fl.Close()
 
+
         Dim file_object
         For attemp As Decimal = 1 To 4
             Try
-                file_object = New System.IO.StreamReader(mapped_rx_message, Encoding.GetEncoding("iso-8859-1"))
+                file_object = New System.IO.StreamReader(private_dbc, Encoding.GetEncoding("iso-8859-1"))
                 Exit For
             Catch ex As Exception
-                MessageBox.Show("Close mapped rx message file before importing files")
+                MessageBox.Show("Close private-can dbc file before importing files")
             End Try
             If attemp = 4 Then
-                Form1.console.Text += "- Failed to import mapped rx message file" & vbCrLf
+                Form1.console.Text += "- Failed to import private-can dbc file" & vbCrLf
                 Return
             End If
         Next
-
-        Dim lines As String() = file_object.ReadToEnd.Split(vbCrLf)
-        Dim dummy As Boolean = True
-        For Each line As String In lines
-            If line = "" Then
-                Exit For
-            ElseIf dummy = False And line <> vbLf Then
-                Dim components As String() = line.Replace(vbLf, "").Split(",")
-                If components.Count < 13 Then
-                    MessageBox.Show("Invalid mapped_rx_file format")
-                    result = False
-                    Return
-                End If
-
-                Dim htt As keyword = sketch.Find(Function(x) components(0).ToUpper.Contains(x.keyword_name) And components(12).ToUpper.Contains(x.keyword_unit))
-                Dim kt As New mapped_rx_signal(components, 0)
-
-                If htt Is Nothing Then
-                    special.Add(kt)
-                Else
-                    If htt.keyword_physical_value = "" Then
-                        htt.keyword_physical_value = "0"
-                    End If
-                    kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
-                    mandatory.Add(kt)
-                End If
-            ElseIf dummy = True Then
-                If (Not line.Contains("Name")) Or (Not line.Contains("Message")) Or (Not line.Contains("Factor")) Or (Not line.Contains("Offset")) Or (Not line.Contains("Unit")) Then
-                    MessageBox.Show("Invalid mapped_rx_file format")
-                    result = False
-                    Return
-                End If
-            End If
-            dummy = False
-        Next
-        file_object.Close()
-        '''''''''''''''''''''''''''''''''''''''''''''
-
         Dim file_object1
         For attemp As Decimal = 1 To 4
             Try
-                file_object1 = New System.IO.StreamReader(rx_message, Encoding.GetEncoding("iso-8859-1"))
+                file_object1 = New System.IO.StreamReader(public_dbc, Encoding.GetEncoding("iso-8859-1"))
                 Exit For
             Catch ex As Exception
-                MessageBox.Show("Close rx message file before importing files")
+                MessageBox.Show("Close public-can dbc file before importing files")
             End Try
             If attemp = 4 Then
-                Form1.console.Text += "- Failed to import rx message file" & vbCrLf
+                Form1.console.Text += "- Failed to import public-can dbc file" & vbCrLf
                 Return
             End If
         Next
 
-        lines = file_object1.ReadToEnd().Split(vbCrLf)
-        dummy = True
-        For Each line As String In lines
-            If line = "" Then
-                Exit For
-            ElseIf dummy = False And line <> vbLf Then
-                Dim components As String() = line.Replace(vbLf, "").Split(",")
-                If components.Count < 7 Then
-                    MessageBox.Show("Invalid rx_file format")
-                    result = False
-                    Return
-                End If
-                reference.Add(New rx_message(components))
-            ElseIf dummy = True Then
-                If (Not line.Contains("Name")) Or (Not line.Contains("ID")) Or (Not line.Contains("Transmitter")) Then
-                    MessageBox.Show("Invalid rx_file format")
-                    result = False
-                    Return
-                End If
-            End If
-            dummy = False
-        Next
+        Dim lines As String() = (file_object.ReadToEnd() & file_object1.ReadToEnd()).Split(vbCrLf)
+        file_object.Close()
         file_object1.Close()
-    End Sub
 
-    Public Sub New(prirate_dbc As String, public_dbc As String, keyword_for_prirate As String, keyword_for_public As String)
-
-        Dim sketch As List(Of keyword) = New List(Of keyword)
-        Dim fl
-        For attemp As Decimal = 1 To 4
-            Try
-                fl = New System.IO.StreamReader("search.csv", Encoding.GetEncoding("iso-8859-1"))
-                Exit For
-            Catch ex As Exception
-                MessageBox.Show("Close search.csv before importing files")
-            End Try
-            If attemp = 4 Then
-                Form1.console.Text += "- Failed to import search.csv"
-                Return
-            End If
-        Next
-        Dim data1 = fl.ReadToEnd.Split(vbCrLf)
-        Dim dumm As Boolean = False
-        For Each part As String In data1
-            Dim added_row(2) As String
-            If dumm = False Then
-                'Dim keyword_index = part.Replace(vbLf, "").ToUpper.Split(",")
-                dumm = True
-            Else
-                If part <> vbLf Then
-                    Array.Copy(part.Replace(vbLf, "").ToUpper.Split(","), added_row, part.Replace(vbLf, "").ToUpper.Split(",").Length)
-                    sketch.Add(New keyword(added_row))
-                End If
-            End If
-        Next
-        fl.Close()
-
-
-        Dim file_object
-        For attemp As Decimal = 1 To 4
-            Try
-                file_object = New System.IO.StreamReader(prirate_dbc, Encoding.GetEncoding("iso-8859-1"))
-                Exit For
-            Catch ex As Exception
-                MessageBox.Show("Close prirate-can dbc file before importing files")
-            End Try
-            If attemp = 4 Then
-                Form1.console.Text += "- Failed to import prirate-can dbc file" & vbCrLf
-                Return
-            End If
-        Next
-
-        Dim lines As String() = file_object.ReadToEnd().Split(vbCrLf)
-        Dim current_message As String
-        Dim current_id As String
-        Dim check_node As String
+        Dim current_message As String = ""
+        Dim current_id As String = ""
+        Dim check_node As String = " "
+        Dim current_transmiter As String = ""
         Dim env As Boolean = False
         For Each line As String In lines
             Dim components As String() = line.Replace(vbLf, "").Split(" ")
             If components(0) = "BU_:" Then
                 check_node = Array.Find(components, Function(s) s.Contains("MPC") Or s.Contains("FCM") Or s.Contains("FVCM"))
-            ElseIf components(0) = "BO_" Then
-                If components.Last.Contains(check_node) Then
-                    env = True
-                End If
-                current_id = Convert.ToInt32(components(1)).ToString("X")
-                current_message = components(2).Replace(":", "")
-            ElseIf components(1) = "SG_" And env = True Then
-                Dim htt As keyword = sketch.Find(Function(x) components(2).ToUpper.Contains(x.keyword_name) And components(7).Replace(ControlChars.Quote, "").ToUpper.Contains(x.keyword_unit))
-                Dim kt As New mapped_rx_signal(components, 1, 0)
-                kt.Message = current_message
-                kt.ID = current_id
-                kt.scope = "prirate"
-                kt.signal_type = "Rx message"
-                If htt Is Nothing Then
-                    special.Add(kt)
-                Else
-                    If htt.keyword_physical_value = "" Then
-                        htt.keyword_physical_value = "0"
+            ElseIf components.Length > 1 Then
+                If components(0) = "BO_" Then
+                    If components.Last.Contains(check_node) Then
+                        env = True
                     End If
-                    kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
-                    mandatory.Add(kt)
-                End If
-            ElseIf components(1) = "SG_" And components.Last.Contains(check_node) Then
-                Dim htt As keyword = sketch.Find(Function(x) components(2).ToUpper.Contains(x.keyword_name) And components(7).Replace(ControlChars.Quote, "").ToUpper.Contains(x.keyword_unit))
-                Dim kt As New mapped_rx_signal(components, 1, 0)
-                kt.Message = current_message
-                kt.ID = current_id
-                kt.scope = "prirate"
-                kt.signal_type = "Tx message"
-                If htt Is Nothing Then
-                    special.Add(kt)
-                Else
-                    If htt.keyword_physical_value = "" Then
-                        htt.keyword_physical_value = "0"
+                    current_transmiter = components.Last
+                    current_id = "0x" & Convert.ToUInt32(components(1)).ToString("X")
+                    current_message = components(2).Replace(":", "")
+                ElseIf components(0) = "" And components(1) = "SG_" And env = True Then
+                    Dim htt As keyword = sketch.Find(Function(x) components(2).ToUpper.Contains(x.keyword_name) And components(7).Replace(ControlChars.Quote, "").ToUpper.Contains(x.keyword_unit))
+                    Dim kt As New mapped_rx_signal(components, 1, 0)
+                    kt.Message = current_message
+                    kt.ID = current_id
+                    kt.scope = "private"
+                    kt.signal_type = "Rx message:"
+                    kt.transmitter = current_transmiter
+                    kt.receiver = components.Last.Replace(",", "|")
+                    If htt Is Nothing Then
+                        special.Add(kt)
+                    Else
+                        If htt.keyword_physical_value = "" Then
+                            htt.keyword_physical_value = "0"
+                        End If
+                        kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
+                        mandatory.Add(kt)
                     End If
-                    kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
-                    mandatory.Add(kt)
+                ElseIf components(0) = "" And components(1) = "SG_" And components.Last.Contains(check_node) Then
+                    Dim htt As keyword = sketch.Find(Function(x) components(2).ToUpper.Contains(x.keyword_name) And components(7).Replace(ControlChars.Quote, "").ToUpper.Contains(x.keyword_unit))
+                    Dim kt As New mapped_rx_signal(components, 1, 0)
+                    kt.Message = current_message
+                    kt.ID = current_id
+                    kt.scope = "private"
+                    kt.signal_type = "Tx message:"
+                    kt.transmitter = current_transmiter
+                    kt.receiver = components.Last.Replace(",", "|")
+                    If htt Is Nothing Then
+                        special.Add(kt)
+                    Else
+                        If htt.keyword_physical_value = "" Then
+                            htt.keyword_physical_value = "0"
+                        End If
+                        kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
+                        mandatory.Add(kt)
+                    End If
                 End If
-            ElseIf line = "" Then
+            ElseIf line = vbLf Then
                 env = False
             End If
 
         Next
     End Sub
+    Dim signal_tab As New List(Of String)({"Name", "Message", "Message ID", "Start bit", "Length(bit)", "Byte order", "Factor", "Offset",
+                                                  "Minimum", "Maximum", "Unit", "Signal type", "Raw Value", "Enable String", "Transmitter", "Receiver", "Type"})
 
     Public Function save_data() As String
         Dim total_string As String = ""
@@ -270,31 +300,28 @@ Public Class file_handle
         total_string += "Project,Variant,Release,Version" & vbCrLf
         total_string += Form1.project.Text & "," & Form1.Vari.Text & "," & Form1.release.Text & "," & Form1.ver.Text & vbCrLf & vbCrLf
 
+        Dim header_tab As String = ""
         total_string += "List of precondition" & vbCrLf
-        total_string += "Name,Message,Multiplexing/Group,Startbit,Length [Bit],Byte Order,Value Type,Initial Value,Factor,Offset,Minimum,Maximum,Unit,Raw Value, Enable String" & vbCrLf
+        For Each element As String In signal_tab
+            header_tab += element & ","
+        Next
+        total_string += header_tab & vbCrLf
+
         For Each map_rx As mapped_rx_signal In Form1.mandatory
-            total_string += map_rx.Name & "," & map_rx.Message & "," & map_rx.multiplexing_group & "," & CStr(map_rx.startbit) & "," & CStr(map_rx.Length) & "," & map_rx.byte_order & "," & map_rx.value_type & ","
-            total_string += CStr(map_rx.initial_value) & "," & CStr(map_rx.factor) & "," & CStr(map_rx.offset) & "," & CStr(map_rx.minimun) & "," & CStr(map_rx.maximum) & "," & map_rx.unit
-            If map_rx.additional = True Then
-                total_string += "," & CStr(map_rx.raw_value) & "," & map_rx.enable_string & vbCrLf
-            Else
-                total_string += "," & CStr(map_rx.raw_value) & vbCrLf
-            End If
+            total_string += map_rx.get_data_string(0)
         Next
 
         total_string += vbCrLf & "List of other signals" & vbCrLf
-        total_string += "Name,Message,Multiplexing/Group,Startbit,Length [Bit],Byte Order,Value Type,Initial Value,Factor,Offset,Minimum,Maximum,Unit" & vbCrLf
+        total_string += header_tab & vbCrLf
         For Each map_rx As mapped_rx_signal In Form1.special
-            total_string += map_rx.Name & "," & map_rx.Message & "," & map_rx.multiplexing_group & "," & CStr(map_rx.startbit) & "," & CStr(map_rx.Length) & "," & map_rx.byte_order & "," & map_rx.value_type & ","
-            total_string += CStr(map_rx.initial_value) & "," & CStr(map_rx.factor) & "," & CStr(map_rx.offset) & "," & CStr(map_rx.minimun) & "," & CStr(map_rx.maximum) & "," & map_rx.unit & vbCrLf
+            total_string += map_rx.get_data_string(1)
         Next
 
-        total_string += vbCrLf & "List of rx signal" & vbCrLf
-        total_string += "Name,ID,Transmitter" & vbCrLf
-        For Each rx_signal As rx_message In Form1.reference
-            total_string += rx_signal.Name & "," & rx_signal.ID & "," & rx_signal.transmiter & vbCrLf
+        total_string += vbCrLf & "List of included speed signal" & vbCrLf
+        total_string += header_tab & vbCrLf
+        For Each map_rx As mapped_rx_signal In Form1.necessary_sp
+            total_string += map_rx.get_data_string(1)
         Next
-
         total_string += vbCrLf & "List of necessary speed" & vbCrLf
         Dim temper As Decimal = 1
         For Each sp As Decimal In Form1.listof_speed
@@ -323,7 +350,7 @@ Public Class file_handle
                         "," & sp_function.security & vbCrLf
             End Select
         Next
-        total_string += "#End of database"
+        total_string += vbCrLf & "#End of database"
 
         Return total_string
     End Function
@@ -344,96 +371,113 @@ Public Class file_handle
 
         Dim lines As String() = file_object.ReadToEnd.Split(vbCrLf)
         Dim selection As selection_import = selection_import.none_above
+        Dim Skip As Boolean = True
         Dim current As Decimal = 0
         For Each line As String In lines
-            Dim components(17) As String
-            Dim row As String() = line.Replace(vbLf, "").Split(",")
-            Array.Copy(row, components, row.Length)
-            If row(0) <> "" And row(0) <> "#End of database" Then
-                Select Case (selection)
-                    Case selection_import.project_title
-                        Form1.project.Text = components(0)
-                        Form1.Vari.Text = components(1)
-                        Form1.release.Text = components(2)
-                        Form1.ver.Text = components(3)
-                    Case selection_import.precondition
-                        If components(0) <> "Name" And components(14) = "" Then
-                            Form1.mandatory.Add(New mapped_rx_signal(components, 2))
-                        ElseIf components(0) <> "Name" And components(14) <> "" Then
-                            Form1.mandatory.Add(New mapped_rx_signal(components, 1))
-                        End If
-                    Case selection_import.other_signal
-                        If components(0) <> "Name" Then
-                            Form1.special.Add(New mapped_rx_signal(components, 0))
-                        End If
-                    Case selection_import.rx_reference
-                        If components(0) <> "Name" Then
-                            Form1.reference.Add(New rx_message(components, 0))
-                        End If
-                    Case selection_import.speed_list
+            Dim current_line = line.Replace(vbLf, "")
+            If current_line = "" And selection <> selection_import.none_above Then
+                selection = selection_import.none_above
+                Skip = True
+            End If
+
+            Select Case (selection)
+                case selection_import.project_title
+                    Dim elements as String() = current_line.Split(",")
+                    Form1.project.Text = elements(0)
+                    Form1.Vari.Text = elements(1)
+                    Form1.release.Text = elements(2)
+                    Form1.ver.Text = elements(3)
+                case selection_import.precondition
+                    If Skip = True Then
+                        Skip = False
+                    Else
+                        Dim elements As String() = current_line.Split(",")
+                        Form1.mandatory.Add(New mapped_rx_signal(elements, 2, 0))
+                    End If
+                case selection_import.other_signal
+                    If Skip = True Then
+                        Skip = False
+                    Else
+                        Dim elements As String() = current_line.Split(",")
+                        Form1.special.Add(New mapped_rx_signal(elements, 2, 1))
+                    End If
+                Case selection_import.sp_signal
+                    If Skip = True Then
+                        Skip = False
+                    Else
+                        Dim elements As String() = current_line.Split(",")
+                        Form1.necessary_sp.Add(New mapped_rx_signal(elements, 2, 1))
+                    End If
+                Case selection_import.speed_list
+                    If Skip = True Then
+                        Skip = False
+                    Else
+                        Dim elements As String() = current_line.Split(",")
                         If current <> 0 Then
                             add_speed()
                         End If
-                        Form1.speed_group.Controls.Item(Form1.group_indices(current)).Text = components(1)
+                        Form1.speed_group.Controls.Item(Form1.group_indices(current)).Text = elements(1)
                         current = current + 1
-                    Case selection_import.sp_function
+                    End If
+                case selection_import.sp_function
+                    If Skip = True Then
+                        Skip = False
+                    Else
+                        Dim elements As String() = current_line.Split(",")
                         Dim new_function As mapped_rx_signal
-                        If components(0) <> "Function" Then
-                            Select Case CDec(components(2))
+                        Select Case CDec(elements(2))
                                 Case 1
-                                    new_function = Form1.special.Find(Function(x) x.Name = components(1))
+                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
                                     new_function.scenario = 1
-                                    new_function.up_level = components(3)
-                                    new_function.down_level = components(4)
-                                    new_function.function_type = components(0)
+                                    new_function.up_level = elements(3)
+                                    new_function.down_level = elements(4)
+                                    new_function.function_type = elements(0)
                                     Form1.supported_function.Add(new_function)
                                 Case 2
-                                    new_function = Form1.special.Find(Function(x) x.Name = components(1))
+                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
                                     new_function.scenario = 2
-                                    new_function.up_level = components(5)
-                                    new_function.down_level = components(6)
-                                    new_function.enable_duration = components(8)
-                                    new_function.disable_duration = components(9)
-                                    new_function.press_counter = components(7)
-                                    new_function.function_type = components(0)
+                                    new_function.up_level = elements(5)
+                                    new_function.down_level = elements(6)
+                                    new_function.enable_duration = elements(8)
+                                    new_function.disable_duration = elements(9)
+                                    new_function.press_counter = elements(7)
+                                    new_function.function_type = elements(0)
                                     Form1.supported_function.Add(new_function)
                                 Case 3
-                                    new_function = Form1.special.Find(Function(x) x.Name = components(1))
+                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
                                     new_function.scenario = 3
-                                    new_function.enable_string = components(10)
-                                    new_function.disable_string = components(11)
-                                    new_function.security = components(12)
-                                    new_function.function_type = components(0)
+                                    new_function.enable_string = elements(10)
+                                    new_function.disable_string = elements(11)
+                                    new_function.security = elements(12)
+                                    new_function.function_type = elements(0)
                                     Form1.supported_function.Add(new_function)
                                 Case 4
-                                    new_function = Form1.special.Find(Function(x) x.Name = components(1))
+                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
                                     new_function.scenario = 4
-                                    new_function.enable_string = components(10)
-                                    new_function.disable_string = components(11)
-                                    new_function.security = components(12)
-                                    new_function.up_level = components(3)
-                                    new_function.down_level = components(4)
-                                    new_function.function_type = components(0)
+                                    new_function.enable_string = elements(10)
+                                    new_function.disable_string = elements(11)
+                                    new_function.security = elements(12)
+                                    new_function.up_level = elements(3)
+                                    new_function.down_level = elements(4)
+                                    new_function.function_type = elements(0)
                                     Form1.supported_function.Add(new_function)
                                 Case 5
-                                    new_function = Form1.special.Find(Function(x) x.Name = components(1))
+                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
                                     new_function.scenario = 5
-                                    new_function.enable_string = components(10)
-                                    new_function.disable_string = components(11)
-                                    new_function.security = components(12)
-                                    new_function.up_level = components(5)
-                                    new_function.down_level = components(6)
-                                    new_function.press_counter = components(7)
-                                    new_function.enable_duration = components(8)
-                                    new_function.disable_duration = components(9)
-                                    new_function.function_type = components(0)
+                                    new_function.enable_string = elements(10)
+                                    new_function.disable_string = elements(11)
+                                    new_function.security = elements(12)
+                                    new_function.up_level = elements(5)
+                                    new_function.down_level = elements(6)
+                                    new_function.press_counter = elements(7)
+                                    new_function.enable_duration = elements(8)
+                                    new_function.disable_duration = elements(9)
+                                    new_function.function_type = elements(0)
                                     Form1.supported_function.Add(new_function)
-                            End Select
-                        End If
-                End Select
-            End If
-            If row(0) <> "" And selection = selection_import.none_above Then
-                Dim current_line As String = line.Replace(vbLf, "")
+                        End Select
+                    End If
+            End Select
+            If current_line <> "" And selection = selection_import.none_above Then
                 If current_line.StartsWith("Project") Then
                     selection = selection_import.project_title
                 ElseIf current_line.StartsWith("List of precondition") Then
@@ -442,13 +486,14 @@ Public Class file_handle
                     selection = selection_import.other_signal
                 ElseIf current_line.StartsWith("List of rx") Then
                     selection = selection_import.rx_reference
-                ElseIf current_line.StartsWith("List of necessary") Then
+                ElseIf current_line.StartsWith("List of sp_signal") Then
+                    selection = selection_import.sp_signal
+                ElseIf current_line.StartsWith("List of speed") Then
                     selection = selection_import.speed_list
                 ElseIf current_line.StartsWith("List of supported") Then
                     selection = selection_import.sp_function
                 End If
-            ElseIf row(0) = "" And selection <> selection_import.none_above Then
-                selection = selection_import.none_above
+
             End If
         Next
         file_object.Close()

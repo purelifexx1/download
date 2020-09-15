@@ -1,0 +1,5 @@
+Hi anh Cong
+I've made some upgrade that meet your additional requirement. You could check it at here
+I kindly suggest you should run the project code file with VS without reinstall the app so that we could easily find bugs and fix it
+
+//contact

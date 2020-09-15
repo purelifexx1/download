@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testmodule title="htt1_T1D_R4.0_RC02" version="1.0">
+  <testgroup title="Tests">
+    <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+    <testgroup title="Precondition">
+      <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+      <testgroup title="mandatory">
+        <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+      </testgroup>
+      <testgroup title="special">
+        <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+        <testcase title="Tx message:RDR_OncomingObj_Width(ID:0x160)::RDR_Obj_04_dWidth: 0.5" ident="-">
+          <set title="E_pubc_Radar_RDR_OncomingObj_Width_RDR_Obj_04_dWidth_Rv" ident="-">
+            <envvar name="E_pubc_Radar_RDR_OncomingObj_Width_RDR_Obj_04_dWidth_Rv">5</envvar>
+          </set>
+          <wait time="5" title="wait" />
+          <set title="E_pubc_Radar_RDR_OncomingObj_Width_tx" ident="-">
+            <envvar name="E_pubc_Radar_RDR_OncomingObj_Width_tx">1</envvar>
+          </set>
+          <wait time="5" title="wait" />
+          <set title="E_pubc_Radar_RDR_OncomingObj_Width_tx" ident="-">
+            <envvar name="E_pubc_Radar_RDR_OncomingObj_Width_tx">0</envvar>
+          </set>
+        </testcase>
+        <testcase title="Rx message:Dev_Video_SyncVisor_TX(ID:0x87FE7A00)::ImgFrameCounter: 5" ident="-">
+          <set title="E_pubc_MPC2_Dev_Video_SyncVisor_TX_ImgFrameCounter_Rv" ident="-">
+            <envvar name="E_pubc_MPC2_Dev_Video_SyncVisor_TX_ImgFrameCounter_Rv">5</envvar>
+          </set>
+          <wait time="5" title="wait" />
+          <set title="E_pubc_MPC2_Dev_Video_SyncVisor_TX_tx" ident="-">
+            <envvar name="E_pubc_MPC2_Dev_Video_SyncVisor_TX_tx">1</envvar>
+          </set>
+          <wait time="5" title="wait" />
+          <set title="E_pubc_MPC2_Dev_Video_SyncVisor_TX_tx" ident="-">
+            <envvar name="E_pubc_MPC2_Dev_Video_SyncVisor_TX_tx">0</envvar>
+          </set>
+          <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+          <testcase title="Tester Present is On" ident="-">
+            <set title="EnvTesterPresentOnOff">1</set>
+            <wait time="0" title="wait" />
+          </testcase>
+          <capltestcase name="DiagSessionCtrl" title="Change to Extended session with Service 0x10 03" ident="Positive response is received: 0x50 03 00 32 00 C8">
+            <caplparam type="String" name="sessionName">Extended</caplparam>
+          </capltestcase>
+          <testcase title="Request Seed from the camera 0x27 01" ident="Positive response is received: 0x67 01 .{4}">
+            <set title="EnvLogInLevel1">1</set>
+            <wait time="0" title="wait" />
+          </testcase>
+          <testcase title="Wait for Seed-Key Calculation." ident="-">
+            <wait time="1000" title="wait" />
+          </testcase>
+          <testcase title="Send valid Key to the camera : 0x27 02 XX XX XX XX (Where XX XX XX XX is the exact calculated key using seed key algorithm)" ident="Positive response is received: 0x67 02">
+            <set title="EnvLogInLevel1">0</set>
+            <wait time="0" title="wait" />
+          </testcase>
+          <capltestcase name="RequestResponse" title="Write the string to enable  function: 2E 01 01 3F 00" ident="Positive response is received: 0x6E 01 01">
+            <caplparam name="Request" type="string">2e01013f00</caplparam>
+            <caplparam name="Response" type="string">6e0101</caplparam>
+            <caplparam name="CompareMode" type="string">Equal</caplparam>
+          </capltestcase>
+          <testcase title="Tester Present is Off" ident="-">
+            <set title="EnvTesterPresentOnOff">0</set>
+            <wait time="0" title="wait" />
+          </testcase>
+        </testcase>
+      </testgroup>
+    </testgroup>
+    <testgroup title="speed">
+      <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+      <testgroup title="Both speeds = 12kph">
+        <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+      </testgroup>
+    </testgroup>
+    <testgroup title="Function">
+      <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+      <testgroup title="Enable LWD function">
+        <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+        <testcase title="Tester Present is On" ident="-">
+          <set title="EnvTesterPresentOnOff">1</set>
+          <wait time="0" title="wait" />
+        </testcase>
+        <capltestcase name="DiagSessionCtrl" title="Change to Extended session with Service 0x10 03" ident="Positive response is received: 0x50 03 00 32 00 C8">
+          <caplparam type="String" name="sessionName">Extended</caplparam>
+        </capltestcase>
+        <testcase title="Request Seed from the camera 0x27 01" ident="Positive response is received: 0x67 01 .{4}">
+          <set title="EnvLogInLevel1">1</set>
+          <wait time="0" title="wait" />
+        </testcase>
+        <testcase title="Wait for Seed-Key Calculation." ident="-">
+          <wait time="1000" title="wait" />
+        </testcase>
+        <testcase title="Send valid Key to the camera : 0x27 02 XX XX XX XX (Where XX XX XX XX is the exact calculated key using seed key algorithm)" ident="Positive response is received: 0x67 02">
+          <set title="EnvLogInLevel1">0</set>
+          <wait time="0" title="wait" />
+        </testcase>
+        <capltestcase name="RequestResponse" title="Write the string to enable LWD function: 2E 01 01 3F 00" ident="Positive response is received: 0x6E 01 01">
+          <caplparam name="Request" type="string">2e01013f00</caplparam>
+          <caplparam name="Response" type="string">6e0101</caplparam>
+          <caplparam name="CompareMode" type="string">Equal</caplparam>
+        </capltestcase>
+        <testcase title="Tester Present is Off" ident="-">
+          <set title="EnvTesterPresentOnOff">0</set>
+          <wait time="0" title="wait" />
+        </testcase>
+      </testgroup>
+      <testgroup title="Disable LWD function">
+        <externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+        <testcase title="Tester Present is On" ident="-">
+          <set title="EnvTesterPresentOnOff">1</set>
+          <wait time="0" title="wait" />
+        </testcase>
+        <capltestcase name="DiagSessionCtrl" title="Change to Extended session with Service 0x10 03" ident="Positive response is received: 0x50 03 00 32 00 C8">
+          <caplparam type="String" name="sessionName">Extended</caplparam>
+        </capltestcase>
+        <testcase title="Request Seed from the camera 0x27 01" ident="Positive response is received: 0x67 01 .{4}">
+          <set title="EnvLogInLevel1">1</set>
+          <wait time="0" title="wait" />
+        </testcase>
+        <testcase title="Wait for Seed-Key Calculation." ident="-">
+          <wait time="1000" title="wait" />
+        </testcase>
+        <testcase title="Send valid Key to the camera : 0x27 02 XX XX XX XX (Where XX XX XX XX is the exact calculated key using seed key algorithm)" ident="Positive response is received: 0x67 02">
+          <set title="EnvLogInLevel1">0</set>
+          <wait time="0" title="wait" />
+        </testcase>
+        <capltestcase name="RequestResponse" title="Write the string to disable LWD function: 2E 01 01 3F 01" ident="Positive response is received: 0x6E 01 01">
+          <caplparam name="Request" type="string">2e01013f01</caplparam>
+          <caplparam name="Response" type="string">6e0101</caplparam>
+          <caplparam name="CompareMode" type="string">Equal</caplparam>
+        </capltestcase>
+        <testcase title="Tester Present is Off" ident="-">
+          <set title="EnvTesterPresentOnOff">0</set>
+          <wait time="0" title="wait" />
+        </testcase>
+      </testgroup>
+    </testgroup>
+  </testgroup>
+</testmodule>
