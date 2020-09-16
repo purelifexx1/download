@@ -30,7 +30,8 @@
     Public ID As String
     Public transmitter As String
     Public receiver As String
-
+    Public value_define As List(Of String) = New List(Of String)
+    Public value As List(Of Decimal) = New List(Of Decimal)
     'Public Sub New(input As String(), extend As Decimal)
     '    MyBase.New()
     '    Name = input(0)
@@ -100,6 +101,13 @@
             Else
 
             End If
+            If input(17) <> "" Then
+                For Each fac As String In input(17).Split("|")
+                    Dim tempp = fac.Split(":")
+                    value.Add(CDec(tempp(0)))
+                    value_define.Add(tempp(1))
+                Next
+            End If
         End If
     End Sub
 
@@ -112,17 +120,46 @@
         Else
             total_string += CStr(raw_value) & "," & enable_string & "," & transmitter & "," & receiver & ","
         End If
+
         If extend = 0 Then
             If additional = False Then
-                total_string += "man" & vbCrLf
+                total_string += "man" & ","
             Else
-                total_string += "spec" & vbCrLf
+                total_string += "spec" & ","
             End If
+        Else
+            total_string += ","
+        End If
+        Dim real_value As Decimal = 0
+        If value_define.Count <> 0 Then
+            For Each element As String In value_define
+                If real_value = value_define.Count - 1 Then
+                    total_string += CStr(value(real_value)) & ":" & element
+                Else
+                    total_string += CStr(value(real_value)) & ":" & element & "|"
+                End If
+                real_value += 1
+            Next
+            total_string += vbCrLf
         Else
             total_string += vbCrLf
         End If
         Return total_string
     End Function
+    Public Sub set_string_value(input As String)
+        Dim element1 As String() = input.Split(ControlChars.Quote)
+        Dim start_index = element1.Length - 2
+        Dim number_of_value = (element1.Length - 1) / 2
+        For count As Decimal = 1 To number_of_value
+            value_define.Add(element1(start_index))
+            If count = number_of_value Then
+                value.Add(CDec(element1(start_index - 1).Split(" ")(3)))
+            Else
+                value.Add(CDec(element1(start_index - 1)))
+                start_index -= 2
+            End If
+        Next
+    End Sub
     Public Sub New()
         MyBase.New()
     End Sub

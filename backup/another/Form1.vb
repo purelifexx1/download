@@ -6,8 +6,8 @@ Imports System.Text
 Public Class Form1
     Public mandatory As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
     Public necessary_sp As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
+    Public total_signal As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
     Public special As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
-    Public reference As List(Of rx_message) = New List(Of rx_message)
     Public name_list As List(Of String) = New List(Of String)
     Public supported_function As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
     Public selection As Decimal = 0
@@ -90,7 +90,7 @@ Public Class Form1
         Dim testgroup_precondition As XElement
         Dim testgroup_function As XElement
         Try
-            testgroup_precondition = xml_handle.xml_construct_precondition(mandatory, special, reference)
+            testgroup_precondition = xml_handle.xml_construct_precondition(mandatory, special)
         Catch ex As Exception
             console.Text += "- error in precondition group: " & ex.ToString & vbCrLf
             Return
@@ -98,17 +98,17 @@ Public Class Form1
 
         listof_speed = New List(Of Decimal)
         For Each run As Int16 In group_indices
-            'Try
-            listof_speed.Add(CDec(Me.speed_group.Controls.Item(run).Text))
-            'Catch ex As Exception
-            'console.Text += "- " & "some necessary speed empty or invalid, convert fail" & vbCrLf
-            'Return
-            'End Try
+            Try
+                listof_speed.Add(CDec(Me.speed_group.Controls.Item(run).Text))
+            Catch ex As Exception
+                console.Text += "- " & "some necessary speed empty or invalid, convert fail" & vbCrLf
+                Return
+            End Try
         Next
-        Dim testgroup_speed As XElement = xml_handle.xml_construct_speed(mandatory, reference, listof_speed)
+        Dim testgroup_speed As XElement = xml_handle.xml_construct_speed(mandatory, listof_speed)
 
         Try
-            testgroup_function = xml_handle.xml_construct_function(reference)
+            testgroup_function = xml_handle.xml_construct_function()
         Catch ex As Exception
             console.Text += "- error in function group: " & ex.ToString & vbCrLf
             Return
@@ -153,7 +153,6 @@ Public Class Form1
                 If result = True Then
                     mandatory = csv_data.mandatory
                     special = csv_data.special
-                    reference = csv_data.reference
                     man_pre.DataSource = mandatory.Select(Function(x) x.Name).ToList
                     console.Text += "- " & "data import successfully" & vbCrLf
                     convert_pressed = False
@@ -220,8 +219,8 @@ Public Class Form1
         mandatory = New List(Of mapped_rx_signal)
         special = New List(Of mapped_rx_signal)
         necessary_sp = New List(Of mapped_rx_signal)
-        reference = New List(Of rx_message)
         supported_function = New List(Of mapped_rx_signal)
+        total_signal = New List(Of mapped_rx_signal)
         For part As Decimal = 1 To group_indices.Count
             If speed_th = 1 Then
                 Exit For
@@ -236,6 +235,8 @@ Public Class Form1
         Next
         value_dtc.Text = String.Empty
         string_enable.Text = String.Empty
+        all_signal.DataSource = Nothing
+        speed_signal.DataSource = Nothing
         signal_dtc.DataSource = Nothing
         man_pre.DataSource = Nothing
         sf_signal.DataSource = Nothing
@@ -254,7 +255,7 @@ Public Class Form1
                     MessageBox.Show("Close database.csv to save data")
                 End Try
                 If attemp = 4 Then
-                    MessageBox.Show("Fail to save data")
+                    MessageBox.Show("Fail to save database")
                     Return
                 End If
             Next
@@ -329,9 +330,7 @@ Public Class Form1
     End Function
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Dim ok() As String = {"aa", "ab", "ac", "be", "ahi"}
-        Dim teste = ok.ToList.FindAll(Function(x) x.Contains("a")).Select(Function(x) Array.IndexOf(ok, x)).ToArray
-
+        Dim teee = Directory.Exists("folder\")
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
@@ -344,7 +343,7 @@ Public Class Form1
         speed_signal.DataSource = necessary_sp.Select(Function(x) x.Name).ToList
     End Sub
 
-    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+    Private Sub Button10_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class

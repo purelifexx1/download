@@ -77,7 +77,6 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -557,6 +556,7 @@ Partial Class Form1
         'GroupBox5
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.LightGray
+        Me.GroupBox5.Controls.Add(Me.Button8)
         Me.GroupBox5.Controls.Add(Me.Button7)
         Me.GroupBox5.Controls.Add(Me.Button3)
         Me.GroupBox5.Controls.Add(Me.Button12)
@@ -597,29 +597,18 @@ Partial Class Form1
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(703, 509)
+        Me.Button8.Location = New System.Drawing.Point(40, 190)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(75, 23)
+        Me.Button8.Size = New System.Drawing.Size(113, 23)
         Me.Button8.TabIndex = 34
-        Me.Button8.Text = "Button8"
+        Me.Button8.Text = "Test button(ignore)"
         Me.Button8.UseVisualStyleBackColor = True
-        '
-        'Button10
-        '
-        Me.Button10.Location = New System.Drawing.Point(843, 350)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(75, 23)
-        Me.Button10.TabIndex = 35
-        Me.Button10.Text = "Button10"
-        Me.Button10.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(964, 537)
-        Me.Controls.Add(Me.Button10)
-        Me.Controls.Add(Me.Button8)
+        Me.ClientSize = New System.Drawing.Size(964, 515)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.sf_signal)
@@ -706,5 +695,4 @@ Partial Class Form1
     Friend WithEvents Button9 As Button
     Friend WithEvents speed_signal As ComboBox
     Friend WithEvents all_signal As ComboBox
-    Friend WithEvents Button10 As Button
 End Class

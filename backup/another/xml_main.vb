@@ -11,37 +11,37 @@ Public Class xml_main
         external_ref = create_opentag("externalref", temper)
         Wait_default = create_opentag("wait", New List(Of XAttribute)({New XAttribute("time", "5"), New XAttribute("title", "wait")}))
     End Sub
-    Public Function xml_construct_precondition(mandatory As List(Of mapped_rx_signal), special As List(Of mapped_rx_signal), reference As List(Of rx_message)) As XElement
+    Public Function xml_construct_precondition(mandatory As List(Of mapped_rx_signal), special As List(Of mapped_rx_signal)) As XElement
         Dim test_group_precondition_mandatory As List(Of XElement) = New List(Of XElement)
         Dim test_group_precondition_special As List(Of XElement) = New List(Of XElement)
         test_group_precondition_mandatory.Add(external_ref)
         test_group_precondition_special.Add(external_ref)
         For Each mapped_rx_part As mapped_rx_signal In mandatory
             If mapped_rx_part.additional = True And mapped_rx_part.enable_string <> "" Then
-                test_group_precondition_special.Add(create_testcase(mapped_rx_part, reference, mapped_rx_part.raw_value * mapped_rx_part.factor + mapped_rx_part.offset, mapped_rx_part.enable_string))
+                test_group_precondition_special.Add(create_testcase(mapped_rx_part, mapped_rx_part.raw_value * mapped_rx_part.factor + mapped_rx_part.offset, mapped_rx_part.enable_string))
             ElseIf mapped_rx_part.additional = True And mapped_rx_part.enable_string = "" Then
-                test_group_precondition_special.Add(create_testcase(mapped_rx_part, reference, mapped_rx_part.raw_value * mapped_rx_part.factor + mapped_rx_part.offset))
+                test_group_precondition_special.Add(create_testcase(mapped_rx_part, mapped_rx_part.raw_value * mapped_rx_part.factor + mapped_rx_part.offset))
             Else
-                test_group_precondition_mandatory.Add(create_testcase(mapped_rx_part, reference, mapped_rx_part.raw_value * mapped_rx_part.factor + mapped_rx_part.offset))
+                test_group_precondition_mandatory.Add(create_testcase(mapped_rx_part, mapped_rx_part.raw_value * mapped_rx_part.factor + mapped_rx_part.offset))
             End If
         Next
 
         Return create_tag("testgroup", New XAttribute("title", "Precondition"), New List(Of XElement)({external_ref, create_tag("testgroup", New XAttribute("title", "mandatory"), test_group_precondition_mandatory), create_tag("testgroup", New XAttribute("title", "special"), test_group_precondition_special)}))
     End Function
-    Public Function xml_construct_speed(mandatory As List(Of mapped_rx_signal), reference As List(Of rx_message), listof_speed As List(Of Decimal)) As XElement
+    Public Function xml_construct_speed(mandatory As List(Of mapped_rx_signal), listof_speed As List(Of Decimal)) As XElement
         Dim speed As List(Of XElement) = New List(Of XElement)
         speed.Add(external_ref)
         For Each current_speed As Decimal In listof_speed
             Dim dummy As List(Of XElement) = New List(Of XElement)
             dummy.Add(external_ref)
             For Each element As mapped_rx_signal In Form1.necessary_sp
-                dummy.Add(create_testcase(element, reference, current_speed))
+                dummy.Add(create_testcase(element, current_speed))
             Next
             speed.Add(create_tag("testgroup", New XAttribute("title", "Both speeds = " & CStr(current_speed) & "kph"), dummy))
         Next
         Return create_tag("testgroup", New XAttribute("title", "speed"), speed)
     End Function
-    Public Function xml_construct_function(reference As List(Of rx_message)) As XElement
+    Public Function xml_construct_function() As XElement
         Dim testgroup_function As List(Of XElement) = New List(Of XElement)
         testgroup_function.Add(external_ref)
         For Each select_function As mapped_rx_signal In Form1.supported_function
@@ -49,14 +49,14 @@ Public Class xml_main
             Select Case (select_function.scenario)
                 Case 1
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Enable " & select_function.function_type & " function"),
-                        New List(Of XElement)({external_ref, create_testcase(select_function, reference, select_function.up_level)})))
+                        New List(Of XElement)({external_ref, create_testcase(select_function, select_function.up_level)})))
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Disable " & select_function.function_type & " function"),
-                        New List(Of XElement)({external_ref, create_testcase(select_function, reference, select_function.down_level)})))
+                        New List(Of XElement)({external_ref, create_testcase(select_function, select_function.down_level)})))
                 Case 2
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Enable " & select_function.function_type & " function"),
-                        New List(Of XElement)({external_ref, create_testcase(select_function, reference, select_function.up_level, select_function.down_level, select_function.enable_duration, select_function.press_counter)})))
+                        New List(Of XElement)({external_ref, create_testcase(select_function, select_function.up_level, select_function.down_level, select_function.enable_duration, select_function.press_counter)})))
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Disable " & select_function.function_type & " function"),
-                        New List(Of XElement)({external_ref, create_testcase(select_function, reference, select_function.up_level, select_function.down_level, select_function.disable_duration, select_function.press_counter)})))
+                        New List(Of XElement)({external_ref, create_testcase(select_function, select_function.up_level, select_function.down_level, select_function.disable_duration, select_function.press_counter)})))
                 Case 3
                     temper_testgroup.AddRange(string_testcase(select_function.enable_string, select_function.security, select_function.function_type, "enable"))
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Enable " & select_function.function_type & " function"), temper_testgroup))
@@ -65,19 +65,19 @@ Public Class xml_main
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Disable " & select_function.function_type & " function"), temper_testgroup))
                 Case 4
                     temper_testgroup.AddRange(string_testcase(select_function.enable_string, select_function.security, select_function.function_type, "enable"))
-                    temper_testgroup.Add(create_testcase(select_function, reference, select_function.up_level))
+                    temper_testgroup.Add(create_testcase(select_function, select_function.up_level))
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Enable " & select_function.function_type & " function"), temper_testgroup))
                     temper_testgroup = New List(Of XElement)
                     temper_testgroup.AddRange(string_testcase(select_function.disable_string, select_function.security, select_function.function_type, "disable"))
-                    temper_testgroup.Add(create_testcase(select_function, reference, select_function.down_level))
+                    temper_testgroup.Add(create_testcase(select_function, select_function.down_level))
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Disable " & select_function.function_type & " function"), temper_testgroup))
                 Case 5
                     temper_testgroup.AddRange(string_testcase(select_function.enable_string, select_function.security, select_function.function_type, "enable"))
-                    temper_testgroup.Add(create_testcase(select_function, reference, select_function.up_level, select_function.down_level, select_function.enable_duration, select_function.press_counter))
+                    temper_testgroup.Add(create_testcase(select_function, select_function.up_level, select_function.down_level, select_function.enable_duration, select_function.press_counter))
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Enable " & select_function.function_type & " function"), temper_testgroup))
                     temper_testgroup = New List(Of XElement)
                     temper_testgroup.AddRange(string_testcase(select_function.disable_string, select_function.security, select_function.function_type, "disable"))
-                    temper_testgroup.Add(create_testcase(select_function, reference, select_function.up_level, select_function.down_level, select_function.disable_duration, select_function.press_counter))
+                    temper_testgroup.Add(create_testcase(select_function, select_function.up_level, select_function.down_level, select_function.disable_duration, select_function.press_counter))
                     testgroup_function.Add(create_tag("testgroup", New XAttribute("title", "Disable " & select_function.function_type & " function"), temper_testgroup))
             End Select
         Next
@@ -85,37 +85,34 @@ Public Class xml_main
         Return create_tag("testgroup", New XAttribute("title", "Function"), testgroup_function)
         'grap in two test group: enable [Name] function, disable [Name] function
     End Function
-    Public Function create_testcase(map_rx As mapped_rx_signal, reference As List(Of rx_message), physical_value As Decimal) As XElement
+    Public Function create_testcase(map_rx As mapped_rx_signal, physical_value As Decimal) As XElement
         Dim dummy As List(Of XElement) = New List(Of XElement)
-        Dim rx_part As rx_message = reference.Find(Function(x) x.Name = map_rx.Message)
         Dim set_tag As XElement = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((physical_value - map_rx.offset) / map_rx.factor))
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "1")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.signal_type.Substring(0, 2).ToLower, "-", "1")
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "0")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.signal_type.Substring(0, 2).ToLower, "-", "0")
         dummy.Add(set_tag)
         Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", map_rx.signal_type & map_rx.Message & "(ID:" & map_rx.ID & ")::" & map_rx.Name & ": " & CStr(physical_value)), New XAttribute("ident", "-")}), dummy)
     End Function
 
-    Public Function create_testcase(map_rx As mapped_rx_signal, reference As List(Of rx_message), physical_value As Decimal, input_string As String) As XElement
+    Public Function create_testcase(map_rx As mapped_rx_signal, physical_value As Decimal, input_string As String) As XElement
         Dim dummy As List(Of XElement) = New List(Of XElement)
-        Dim rx_part As rx_message = reference.Find(Function(x) x.Name = map_rx.Message)
         Dim set_tag As XElement = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((physical_value - map_rx.offset) / map_rx.factor))
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "1")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.signal_type.Substring(0, 2).ToLower, "-", "1")
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "0")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.signal_type.Substring(0, 2).ToLower, "-", "0")
         dummy.Add(set_tag)
         dummy.AddRange(string_testcase(input_string, "EnvLogInLevel1", "", "enable"))
         Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", map_rx.signal_type & map_rx.Message & "(ID:" & map_rx.ID & ")::" & map_rx.Name & ": " & CStr(physical_value)), New XAttribute("ident", "-")}), dummy)
     End Function
-    Public Function create_testcase(map_rx As mapped_rx_signal, reference As List(Of rx_message), high_value As Decimal, low_value As Decimal, duration As Decimal, press_counter As Decimal) As XElement
+    Public Function create_testcase(map_rx As mapped_rx_signal, high_value As Decimal, low_value As Decimal, duration As Decimal, press_counter As Decimal) As XElement
         Dim dummy As List(Of XElement) = New List(Of XElement)
-        Dim rx_part As rx_message = reference.Find(Function(x) x.Name = map_rx.Message)
         Dim set_tag As XElement
         For count As Decimal = 1 To press_counter
             set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.Name & "_Rv", "-", CStr((high_value - map_rx.offset) / map_rx.factor))
@@ -125,10 +122,10 @@ Public Class xml_main
             dummy.Add(set_tag)
             dummy.Add(Wait_default)
         Next
-        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "1")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.signal_type.Substring(0, 2).ToLower, "-", "1")
         dummy.Add(set_tag)
         dummy.Add(Wait_default)
-        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_tx", "-", "0")
+        set_tag = create_set_tag("E_pubc_" & map_rx.transmitter & "_" & map_rx.Message & "_" & map_rx.signal_type.Substring(0, 2).ToLower, "-", "0")
         dummy.Add(set_tag)
         Return create_tag("testcase", New List(Of XAttribute)({New XAttribute("title", map_rx.signal_type & map_rx.Message & "(ID:" & map_rx.ID & ")::" & map_rx.Name & ": " & CStr(high_value) & " to " & CStr(low_value) & " in " & CStr(duration) & "ms"), New XAttribute("ident", "-")}), dummy)
     End Function

@@ -4,7 +4,6 @@ Imports System.Text
 Public Class file_handle
     Public mandatory As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
     Public special As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
-    Public reference As List(Of rx_message) = New List(Of rx_message)
     Public name_list As List(Of String) = New List(Of String)
     Private Class keyword
         Public keyword_name As String
@@ -239,7 +238,7 @@ Public Class file_handle
         For Each line As String In lines
             Dim components As String() = line.Replace(vbLf, "").Split(" ")
             If components(0) = "BU_:" Then
-                check_node = Array.Find(components, Function(s) s.Contains("MPC") Or s.Contains("FCM") Or s.Contains("FVCM"))
+                check_node = Array.Find(components, Function(s) s.Contains("MPC") Or s.Contains("FCM") Or s.Contains("FVCM") Or s.Contains("VIDEO"))
             ElseIf components.Length > 1 Then
                 If components(0) = "BO_" Then
                     If components.Last.Contains(check_node) Then
@@ -258,6 +257,7 @@ Public Class file_handle
                     kt.transmitter = current_transmiter
                     kt.receiver = components.Last.Replace(",", "|")
                     If htt Is Nothing Then
+                        Form1.total_signal.Add(kt)
                         special.Add(kt)
                     Else
                         If htt.keyword_physical_value = "" Then
@@ -265,6 +265,7 @@ Public Class file_handle
                         End If
                         kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
                         mandatory.Add(kt)
+                        Form1.total_signal.Add(kt)
                     End If
                 ElseIf components(0) = "" And components(1) = "SG_" And components.Last.Contains(check_node) Then
                     Dim htt As keyword = sketch.Find(Function(x) components(2).ToUpper.Contains(x.keyword_name) And components(7).Replace(ControlChars.Quote, "").ToUpper.Contains(x.keyword_unit))
@@ -277,12 +278,27 @@ Public Class file_handle
                     kt.receiver = components.Last.Replace(",", "|")
                     If htt Is Nothing Then
                         special.Add(kt)
+                        Form1.total_signal.Add(kt)
                     Else
                         If htt.keyword_physical_value = "" Then
                             htt.keyword_physical_value = "0"
                         End If
                         kt.raw_value = (CDec(htt.keyword_physical_value) - kt.offset) / kt.factor
                         mandatory.Add(kt)
+                        Form1.total_signal.Add(kt)
+                    End If
+                ElseIf components(0) = "VAL_" Then
+                    Dim exsist = mandatory.FindIndex(Function(x) x.Name = components(2))
+                    If exsist = -1 Then
+                        exsist = special.FindIndex(Function(y) y.Name = components(2))
+                        If exsist = -1 Then
+                            'signal not needed for main node
+                        Else
+
+                            special(exsist).set_string_value(line.Replace(vbLf, ""))
+                        End If
+                    Else
+                        mandatory(exsist).set_string_value(line.Replace(vbLf, ""))
                     End If
                 End If
             ElseIf line = vbLf Then
@@ -292,7 +308,7 @@ Public Class file_handle
         Next
     End Sub
     Dim signal_tab As New List(Of String)({"Name", "Message", "Message ID", "Start bit", "Length(bit)", "Byte order", "Factor", "Offset",
-                                                  "Minimum", "Maximum", "Unit", "Signal type", "Raw Value", "Enable String", "Transmitter", "Receiver", "Type"})
+                                                  "Minimum", "Maximum", "Unit", "Signal type", "Raw Value", "Enable String", "Transmitter", "Receiver", "Type", "Value define"})
 
     Public Function save_data() As String
         Dim total_string As String = ""
@@ -392,14 +408,18 @@ Public Class file_handle
                         Skip = False
                     Else
                         Dim elements As String() = current_line.Split(",")
-                        Form1.mandatory.Add(New mapped_rx_signal(elements, 2, 0))
+                        Dim sig = New mapped_rx_signal(elements, 2, 0)
+                        Form1.mandatory.Add(sig)
+                        Form1.total_signal.Add(sig)
                     End If
                 case selection_import.other_signal
                     If Skip = True Then
                         Skip = False
                     Else
                         Dim elements As String() = current_line.Split(",")
-                        Form1.special.Add(New mapped_rx_signal(elements, 2, 1))
+                        Dim sig = New mapped_rx_signal(elements, 2, 1)
+                        Form1.special.Add(sig)
+                        Form1.total_signal.Add(sig)
                     End If
                 Case selection_import.sp_signal
                     If Skip = True Then
@@ -486,9 +506,9 @@ Public Class file_handle
                     selection = selection_import.other_signal
                 ElseIf current_line.StartsWith("List of rx") Then
                     selection = selection_import.rx_reference
-                ElseIf current_line.StartsWith("List of sp_signal") Then
+                ElseIf current_line.StartsWith("List of included") Then
                     selection = selection_import.sp_signal
-                ElseIf current_line.StartsWith("List of speed") Then
+                ElseIf current_line.StartsWith("List of necessary") Then
                     selection = selection_import.speed_list
                 ElseIf current_line.StartsWith("List of supported") Then
                     selection = selection_import.sp_function
@@ -497,6 +517,8 @@ Public Class file_handle
             End If
         Next
         file_object.Close()
+        Form1.all_signal.DataSource = Form1.total_signal.Select(Function(x) x.Name).ToList
+        Form1.speed_signal.DataSource = Form1.necessary_sp.Select(Function(x) x.Name).ToList
         Form1.man_pre.DataSource = Form1.mandatory.Select(Function(x) x.Name).ToList
         Form1.sf_signal.DataSource = Form1.supported_function.Select(Function(x) x.Name).ToList
         Form1.signal_dtc.DataSource = Form1.special.Select(Function(x) x.Name).ToList

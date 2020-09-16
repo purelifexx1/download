@@ -25,3 +25,17 @@ C:\Users\Admin\Documents\GitHub\download\backup\another\obj\Debug\FT_testcase_to
 C:\Users\Admin\Documents\GitHub\download\backup\another\obj\Debug\another.exe
 C:\Users\Admin\Documents\GitHub\download\backup\another\obj\Debug\another.xml
 C:\Users\Admin\Documents\GitHub\download\backup\another\obj\Debug\another.pdb
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\bin\Debug\another.exe.config
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\bin\Debug\another.exe
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\bin\Debug\another.pdb
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\bin\Debug\another.xml
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\FT_testcase_tool.vbprojAssemblyReference.cache
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\FT_testcase_tool.vbproj.ResolveComReference.cache
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\another.Form1.resources
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\another.Form2.resources
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\another.Resources.resources
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\FT_testcase_tool.vbproj.GenerateResource.cache
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\FT_testcase_tool.vbproj.CoreCompileInputs.cache
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\another.exe
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\another.xml
+C:\Users\AAI81HC\Documents\GitHub\download\backup\another\obj\Debug\another.pdb

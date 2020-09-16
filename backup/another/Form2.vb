@@ -12,7 +12,6 @@ Public Class Form2
         InitializeComponent()
         Me.mandatory = Form1.mandatory
         Me.special = Form1.special
-        Me.reference = Form1.reference
         Me.name_list = Form1.name_list
         Dim list_function As List(Of mapped_rx_signal) = Form1.special.FindAll(Function(x) x.Name.ToUpper.Contains("LDW") Or x.Name.ToUpper.Contains("LKS") Or x.Name.ToUpper.Contains("TJA") Or x.Name.ToUpper.Contains("RDP") _
                                                                                         Or x.Name.ToUpper.Contains("ELK") Or x.Name.ToUpper.Contains("HMA") Or x.Name.ToUpper.Contains("SLA"))
