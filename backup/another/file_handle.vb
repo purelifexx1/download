@@ -370,11 +370,11 @@ Public Class file_handle
 
         Return total_string
     End Function
-    Public Sub import_file()
+    Public Sub import_file(directory As String)
         Dim file_object
         For attemp As Decimal = 1 To 4
             Try
-                file_object = New System.IO.StreamReader("Database.csv", Encoding.GetEncoding("iso-8859-1"))
+                file_object = New System.IO.StreamReader(directory, Encoding.GetEncoding("iso-8859-1"))
                 Exit For
             Catch ex As Exception
                 MessageBox.Show("Close datebase before importing data")
@@ -397,13 +397,13 @@ Public Class file_handle
             End If
 
             Select Case (selection)
-                case selection_import.project_title
-                    Dim elements as String() = current_line.Split(",")
+                Case selection_import.project_title
+                    Dim elements As String() = current_line.Split(",")
                     Form1.project.Text = elements(0)
                     Form1.Vari.Text = elements(1)
                     Form1.release.Text = elements(2)
                     Form1.ver.Text = elements(3)
-                case selection_import.precondition
+                Case selection_import.precondition
                     If Skip = True Then
                         Skip = False
                     Else
@@ -412,7 +412,7 @@ Public Class file_handle
                         Form1.mandatory.Add(sig)
                         Form1.total_signal.Add(sig)
                     End If
-                case selection_import.other_signal
+                Case selection_import.other_signal
                     If Skip = True Then
                         Skip = False
                     Else
@@ -429,71 +429,68 @@ Public Class file_handle
                         Form1.necessary_sp.Add(New mapped_rx_signal(elements, 2, 1))
                     End If
                 Case selection_import.speed_list
-                    If Skip = True Then
-                        Skip = False
-                    Else
-                        Dim elements As String() = current_line.Split(",")
-                        If current <> 0 Then
-                            add_speed()
-                        End If
-                        Form1.speed_group.Controls.Item(Form1.group_indices(current)).Text = elements(1)
-                        current = current + 1
+                    Dim elements As String() = current_line.Split(",")
+                    If current <> 0 Then
+
                     End If
-                case selection_import.sp_function
+                    add_speed()
+                    Form1.speed_group.Controls.Item(Form1.group_indices(current)).Text = elements(1)
+                    current = current + 1
+                Case selection_import.sp_function
                     If Skip = True Then
                         Skip = False
                     Else
                         Dim elements As String() = current_line.Split(",")
                         Dim new_function As mapped_rx_signal
                         Select Case CDec(elements(2))
-                                Case 1
-                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
-                                    new_function.scenario = 1
-                                    new_function.up_level = elements(3)
-                                    new_function.down_level = elements(4)
-                                    new_function.function_type = elements(0)
-                                    Form1.supported_function.Add(new_function)
-                                Case 2
-                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
-                                    new_function.scenario = 2
-                                    new_function.up_level = elements(5)
-                                    new_function.down_level = elements(6)
-                                    new_function.enable_duration = elements(8)
-                                    new_function.disable_duration = elements(9)
-                                    new_function.press_counter = elements(7)
-                                    new_function.function_type = elements(0)
-                                    Form1.supported_function.Add(new_function)
-                                Case 3
-                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
-                                    new_function.scenario = 3
-                                    new_function.enable_string = elements(10)
-                                    new_function.disable_string = elements(11)
-                                    new_function.security = elements(12)
-                                    new_function.function_type = elements(0)
-                                    Form1.supported_function.Add(new_function)
-                                Case 4
-                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
-                                    new_function.scenario = 4
-                                    new_function.enable_string = elements(10)
-                                    new_function.disable_string = elements(11)
-                                    new_function.security = elements(12)
-                                    new_function.up_level = elements(3)
-                                    new_function.down_level = elements(4)
-                                    new_function.function_type = elements(0)
-                                    Form1.supported_function.Add(new_function)
-                                Case 5
-                                    new_function = Form1.special.Find(Function(x) x.Name = elements(1))
-                                    new_function.scenario = 5
-                                    new_function.enable_string = elements(10)
-                                    new_function.disable_string = elements(11)
-                                    new_function.security = elements(12)
-                                    new_function.up_level = elements(5)
-                                    new_function.down_level = elements(6)
-                                    new_function.press_counter = elements(7)
-                                    new_function.enable_duration = elements(8)
-                                    new_function.disable_duration = elements(9)
-                                    new_function.function_type = elements(0)
-                                    Form1.supported_function.Add(new_function)
+                            Case 1
+                                new_function = Form1.special.Find(Function(x) x.Name = elements(1))
+                                new_function.scenario = 1
+                                new_function.up_level = elements(3)
+                                new_function.down_level = elements(4)
+                                new_function.function_type = elements(0)
+                                Form1.supported_function.Add(new_function)
+                            Case 2
+                                new_function = Form1.special.Find(Function(x) x.Name = elements(1))
+                                new_function.scenario = 2
+                                new_function.up_level = elements(5)
+                                new_function.down_level = elements(6)
+                                new_function.enable_duration = elements(8)
+                                new_function.disable_duration = elements(9)
+                                new_function.press_counter = elements(7)
+                                new_function.function_type = elements(0)
+                                Form1.supported_function.Add(new_function)
+                            Case 3
+                                new_function = Form1.special.Find(Function(x) x.Name = elements(1))
+                                new_function.scenario = 3
+                                new_function.enable_string = elements(10)
+                                new_function.disable_string = elements(11)
+                                new_function.security = elements(12)
+                                new_function.function_type = elements(0)
+                                Form1.supported_function.Add(new_function)
+                            Case 4
+                                new_function = Form1.special.Find(Function(x) x.Name = elements(1))
+                                new_function.scenario = 4
+                                new_function.enable_string = elements(10)
+                                new_function.disable_string = elements(11)
+                                new_function.security = elements(12)
+                                new_function.up_level = elements(3)
+                                new_function.down_level = elements(4)
+                                new_function.function_type = elements(0)
+                                Form1.supported_function.Add(new_function)
+                            Case 5
+                                new_function = Form1.special.Find(Function(x) x.Name = elements(1))
+                                new_function.scenario = 5
+                                new_function.enable_string = elements(10)
+                                new_function.disable_string = elements(11)
+                                new_function.security = elements(12)
+                                new_function.up_level = elements(5)
+                                new_function.down_level = elements(6)
+                                new_function.press_counter = elements(7)
+                                new_function.enable_duration = elements(8)
+                                new_function.disable_duration = elements(9)
+                                new_function.function_type = elements(0)
+                                Form1.supported_function.Add(new_function)
                         End Select
                     End If
             End Select

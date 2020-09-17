@@ -11,9 +11,9 @@ Public Class Form1
     Public name_list As List(Of String) = New List(Of String)
     Public supported_function As List(Of mapped_rx_signal) = New List(Of mapped_rx_signal)
     Public selection As Decimal = 0
-    Public speed_th As Decimal = 1
-    Public current_pos As Decimal = 48
-    Public group_indices As List(Of Int16) = New List(Of Int16)({4})
+    Public speed_th As Decimal = 0
+    Public current_pos As Decimal = 22
+    Public group_indices As List(Of Int16) = New List(Of Int16)({})
     Public listof_speed As List(Of Decimal) = New List(Of Decimal)
     Dim convert_pressed As Boolean = False
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -40,7 +40,7 @@ Public Class Form1
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         convert_pressed = False
-        If speed_th <> 1 Then
+        If speed_th <> 0 Then
             speed_th = speed_th - 1
             current_pos = current_pos - 26
             Dim numm As Decimal = Me.speed_group.Controls.Count
@@ -71,10 +71,14 @@ Public Class Form1
             private_can.Text = OpenFileDialog1.FileName
         ElseIf selection = 0 Then
             public_can.Text = OpenFileDialog1.FileName
+        ElseIf selection = 2 Then
+            Dim import_file As New file_handle()
+            import_file.import_file(OpenFileDialog1.FileName)
         End If
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click, Button5.Click
+        OpenFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
         If sender.Name = "Button4" Then
             selection = 1
             OpenFileDialog1.ShowDialog()
@@ -179,18 +183,44 @@ Public Class Form1
         convert_pressed = False
     End Sub
 
-    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click, Button3.Click, Button7.Click
-        console.Text = String.Empty
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click, Button3.Click, Button7.Click, Button10.Click
+
         If sender.Name = "Button3" Then
+            console.Text = String.Empty
             renew()
+        ElseIf sender.Name = "Button12" Then
+            console.Text = String.Empty
         ElseIf sender.Name = "Button7" Then
-            If System.IO.File.Exists("Database.csv") Then
-                renew()
-                Dim import_file As New file_handle()
-                import_file.import_file()
+            If project.Text <> "" And Vari.Text <> "" Then
+                If System.IO.File.Exists(project.Text.ToUpper & "\" & "db_" & project.Text.ToUpper & "_" & Vari.Text.ToUpper & ".csv") Then
+                    renew()
+                    Dim import_file As New file_handle()
+                    import_file.import_file(project.Text.ToUpper & "\" & "db_" & project.Text.ToUpper & "_" & Vari.Text.ToUpper & ".csv")
+                Else
+                    Dim result As DialogResult = MessageBox.Show("The current project and variant is not available, do you want to load another project and variant ?", "project and variant empty", MessageBoxButtons.YesNo)
+                    If result = DialogResult.Yes Then
+                        renew()
+                        selection = 2
+                        OpenFileDialog1.InitialDirectory = Environment.CurrentDirectory
+                        OpenFileDialog1.ShowDialog()
+                    End If
+                End If
             Else
-                MessageBox.Show("Previous data empty")
+                MessageBox.Show("project name or variant is missing")
             End If
+        ElseIf sender.Name = "Button10" Then
+            listof_speed = New List(Of Decimal)
+            For Each run As Int16 In group_indices
+                Try
+                    listof_speed.Add(CDec(Me.speed_group.Controls.Item(run).Text))
+                Catch ex As Exception
+                    console.Text += "- " & "some necessary speed empty or invalid, save data fail" & vbCrLf
+                    Return
+                End Try
+            Next
+            convert_pressed = True
+            save_data()
+            console.Text += "- " & "save data configuration successfully" & vbCrLf
         End If
     End Sub
 
@@ -210,10 +240,10 @@ Public Class Form1
             fs.Close()
         End If
 
-        If System.IO.File.Exists("Database.csv") Then
-            Dim import_file As New file_handle()
-            import_file.import_file()
-        End If
+        'If System.IO.File.Exists("Database.csv") Then
+        '    Dim import_file As New file_handle()
+        '    import_file.import_file()
+        'End If
     End Sub
     Private Sub renew()
         mandatory = New List(Of mapped_rx_signal)
@@ -245,11 +275,17 @@ Public Class Form1
         sf_signal.Text = String.Empty
     End Sub
     Private Sub save_data()
-        If System.IO.File.Exists("Database.csv") And convert_pressed = True Then
+        If Directory.Exists(project.Text.ToUpper & "\") = True Then
+
+        Else
+            Directory.CreateDirectory(project.Text.ToUpper & "\")
+        End If
+
+        If System.IO.File.Exists(project.Text.ToUpper & "\" & "db_" & project.Text.ToUpper & "_" & Vari.Text.ToUpper & ".csv") And convert_pressed = True Then
             Dim obj
             For attemp As Decimal = 1 To 4
                 Try
-                    obj = New System.IO.StreamWriter("Database.csv", False, Encoding.GetEncoding("iso-8859-1"))
+                    obj = New System.IO.StreamWriter(project.Text.ToUpper & "\" & "db_" & project.Text.ToUpper & "_" & Vari.Text.ToUpper & ".csv", False, Encoding.GetEncoding("iso-8859-1"))
                     Exit For
                 Catch ex As Exception
                     MessageBox.Show("Close database.csv to save data")
@@ -263,8 +299,8 @@ Public Class Form1
             obj.Write(file_save.save_data)
             obj.Close()
             convert_pressed = False
-        ElseIf (Not System.IO.File.Exists("Database.csv")) And convert_pressed = True Then
-            Dim fs As FileStream = File.Create("Database.csv")
+        ElseIf (Not System.IO.File.Exists(project.Text.ToUpper & "\" & "db_" & project.Text.ToUpper & "_" & Vari.Text.ToUpper & ".csv")) And convert_pressed = True Then
+            Dim fs As FileStream = File.Create(project.Text.ToUpper & "\" & "db_" & project.Text.ToUpper & "_" & Vari.Text.ToUpper & ".csv")
             Dim file_save As New file_handle()
             Dim data As Byte() = Encoding.GetEncoding("iso-8859-1").GetBytes(file_save.save_data())
             fs.Write(data, 0, data.Length)
@@ -330,7 +366,7 @@ Public Class Form1
     End Function
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Dim teee = Directory.Exists("folder\")
+        Dim teee = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
@@ -343,7 +379,7 @@ Public Class Form1
         speed_signal.DataSource = necessary_sp.Select(Function(x) x.Name).ToList
     End Sub
 
-    Private Sub Button10_Click(sender As Object, e As EventArgs)
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
 
     End Sub
 End Class

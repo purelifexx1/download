@@ -62,8 +62,6 @@ Partial Class Form1
         Me.Button9 = New System.Windows.Forms.Button()
         Me.speed_signal = New System.Windows.Forms.ComboBox()
         Me.all_signal = New System.Windows.Forms.ComboBox()
-        Me.speed1_label = New System.Windows.Forms.Label()
-        Me.speed_1th = New System.Windows.Forms.TextBox()
         Me.Button17 = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
@@ -73,10 +71,12 @@ Partial Class Form1
         Me.Label11 = New System.Windows.Forms.Label()
         Me.console = New System.Windows.Forms.TextBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button11 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -416,8 +416,6 @@ Partial Class Form1
         Me.speed_group.Controls.Add(Me.Button9)
         Me.speed_group.Controls.Add(Me.speed_signal)
         Me.speed_group.Controls.Add(Me.all_signal)
-        Me.speed_group.Controls.Add(Me.speed1_label)
-        Me.speed_group.Controls.Add(Me.speed_1th)
         Me.speed_group.Controls.Add(Me.Button1)
         Me.speed_group.Controls.Add(Me.Button6)
         Me.speed_group.Location = New System.Drawing.Point(612, 19)
@@ -451,23 +449,6 @@ Partial Class Form1
         Me.all_signal.Name = "all_signal"
         Me.all_signal.Size = New System.Drawing.Size(121, 21)
         Me.all_signal.TabIndex = 11
-        '
-        'speed1_label
-        '
-        Me.speed1_label.AutoSize = True
-        Me.speed1_label.Location = New System.Drawing.Point(21, 48)
-        Me.speed1_label.Name = "speed1_label"
-        Me.speed1_label.Size = New System.Drawing.Size(45, 13)
-        Me.speed1_label.TabIndex = 10
-        Me.speed1_label.Text = "speed 1"
-        '
-        'speed_1th
-        '
-        Me.speed_1th.Location = New System.Drawing.Point(87, 48)
-        Me.speed_1th.Name = "speed_1th"
-        Me.speed_1th.Size = New System.Drawing.Size(75, 20)
-        Me.speed_1th.TabIndex = 1
-        Me.speed_1th.Text = "1"
         '
         'Button17
         '
@@ -556,6 +537,7 @@ Partial Class Form1
         'GroupBox5
         '
         Me.GroupBox5.BackColor = System.Drawing.Color.LightGray
+        Me.GroupBox5.Controls.Add(Me.Button10)
         Me.GroupBox5.Controls.Add(Me.Button8)
         Me.GroupBox5.Controls.Add(Me.Button7)
         Me.GroupBox5.Controls.Add(Me.Button3)
@@ -567,6 +549,24 @@ Partial Class Form1
         Me.GroupBox5.TabIndex = 33
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Terminal"
+        '
+        'Button10
+        '
+        Me.Button10.Location = New System.Drawing.Point(326, 190)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(107, 23)
+        Me.Button10.TabIndex = 37
+        Me.Button10.Text = "Save configuration"
+        Me.Button10.UseVisualStyleBackColor = True
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(40, 190)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(113, 23)
+        Me.Button8.TabIndex = 34
+        Me.Button8.Text = "Test button(ignore)"
+        Me.Button8.UseVisualStyleBackColor = True
         '
         'Button7
         '
@@ -595,20 +595,21 @@ Partial Class Form1
         Me.Button12.Text = "Clear terminal"
         Me.Button12.UseVisualStyleBackColor = True
         '
-        'Button8
+        'Button11
         '
-        Me.Button8.Location = New System.Drawing.Point(40, 190)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(113, 23)
-        Me.Button8.TabIndex = 34
-        Me.Button8.Text = "Test button(ignore)"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.Button11.Location = New System.Drawing.Point(849, 372)
+        Me.Button11.Name = "Button11"
+        Me.Button11.Size = New System.Drawing.Size(75, 23)
+        Me.Button11.TabIndex = 34
+        Me.Button11.Text = "Button11"
+        Me.Button11.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(964, 515)
+        Me.Controls.Add(Me.Button11)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.sf_signal)
@@ -628,7 +629,6 @@ Partial Class Form1
         Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.speed_group.ResumeLayout(False)
-        Me.speed_group.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox6.ResumeLayout(False)
@@ -675,8 +675,6 @@ Partial Class Form1
     Friend WithEvents LKS As Button
     Friend WithEvents LWD As Button
     Friend WithEvents speed_group As GroupBox
-    Friend WithEvents speed_1th As TextBox
-    Friend WithEvents speed1_label As Label
     Friend WithEvents Button17 As Button
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents Label9 As Label
@@ -695,4 +693,6 @@ Partial Class Form1
     Friend WithEvents Button9 As Button
     Friend WithEvents speed_signal As ComboBox
     Friend WithEvents all_signal As ComboBox
+    Friend WithEvents Button10 As Button
+    Friend WithEvents Button11 As Button
 End Class
