@@ -100,7 +100,8 @@ void modbus::request_handler1(byte* input, int length)
 void modbus::multiple_request_handler(byte* input, int length)
 {
 	byte temp_pointer = 1;
-	for(temper_length1 = 0; temper_length1 < length/8; temper_length1++) {
+	total_request = length/8;
+	for(temper_length1 = total_request - 1; temper_length1 <= 0; temper_length1--) {
 		switch(input[temp_pointer]) {
 			case 1:
 				request_length[temper_length1] = ((input[4] << 8) ^ input[5])/8 + 6;
@@ -111,11 +112,13 @@ void modbus::multiple_request_handler(byte* input, int length)
 			break;
  
 		}
+		total_length += request_length[temper_length1];
 		temp_pointer += 8;
 	}
 	temper_request = &input[8];
 	request_type = true;
-	uart_dma(this->uart, data_buffer, request_length[0]);
+	temper_length1 = total_request - 1;
+	uart_dma(this->uart, data_buffer, request_length[temper_length1]);
 	uart_send(this->uart, input, 8);
 	temper_length1--;
 }
@@ -130,4 +133,5 @@ void modbus::get_data(byte* temp1, int* temp2)
 	temp1 = data_buffer;
 	temp2 = &temper_length;
 }
+modbus modbus1;
 

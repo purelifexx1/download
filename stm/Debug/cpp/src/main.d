@@ -22,6 +22,8 @@ cpp/src/main.o: ../cpp/src/main.cpp ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/modbus.h \
+ C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/mySerial.h \
+ C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/modbus.h \
  C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/mySerial.h
 
 ../Core/Inc/main.h:
@@ -69,6 +71,10 @@ cpp/src/main.o: ../cpp/src/main.cpp ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
+
+C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/modbus.h:
+
+C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/mySerial.h:
 
 C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/modbus.h:
 

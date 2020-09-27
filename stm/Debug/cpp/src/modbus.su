@@ -5,5 +5,7 @@ modbus.cpp:29:6:void modbus::looping()	16	static
 modbus.cpp:60:6:void modbus::request_handler(uint8_t*, int)	24	static
 modbus.cpp:75:6:void modbus::request_handler1(uint8_t*, int)	32	static
 modbus.cpp:100:6:void modbus::multiple_request_handler(uint8_t*, int)	32	static
-modbus.cpp:123:6:void modbus::buffer_overflow()	16	static
-modbus.cpp:128:6:void modbus::get_data(uint8_t*, int*)	24	static
+modbus.cpp:126:6:void modbus::buffer_overflow()	16	static
+modbus.cpp:131:6:void modbus::get_data(uint8_t*, int*)	24	static
+modbus.cpp:136:15:void __static_initialization_and_destruction_0(int, int)	16	static
+modbus.cpp:136:15:cpp)	8	static

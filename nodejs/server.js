@@ -37,11 +37,12 @@ var connection_status_interval = 0;
 setInterval(function(){
 	if(server_update == true) {
 		sec_value++;
-		if(sec_value > 3600) {
+		if(sec_value < 3600) {
 			//send data to firebase
 			data_handler.update_server(main_branch);
 			sec_value = 0;
 		}
+		server_update = false;
 	}
 }, 1000);
 var buf = Buffer.from([48, 0, 0]);
@@ -61,12 +62,11 @@ function timer(){
 }
 var realtime_buf = data_handler.realtime_buf;
 var statistic_buf = data_handler.statistic_buf;
-var real_time = data_handler.real_time;
 
 io.on('connection', function(socket){
 	console.log("co nguoi connect");
 	user_number++;
-	//io.sockets.emit("server_update_enable", server_update);
+	io.sockets.emit("server_update_enable", server_update);
 	socket.on("change_update_enable", function(data){
 		server_update = !server_update;
 		io.sockets.emit("server_update_enable", server_update);
@@ -130,7 +130,7 @@ io.on('connection', function(socket){
 mqtt_branch.once('value', function(snap){
 	client = mqtt.connect("mqtt://node02.myqtthub.com", snap.val());
 	client.on('connect', function(){
-		mqtt_status = true;
+		//mqtt_status = true;
 		console.log("mqtt broker connected");
 		client.subscribe('realtime_data');
 		client.subscribe('statistic_data');
@@ -202,5 +202,5 @@ function timeout_function(storage_packet){
 }
 
 app.get("/", function(req, res){
-	res.render("index");
+	res.render("index1");
 })

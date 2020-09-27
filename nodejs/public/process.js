@@ -61,8 +61,10 @@ socket.on("error", function(data){
 socket.on("server_update_enable", function(data){
 	if(data == true) {
 		//update button green or checkbox's ticked
+		document.getElementById("first_check").checked = false;
 	}else{
 		//update button red or checkbox's unticked
+		document.getElementById("first_check").checked = false;
 	}
 })
 
@@ -77,8 +79,17 @@ $(document).ready(function(){
 		if(button_status[5] == "1") socket.emit("onoff_load", "0");
 		else socket.emit("onoff_load", "1");
 	})
-	$("#output_control").click(function(){
-		socket.emit("output_control");
+	$("#bt-2").click(function(){
+		socket.emit("statistic_request");
+		// socket.emit("output_control");
+		console.log("ok nha");
+	})
+	$("#first_check").click(function(){
+		if(this.checked) {
+			socket.emit("change_update_enable");
+		}else{
+			console.log("uncheck");
+		}
 	})
 	$("#manual_control").click(function(){
 		socket.emit("manual_control");

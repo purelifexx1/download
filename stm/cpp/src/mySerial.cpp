@@ -128,6 +128,38 @@ void mySerial::send_modbus_packet(uint16_t header, uint16_t footer, byte* data, 
 	}	
 	delete[] temper_packet;
 }
+void mySerial::send_multiple_modbus_packet(uint16_t header, uint16_t footer, byte* data, int length)
+{
+	byte* temper_packet;
+	byte temper_length;
+	byte step = 2;
+	for(byte count = 1; count <= modbus1.total_request; count++) {
+		temper_length += data[step];
+		length_pos[count-1] = data[step];
+		data_pos[count-1] = step + 1;
+		step += data[step] + 5;
+	}
+	temper_packet = new byte[temper_length + 6];
+	temper_packet[0] = (byte)(header >> 8 & 0xff);
+	temper_packet[1] = (byte)(header & 0xff);
+	temper_packet[2] = temper_length + 1;
+	temper_packet[3] = packet_id;
+	byte start_byte = 4;
+	for(byte count1 = 1; count1 <= modbus1.total_request; count1++){
+		memcpy(&temper_packet[start_byte], &data[data_pos[count1-1]], length_pos[count1-1]);
+		start_byte += length_pos[count1-1];
+	}
+	temper_packet[temper_length+4] = (byte)(footer >> 8 & 0xff);
+	temper_packet[temper_length+5] = (byte)(footer & 0xff);
+	if(receive_status == On_received) {
+		memcpy(backup_buffer, temper_packet, temper_length + 6);
+		backup_length = temper_length + 6;
+	}else{
+		transmit_complete_flag = On_transmit;
+		uart_send(this->uart, temper_packet, temper_length + 6);
+	}
+	delete[] temper_packet;
+}
 
 void mySerial::buffer_overflow()
 {
@@ -136,4 +168,5 @@ void mySerial::buffer_overflow()
 byte length_error_integral;
 byte head_foot_error_integral;
 
+mySerial Serial;
 

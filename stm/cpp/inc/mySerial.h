@@ -9,6 +9,7 @@
 #define INC_MYSERIAL_H_
 #include "main.h"
 #include "string.h"
+#include "modbus.h"
 #define byte uint8_t
 #define uart_dma HAL_UART_Receive_DMA
 #define uart_send HAL_UART_Transmit_DMA
@@ -29,6 +30,8 @@ private:
 	byte receive_length;
 	byte header[2];
 	byte footer[2];
+	byte data_pos[4];
+	byte length_pos[4];
 	byte data_buffer[300];
 	UART_HandleTypeDef* uart;
 public:
@@ -39,6 +42,7 @@ public:
 	void looping2();
 	void send_packet(uint16_t header, uint16_t footer, byte* data, int length);
 	void send_modbus_packet(uint16_t header, uint16_t footer, byte* data, int length);
+	void send_multiple_modbus_packet(uint16_t header, uint16_t footer, byte* data, int length);
 	void buffer_overflow(); // put this function in coresponding complete callback uart
 
 };
@@ -47,5 +51,6 @@ extern bool receive_complete_flag;
 extern bool receive_status;
 extern byte length_error_integral;
 extern byte head_foot_error_integral;
+extern mySerial Serial;
 
 #endif /* INC_MYSERIAL_H_ */

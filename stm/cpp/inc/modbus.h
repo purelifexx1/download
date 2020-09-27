@@ -4,6 +4,7 @@
 #define INC_MODBUS_H_
 #include "main.h"
 #include "string.h"
+#include "mySerial.h"
 #define byte uint8_t
 #define uart_dma HAL_UART_Receive_DMA
 #define uart_send HAL_UART_Transmit_DMA
@@ -23,7 +24,6 @@ class modbus
 		byte sync_number = 3;
 		byte header[2];
 		byte footer[2];
-
 		UART_HandleTypeDef* uart;
 	public:
 		byte* temper_request;
@@ -32,6 +32,8 @@ class modbus
 		byte request_length[4];
 		int temper_length;
 		int temper_length1;
+		int total_length;
+		byte total_request;
 		modbus();
 		void begin(UART_HandleTypeDef* uart, receive_modbus);
 		void CRC_16(byte* input, byte length, byte* output);
@@ -43,4 +45,5 @@ class modbus
 		void buffer_overflow();
 };
 
+extern modbus modbus1;
 #endif

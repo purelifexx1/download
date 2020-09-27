@@ -1,0 +1,31 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-content .heading {
+    margin-bottom: 0.5em;
+}
+.tab-content .row {
+    margin-bottom: 2em;
+}
+
+.tab-content .row .col div {
+    display: flex;
+    flex-direction: row;
+}
+
+.tab-content .row .col div textarea {
+    text-align: center; 
+    resize: none;
+    width: 100%;
+}
+
+.tab-content #statistics .row .col .separator {
+    vertical-align: top;
+}
+
+.tab-content .row .unit {
+    margin-left: 0.25em;
+    vertical-align: top;
+}
