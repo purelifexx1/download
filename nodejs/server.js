@@ -60,6 +60,7 @@ function timer(){
 		packet_number++;
 	}
 }
+
 var realtime_buf = data_handler.realtime_buf;
 var statistic_buf = data_handler.statistic_buf;
 

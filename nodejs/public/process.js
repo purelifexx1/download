@@ -1,12 +1,35 @@
 //var socket = io("localhost:3069");
 var socket = io("http://localhost:3000");
 var button_status;
+var button_namespace = {
+	onoff_charging: false,
+	output_control: false,
+	manual_control: false,
+	default_control: false,
+	load_testmode: false,
+	onoff_load: false
+}
 socket.on("realtime_data", function(data){
 	Object.entries(data).forEach(function(element){
 		document.getElementById(element[0]).style.background = '#4aff36';
 		$("#" + element[0]).val(element[1]);
 	});
 	setTimeout(set_color_off, 2000, data);
+	
+	// Object.entries(data).forEach(function(element){
+	// 	if(element[0] == "button_status"){
+	// 		var count_shift = 0;
+	// 		for(var i = 0; i< 6; i++){
+	// 			if (((element[1] >> count_shift++) & 1) == 1)
+	// 				document.getElementById(Object.keys(button_namespace)[i]).style.background = '#22ed0c';
+	// 			else
+	// 				document.getElementById(Object.keys(button_namespace)[i]).style.background = '#f51707';
+	// 		}
+	// 	}else{
+	// 		document.getElementById(element[0]).style.background = '#4aff36';
+	// 		$("#" + element[0]).val(element[1]);
+	// 	}
+	// })
 })
 socket.on("statistic_data", function(data){
 	Object.entries(data).forEach(function(element){
