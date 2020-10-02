@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Author: Nguyen Thanh Cong (RBVH/EDA23) || cong.nguyenthanh2@bosch.com-->
+<html>
+
+
+<!--|--------------------------------|   
+    |                                |
+    |           HEAD PART            |
+    |                                | 
+    |--------------------------------|-->
+<head>
+    <% include ../partials/partials-header.ejs  %>
+    <% include ../partials/partials-source.ejs  %>     
+</head>
+
+
+<!--|--------------------------------|   
+    |                                |
+    |           BODY PART            |
+    |                                | 
+    |--------------------------------|-->
+<body class="hold-transition skin-blue sidebar-mini" >
+    <div class="wrapper">
+
+        <!--|--------------------------------|   
+            |         MAIN HEADER            |
+            |--------------------------------|-->
+            
+        <header class="main-header">
+            <% include ../partials/partials-body-header.ejs  %> 
+
+        </header>
+
+        <!--|--------------------------------|   
+            |         MAIN SIDEBAR           |
+            |--------------------------------|-->
+        <aside class="main-sidebar">
+            <% include ../partials/partials-menu-bar.ejs  %> 
+
+        </aside> 
+
+        
+        <!--|--------------------------------|   
+            |          CONTENT PART          |
+            |--------------------------------|-->
+        <div class="content-wrapper">
+            
+            <!-- Content Header (Page header) -->
+            <section class="content-header" style="padding:0px 0px 0px 0px !important">
+                <img src="/image/bosch-graphicHome1.png" class="imageAsHomeBackground" alt="Bosch Graphic" >
+                <img src="/image/bosch-graphicHome2.png" class="imageAsHomeBackground" alt="Bosch Timeline" >
+                <img src="/image/bosch-graphicHome4.jpg" class="imageAsHomeBackground" alt="Bosch Graphic" >
+                <img src="/image/bosch-graphicHome3.jpg" class="imageAsHomeBackground" alt="Bosch Graphic" >
+
+            </section>
+            
+        </div>
+
+        <!--|--------------------------------|   
+            |          FOOTER PART           |
+            |--------------------------------|-->
+        
+        <% include ../partials/partials-footer.ejs  %>
+        
+    </div>
+
+    
+</body>
+
+</html>

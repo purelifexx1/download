@@ -1,0 +1,64 @@
+.licenseZone{
+    width: 100%;
+    height: fit-content;
+    background: white;
+    text-align: left;
+    padding:15px 15px 15px 15px;
+}
+
+.licenseIconStyle{
+    font-size: 40px;
+    margin-top:10px;
+    color:black;
+}   
+.licenseIconList{
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background: whitesmoke;
+    border-style: dashed;
+    border-width: 0.5px;
+    border-color: black;
+    width: 135px;
+    height: 135px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+.licenseIconList:hover {
+    background: wheat;
+    border-style: solid;
+    border-width: 1px;
+}
+
+table{
+    border:1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+}  
+
+tr{
+    border:0.5px solid black;
+    border-collapse: collapse;
+    
+}
+
+th{
+    border-collapse: collapse;
+    padding:10px;
+    background:lightgray;
+}
+
+td{
+    border-collapse: collapse;
+    padding:10px;
+    background:whitesmoke;
+    cursor: pointer;
+    /* width: 579.867px; */
+    width:33.33%;
+}
+
+
+td:hover{
+    background: wheat;
+}

@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<!-- Author: Nguyen Thanh Cong (RBVH/EDA23) || cong.nguyenthanh2@bosch.com-->
+<html>
+
+
+<!--|--------------------------------|   
+    |                                |
+    |           HEAD PART            |
+    |                                | 
+    |--------------------------------|-->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Team Management</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/image/titleIcon.png" >
+
+    <!-- Declare Style css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.button.css">
+    <link rel="stylesheet" href="/css/style.toolBar.css">
+    <link rel="stylesheet" href="/css/style.license.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <!-- <link rel="stylesheet" href="/css/font-awesome.min.css"> -->
+    <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" 
+                            integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" 
+                            crossorigin="anonymous">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+    <link rel="stylesheet" href="/css/skins/skin-blue.min.css">
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <script src="/js/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="js/adminlte.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+    <script src="//cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-route.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.0/angular-locale_es.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+
+<!--|--------------------------------|   
+    |                                |
+    |           BODY PART            |
+    |                                | 
+    |--------------------------------|-->
+<body class="hold-transition skin-blue sidebar-mini" >
+    <div>
+        <!--|--------------------------------|
+            |         MAIN HEADER            |
+            |--------------------------------|-->
+        <header class="main-header">
+            
+            <!-- Header Navbar -->
+            <img src="/image/bosch-graphic.jpg" class = "boschGraphic" alt="Bosch Graphic">
+            <nav class="navbar navbar-static-top"role="navigation" style="background-color:midnightblue; margin-left: auto;">
+                <!-- Sidebar toggle button-->
+                
+                <a href="https://www.bosch.com.vn/" target="_blank" > 
+                    <img src="/image/bosch-logo.png" class = "boschLogo" alt="Bosch logo"  >
+                </a>
+                
+                
+            
+                <!--|--------------------------------|   
+                    |         USER FORM              |
+                    |--------------------------------|-->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <button href="#" class="dropdown-toggle account" data-toggle="dropdown"  style="color: whitesmoke;">
+                        <img src="/image/avatar.png" class="avatar" alt="User Image" >
+                        <span class="hidden-xs">Member</span>
+                    </button>
+                    
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/signin" class="useraccount" type ="button">
+                                <span class = "useraccount">Sign In</span>
+                            </a>
+                        </li>
+                        <hr style="margin-top:10px !important; margin-bottom: 10px !important;color:green !important">
+                        <li>
+                            <a href="/signup" class="useraccount" type ="button">
+                                <span class = "useraccount">Sign Up</span>
+                            </a>
+                        </li>
+            
+                    </ul>
+                    
+                    
+                </li>
+            </nav>
+
+        </header>
+
+        
+        <!--|--------------------------------|   
+            |          CONTENT PART          |
+            |--------------------------------|-->
+        <div class="content-wrapper imageAsSignUpSuccessBackground" style="margin-left:auto;">
+            <section class="content container-fluid ">
+                
+                <form class="modal-content container-fluid " style="width: max-content;">
+                    <div class="titleContainer signUpSuccessful">
+                        <b>Success</b>
+                    </div>
+                    <div class="container">
+                        <img src="/image/success1.gif" alt="Sign up successful" style="width: 300px;" >
+                    </div>
+                </form>  
+            </section>
+
+        </div>
+
+        <!--|--------------------------------|   
+            |          FOOTER PART           |
+            |--------------------------------|-->
+        
+        <footer class="main-footer" style ="margin-left:auto">
+            <!-- Default to the left -->
+            <strong> Robert Bosch Engineering and Business Solutions Vietnam  <a href="https://www.bosch.com.vn/" target="_blank" style = "color: blue;"> www.bosch.com.vn</a></strong>
+            <strong class = "versionPositionFooter">Version1.0</strong>
+        </footer>
+    </div>
+
+    
+</body>
+
+</html>
