@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {approutingmodules} from './app-rounting'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,9 +9,6 @@ import { SliderComponent } from './Components/Blocks/Slider/slider.component';
 import { UserComponent } from './Components/Blocks/Users/user.component'
 import { CategoryComponent } from './Components/Blocks/Categories/category.component'
 
-import {CateComponent } from './Components/Pages/Cate/cate.component'
-import {HomeComponent } from './Components/Pages/Home/home.component'
-import {DetailComponent } from './Components/Pages/Detail/detail.component'
 
   import { from } from 'rxjs';
 @NgModule({
@@ -19,14 +17,12 @@ import {DetailComponent } from './Components/Pages/Detail/detail.component'
     MenuComponent,
     SliderComponent,
     UserComponent,
-    CategoryComponent,
-    CateComponent,
-    HomeComponent,
-    DetailComponent
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    approutingmodules
   ],
   providers: [],
   bootstrap: [AppComponent]

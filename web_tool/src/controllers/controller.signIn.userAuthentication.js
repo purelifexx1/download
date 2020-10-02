@@ -9,13 +9,14 @@ function controllerRedirect(req, res) {
         if (status == true) { //userid available in database
             res.redirect('/signin/userid_signin=' + userid_signin + '&teamrole_signin=' + teamrole_signin);
         }else{//userid unavailable in database
-            res.redirect('/signin');
+            res.render('pages-signin', { title: 'Sign in'});
         }
     });
       
 }
 function controllerFindUser(req, res) {
-    _MODELS_FINDUSERNAME(req, function(name){
+    
+    _MODELS_FINDUSERNAME(req, function(name){       
         res.render("pages-home", {username: name});
     })
     

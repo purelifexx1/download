@@ -1,5 +1,5 @@
-//var socket = io("localhost:3069");
-var socket = io("http://localhost:3000");
+var socket = io("localhost:3000");
+//var socket = io("http://localhost:3000");
 var button_status;
 var button_namespace = {
 	onoff_charging: false,
