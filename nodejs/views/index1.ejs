@@ -12,299 +12,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style1.css">
     <script src = "socket.io/socket.io.js"></script>
     <script src="process.js"></script>
 </head>
 
 <body class = "min-vh-100 clear-top d-flex flex-column" style="background: url(./image/bk.png);">
     <!-- Create tab with Bootstrap -->
-    <nav class="navbar navbar-expand-sm bg-success navbar-dark">
-        <ul class="navbar-nav container">
-            <li class="nav-item active">
-                <a href="#" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item justify-content-end">
-                <a href="#" class="nav-link">About us</a>
-            </li>
-        </ul>
-    </nav>
+    <%- include('./header.ejs');  %> 
+
     <main class="container pt-4 bg-light flex-grow-1">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#real-time">
-                    Real-Time Data
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#statistics">
-                    Statistics Data
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#control">
-                    Control
-                </a>
-            </li>
-        </ul>
+        <%- include('./navigation_tab.ejs');  %> 
     
         <!-- Content for Tabs above -->
         <div class="tab-content">
             <!-- Content for Real-Time Data-->
-            <div class="tab-pane active pl-0 pr-0 mt-3" id="real-time">
-                <form action="#" method="POST" style="margin: 0 0 1em 0;">
-                    <input type="checkbox" name="this_is_something" id="first_check"/> Dzậy được chưa ku?<br/>
-                </form>
-                <div class="row">
-                    <div class="col">
-                        <label>PV Input Voltage:</label>
-                        <div>
-                            <textarea readonly id="solar_voltage" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <label>Battery Power:</label>
-                        <div>
-                            <textarea readonly id="bat_power" rows="1">150</textarea>
-                            <label class="unit">(W)</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col">
-                        <label>PV Input Current:</label>
-                        <div>
-                            <textarea readonly id="solar_current" rows="1">150</textarea>
-                            <label class="unit">(A)</label>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <label>Battery Percentage:</label>
-                        <div>
-                            <textarea readonly id="bat_percent" rows="1">150</textarea>
-                            <label class="unit">(%)</label>
-                        </div>
-    
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col">
-                        <label>PV Input Power:</label>
-                        <div>
-                            <textarea readonly id="solar_power" rows="1">150</textarea>
-                            <label class="unit">(W)</label>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <label>Battery Voltage:</label>
-                        <div>
-                            <textarea readonly id="bat_voltage" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col">
-                        <label>Load Power:</label>
-                        <div>
-                            <textarea readonly id="load_power" rows="1">150</textarea>
-                            <label class="unit">(W)</label>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <label>Battery Current:</label>
-                        <div>
-                            <textarea readonly id="bat_current" rows="1">150</textarea>
-                            <label class="unit">(A)</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col">
-                        <label>Load Voltage:</label>
-                        <div>
-                            <textarea readonly id="load_voltage" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <label>Battery Temperature:</label>
-                        <div>
-                            <textarea readonly id="bat_temp" rows="1">150</textarea>
-                            <label class="unit">(&#8451)</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col">
-                        <label>Load Current:</label>
-                        <div>
-                            <textarea readonly id="load_current" rows="1">150</textarea>
-                            <label class="unit">(A)</label>
-                        </div>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <label>Battery Inner Resistance:</label>
-                        <div>
-                            <textarea readonly id="temp_in" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-    
+            <%- include('./realtime_data.ejs');  %> 
+       
             <!-- Content for Statistics Data -->
-            <div class="tab-pane fade pl-0 pr-0 mt-2" id="statistics">
-                <!-- Today -->
-                <div class="heading">
-                    <b>Today</b>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label>PV Voltage:</label>
-                        <div class="row">
-                            <div class="col">
-                                <textarea readonly id="min_pv_vol_today" rows="1">150</textarea>
-                                <label class="separator ml-1 mr-1" style="text-align: center;">-</label>
-                                <textarea readonly id="max_pv_vol_today" rows="1">150</textarea>
-                                <label class="unit ml-1">(V)</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label>Consumed Energy:</label>
-                        <div>
-                            <textarea readonly id="con_energy_today" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label>Generated Energy:</label>
-                        <div>
-                            <textarea readonly id="gen_energy_today" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- This month -->
-                <div class="heading">
-                    <b>This Month</b>
-                </div>
-                <div class="row">
-                    
-                    <div class="col">
-                        <label>Consumed Energy:</label>
-                        <div>
-                            <textarea readonly id="con_energy_month" rows="1">100</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label>Generated Energy:</label>
-                        <div>
-                            <textarea readonly id="gen_energy_month" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- This year -->
-                <div class="heading">
-                    <b>This year</b>
-                </div>
-                <div class="row">
-                    
-                    <div class="col">
-                        <label>Consumed Energy:</label>
-                        <div>
-                            <textarea readonly id="con_energy_year" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label>Generated Energy - This Year:</label>
-                        <div>
-                            <textarea readonly id="gen_energy_year" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Total -->
-                <div class="heading">
-                    <b>Total</b>
-                </div>
-                <div class="row">
-                    
-                    <div class="col">
-                        <label>Consumed Energy:</label>
-                        <div>
-                            <textarea readonly id="total_con_energy" rows="1">050</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label>Generated Energy:</label>
-                        <div>
-                            <textarea readonly id="total_gen_energy" rows="1">150</textarea>
-                            <label class="unit">(V)</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%- include('./statistic_data.ejs');  %> 
     
             <!-- Content for Control tab -->
-            <div class="tab-pane fade pl-0 pr-0 mt-2" id="control">
-                <div style="text-align: right;">
-                    <button id="bt-1">Button 1</button>
-                </div>
-                <div class="row my-5">
-                    <div class="col">
-                        <button id="bt-2" class="w-100">Button 2</button>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <button id="bt-3" class="w-100">Button 3</button>
-                    </div>
-                </div>
-    
-                <div class="row my-5">
-                    <div class="col">
-                        <button id="bt-4" class="w-100">Button 4</button>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <button id="bt-5" class="w-100">Button 5</button>
-                    </div>
-                </div>
-    
-                <div class="row my-5">
-                    <div class="col">
-                        <button id="bt-6" class="w-100">Button 6</button>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col">
-                        <button id="bt-7" class="w-100">Button 7</button>
-                    </div>
-                </div>
-            </div>
+            <%- include('./control_tab.ejs');  %> 
         </div>
-        <div></div>
+
+        <!-- console log -->
+        <%- include('./console.ejs');  %> 
     </main>
+
     <footer class="footer bg-success py-4 footer-light">
         <div class="footer-copyright text-center text-light">
             Copyright © 2020 by Hoang Truong, RMIT University

@@ -1,5 +1,5 @@
-var socket = io("localhost:3000");
-//var socket = io("http://localhost:3000");
+//var socket = io("localhost:3000");
+var socket = io("http://localhost:3000");
 var button_status;
 var button_namespace = {
 	onoff_charging: false,
@@ -74,11 +74,13 @@ socket.on("packet_ongoing", function(data){
 })
 
 socket.on("packet_lost", function(data){
-	
+	console_log("packet lost")
 })
 
 socket.on("error", function(data){
-	
+	if(data == "2"){
+		console_log("loss connection to main node");
+	}
 })
 
 socket.on("server_update_enable", function(data){
@@ -107,6 +109,9 @@ $(document).ready(function(){
 		// socket.emit("output_control");
 		console.log("ok nha");
 	})
+	$("#bt-3").click(function(){
+
+	})
 	$("#first_check").click(function(){
 		if(this.checked) {
 			socket.emit("change_update_enable");
@@ -127,7 +132,11 @@ $(document).ready(function(){
 		socket.emit("onoff_charging");
 	})
 });
-
+function console_log(data) {
+	var textarea = document.getElementById("unique");
+	textarea.textContent += data + "\r\n";
+	textarea.scrollTop = textarea.scrollHeight;
+}
 function set_color_off(data) {
 	Object.entries(data).forEach(function(element){
 		document.getElementById(element[0]).style.background = '#ffffff';

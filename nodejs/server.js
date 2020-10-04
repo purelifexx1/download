@@ -1,5 +1,6 @@
 var express = require("express");
 var firebase = require("firebase");
+var path = require("path");
 firebase.initializeApp({
 	databaseURL: "https://archive-34c94.firebaseio.com"
 });
@@ -8,10 +9,10 @@ var data_handler = require("./second");
 var app = express();
 app.use(express.static("public"));
 app.set("view engine", "ejs");
-app.set("views", "./views");
+app.set("views", path.join(__dirname, 'views'));
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-server.listen(3000);
+
 var mqtt = require('mqtt');
 var waitfor_reply = false;
 
@@ -201,7 +202,7 @@ function timeout_function(storage_packet){
 	waitfor_reply = false
 	re_send(storage_packet);
 }
-
+server.listen(3000);
 app.get("/", function(req, res){
 	res.render("index1");
 })
