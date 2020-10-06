@@ -41,15 +41,15 @@ module.exports = {
 
 	realtime_send: function(io){
 		io.sockets.emit("realtime_data", struct_realtime_data);
-		var status_value;
-		var count_shift = 0;
-		Objects.keys(coils_status).forEach(function(element){
-			if (((status_value >> count_shift++) & 1) == 1)
-				coils_status[element] = true;
-			else
-				coils_status[element] = false;			
-		});
-		io.sockets.emit("control_status_data", coils_status);
+		// var status_value;
+		// var count_shift = 0;
+		// Objects.keys(coils_status).forEach(function(element){
+		// 	if (((status_value >> count_shift++) & 1) == 1)
+		// 		coils_status[element] = true;
+		// 	else
+		// 		coils_status[element] = false;			
+		// });
+		// io.sockets.emit("control_status_data", coils_status);
 	},
 	statistic_send: function(io){
 		io.sockets.emit("statistic_data", struct_statistic_data);
