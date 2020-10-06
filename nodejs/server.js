@@ -132,7 +132,7 @@ io.on('connection', function(socket){
 mqtt_branch.once('value', function(snap){
 	client = mqtt.connect("mqtt://node02.myqtthub.com", snap.val());
 	client.on('connect', function(){
-		mqtt_status = true;
+		//mqtt_status = true;
 		console.log("mqtt broker connected");
 		client.subscribe('realtime_data');
 		client.subscribe('statistic_data');
@@ -198,7 +198,7 @@ function timeout_function(storage_packet){
 		io.sockets.emit("error", "2")
 	}
 
-	io.sockets.emit("packet_lost");
+	io.sockets.emit("packet_lost", storage_packet.content_timeout);
 	waitfor_reply = false
 	re_send(storage_packet);
 }

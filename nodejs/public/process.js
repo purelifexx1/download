@@ -1,5 +1,5 @@
-//var socket = io("localhost:3000");
-var socket = io("http://localhost:3000");
+var socket = io("localhost:3000");
+//var socket = io("http://localhost:3000");
 var button_status;
 var button_namespace = {
 	onoff_charging: false,
@@ -74,7 +74,12 @@ socket.on("packet_ongoing", function(data){
 })
 
 socket.on("packet_lost", function(data){
-	console_log("packet lost")
+	if (data == "0") {
+		console_log("realtime packet timeout");
+	}else if(data == "1"){
+		console_log("statistic packet timeout");
+	}
+	
 })
 
 socket.on("error", function(data){
