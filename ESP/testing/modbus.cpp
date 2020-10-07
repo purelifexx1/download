@@ -47,6 +47,7 @@ bool modbus::packet_handler(byte* packet, byte Length)
 
 	  switch (packet[1]) {
 		case 32:
+      debug_configure_serial.Send(&packet[2], Length - 2);
 		  client.publish("realtime_data", &packet[2], Length - 2);
 		break;
 

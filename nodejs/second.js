@@ -14,7 +14,7 @@ var realtime_union_buf1 = realtime_data1.buffer();
 var statistic_union_buf = statistic_data.buffer();
 var struct_statistic_data = statistic_data.fields;
 var struct_realtime_data = realtime_data.fields;
-var struct_realtime_data = realtime_data1.fields;
+//var struct_realtime_data = realtime_data1.fields;
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];

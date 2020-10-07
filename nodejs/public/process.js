@@ -1,5 +1,5 @@
-var socket = io("localhost:3000");
-//var socket = io("http://localhost:3000");
+//var socket = io("localhost:3000");
+var socket = io("http://localhost:3000");
 var button_status;
 var button_namespace = {
 	onoff_charging: false,
@@ -13,6 +13,7 @@ socket.on("realtime_data", function(data){
 	Object.entries(data).forEach(function(element){
 		document.getElementById(element[0]).style.background = '#4aff36';
 		$("#" + element[0]).val(element[1]);
+		
 	});
 	setTimeout(set_color_off, 2000, data);
 	
