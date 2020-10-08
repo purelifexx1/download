@@ -1,6 +1,6 @@
-main.cpp:27:6:void setup()	16	static
-main.cpp:32:6:void loop()	8	static
-main.cpp:42:6:void data_received2(uint8_t*, int)	16	static
-main.cpp:48:6:void modbus_received(uint8_t*, int)	24	static
-main.cpp:53:6:void UART_CallBack(UART_HandleTypeDef*)	24	static
-main.cpp:75:6:void GPIO_Interrupt_Callback(uint16_t)	16	static
+main.cpp:28:6:void setup()	16	static
+main.cpp:33:6:void loop()	8	static
+main.cpp:43:6:void data_received2(uint8_t*, int)	16	static
+main.cpp:49:6:void modbus_received(uint8_t*, int)	24	static
+main.cpp:54:6:void UART_CallBack(UART_HandleTypeDef*)	24	static
+main.cpp:76:6:void GPIO_Interrupt_Callback(uint16_t)	16	static

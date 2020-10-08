@@ -1,9 +1,9 @@
 Archive member included to satisfy reference by file (symbol)
 
 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(del_opv.o)
-                              cpp/src/mySerial.o (operator delete[](void*))
+                              cpp/src/modbus_handler.o (operator delete[](void*))
 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_opv.o)
-                              cpp/src/mySerial.o (operator new[](unsigned int))
+                              cpp/src/modbus_handler.o (operator new[](unsigned int))
 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_op.o)
                               c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_opv.o) (operator new(unsigned int))
 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_handler.o)
@@ -1913,9 +1913,12 @@ Discarded input sections
  .group         0x0000000000000000        0xc cpp/src/main.o
  .group         0x0000000000000000        0xc cpp/src/main.o
  .group         0x0000000000000000        0xc cpp/src/main.o
+ .group         0x0000000000000000        0xc cpp/src/main.o
  .text          0x0000000000000000        0x0 cpp/src/main.o
  .data          0x0000000000000000        0x0 cpp/src/main.o
  .bss           0x0000000000000000        0x0 cpp/src/main.o
+ .bss.array_of_request
+                0x0000000000000000        0x4 cpp/src/main.o
  .bss.temp1     0x0000000000000000        0x4 cpp/src/main.o
  .bss.temp2     0x0000000000000000        0x4 cpp/src/main.o
  .debug_macro   0x0000000000000000      0x21b cpp/src/main.o
@@ -2070,6 +2073,131 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x20 cpp/src/modbus.o
  .debug_macro   0x0000000000000000       0x3a cpp/src/modbus.o
  .debug_macro   0x0000000000000000       0x28 cpp/src/modbus.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .group         0x0000000000000000        0xc cpp/src/modbus_handler.o
+ .text          0x0000000000000000        0x0 cpp/src/modbus_handler.o
+ .data          0x0000000000000000        0x0 cpp/src/modbus_handler.o
+ .bss           0x0000000000000000        0x0 cpp/src/modbus_handler.o
+ .text._ZN14modbus_handlerC2Ev
+                0x0000000000000000       0x14 cpp/src/modbus_handler.o
+ .text._ZN14modbus_handler22request_packet_handlerEPhi
+                0x0000000000000000      0x158 cpp/src/modbus_handler.o
+ .text._ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef
+                0x0000000000000000      0x1b0 cpp/src/modbus_handler.o
+ .debug_info    0x0000000000000000     0x165b cpp/src/modbus_handler.o
+ .debug_abbrev  0x0000000000000000      0x2f7 cpp/src/modbus_handler.o
+ .debug_aranges
+                0x0000000000000000       0x30 cpp/src/modbus_handler.o
+ .debug_ranges  0x0000000000000000       0x20 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x29b cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0xb2c cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x21b cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x2e cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x22 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x1c cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x22 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x8e cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x51 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0xef cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x6a cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x1df cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x1c cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x22 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0xc3 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0xd23 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000     0xe09e cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x43 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x17b cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x5a cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x5be cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x289 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x1cb cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x114 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x1b2 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x27 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x136 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x1bc cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x34 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x3c cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x57 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x88 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x241 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x141 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x26b cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x83 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x46 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x18 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x3c cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x34 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x52 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x1f cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x43 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x20 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x1a3 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000      0x34d cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x10 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x35 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x20 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x10 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x28 cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x3a cpp/src/modbus_handler.o
+ .debug_macro   0x0000000000000000       0x16 cpp/src/modbus_handler.o
+ .debug_line    0x0000000000000000      0x87d cpp/src/modbus_handler.o
+ .debug_str     0x0000000000000000    0x68a09 cpp/src/modbus_handler.o
+ .comment       0x0000000000000000       0x7c cpp/src/modbus_handler.o
+ .debug_frame   0x0000000000000000       0x8c cpp/src/modbus_handler.o
+ .ARM.attributes
+                0x0000000000000000       0x33 cpp/src/modbus_handler.o
  .group         0x0000000000000000        0xc cpp/src/mySerial.o
  .group         0x0000000000000000        0xc cpp/src/mySerial.o
  .group         0x0000000000000000        0xc cpp/src/mySerial.o
@@ -2125,6 +2253,8 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 cpp/src/mySerial.o
  .text._ZN8mySerial7loopingEv
                 0x0000000000000000      0x170 cpp/src/mySerial.o
+ .text._ZN8mySerial22send_mul_modbus_packetEttPhi
+                0x0000000000000000       0x62 cpp/src/mySerial.o
  .debug_macro   0x0000000000000000      0xb2c cpp/src/mySerial.o
  .debug_macro   0x0000000000000000      0x21b cpp/src/mySerial.o
  .debug_macro   0x0000000000000000       0x2e cpp/src/mySerial.o
@@ -2175,6 +2305,135 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x20 cpp/src/mySerial.o
  .debug_macro   0x0000000000000000       0x28 cpp/src/mySerial.o
  .debug_macro   0x0000000000000000       0x3a cpp/src/mySerial.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .group         0x0000000000000000        0xc cpp/src/request_type.o
+ .text          0x0000000000000000        0x0 cpp/src/request_type.o
+ .data          0x0000000000000000        0x0 cpp/src/request_type.o
+ .bss           0x0000000000000000        0x0 cpp/src/request_type.o
+ .text._ZN12request_typeC2Ev
+                0x0000000000000000       0x14 cpp/src/request_type.o
+ .text._ZN12request_type15begin_configureEPhi
+                0x0000000000000000       0xc0 cpp/src/request_type.o
+ .text._ZN12request_type19function_01_handlerEPhi
+                0x0000000000000000       0x6a cpp/src/request_type.o
+ .text._ZN12request_type19function_03_handlerEPhi
+                0x0000000000000000       0x6a cpp/src/request_type.o
+ .text._ZN12request_type19function_04_handlerEPhi
+                0x0000000000000000       0x6a cpp/src/request_type.o
+ .text._ZN12request_type19function_05_handlerEPhi
+                0x0000000000000000       0x5e cpp/src/request_type.o
+ .text._ZN12request_type19function_10_handlerEPhi
+                0x0000000000000000       0x90 cpp/src/request_type.o
+ .text._ZN12request_type6CRC_16EPhhS0_
+                0x0000000000000000       0x90 cpp/src/request_type.o
+ .debug_info    0x0000000000000000     0x121d cpp/src/request_type.o
+ .debug_abbrev  0x0000000000000000      0x2af cpp/src/request_type.o
+ .debug_aranges
+                0x0000000000000000       0x58 cpp/src/request_type.o
+ .debug_ranges  0x0000000000000000       0x48 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x26a cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0xb2c cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x21b cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x2e cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x22 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x1c cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x22 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x8e cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x51 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0xef cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x6a cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x1df cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x1c cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x22 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0xc3 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0xd23 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000     0xe09e cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x43 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x17b cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x5a cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x5be cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x289 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x1cb cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x114 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x1b2 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x27 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x136 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x1bc cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x34 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x3c cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x57 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x88 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x241 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x141 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x26b cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x83 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x46 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x18 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x3c cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x34 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x52 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x1f cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x43 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x20 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x1a3 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000      0x34d cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x10 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x35 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x20 cpp/src/request_type.o
+ .debug_macro   0x0000000000000000       0x10 cpp/src/request_type.o
+ .debug_line    0x0000000000000000      0x86c cpp/src/request_type.o
+ .debug_str     0x0000000000000000    0x6833a cpp/src/request_type.o
+ .comment       0x0000000000000000       0x7c cpp/src/request_type.o
+ .debug_frame   0x0000000000000000      0x138 cpp/src/request_type.o
+ .ARM.attributes
+                0x0000000000000000       0x33 cpp/src/request_type.o
  .text          0x0000000000000000        0x0 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(del_opv.o)
  .data          0x0000000000000000        0x0 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(del_opv.o)
  .bss           0x0000000000000000        0x0 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(del_opv.o)
@@ -2305,7 +2564,9 @@ LOAD Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 LOAD Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
 LOAD cpp/src/main.o
 LOAD cpp/src/modbus.o
+LOAD cpp/src/modbus_handler.o
 LOAD cpp/src/mySerial.o
+LOAD cpp/src/request_type.o
 START GROUP
 LOAD c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a
 LOAD c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libsupc++_nano.a
@@ -2992,7 +3253,7 @@ LOAD c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
                 0x00000000000006bf       0x1d c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7-m/crtn.o
 OUTPUT(stm.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0xb3f9
+.debug_info     0x0000000000000000     0xb67f
  .debug_info    0x0000000000000000      0xbe0 Core/Src/main.o
  .debug_info    0x0000000000000be0      0x908 Core/Src/stm32f1xx_hal_msp.o
  .debug_info    0x00000000000014e8      0x701 Core/Src/stm32f1xx_it.o
@@ -3006,11 +3267,11 @@ OUTPUT(stm.elf elf32-littlearm)
  .debug_info    0x0000000000005201      0x681 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
  .debug_info    0x0000000000005882      0x804 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .debug_info    0x0000000000006086     0x11e3 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
- .debug_info    0x0000000000007269     0x14ce cpp/src/main.o
- .debug_info    0x0000000000008737     0x163b cpp/src/modbus.o
- .debug_info    0x0000000000009d72     0x1687 cpp/src/mySerial.o
+ .debug_info    0x0000000000007269     0x1696 cpp/src/main.o
+ .debug_info    0x00000000000088ff     0x1669 cpp/src/modbus.o
+ .debug_info    0x0000000000009f68     0x1717 cpp/src/mySerial.o
 
-.debug_abbrev   0x0000000000000000     0x2011
+.debug_abbrev   0x0000000000000000     0x204c
  .debug_abbrev  0x0000000000000000      0x224 Core/Src/main.o
  .debug_abbrev  0x0000000000000224      0x18c Core/Src/stm32f1xx_hal_msp.o
  .debug_abbrev  0x00000000000003b0      0x161 Core/Src/stm32f1xx_it.o
@@ -3024,11 +3285,11 @@ OUTPUT(stm.elf elf32-littlearm)
  .debug_abbrev  0x000000000000111e      0x1c0 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
  .debug_abbrev  0x00000000000012de      0x243 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .debug_abbrev  0x0000000000001521      0x242 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
- .debug_abbrev  0x0000000000001763      0x2a4 cpp/src/main.o
- .debug_abbrev  0x0000000000001a07      0x307 cpp/src/modbus.o
- .debug_abbrev  0x0000000000001d0e      0x303 cpp/src/mySerial.o
+ .debug_abbrev  0x0000000000001763      0x2df cpp/src/main.o
+ .debug_abbrev  0x0000000000001a42      0x307 cpp/src/modbus.o
+ .debug_abbrev  0x0000000000001d49      0x303 cpp/src/mySerial.o
 
-.debug_aranges  0x0000000000000000      0x878
+.debug_aranges  0x0000000000000000      0x880
  .debug_aranges
                 0x0000000000000000       0x68 Core/Src/main.o
  .debug_aranges
@@ -3060,9 +3321,9 @@ OUTPUT(stm.elf elf32-littlearm)
  .debug_aranges
                 0x00000000000007a0       0x70 cpp/src/modbus.o
  .debug_aranges
-                0x0000000000000810       0x68 cpp/src/mySerial.o
+                0x0000000000000810       0x70 cpp/src/mySerial.o
 
-.debug_ranges   0x0000000000000000      0x780
+.debug_ranges   0x0000000000000000      0x788
  .debug_ranges  0x0000000000000000       0x58 Core/Src/main.o
  .debug_ranges  0x0000000000000058       0x20 Core/Src/stm32f1xx_hal_msp.o
  .debug_ranges  0x0000000000000078       0x80 Core/Src/stm32f1xx_it.o
@@ -3078,9 +3339,9 @@ OUTPUT(stm.elf elf32-littlearm)
  .debug_ranges  0x00000000000004d0      0x1c0 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
  .debug_ranges  0x0000000000000690       0x38 cpp/src/main.o
  .debug_ranges  0x00000000000006c8       0x60 cpp/src/modbus.o
- .debug_ranges  0x0000000000000728       0x58 cpp/src/mySerial.o
+ .debug_ranges  0x0000000000000728       0x60 cpp/src/mySerial.o
 
-.debug_macro    0x0000000000000000    0x167f7
+.debug_macro    0x0000000000000000    0x16816
  .debug_macro   0x0000000000000000      0x19b Core/Src/main.o
  .debug_macro   0x000000000000019b      0xa5a Core/Src/main.o
  .debug_macro   0x0000000000000bf5      0x21b Core/Src/main.o
@@ -3169,24 +3430,25 @@ OUTPUT(stm.elf elf32-littlearm)
  .debug_macro   0x0000000000013c88      0x1f0 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
  .debug_macro   0x0000000000013e78      0x197 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .debug_macro   0x000000000001400f      0x186 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
- .debug_macro   0x0000000000014195      0x2b1 cpp/src/main.o
- .debug_macro   0x0000000000014446      0xb2c cpp/src/main.o
- .debug_macro   0x0000000000014f72       0x1c cpp/src/main.o
- .debug_macro   0x0000000000014f8e      0xd23 cpp/src/main.o
- .debug_macro   0x0000000000015cb1      0x17b cpp/src/main.o
- .debug_macro   0x0000000000015e2c       0x46 cpp/src/main.o
- .debug_macro   0x0000000000015e72       0x34 cpp/src/main.o
- .debug_macro   0x0000000000015ea6       0x43 cpp/src/main.o
- .debug_macro   0x0000000000015ee9      0x34d cpp/src/main.o
- .debug_macro   0x0000000000016236       0x10 cpp/src/main.o
- .debug_macro   0x0000000000016246       0x35 cpp/src/main.o
- .debug_macro   0x000000000001627b       0x20 cpp/src/main.o
- .debug_macro   0x000000000001629b       0x3a cpp/src/main.o
- .debug_macro   0x00000000000162d5       0x28 cpp/src/main.o
- .debug_macro   0x00000000000162fd      0x27d cpp/src/modbus.o
- .debug_macro   0x000000000001657a      0x27d cpp/src/mySerial.o
+ .debug_macro   0x0000000000014195      0x2ba cpp/src/main.o
+ .debug_macro   0x000000000001444f      0xb2c cpp/src/main.o
+ .debug_macro   0x0000000000014f7b       0x1c cpp/src/main.o
+ .debug_macro   0x0000000000014f97      0xd23 cpp/src/main.o
+ .debug_macro   0x0000000000015cba      0x17b cpp/src/main.o
+ .debug_macro   0x0000000000015e35       0x46 cpp/src/main.o
+ .debug_macro   0x0000000000015e7b       0x34 cpp/src/main.o
+ .debug_macro   0x0000000000015eaf       0x43 cpp/src/main.o
+ .debug_macro   0x0000000000015ef2      0x34d cpp/src/main.o
+ .debug_macro   0x000000000001623f       0x10 cpp/src/main.o
+ .debug_macro   0x000000000001624f       0x35 cpp/src/main.o
+ .debug_macro   0x0000000000016284       0x20 cpp/src/main.o
+ .debug_macro   0x00000000000162a4       0x3a cpp/src/main.o
+ .debug_macro   0x00000000000162de       0x28 cpp/src/main.o
+ .debug_macro   0x0000000000016306       0x16 cpp/src/main.o
+ .debug_macro   0x000000000001631c      0x27d cpp/src/modbus.o
+ .debug_macro   0x0000000000016599      0x27d cpp/src/mySerial.o
 
-.debug_line     0x0000000000000000     0x7ca0
+.debug_line     0x0000000000000000     0x7cc8
  .debug_line    0x0000000000000000      0x6e7 Core/Src/main.o
  .debug_line    0x00000000000006e7      0x680 Core/Src/stm32f1xx_hal_msp.o
  .debug_line    0x0000000000000d67      0x715 Core/Src/stm32f1xx_it.o
@@ -3200,11 +3462,11 @@ OUTPUT(stm.elf elf32-littlearm)
  .debug_line    0x00000000000042ac      0x7de Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
  .debug_line    0x0000000000004a8a      0x8a0 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .debug_line    0x000000000000532a      0xee9 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
- .debug_line    0x0000000000006213      0x829 cpp/src/main.o
- .debug_line    0x0000000000006a3c      0x901 cpp/src/modbus.o
- .debug_line    0x000000000000733d      0x963 cpp/src/mySerial.o
+ .debug_line    0x0000000000006213      0x83b cpp/src/main.o
+ .debug_line    0x0000000000006a4e      0x901 cpp/src/modbus.o
+ .debug_line    0x000000000000734f      0x979 cpp/src/mySerial.o
 
-.debug_str      0x0000000000000000    0x6c4c5
+.debug_str      0x0000000000000000    0x6c727
  .debug_str     0x0000000000000000    0x64d17 Core/Src/main.o
                                       0x6512c (size before relaxing)
  .debug_str     0x0000000000064d17       0x7e Core/Src/stm32f1xx_hal_msp.o
@@ -3231,12 +3493,12 @@ OUTPUT(stm.elf elf32-littlearm)
                                       0x64c15 (size before relaxing)
  .debug_str     0x000000000006b04f      0x4ae Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
                                       0x65104 (size before relaxing)
- .debug_str     0x000000000006b4fd      0xeaa cpp/src/main.o
-                                      0x68765 (size before relaxing)
- .debug_str     0x000000000006c3a7       0xc1 cpp/src/modbus.o
-                                      0x68788 (size before relaxing)
- .debug_str     0x000000000006c468       0x5d cpp/src/mySerial.o
-                                      0x68767 (size before relaxing)
+ .debug_str     0x000000000006b4fd     0x110c cpp/src/main.o
+                                      0x689c7 (size before relaxing)
+ .debug_str     0x000000000006c609       0xc1 cpp/src/modbus.o
+                                      0x687ca (size before relaxing)
+ .debug_str     0x000000000006c6ca       0x5d cpp/src/mySerial.o
+                                      0x687a9 (size before relaxing)
 
 .comment        0x0000000000000000       0x7b
  .comment       0x0000000000000000       0x7b Core/Src/main.o
@@ -3256,7 +3518,7 @@ OUTPUT(stm.elf elf32-littlearm)
  .comment       0x000000000000007b       0x7c cpp/src/modbus.o
  .comment       0x000000000000007b       0x7c cpp/src/mySerial.o
 
-.debug_frame    0x0000000000000000     0x239c
+.debug_frame    0x0000000000000000     0x23c0
  .debug_frame   0x0000000000000000      0x15c Core/Src/main.o
  .debug_frame   0x000000000000015c       0x84 Core/Src/stm32f1xx_hal_msp.o
  .debug_frame   0x00000000000001e0      0x1b4 Core/Src/stm32f1xx_it.o
@@ -3271,22 +3533,22 @@ OUTPUT(stm.elf elf32-littlearm)
  .debug_frame   0x0000000000001398      0x834 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o
  .debug_frame   0x0000000000001bcc       0xe8 cpp/src/main.o
  .debug_frame   0x0000000000001cb4      0x1a8 cpp/src/modbus.o
- .debug_frame   0x0000000000001e5c      0x178 cpp/src/mySerial.o
- .debug_frame   0x0000000000001fd4       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(del_opv.o)
- .debug_frame   0x0000000000001ff4       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_opv.o)
- .debug_frame   0x0000000000002014       0x28 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_op.o)
- .debug_frame   0x000000000000203c       0x30 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_handler.o)
- .debug_frame   0x000000000000206c       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(del_op.o)
- .debug_frame   0x000000000000208c       0x28 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-abort.o)
- .debug_frame   0x00000000000020b4       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-errno.o)
- .debug_frame   0x00000000000020d4       0x2c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-init.o)
- .debug_frame   0x0000000000002100       0x30 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-malloc.o)
- .debug_frame   0x0000000000002130       0x28 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x0000000000002158       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-memset.o)
- .debug_frame   0x0000000000002178       0x38 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x00000000000021b0       0x2c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x00000000000021dc       0x2c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x0000000000002208       0xcc c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-signal.o)
- .debug_frame   0x00000000000022d4       0x3c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-signalr.o)
- .debug_frame   0x0000000000002310       0x30 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-mlock.o)
- .debug_frame   0x0000000000002340       0x5c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-reent.o)
+ .debug_frame   0x0000000000001e5c      0x19c cpp/src/mySerial.o
+ .debug_frame   0x0000000000001ff8       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(del_opv.o)
+ .debug_frame   0x0000000000002018       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_opv.o)
+ .debug_frame   0x0000000000002038       0x28 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_op.o)
+ .debug_frame   0x0000000000002060       0x30 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(new_handler.o)
+ .debug_frame   0x0000000000002090       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libstdc++_nano.a(del_op.o)
+ .debug_frame   0x00000000000020b0       0x28 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-abort.o)
+ .debug_frame   0x00000000000020d8       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-errno.o)
+ .debug_frame   0x00000000000020f8       0x2c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-init.o)
+ .debug_frame   0x0000000000002124       0x30 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-malloc.o)
+ .debug_frame   0x0000000000002154       0x28 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x000000000000217c       0x20 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-memset.o)
+ .debug_frame   0x000000000000219c       0x38 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x00000000000021d4       0x2c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x0000000000002200       0x2c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x000000000000222c       0xcc c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-signal.o)
+ .debug_frame   0x00000000000022f8       0x3c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-signalr.o)
+ .debug_frame   0x0000000000002334       0x30 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-mlock.o)
+ .debug_frame   0x0000000000002364       0x5c c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.0.0.201904181610/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/../../../../arm-none-eabi/lib/thumb/v7-m\libc_nano.a(lib_a-reent.o)

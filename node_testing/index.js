@@ -4,5 +4,7 @@ var testing = {
     "xin": 1234,
     "123":223
 };
-var Ob = Object.entries(testing).find(elemtn => elemtn = "123")[0];
-console.log(Ob)
+var buf = Buffer.from([12, 34,24]);
+console.log(buf);
+buf[0] = 25;
+console.log(buf);

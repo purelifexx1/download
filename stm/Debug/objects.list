@@ -21,4 +21,6 @@
 "Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o"
 "cpp/src/main.o"
 "cpp/src/modbus.o"
+"cpp/src/modbus_handler.o"
 "cpp/src/mySerial.o"
+"cpp/src/request_type.o"
