@@ -8,6 +8,7 @@
 #include "main.h"
 #include "modbus.h"
 #include "mySerial.h"
+#include "request_type.h"
 #define byte uint8_t
 #define start_timeout HAL_TIM_Base_Start_IT
 #define uart_send HAL_UART_Transmit_DMA
@@ -17,7 +18,7 @@
 #define On_received true
 #define On_transmit false
 
-
+request_type* array_of_request;
 byte* temp1;
 int* temp2;
 bool transmit_complete_flag = IDLE_transmit;

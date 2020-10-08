@@ -106,6 +106,14 @@ void mySerial::send_packet(uint16_t header, uint16_t footer, byte* data, int len
 	uart_send(this->uart, temper_packet, length+6);
 	delete[] temper_packet;
 }
+void mySerial::send_mul_modbus_packet(uint16_t header, uint16_t footer, byte *data, int length)
+{
+	data[0] = (byte)(header >>8 & 0xff);
+	data[1] = (byte)(header & 0xff);
+	data[length - 2] = (byte)(footer >>8 & 0xff);
+	data[length - 1] = (byte)(footer & 0xff);
+	uart_send(this->uart, data, length);
+}
 
 void mySerial::send_modbus_packet(uint16_t header, uint16_t footer, byte* data, int length)
 {

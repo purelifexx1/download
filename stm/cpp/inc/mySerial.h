@@ -43,6 +43,7 @@ public:
 	void send_packet(uint16_t header, uint16_t footer, byte* data, int length);
 	void send_modbus_packet(uint16_t header, uint16_t footer, byte* data, int length);
 	void send_multiple_modbus_packet(uint16_t header, uint16_t footer, byte* data, int length);
+	void send_mul_modbus_packet(uint16_t header, uint16_t footer, byte *data, int length);
 	void buffer_overflow(); // put this function in coresponding complete callback uart
 
 };
