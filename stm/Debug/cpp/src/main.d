@@ -25,6 +25,8 @@ cpp/src/main.o: ../cpp/src/main.cpp ../Core/Inc/main.h \
  C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/mySerial.h \
  C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/modbus.h \
  C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/mySerial.h \
+ C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/request_type.h \
+ C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/modbus_handler.h \
  C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/request_type.h
 
 ../Core/Inc/main.h:
@@ -80,5 +82,9 @@ C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/mySerial.h:
 C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/modbus.h:
 
 C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/mySerial.h:
+
+C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/request_type.h:
+
+C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/modbus_handler.h:
 
 C:/Users/Admin/Documents/GitHub/download/stm/cpp/inc/request_type.h:

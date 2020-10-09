@@ -116,14 +116,14 @@ void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
       
   //   }
     
-  // }
+   }
 }
 
 void data_handler(byte* package, int Length) { // for uart lora
   receive_complete_flag = IDLE_receive;
   digitalWrite(led_pin, LED_status = !LED_status); 
   //Modbus.packet_handler(package, Length);
-  client.pushlish("realtime_data", package, length);
+  client.publish("realtime_data", &package[1], Length - 1);
 }
 void reconnect() {
   while (!client.connected()) {

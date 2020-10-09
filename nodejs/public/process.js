@@ -9,6 +9,14 @@ var button_namespace = {
 	load_testmode: false,
 	onoff_load: false
 }
+socket.on("packet_update", function(data){
+	Object.entries(data).forEach(function(element){
+		document.getElementById(element[0]).style.background = '#4aff36';
+		$("#" + element[0]).val(element[1]);
+		
+	});
+	setTimeout(set_color_off, 2000, data);
+})
 socket.on("realtime_data", function(data){
 	Object.entries(data).forEach(function(element){
 		document.getElementById(element[0]).style.background = '#4aff36';

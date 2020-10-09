@@ -113,12 +113,17 @@ void mySerial::packet_received()
 	int number_of_byte = mSerial->available();
 	if(number_of_byte) {
 		mSerial->readBytes(data_buffer, number_of_byte);
+    debug_configure_serial.mSerial->print("11111");
+    debug_configure_serial.Send(data_buffer, number_of_byte);
+    debug_configure_serial.Print("11111");
 		if(data_buffer[0] == sync_header[0] && data_buffer[1] == sync_header[1] && data_buffer[number_of_byte-2] == sync_end[0] && data_buffer[number_of_byte-1] == sync_end[1]) {
 			this->callback_function(&data_buffer[2], number_of_byte-4);
 			return;
 		}else{
       receive_complete_flag = false;
 			debug_configure_serial.Print("header and footer error");
+      debug_configure_serial.mSerial->println(number_of_byte);
+      //debug_configure_serial.Send(data_buffer, number_of_byte);
 		}
 	}else
     receive_complete_flag = false;

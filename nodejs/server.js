@@ -1,6 +1,6 @@
 var express = require("express");
 var firebase = require("firebase");
-var modbus = require('modbus_handler');
+var modbus = require('./modbus_handler');
 var path = require("path");
 firebase.initializeApp({
 	databaseURL: "https://archive-34c94.firebaseio.com"
@@ -47,11 +47,11 @@ setInterval(function(){
 		server_update = false;
 	}
 }, 1000);
-var buf = Buffer.from([2, 4, 4, 49, 0, 8, 4, 4, 49, 12, 8]);
+var buf = Buffer.from([ 4, 4, 49, 0, 8, 4, 4, 49, 12, 8]);
 
 function timer(){
 	if (mqtt_status == true && waitfor_reply == false) {
-
+		console.log("send");
 		client.publish('data_request', buf);		
 		storage_packet.topic_timeout = 'data_request';
 		storage_packet.content_timeout = "0";
@@ -142,7 +142,9 @@ mqtt_branch.once('value', function(snap){
 			if(topic == 'realtime_data') {
 				connection_status_interval = 0;
 				clearTimeout(timeout_latch);
-				message.copy(realtime_buf, 0, 0, message.length);
+				console.log("message come");
+				console.log(message);
+				//message.copy(realtime_buf, 0, 0, message.length);
 				//data_handler.realtime_send(io);	
 				modbus.data_handler(message, [12544, 12556], io);
 				waitfor_reply = false;

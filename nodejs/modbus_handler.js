@@ -1,5 +1,5 @@
 const Struct = require("struct");
-const table = require("modbus_table");
+const table = require("./modbus_table");
 const rf_table = table.reference_table;
 var one_reg = Struct().word16Sbe('output');
 var two_reg = Struct().word32Sbe('output');
@@ -41,6 +41,7 @@ function data_handler(data_packet, start_register_object, io){
             break;
         }
     }
-    io.sockets.emit("packet_update", send_update_object);
+    console.log(send_update_object);
+    //io.sockets.emit("packet_update", send_update_object);
 }
 module.exports.data_handler = data_handler;

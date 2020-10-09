@@ -13,6 +13,7 @@ class modbus_handler
     public:
         modbus_handler();
         byte number_of_request;
+        byte testing[64];
         void request_packet_handler(byte* data_packet, int length);
         void receive_handler(UART_HandleTypeDef *huart);
 };

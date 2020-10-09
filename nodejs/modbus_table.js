@@ -11,7 +11,7 @@ const register_reference = {
     "12558": "*load_power",
     "12560": "bat_temp",
     "12561": "temp_in",
-    "12562": "heat_sink_temp",
+    //"12562": "heat_sink_temp",
     "12570": "bat_percent",
     "12571": "remote_bat_temp",
     "12573": "bat_rated_voltage",

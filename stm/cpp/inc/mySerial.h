@@ -32,10 +32,10 @@ private:
 	byte footer[2];
 	byte data_pos[4];
 	byte length_pos[4];
-	byte data_buffer[300];
 	UART_HandleTypeDef* uart;
 public:
 	byte packet_id;
+	byte data_buffer[300];
 	mySerial();
 	void begin(UART_HandleTypeDef* uart, uint16_t header, uint16_t footer, uart_received);
 	void looping();
