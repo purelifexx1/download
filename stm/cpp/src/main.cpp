@@ -9,6 +9,7 @@
 #include "modbus.h"
 #include "mySerial.h"
 #include "request_type.h"
+#include "modbus_handler.h"
 #define byte uint8_t
 #define start_timeout HAL_TIM_Base_Start_IT
 #define uart_send HAL_UART_Transmit_DMA
@@ -40,10 +41,11 @@ void loop() {
 	}
 }
 
-void data_received2(byte* data_buffer, int length) {
+void data_received2(byte* data_buffer, int length) { //lora
 	//HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	receive_complete_flag = IDLE_receive;
-	modbus1.request_handler1(data_buffer, length);
+	//modbus1.request_handler1(data_buffer, length);
+	modbus.request_packet_handler(data_buffer, length);
 }
 
 void modbus_received(byte* data_buffer, int length) {

@@ -15,6 +15,7 @@ void modbus_handler::request_packet_handler(byte* data_packet, int length)
         array_of_request[i].request_number = i;
         pos_pointer += data_packet[pos_pointer]+1;
     }
+    //request first element
     current_request_number = 0;
     uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
     uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
@@ -26,6 +27,7 @@ void modbus_handler::receive_handler(UART_HandleTypeDef *huart)
     HAL_UART_Abort_IT(huart);
     if (current_request_number < number_of_request - 1)
     {
+        //request the next one
         current_request_number++;
         uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
         uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
@@ -46,6 +48,6 @@ void modbus_handler::receive_handler(UART_HandleTypeDef *huart)
         delete[] temper_packet;
         delete[] array_of_request;
     }
-    
-    
+       
 }
+modbus_handler modbus;

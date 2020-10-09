@@ -87,41 +87,43 @@ void setup_mqtt() {
 
 void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
   if(String(topic) == "data_request") { 
-    switch(payload[0]) {
-	  case '0':
-      debug_configure_serial.mSerial->print("da gui packet: "); debug_configure_serial.mSerial->println(payload[1]*256+payload[2]);
-	    Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x31, 0x00}, 15, 32);
-	    //real time data request
-	  break;
-	  case '1':
-	    Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x33, 0x00}, 20, 34);
-	    //statistic data request
-	  break;
-	  case '2':
-	    Modbus.modbus_request(0x01, read_coil, new byte[2]{0x00, 0x00}, 7, 36);
-	    //control status request
-	  break;
-    }
+    data_serial.Send_packet(payload, length, 23169, 34476, 2);
+  //   switch(payload[0]) {
+	//   case '0':
+  //     //debug_configure_serial.mSerial->print("da gui packet: "); debug_configure_serial.mSerial->println(payload[1]*256+payload[2]);
+	//     Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x31, 0x00}, 15, 32);
+	//     //real time data request
+	//   break;
+	//   case '1':
+	//     Modbus.modbus_request(0x01, read_input_register, new byte[2]{0x33, 0x00}, 20, 34);
+	//     //statistic data request
+	//   break;
+	//   case '2':
+	//     Modbus.modbus_request(0x01, read_coil, new byte[2]{0x00, 0x00}, 7, 36);
+	//     //control status request
+	//   break;
+  //   }
     
-  }else if(String(topic) == "write_coils"){
-    switch(payload[0]) {
-      case '0':
-      //on off load 
-      Modbus.modbus_write_scoil(0x01, write_coil, 6, payload[1] - '0', 38);
-      break;
-      case '1':
+  // }else if(String(topic) == "write_coils"){
+  //   switch(payload[0]) {
+  //     case '0':
+  //     //on off load 
+  //     Modbus.modbus_write_scoil(0x01, write_coil, 6, payload[1] - '0', 38);
+  //     break;
+  //     case '1':
       
-      break;
+  //     break;
       
-    }
+  //   }
     
-  }
+  // }
 }
 
 void data_handler(byte* package, int Length) { // for uart lora
   receive_complete_flag = IDLE_receive;
   digitalWrite(led_pin, LED_status = !LED_status); 
-  Modbus.packet_handler(package, Length);
+  //Modbus.packet_handler(package, Length);
+  client.pushlish("realtime_data", package, length);
 }
 void reconnect() {
   while (!client.connected()) {

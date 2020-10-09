@@ -18,4 +18,5 @@ class modbus_handler
 };
 
 extern request_type* array_of_request;
+extern modbus_handler modbus;
 #endif
