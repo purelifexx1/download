@@ -33,26 +33,33 @@ void modbus_handler::receive_handler(UART_HandleTypeDef *huart)
         uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
     }else //done
     {
-        byte total_byte = 0;
-        for(byte i = 0; i < number_of_request; i++){
-            total_byte += array_of_request[i].response_length;
-        }
-        byte *temper_packet = new byte[total_byte + 5];
-        testing[2] = total_byte;
-        byte current_pos = 3;
-        for(byte i = 0; i < number_of_request; i++) {
-            memcpy(&testing[current_pos], array_of_request[i].response_packet, array_of_request[i].response_length);
-            current_pos += array_of_request[i].response_length;
-        }
-        testing[0] = 0x30;
-		testing[1] = 0x39;
-		testing[total_byte + 5 - 2] = 0x87;
-		testing[total_byte + 5 - 1] = 0x07;
-		uart_send(&huart2, testing, 47);
-        //Serial.send_mul_modbus_packet(12345, 34567, testing, total_byte + 5);
-        delete[] temper_packet;
-        delete[] array_of_request;
+        package_data();
     }
-       
+}
+void modbus_handler::package_data()
+{
+	total_byte = 0;
+	byte current_pos = 4;
+	for(byte i = 0; i < number_of_request; i++){
+		if(array_of_request[i].is_data_valid()) {
+			array_of_request[i].packet_encoding();
+			memcpy(&testing[current_pos], array_of_request[i].encoded_packet, array_of_request[i].encode_length);
+			current_pos += array_of_request[i].encode_length;
+		}
+		total_byte += array_of_request[i].encode_length;
+	}
+	//byte *temper_packet = new byte[total_byte + 6];
+	testing[2] = total_byte + 1;
+	testing[3] = number_of_request;
+
+
+	testing[0] = 0x30;
+	testing[1] = 0x39;
+	testing[total_byte + 6 - 2] = 0x87;
+	testing[total_byte + 6 - 1] = 0x07;
+	uart_send(&huart2, testing, total_byte+6);
+	//Serial.send_mul_modbus_packet(12345, 34567, testing, total_byte + 5);
+	//delete[] temper_packet;
+	delete[] array_of_request;
 }
 modbus_handler modbus;

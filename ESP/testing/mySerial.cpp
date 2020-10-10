@@ -17,21 +17,21 @@ void mySerial::Send(byte* Buffer, int Length)
 void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t footer, byte command)
 {
   byte* temper_buffer;
-  temper_buffer = new byte[Length + 6];
+  temper_buffer = new byte[Length + 5];
   temper_buffer[0] = (byte)((header >> 8) & 0xff);
   temper_buffer[1] = (byte)(header & 0xff);
-  temper_buffer[2] = Length + 1;
-  temper_buffer[3] = command;
-  memcpy(&temper_buffer[4], Buffer, Length);
-  temper_buffer[4+Length] = (byte)((footer >> 8) & 0xff);
-  temper_buffer[5+Length] = (byte)(footer & 0xff);
+  temper_buffer[2] = Length;
+  //temper_buffer[3] = command;
+  memcpy(&temper_buffer[3], Buffer, Length);
+  temper_buffer[3+Length] = (byte)((footer >> 8) & 0xff);
+  temper_buffer[4+Length] = (byte)(footer & 0xff);
   if(receive_status == true) {
     debug_configure_serial.Print("back up data");
-	memcpy(backup_buffer, temper_buffer, Length + 6);
-	backup_length = Length + 6;
+	memcpy(backup_buffer, temper_buffer, Length + 5);
+	backup_length = Length + 5;
   }else{
 	transmit_complete_flag = false;
-	Send(temper_buffer, Length + 6);
+	Send(temper_buffer, Length + 5);
   }
   delete[]temper_buffer;
 }
@@ -82,10 +82,10 @@ void mySerial::Receive_Package()
     }else if(temper_byte != sync_header[sync_pointer] && sync_flag == 0){
       sync_pointer = 0;
     }else if(sync_flag == 1){
-	  if(temper_lock == false) {
-		  timeout_enable = true; temper_lock = true; 
-		  standard_timeout = 8 + (int)(temper_byte*0.07);     
-	  }
+  	  if(temper_lock == false) {
+  		  timeout_enable = true; temper_lock = true; 
+  		  standard_timeout = 8 + (int)(temper_byte*0.07);     
+  	  }
       if(temper_byte == sync_end[sync_pointer]) {
         sync_pointer++;
         data_buffer[data_pointer++] = temper_byte;
@@ -93,9 +93,15 @@ void mySerial::Receive_Package()
 		      temper_lock = false;
           sync_pointer = 0;
           sync_flag = 0;
-          byte_number = data_pointer - 2;
+          byte_number = data_pointer - 3;
           timeout_enable = false;
-          this->callback_function(data_buffer, byte_number);
+          if (data_buffer[0] == byte_number)
+            this->callback_function(&data_buffer[1], byte_number);
+          else{
+            receive_complete_flag = false;
+            debug_configure_serial.Print("packet length error");
+            client.publish("error", "5");
+          }
           return;
         }
       }
@@ -123,11 +129,13 @@ void mySerial::packet_received()
       receive_complete_flag = false;
 			debug_configure_serial.Print("header and footer error");
       debug_configure_serial.mSerial->println(number_of_byte);
+      debug_configure_serial.mSerial->println(mSerial->available());
       //debug_configure_serial.Send(data_buffer, number_of_byte);
 		}
-	}else
+	}else{
     receive_complete_flag = false;
 		debug_configure_serial.Print("hardware serial failure (hardware damage)");
+	}
 }
 
 void mySerial::timer_runout_function() 

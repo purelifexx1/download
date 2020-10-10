@@ -87,7 +87,7 @@ void setup_mqtt() {
 
 void callback(char* topic, byte* payload, unsigned int length) { // for mqtt
   if(String(topic) == "data_request") { 
-    data_serial.Send_packet(payload, length, 23169, 34476, 2);
+    data_serial.Send_packet(payload, length, 23169, 34476,2);
   //   switch(payload[0]) {
 	//   case '0':
   //     //debug_configure_serial.mSerial->print("da gui packet: "); debug_configure_serial.mSerial->println(payload[1]*256+payload[2]);
@@ -123,7 +123,7 @@ void data_handler(byte* package, int Length) { // for uart lora
   receive_complete_flag = IDLE_receive;
   digitalWrite(led_pin, LED_status = !LED_status); 
   //Modbus.packet_handler(package, Length);
-  client.publish("realtime_data", &package[1], Length - 1);
+  client.publish("realtime_data", package, Length);
 }
 void reconnect() {
   while (!client.connected()) {
@@ -142,7 +142,7 @@ void loop() {
     reconnect();
   }
   client.loop();
-  if(receive_complete_flag == On_received) data_serial.packet_received();
+  if(receive_complete_flag == On_received) data_serial.Receive_Package();
   if(backup_length != 0 && receive_status == IDLE_receive) {
 	transmit_complete_flag = On_transmit;
 	data_serial.Send(backup_buffer, backup_length);

@@ -47,7 +47,7 @@ setInterval(function(){
 		server_update = false;
 	}
 }, 1000);
-var buf = Buffer.from([ 4, 4, 49, 0, 8, 4, 4, 49, 12, 8]);
+var buf = Buffer.from([3, 4, 4, 49, 0, 8, 4, 4, 49, 12, 7, 4, 4, 49, 26, 1]);
 
 function timer(){
 	if (mqtt_status == true && waitfor_reply == false) {
@@ -66,6 +66,8 @@ var statistic_buf = data_handler.statistic_buf;
 
 io.on('connection', function(socket){
 	console.log("co nguoi connect");
+	
+	
 	user_number++;
 	io.sockets.emit("server_update_enable", server_update);
 	socket.on("change_update_enable", function(data){
@@ -137,16 +139,16 @@ mqtt_branch.once('value', function(snap){
 		client.subscribe('statistic_data');
 		client.subscribe('control_status_data');
 		client.subscribe('onoff_load_confirm');
+		
 		client.on('message', function(topic, message){
 
 			if(topic == 'realtime_data') {
 				connection_status_interval = 0;
 				clearTimeout(timeout_latch);
-				console.log("message come");
-				console.log(message);
+				console.log("da nhan");
 				//message.copy(realtime_buf, 0, 0, message.length);
 				//data_handler.realtime_send(io);	
-				modbus.data_handler(message, [12544, 12556], io);
+				modbus.data_handler(message, [12544, 12556, 12570], io);
 				waitfor_reply = false;
 				re_send(storage_packet);
 			}

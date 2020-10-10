@@ -13,13 +13,19 @@ class request_type
         void function_05_handler(byte *data, int length);
         void function_10_handler(byte *data, int length);
         void CRC_16(byte* input, byte Length, byte* output);
+        byte start_address[2];
     public:
         void begin_configure(byte *data_format, int length);
+        void packet_encoding();
+        bool is_data_valid();
+        byte encode_length;
         byte request_number;
         byte request_packet[30];
         byte response_packet[64];
+        byte encoded_packet[64];
         byte request_length;
         byte response_length;
         request_type();
+
 };
 #endif

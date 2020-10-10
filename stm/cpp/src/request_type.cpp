@@ -24,14 +24,38 @@ void request_type::begin_configure(byte *data_format, int length)
         break;
     }
 }
+void request_type::packet_encoding(){
+	switch (response_packet[1]) {
+		case 0x01:
+
+		break;
+		case 0x04:
+			encoded_packet[0] = 0x04;
+			encoded_packet[1] = start_address[0];
+			encoded_packet[2] = start_address[1];
+			encoded_packet[3] = response_packet[2]; //number of data byte
+			memcpy(&encoded_packet[4], &response_packet[3], response_length - 5);
+			encode_length = response_length - 1;
+		break;
+		case 0x05:
+
+		break;
+		case 0x10:
+
+		break;
+		case 0x03:
+
+		break;
+	}
+}
 void request_type::function_01_handler(byte *data, int length) //read coil status
 {
     //receive format:  [register_address: 2 bytes] [number of register: 1 byte]
     //total 3 bytes
     request_packet[0] = modbus_address;
     request_packet[1] = 0x01;
-    request_packet[2] = data[0];
-    request_packet[3] = data[1];
+    request_packet[2] = data[0];	start_address[0] = data[0];
+    request_packet[3] = data[1];    start_address[1] = data[1];
     request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
     request_packet[5] = (byte)data[2];
     CRC_16(request_packet, 6, &request_packet[6]);
@@ -45,8 +69,8 @@ void request_type::function_03_handler(byte *data, int length) //read holding re
     //total 3 bytes
     request_packet[0] = modbus_address;
     request_packet[1] = 0x03;
-    request_packet[2] = data[0];
-    request_packet[3] = data[1];
+    request_packet[2] = data[0];	start_address[0] = data[0];
+    request_packet[3] = data[1];    start_address[1] = data[1];
     request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
     request_packet[5] = (byte)data[2];
     CRC_16(request_packet, 6, &request_packet[6]);
@@ -60,8 +84,8 @@ void request_type::function_04_handler(byte *data, int length) //read input regi
     //total 3 bytes
     request_packet[0] = modbus_address;
     request_packet[1] = 0x04;
-    request_packet[2] = data[0];
-    request_packet[3] = data[1];
+    request_packet[2] = data[0];	start_address[0] = data[0];
+    request_packet[3] = data[1];	start_address[1] = data[1];
     request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
     request_packet[5] = (byte)data[2];
     CRC_16(request_packet, 6, &request_packet[6]);
@@ -75,8 +99,8 @@ void request_type::function_05_handler(byte *data, int length) //read coil statu
     //total 3 bytes
     request_packet[0] = modbus_address;
     request_packet[1] = 0x05;
-    request_packet[2] = data[0];
-    request_packet[3] = data[1];
+    request_packet[2] = data[0];	start_address[0] = data[0];
+    request_packet[3] = data[1];	start_address[1] = data[1];
     request_packet[4] = data[2]; 
     request_packet[5] = 0x00;
     CRC_16(request_packet, 6, &request_packet[6]);
@@ -90,8 +114,8 @@ void request_type::function_10_handler(byte *data, int length) //read coil statu
     //total 3 bytes
     request_packet[0] = modbus_address;
     request_packet[1] = 0x10;
-    request_packet[2] = data[0];
-    request_packet[3] = data[1];
+    request_packet[2] = data[0];	start_address[0] = data[0];
+    request_packet[3] = data[1];  start_address[1] = data[1];
     request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
     request_packet[5] = (byte)data[2];
     byte number_of_bytes = (byte)(data[2] << 1);
@@ -114,4 +138,10 @@ void request_type::CRC_16(byte* input, byte Length, byte* output)
 	}
 	output[1] = (byte)((reg_crc >> 8) & 0xff);
 	output[0] = (byte)(reg_crc & 0xff);	
+}
+bool request_type::is_data_valid()
+{
+	byte temper_check[2];
+	CRC_16(response_packet, response_length, temper_check);
+	return ((temper_check[0] == 0) && (temper_check[1] == 0))?true:false;
 }

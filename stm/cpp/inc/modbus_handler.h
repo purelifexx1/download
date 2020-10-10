@@ -9,13 +9,17 @@
 class modbus_handler
 {
     private:
-        byte current_request_number;
+
     public:
+		byte current_request_number;
         modbus_handler();
+        byte total_byte = 0;
         byte number_of_request;
         byte testing[64];
         void request_packet_handler(byte* data_packet, int length);
         void receive_handler(UART_HandleTypeDef *huart);
+        void package_data();
+
 };
 
 extern request_type* array_of_request;

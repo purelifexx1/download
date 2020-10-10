@@ -49,8 +49,8 @@ void data_received2(byte* data_buffer, int length) { //lora
 }
 
 void modbus_received(byte* data_buffer, int length) {
-	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-    Serial.send_packet(12345, 34567, data_buffer, length);
+//	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+//    Serial.send_packet(12345, 34567, data_buffer, length);
 }
 
 void UART_CallBack(UART_HandleTypeDef *huart) {
