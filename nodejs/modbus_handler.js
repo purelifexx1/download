@@ -3,7 +3,7 @@ const table = require("./modbus_table");
 const rf_table = table.reference_table;
 
 var send_object_data = {};
-function data_handler(data_packet, start_register_object, io){
+function data_handler(data_packet, io){
     var number_of_packet = data_packet[0];
     var current_pointer = 1;
     var send_update_object = {};
@@ -40,6 +40,7 @@ function data_handler(data_packet, start_register_object, io){
             break;
         }
     }
+    console.log(send_update_object);
     io.sockets.emit("packet_update", send_update_object);
 }
 module.exports.data_handler = data_handler;

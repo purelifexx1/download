@@ -1,4 +1,5 @@
 <div class="tab-pane fade pl-0 pr-0 mt-2" id="statistics">
+    <button id = "statistic_request">Get statistic data</button>
     <!-- Today -->
     <div class="heading">
         <b>Today</b>
@@ -8,9 +9,22 @@
             <label>PV Voltage:</label>
             <div class="row">
                 <div class="col">
-                    <textarea readonly id="min_pv_vol_today" rows="1">150</textarea>
+                    <textarea readonly id="min_pv_vol_today" rows="1"></textarea>
+                    <label class="separator ml-1 mr-1" style="text-align: center;">Min</label>
                     <label class="separator ml-1 mr-1" style="text-align: center;">-</label>
-                    <textarea readonly id="max_pv_vol_today" rows="1">150</textarea>
+                    <textarea readonly id="max_pv_vol_today" rows="1"></textarea>
+                    <label class="separator ml-1 mr-1" style="text-align: center;">Max</label>
+                    <label class="unit ml-1">(V)</label>
+                </div>
+            </div>
+            <label>Battery Voltage:</label>
+            <div class="row">
+                <div class="col">
+                    <textarea readonly id="min_bat_vol_today" rows="1"></textarea>
+                    <label class="separator ml-1 mr-1" style="text-align: center;">Min</label>
+                    <label class="separator ml-1 mr-1" style="text-align: center;">-</label>
+                    <textarea readonly id="max_bat_vol_today" rows="1"></textarea>
+                    <label class="separator ml-1 mr-1" style="text-align: center;">Max</label>
                     <label class="unit ml-1">(V)</label>
                 </div>
             </div>
@@ -18,15 +32,15 @@
         <div class="col">
             <label>Consumed Energy:</label>
             <div>
-                <textarea readonly id="con_energy_today" rows="1">150</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="con_energy_today" rows="1"></textarea>
+                <label class="unit">(W)</label>
             </div>
         </div>
         <div class="col">
             <label>Generated Energy:</label>
             <div>
-                <textarea readonly id="gen_energy_today" rows="1">150</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="gen_energy_today" rows="1"></textarea>
+                <label class="unit">(W)</label>
             </div>
         </div>
     </div>
@@ -40,15 +54,15 @@
         <div class="col">
             <label>Consumed Energy:</label>
             <div>
-                <textarea readonly id="con_energy_month" rows="1">100</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="con_energy_month" rows="1"></textarea>
+                <label class="unit">(W)</label>
             </div>
         </div>
         <div class="col">
             <label>Generated Energy:</label>
             <div>
-                <textarea readonly id="gen_energy_month" rows="1">150</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="gen_energy_month" rows="1"></textarea>
+                <label class="unit">(W)</label>
             </div>
         </div>
     </div>
@@ -62,15 +76,15 @@
         <div class="col">
             <label>Consumed Energy:</label>
             <div>
-                <textarea readonly id="con_energy_year" rows="1">150</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="con_energy_year" rows="1"></textarea>
+                <label class="unit">(W)</label>
             </div>
         </div>
         <div class="col">
             <label>Generated Energy - This Year:</label>
             <div>
-                <textarea readonly id="gen_energy_year" rows="1">150</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="gen_energy_year" rows="1"></textarea>
+                <label class="unit">(W)</label>
             </div>
         </div>
     </div>
@@ -84,15 +98,15 @@
         <div class="col">
             <label>Consumed Energy:</label>
             <div>
-                <textarea readonly id="total_con_energy" rows="1">050</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="total_con_energy" rows="1"></textarea>
+                <label class="unit">(W)</label>
             </div>
         </div>
         <div class="col">
             <label>Generated Energy:</label>
             <div>
-                <textarea readonly id="total_gen_energy" rows="1">150</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="total_gen_energy" rows="1"></textarea>
+                <label class="unit">(W)</label>
             </div>
         </div>
     </div>

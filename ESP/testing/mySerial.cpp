@@ -30,7 +30,7 @@ void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t f
 	memcpy(backup_buffer, temper_buffer, Length + 5);
 	backup_length = Length + 5;
   }else{
-	transmit_complete_flag = false;
+	transmit_complete_flag = On_transmit;
 	Send(temper_buffer, Length + 5);
   }
   delete[]temper_buffer;

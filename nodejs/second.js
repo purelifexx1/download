@@ -71,12 +71,38 @@ module.exports = {
 		var date_branch = main_branch.child(date + " at " + time);
 		date_branch.update(struct_realtime_data);
 		console.log(date + " at " + time);
+	},
+	log_error: function(io, error_code){
+		var real_time = get_realtime();
+		var error_content = real_time.hour + ":" + real_time.min + ":" + real_time.sec + " --> ";
+		switch (error_code){
+			case "2":
+				error_content =  error_content.concat("loss connection to child node");
+				io.sockets.emit("error", error_content); break;
+			case "0": 
+				error_content =  error_content.concat("packet timeout at central node: header-footer error or damage hardware serial");
+				io.sockets.emit("error", error_content); break;
+			case "9": 
+				error_content =  error_content.concat("lost modbus connection at child node");
+				io.sockets.emit("error", error_content); break;
+			case "5": 
+				error_content =  error_content.concat("packet length error(central node)");
+				io.sockets.emit("error", error_content); break;
+			case "7": 
+				error_content =  error_content.concat("packet length error(child node)");
+				io.sockets.emit("error", error_content); break;
+			case "6": 
+				error_content =  error_content.concat("header and footer error at child node");
+				io.sockets.emit("error", error_content); break;
+			case "q":
+				error_content = error_content.concat("lost some request at child node");
+				io.sockets.emit("error", error_content); break;
+		}
 	}
 
 };
 
 module.exports.realtime_buf = realtime_union_buf;
-
 module.exports.statistic_buf = statistic_union_buf;
 
 

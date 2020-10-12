@@ -92,9 +92,7 @@ socket.on("packet_lost", function(data){
 })
 
 socket.on("error", function(data){
-	if(data == "2"){
-		console_log("loss connection to main node");
-	}
+	console_log(data);
 })
 
 socket.on("server_update_enable", function(data){
@@ -126,12 +124,9 @@ $(document).ready(function(){
 	$("#bt-3").click(function(){
 
 	})
-	$("#first_check").click(function(){
-		if(this.checked) {
-			socket.emit("change_update_enable");
-		}else{
-			console.log("uncheck");
-		}
+	$("#database_update").click(function(){
+		socket.emit("update_database");
+		console_log("new time stamp for realtime data has been updated")
 	})
 	$("#manual_control").click(function(){
 		socket.emit("manual_control");

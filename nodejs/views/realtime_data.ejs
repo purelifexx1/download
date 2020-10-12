@@ -1,12 +1,12 @@
 <div class="tab-pane active pl-0 pr-0 mt-3" id="real-time">
     <form action="#" method="POST" style="margin: 0 0 1em 0;">
-        <input type="checkbox" name="this_is_something" id="first_check"/>check<br/>
+        <button id = "database_update">Push data to database</button>
     </form>
     <div class="row">
         <div class="col">
             <label>PV Input Voltage:</label>
             <div>
-                <textarea readonly id="solar_voltage" rows="1">150</textarea>
+                <textarea readonly id="solar_voltage" rows="1"></textarea>
                 <label class="unit">(V)</label>
             </div>
         </div>
@@ -14,7 +14,7 @@
         <div class="col">
             <label>Battery Power:</label>
             <div>
-                <textarea readonly id="bat_power" rows="1">150</textarea>
+                <textarea readonly id="bat_power" rows="1"></textarea>
                 <label class="unit">(W)</label>
             </div>
         </div>
@@ -24,7 +24,7 @@
         <div class="col">
             <label>PV Input Current:</label>
             <div>
-                <textarea readonly id="solar_current" rows="1">150</textarea>
+                <textarea readonly id="solar_current" rows="1"></textarea>
                 <label class="unit">(A)</label>
             </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="col">
             <label>Battery Percentage:</label>
             <div>
-                <textarea readonly id="bat_percent" rows="1">150</textarea>
+                <textarea readonly id="bat_percent" rows="1"></textarea>
                 <label class="unit">(%)</label>
             </div>
 
@@ -43,7 +43,7 @@
         <div class="col">
             <label>PV Input Power:</label>
             <div>
-                <textarea readonly id="solar_power" rows="1">150</textarea>
+                <textarea readonly id="solar_power" rows="1"></textarea>
                 <label class="unit">(W)</label>
             </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="col">
             <label>Battery Voltage:</label>
             <div>
-                <textarea readonly id="bat_voltage" rows="1">150</textarea>
+                <textarea readonly id="bat_voltage" rows="1"></textarea>
                 <label class="unit">(V)</label>
             </div>
         </div>
@@ -61,7 +61,7 @@
         <div class="col">
             <label>Load Power:</label>
             <div>
-                <textarea readonly id="load_power" rows="1">150</textarea>
+                <textarea readonly id="load_power" rows="1"></textarea>
                 <label class="unit">(W)</label>
             </div>
         </div>
@@ -69,7 +69,7 @@
         <div class="col">
             <label>Battery Current:</label>
             <div>
-                <textarea readonly id="bat_current" rows="1">150</textarea>
+                <textarea readonly id="bat_current" rows="1"></textarea>
                 <label class="unit">(A)</label>
             </div>
         </div>
@@ -79,15 +79,15 @@
         <div class="col">
             <label>Load Voltage:</label>
             <div>
-                <textarea readonly id="load_voltage" rows="1">150</textarea>
+                <textarea readonly id="load_voltage" rows="1"></textarea>
                 <label class="unit">(V)</label>
             </div>
         </div>
         <div class="col"></div>
         <div class="col">
-            <label>Battery Temperature:</label>
+            <label>External Battery Temperature:</label>
             <div>
-                <textarea readonly id="bat_temp" rows="1">150</textarea>
+                <textarea readonly id="bat_temp" rows="1"></textarea>
                 <label class="unit">(&#8451)</label>
             </div>
         </div>
@@ -97,16 +97,16 @@
         <div class="col">
             <label>Load Current:</label>
             <div>
-                <textarea readonly id="load_current" rows="1">150</textarea>
+                <textarea readonly id="load_current" rows="1"></textarea>
                 <label class="unit">(A)</label>
             </div>
         </div>
         <div class="col"></div>
         <div class="col">
-            <label>Battery Inner Resistance:</label>
+            <label>Temperature Inside MPTT:</label>
             <div>
-                <textarea readonly id="temp_in" rows="1">150</textarea>
-                <label class="unit">(V)</label>
+                <textarea readonly id="temp_in" rows="1"></textarea>
+                <label class="unit">(&#8451)</label>
             </div>
         </div>
     </div>

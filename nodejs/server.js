@@ -1,6 +1,7 @@
 var express = require("express");
 var firebase = require("firebase");
 var modbus = require('./modbus_handler');
+var request = require('./create_encoded_request');
 var path = require("path");
 firebase.initializeApp({
 	databaseURL: "https://archive-34c94.firebaseio.com"
@@ -26,6 +27,8 @@ var storage_packet = {
 	"topic_timeout": "",
 	"content_timeout": ""
 };
+var archive_packet = {};
+
 
 var user_number = 0;
 var latch = true;
@@ -47,12 +50,30 @@ setInterval(function(){
 		server_update = false;
 	}
 }, 1000);
-var buf = Buffer.from([3, 4, 4, 49, 0, 8, 4, 4, 49, 12, 7, 4, 4, 49, 26, 1]);
 
 function timer(){
 	if (mqtt_status == true && waitfor_reply == false) {
 		console.log("send");
-		client.publish('data_request', buf);		
+		var real_time_request = {
+			"1":{
+				"function_code": 4,
+				"start_address": "3100",
+				"number_of_register": 8
+			},
+			"2":{
+				"function_code": 4,
+				"start_address": "310c",
+				"number_of_register": 6
+			},
+			"3":{
+				"function_code": 4,
+				"start_address": "311a",
+				"number_of_register": 1
+			}
+		}
+		request.create_request(real_time_request, function(buf){
+			client.publish('data_request', buf);	
+		})			
 		storage_packet.topic_timeout = 'data_request';
 		storage_packet.content_timeout = "0";
 		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
@@ -65,28 +86,45 @@ var realtime_buf = data_handler.realtime_buf;
 var statistic_buf = data_handler.statistic_buf;
 
 io.on('connection', function(socket){
-	console.log("co nguoi connect");
-	
+	console.log("co nguoi connect");	
 	
 	user_number++;
-	io.sockets.emit("server_update_enable", server_update);
 	socket.on("change_update_enable", function(data){
 		server_update = !server_update;
 		io.sockets.emit("server_update_enable", server_update);
 		sec_value = 0;
 	})
 
+	socket.on("update_database", function(data){
+		data_handler.update_server(main_branch);
+	})
+
 	socket.on("statistic_request", function(data){
-		if(waitfor_reply == false){
-			client.publish('data_request', "1"); 
+		console.log("send request statistic");
+		var statistic_request = {
+			"1":{
+				"function_code": 4,
+				"start_address": "3300",
+				"number_of_register": 20
+			}
+		}
+		if(waitfor_reply == false){			
+			request.create_request(statistic_request, function(buf){
+				client.publish('data_request', buf); 
+			})		
 			storage_packet.topic_timeout = 'data_request';
 			storage_packet.content_timeout = "1";
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;			
 		}else{
-			socket.emit("packet_ongoing");
-			storage_packet.topic = "data_request";
-			storage_packet.message = "1";
+			socket.emit("packet_ongoing");			
+			request.create_request(statistic_request, function(buf){
+				archive_packet["2"] = {
+					"topic": "data_request",
+					"message": buf,
+					"content_timeout": "1"
+				};
+			})
 		}
 		
 	})
@@ -139,7 +177,7 @@ mqtt_branch.once('value', function(snap){
 		client.subscribe('statistic_data');
 		client.subscribe('control_status_data');
 		client.subscribe('onoff_load_confirm');
-		
+		client.subscribe('error');
 		client.on('message', function(topic, message){
 
 			if(topic == 'realtime_data') {
@@ -148,9 +186,9 @@ mqtt_branch.once('value', function(snap){
 				console.log("da nhan");
 				//message.copy(realtime_buf, 0, 0, message.length);
 				//data_handler.realtime_send(io);	
-				modbus.data_handler(message, [12544, 12556, 12570], io);
+				modbus.data_handler(message, io);
 				waitfor_reply = false;
-				re_send(storage_packet);
+				send_wait_in_line_packet(storage_packet);
 			}
 
 			if(topic == 'statistic_data') {
@@ -159,21 +197,27 @@ mqtt_branch.once('value', function(snap){
 				message.copy(statistic_buf, 0, 0, message.length);
 				data_handler.statistic_send(io);
 				waitfor_reply = false;
-				re_send(storage_packet);
+				send_wait_in_line_packet(storage_packet);
 			}
 
 			if(topic == 'control_status_data'){
 				connection_status_interval = 0;
 				clearTimeout(timeout_latch);
 				data_handler.control_status_send(io, message);
-				re_send(storage_packet);
+				send_wait_in_line_packet(storage_packet);
 			}
 
 			if(topic == 'onoff_load_confirm'){
 				clearTimeout(timeout_latch);
 				if(message[0] == 256) io.sockets.emit("onoff_load_confirm", "1");
 				else io.sockets.emit("onoff_load_confirm", "0");
-				re_send(storage_packet);
+				send_wait_in_line_packet(storage_packet);
+			}
+			if(topic == 'error'){
+				connection_status_interval = 0;
+				clearTimeout(timeout_latch);
+				waitfor_reply = false;
+				data_handler.log_error(io, message)
 			}
 		})
 
@@ -184,14 +228,28 @@ mqtt_branch.once('value', function(snap){
 	})
 })
 
-function re_send(storage_packet){
-	if(storage_packet.topic != "" && storage_packet.message != ""){
-		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
+function send_wait_in_line_packet(storage_packet){
+
+	if(Object.keys(archive_packet).length != 0){
+		var wait_in_line = Object.keys(archive_packet).map(function(item){
+			return parseInt(item, 10);
+		});
+		var send_object = Math.min(...wait_in_line).toString();
+		console.log("gui archive")
+		client.publish(archive_packet[send_object].topic, archive_packet[send_object].message);
+		storage_packet.topic_timeout = archive_packet[send_object].topic;
+		storage_packet.content_timeout = archive_packet[send_object].content_timeout;
 		waitfor_reply = true;
-		client.publish(storage_packet.topic, storage_packet.message);
-		storage_packet.topic = "";
-		storage_packet.message = "";
-	}	
+		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
+		delete archive_packet[send_object];
+	}
+	// if(storage_packet.topic != "" && storage_packet.message != ""){
+	// 	timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
+	// 	waitfor_reply = true;
+	// 	client.publish(storage_packet.topic, storage_packet.message);
+	// 	storage_packet.topic = "";
+	// 	storage_packet.message = "";
+	// }	
 }
 function timeout_function(storage_packet){
 	console.log("timeout");
@@ -199,12 +257,12 @@ function timeout_function(storage_packet){
 		connection_status_interval++;
 	}
 	if(connection_status_interval > 5) {
-		io.sockets.emit("error", "2")
+		data_handler.log_error(io, "2");
 	}
 
 	io.sockets.emit("packet_lost", storage_packet.content_timeout);
 	waitfor_reply = false
-	re_send(storage_packet);
+	send_wait_in_line_packet(storage_packet);
 }
 server.listen(3000);
 app.get("/", function(req, res){

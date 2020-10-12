@@ -141,7 +141,12 @@ void request_type::CRC_16(byte* input, byte Length, byte* output)
 }
 bool request_type::is_data_valid()
 {
-	byte temper_check[2];
-	CRC_16(response_packet, response_length, temper_check);
-	return ((temper_check[0] == 0) && (temper_check[1] == 0))?true:false;
+	if (is_data_received == true){
+		byte temper_check[2];
+		CRC_16(response_packet, response_length, temper_check);
+		return ((temper_check[0] == 0) && (temper_check[1] == 0))?true:false;
+	}else{
+		return false;
+	}
+
 }

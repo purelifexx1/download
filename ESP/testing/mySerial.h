@@ -3,6 +3,10 @@
 #include <Arduino.h>
 #include <PubSubClient.h>
 #define Callback void(*callback_function)(byte*,int)
+#define IDLE_receive false
+#define IDLE_transmit true
+#define On_received true
+#define On_transmit false
 class mySerial 
 {
   private:

@@ -6,7 +6,7 @@
  */
 
 #include "main.h"
-#include "modbus.h"
+//#include "modbus.h"
 #include "mySerial.h"
 #include "request_type.h"
 #include "modbus_handler.h"
@@ -20,20 +20,22 @@
 #define On_transmit false
 
 request_type* array_of_request;
-byte* temp1;
-int* temp2;
+//byte* temp1;
+//int* temp2;
 bool transmit_complete_flag = IDLE_transmit;
 bool receive_complete_flag = IDLE_receive;
 bool receive_status = IDLE_receive;
 
 void setup() {
 	Serial.begin(&huart2, 23169, 34476, data_received2);
-	modbus1.begin(&huart3, modbus_received);
+	//modbus1.begin(&huart3, modbus_received);
+	modbus.begin(12345, 34567);
 }
 
 void loop() {
 	Serial.looping2();
 	//modbus1.looping();
+
 	if(backup_length != 0 && receive_status == IDLE_receive) {
 		transmit_complete_flag = On_transmit;
 		uart_send(&huart2, backup_buffer, backup_length);
@@ -42,19 +44,18 @@ void loop() {
 }
 
 void data_received2(byte* data_buffer, int length) { //lora
-	//HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	receive_complete_flag = IDLE_receive;
 	//modbus1.request_handler1(data_buffer, length);
 	modbus.request_packet_handler(data_buffer, length);
 }
 
-void modbus_received(byte* data_buffer, int length) {
+//void modbus_received(byte* data_buffer, int length) {
 //	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 //    Serial.send_packet(12345, 34567, data_buffer, length);
-}
+//}
 
 void UART_CallBack(UART_HandleTypeDef *huart) {
-	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	if (huart->Instance == USART2)
 		Serial.buffer_overflow();
 	else if(huart->Instance == USART3){

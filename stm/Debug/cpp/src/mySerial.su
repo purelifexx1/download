@@ -2,10 +2,11 @@ mySerial.cpp:9:1:mySerial::mySerial()	16	static
 mySerial.cpp:14:6:void mySerial::begin(UART_HandleTypeDef*, uint16_t, uint16_t, void (*)(uint8_t*, int))	24	static
 mySerial.cpp:25:6:void mySerial::looping()	16	static
 mySerial.cpp:52:6:void mySerial::looping2()	16	static
-mySerial.cpp:94:6:void mySerial::send_packet(uint16_t, uint16_t, uint8_t*, int)	32	static
-mySerial.cpp:109:6:void mySerial::send_mul_modbus_packet(uint16_t, uint16_t, uint8_t*, int)	24	static
-mySerial.cpp:118:6:void mySerial::send_modbus_packet(uint16_t, uint16_t, uint8_t*, int)	32	static
-mySerial.cpp:139:6:void mySerial::send_multiple_modbus_packet(uint16_t, uint16_t, uint8_t*, int)	40	static
-mySerial.cpp:172:6:void mySerial::buffer_overflow()	16	static
-mySerial.cpp:179:16:void __static_initialization_and_destruction_0(int, int)	16	static
-mySerial.cpp:179:16:cpp)	8	static
+mySerial.cpp:95:6:void mySerial::send_error(uint16_t, uint16_t, uint8_t)	32	static
+mySerial.cpp:109:6:void mySerial::send_packet(uint16_t, uint16_t, uint8_t*, int)	32	static
+mySerial.cpp:124:6:void mySerial::send_mul_modbus_packet(uint16_t, uint16_t, uint8_t*, int)	24	static
+mySerial.cpp:133:6:void mySerial::send_modbus_packet(uint16_t, uint16_t, uint8_t*, int)	32	static
+mySerial.cpp:154:6:void mySerial::send_multiple_modbus_packet(uint16_t, uint16_t, uint8_t*, int)	40	static
+mySerial.cpp:187:6:void mySerial::buffer_overflow()	16	static
+mySerial.cpp:194:16:void __static_initialization_and_destruction_0(int, int)	16	static
+mySerial.cpp:194:16:cpp)	8	static

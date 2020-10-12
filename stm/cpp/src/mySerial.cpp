@@ -53,11 +53,11 @@ void mySerial::looping2()
 {
 	if(receive_complete_flag == On_received) {
 		write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
-		if(data_buffer[read_pointer] == header[0] && data_buffer[(byte)(read_pointer+1)] == header[1] && data_buffer[(byte)(write_pointer-2)] == footer[0] && data_buffer[(byte)(write_pointer-1)] == footer[1]){
+		if(data_buffer[read_pointer] == this->header[0] && data_buffer[(byte)(read_pointer+1)] == this->header[1] && data_buffer[(byte)(write_pointer-2)] == this->footer[0] && data_buffer[(byte)(write_pointer-1)] == this->footer[1]){
 			if(data_buffer[(byte)(read_pointer+2)] == ((byte)(write_pointer - read_pointer) - 5)) {
 				if(overflow_flag == true)
 					memcpy(&data_buffer[256], data_buffer, write_pointer);
-				//length_error_integral = 0; head_foot_error_integral = 0;
+				length_error_integral = 0; head_foot_error_integral = 0;
 				overflow_flag = false;
 				packet_id = data_buffer[(byte)(read_pointer+3)];
 				this->callback(&data_buffer[(byte)(read_pointer+3)], data_buffer[(byte)(read_pointer+2)]);				
@@ -65,23 +65,25 @@ void mySerial::looping2()
 				return;
 			}else{
 				//packet length error
-				error_debug_buffer[0] = write_pointer;
-				error_debug_buffer[1] = read_pointer;
-				error_debug_buffer[2] = data_buffer[(byte)(read_pointer+2)];
-				error_debug_buffer[3] = (byte)(uart->hdmarx->Instance->CNDTR);
+//				error_debug_buffer[0] = write_pointer;
+//				error_debug_buffer[1] = read_pointer;
+//				error_debug_buffer[2] = data_buffer[(byte)(read_pointer+2)];
+//				error_debug_buffer[3] = (byte)(uart->hdmarx->Instance->CNDTR);
 				receive_complete_flag = IDLE_receive;
 				length_error_integral++;
+				send_error(12345, 34567, '7');
 				overflow_flag = false;
 				read_pointer = write_pointer;
 			}
 		}else{
 			//header footer error
-			error_debug_buffer[0] = write_pointer;
-			error_debug_buffer[1] = read_pointer;
-			error_debug_buffer[2] = data_buffer[read_pointer];
-			error_debug_buffer[3] = data_buffer[(byte)(read_pointer+1)];
-			error_debug_buffer[4] = data_buffer[(byte)(write_pointer-2)];
-			error_debug_buffer[5] = data_buffer[(byte)(write_pointer-1)];
+//			error_debug_buffer[0] = write_pointer;
+//			error_debug_buffer[1] = read_pointer;
+//			error_debug_buffer[2] = data_buffer[read_pointer];
+//			error_debug_buffer[3] = data_buffer[(byte)(read_pointer+1)];
+//			error_debug_buffer[4] = data_buffer[(byte)(write_pointer-2)];
+//			error_debug_buffer[5] = data_buffer[(byte)(write_pointer-1)];
+			send_error(12345, 34567, '6');
 			receive_complete_flag = IDLE_receive;
 			head_foot_error_integral++;
 			overflow_flag = false;
@@ -90,7 +92,20 @@ void mySerial::looping2()
 	}
 	
 }
-
+void mySerial::send_error(uint16_t header, uint16_t footer, uint8_t error_code)
+{
+	byte *temper_packet = new byte[7];
+	temper_packet[0] = (byte)(header >>8 & 0xff);
+	temper_packet[1] = (byte)(header & 0xff);
+	temper_packet[2] = 2;
+	temper_packet[3] = 40; //packet id for error
+	temper_packet[4] = error_code;
+	temper_packet[5] = (byte)(footer >>8 & 0xff);
+	temper_packet[6] = (byte)(footer & 0xff);
+	transmit_complete_flag = On_transmit;
+	uart_send(&huart2, temper_packet, 7);
+	delete[] temper_packet;
+}
 void mySerial::send_packet(uint16_t header, uint16_t footer, byte* data, int length)
 {
 	byte *temper_packet;

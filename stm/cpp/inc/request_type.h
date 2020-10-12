@@ -18,6 +18,7 @@ class request_type
         void begin_configure(byte *data_format, int length);
         void packet_encoding();
         bool is_data_valid();
+        bool is_data_received = false;
         byte encode_length;
         byte request_number;
         byte request_packet[30];

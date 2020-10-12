@@ -5,45 +5,45 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   0000010c  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         000033f4  0800010c  0800010c  0001010c  2**2
+  1 .text         000034f8  0800010c  0800010c  0001010c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       0000002c  08003500  08003500  00013500  2**2
+  2 .rodata       0000002c  08003604  08003604  00013604  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0800352c  0800352c  00020070  2**0
+  3 .ARM.extab    00000000  08003630  08003630  00020070  2**0
                   CONTENTS
-  4 .ARM          00000000  0800352c  0800352c  00020070  2**0
+  4 .ARM          00000000  08003630  08003630  00020070  2**0
                   CONTENTS
-  5 .preinit_array 00000000  0800352c  0800352c  00020070  2**0
+  5 .preinit_array 00000000  08003630  08003630  00020070  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000010  0800352c  0800352c  0001352c  2**2
+  6 .init_array   00000010  08003630  08003630  00013630  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  0800353c  0800353c  0001353c  2**2
+  7 .fini_array   00000004  08003640  08003640  00013640  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000070  20000000  08003540  00020000  2**2
+  8 .data         00000070  20000000  08003644  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          0000054c  20000070  080035b0  00020070  2**2
+  9 .bss          00000550  20000070  080036b4  00020070  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  200005bc  080035b0  000205bc  2**0
+ 10 ._user_heap_stack 00000600  200005c0  080036b4  000205c0  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00020070  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000e247  00000000  00000000  00020099  2**0
+ 12 .debug_info   0000e4d3  00000000  00000000  00020099  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 0000263c  00000000  00000000  0002e2e0  2**0
+ 13 .debug_abbrev 00002645  00000000  00000000  0002e56c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 00000930  00000000  00000000  00030920  2**3
+ 14 .debug_aranges 00000940  00000000  00000000  00030bb8  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00000818  00000000  00000000  00031250  2**3
+ 15 .debug_ranges 00000828  00000000  00000000  000314f8  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  00016d54  00000000  00000000  00031a68  2**0
+ 16 .debug_macro  00016d68  00000000  00000000  00031d20  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00008e26  00000000  00000000  000487bc  2**0
+ 17 .debug_line   00008e69  00000000  00000000  00048a88  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    0006c997  00000000  00000000  000515e2  2**0
+ 18 .debug_str    0006ca5e  00000000  00000000  000518f1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  000bdf79  2**0
+ 19 .comment      0000007b  00000000  00000000  000be34f  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002630  00000000  00000000  000bdff4  2**2
+ 20 .debug_frame  00002678  00000000  00000000  000be3cc  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  8000122:	bd10      	pop	{r4, pc}
  8000124:	20000070 	.word	0x20000070
  8000128:	00000000 	.word	0x00000000
- 800012c:	080034e8 	.word	0x080034e8
+ 800012c:	080035ec 	.word	0x080035ec
 
 08000130 <frame_dummy>:
  8000130:	b508      	push	{r3, lr}
@@ -74,7 +74,7 @@ Disassembly of section .text:
  800013e:	bd08      	pop	{r3, pc}
  8000140:	00000000 	.word	0x00000000
  8000144:	20000074 	.word	0x20000074
- 8000148:	080034e8 	.word	0x080034e8
+ 8000148:	080035ec 	.word	0x080035ec
 
 0800014c <main>:
 /**
@@ -124,7 +124,7 @@ int main(void)
   while (1)
   {
 	  loop();
- 8000172:	f002 f9c9 	bl	8002508 <loop>
+ 8000172:	f002 f9c7 	bl	8002504 <loop>
  8000176:	e7fc      	b.n	8000172 <main+0x26>
 
 08000178 <SystemClock_Config>:
@@ -142,7 +142,7 @@ void SystemClock_Config(void)
  8000182:	2228      	movs	r2, #40	; 0x28
  8000184:	2100      	movs	r1, #0
  8000186:	4618      	mov	r0, r3
- 8000188:	f003 f8a9 	bl	80032de <memset>
+ 8000188:	f003 f92b 	bl	80033e2 <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  800018c:	1d3b      	adds	r3, r7, #4
  800018e:	2200      	movs	r2, #0
@@ -288,7 +288,7 @@ static void MX_USART2_UART_Init(void)
  800024a:	bf00      	nop
  800024c:	bd80      	pop	{r7, pc}
  800024e:	bf00      	nop
- 8000250:	20000570 	.word	0x20000570
+ 8000250:	20000574 	.word	0x20000574
  8000254:	40004400 	.word	0x40004400
 
 08000258 <MX_USART3_UART_Init>:
@@ -355,7 +355,7 @@ static void MX_USART3_UART_Init(void)
  800029e:	bf00      	nop
  80002a0:	bd80      	pop	{r7, pc}
  80002a2:	bf00      	nop
- 80002a4:	2000041c 	.word	0x2000041c
+ 80002a4:	20000420 	.word	0x20000420
  80002a8:	40004800 	.word	0x40004800
 
 080002ac <MX_DMA_Init>:
@@ -609,7 +609,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  8000444:	6078      	str	r0, [r7, #4]
   UART_CallBack(huart);
  8000446:	6878      	ldr	r0, [r7, #4]
- 8000448:	f002 f8aa 	bl	80025a0 <UART_CallBack>
+ 8000448:	f002 f8a4 	bl	8002594 <UART_CallBack>
 }
  800044c:	bf00      	nop
  800044e:	3708      	adds	r7, #8
@@ -628,7 +628,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	GPIO_Interrupt_Callback(GPIO_Pin);
  800045e:	88fb      	ldrh	r3, [r7, #6]
  8000460:	4618      	mov	r0, r3
- 8000462:	f002 f8c7 	bl	80025f4 <GPIO_Interrupt_Callback>
+ 8000462:	f002 f8b9 	bl	80025d8 <GPIO_Interrupt_Callback>
 }
  8000466:	bf00      	nop
  8000468:	3708      	adds	r7, #8
@@ -1077,15 +1077,15 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
  8000708:	40004400 	.word	0x40004400
  800070c:	40021000 	.word	0x40021000
  8000710:	40010800 	.word	0x40010800
- 8000714:	20000394 	.word	0x20000394
+ 8000714:	20000398 	.word	0x20000398
  8000718:	4002006c 	.word	0x4002006c
- 800071c:	200004ac 	.word	0x200004ac
+ 800071c:	200004b0 	.word	0x200004b0
  8000720:	40020080 	.word	0x40020080
  8000724:	40004800 	.word	0x40004800
  8000728:	40010c00 	.word	0x40010c00
- 800072c:	200003d8 	.word	0x200003d8
+ 800072c:	200003dc 	.word	0x200003dc
  8000730:	40020030 	.word	0x40020030
- 8000734:	2000045c 	.word	0x2000045c
+ 8000734:	20000460 	.word	0x20000460
  8000738:	4002001c 	.word	0x4002001c
 
 0800073c <NMI_Handler>:
@@ -1315,7 +1315,7 @@ void DMA1_Channel2_IRQHandler(void)
  80007b6:	bf00      	nop
  80007b8:	bd80      	pop	{r7, pc}
  80007ba:	bf00      	nop
- 80007bc:	2000045c 	.word	0x2000045c
+ 80007bc:	20000460 	.word	0x20000460
 
 080007c0 <DMA1_Channel3_IRQHandler>:
 
@@ -1339,7 +1339,7 @@ void DMA1_Channel3_IRQHandler(void)
  80007ca:	bf00      	nop
  80007cc:	bd80      	pop	{r7, pc}
  80007ce:	bf00      	nop
- 80007d0:	200003d8 	.word	0x200003d8
+ 80007d0:	200003dc 	.word	0x200003dc
 
 080007d4 <DMA1_Channel6_IRQHandler>:
 
@@ -1363,7 +1363,7 @@ void DMA1_Channel6_IRQHandler(void)
  80007de:	bf00      	nop
  80007e0:	bd80      	pop	{r7, pc}
  80007e2:	bf00      	nop
- 80007e4:	20000394 	.word	0x20000394
+ 80007e4:	20000398 	.word	0x20000398
 
 080007e8 <DMA1_Channel7_IRQHandler>:
 
@@ -1387,7 +1387,7 @@ void DMA1_Channel7_IRQHandler(void)
  80007f2:	bf00      	nop
  80007f4:	bd80      	pop	{r7, pc}
  80007f6:	bf00      	nop
- 80007f8:	200004ac 	.word	0x200004ac
+ 80007f8:	200004b0 	.word	0x200004b0
 
 080007fc <_getpid>:
 void initialise_monitor_handles()
@@ -1416,7 +1416,7 @@ int _kill(int pid, int sig)
  8000810:	6078      	str	r0, [r7, #4]
  8000812:	6039      	str	r1, [r7, #0]
 	errno = EINVAL;
- 8000814:	f002 fd1e 	bl	8003254 <__errno>
+ 8000814:	f002 fda0 	bl	8003358 <__errno>
  8000818:	4602      	mov	r2, r0
  800081a:	2316      	movs	r3, #22
  800081c:	6013      	str	r3, [r2, #0]
@@ -1483,7 +1483,7 @@ caddr_t _sbrk(int incr)
  8000868:	d907      	bls.n	800087a <_sbrk+0x3a>
 	{
 		errno = ENOMEM;
- 800086a:	f002 fcf3 	bl	8003254 <__errno>
+ 800086a:	f002 fd75 	bl	8003358 <__errno>
  800086e:	4602      	mov	r2, r0
  8000870:	230c      	movs	r3, #12
  8000872:	6013      	str	r3, [r2, #0]
@@ -1657,14 +1657,14 @@ LoopFillZerobss:
  8000926:	f7ff ffb7 	bl	8000898 <SystemInit>
 /* Call static constructors */
     bl __libc_init_array
- 800092a:	f002 fc99 	bl	8003260 <__libc_init_array>
+ 800092a:	f002 fd1b 	bl	8003364 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
  800092e:	f7ff fc0d 	bl	800014c <main>
   bx lr
  8000932:	4770      	bx	lr
   ldr r3, =_sidata
- 8000934:	08003540 	.word	0x08003540
+ 8000934:	08003644 	.word	0x08003644
   ldr r0, =_sdata
  8000938:	20000000 	.word	0x20000000
   ldr r3, =_edata
@@ -1672,7 +1672,7 @@ LoopFillZerobss:
   ldr r2, =_sbss
  8000940:	20000070 	.word	0x20000070
   ldr r3, = _ebss
- 8000944:	200005bc 	.word	0x200005bc
+ 8000944:	200005c0 	.word	0x200005c0
 
 08000948 <ADC1_2_IRQHandler>:
  * @retval : None
@@ -1820,7 +1820,7 @@ __weak void HAL_IncTick(void)
  80009f0:	bc80      	pop	{r7}
  80009f2:	4770      	bx	lr
  80009f4:	20000008 	.word	0x20000008
- 80009f8:	200005b4 	.word	0x200005b4
+ 80009f8:	200005b8 	.word	0x200005b8
 
 080009fc <HAL_GetTick>:
   * @note  This function is declared as __weak to be overwritten in case of other
@@ -1839,7 +1839,7 @@ __weak uint32_t HAL_GetTick(void)
  8000a06:	46bd      	mov	sp, r7
  8000a08:	bc80      	pop	{r7}
  8000a0a:	4770      	bx	lr
- 8000a0c:	200005b4 	.word	0x200005b4
+ 8000a0c:	200005b8 	.word	0x200005b8
 
 08000a10 <HAL_Delay>:
   *       implementations in user file.
@@ -4914,7 +4914,7 @@ if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK
  8001b3a:	bf00      	nop
  8001b3c:	40022000 	.word	0x40022000
  8001b40:	40021000 	.word	0x40021000
- 8001b44:	08003514 	.word	0x08003514
+ 8001b44:	08003618 	.word	0x08003618
  8001b48:	20000000 	.word	0x20000000
  8001b4c:	20000004 	.word	0x20000004
 
@@ -5063,8 +5063,8 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  8001bfa:	bc90      	pop	{r4, r7}
  8001bfc:	4770      	bx	lr
  8001bfe:	bf00      	nop
- 8001c00:	08003500 	.word	0x08003500
- 8001c04:	08003510 	.word	0x08003510
+ 8001c00:	08003604 	.word	0x08003604
+ 8001c04:	08003614 	.word	0x08003614
  8001c08:	40021000 	.word	0x40021000
  8001c0c:	007a1200 	.word	0x007a1200
  8001c10:	003d0900 	.word	0x003d0900
@@ -5112,7 +5112,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8001c44:	4618      	mov	r0, r3
  8001c46:	bd80      	pop	{r7, pc}
  8001c48:	40021000 	.word	0x40021000
- 8001c4c:	08003524 	.word	0x08003524
+ 8001c4c:	08003628 	.word	0x08003628
 
 08001c50 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -5138,7 +5138,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8001c6c:	4618      	mov	r0, r3
  8001c6e:	bd80      	pop	{r7, pc}
  8001c70:	40021000 	.word	0x40021000
- 8001c74:	08003524 	.word	0x08003524
+ 8001c74:	08003628 	.word	0x08003628
 
 08001c78 <RCC_Delay>:
   * @brief  This function provides delay (in milliseconds) based on CPU cycles method.
@@ -6724,7 +6724,7 @@ static void UART_SetConfig(UART_HandleTypeDef *huart)
  80024c0:	51eb851f 	.word	0x51eb851f
 
 080024c4 <setup>:
-int* temp2;
+//int* temp2;
 bool transmit_complete_flag = IDLE_transmit;
 bool receive_complete_flag = IDLE_receive;
 bool receive_status = IDLE_receive;
@@ -6734,2314 +6734,2482 @@ void setup() {
  80024c6:	b082      	sub	sp, #8
  80024c8:	af02      	add	r7, sp, #8
 	Serial.begin(&huart2, 23169, 34476, data_received2);
- 80024ca:	4b09      	ldr	r3, [pc, #36]	; (80024f0 <setup+0x2c>)
+ 80024ca:	4b0a      	ldr	r3, [pc, #40]	; (80024f4 <setup+0x30>)
  80024cc:	9300      	str	r3, [sp, #0]
  80024ce:	f248 63ac 	movw	r3, #34476	; 0x86ac
  80024d2:	f645 2281 	movw	r2, #23169	; 0x5a81
- 80024d6:	4907      	ldr	r1, [pc, #28]	; (80024f4 <setup+0x30>)
- 80024d8:	4807      	ldr	r0, [pc, #28]	; (80024f8 <setup+0x34>)
- 80024da:	f000 fad0 	bl	8002a7e <_ZN8mySerial5beginEP20__UART_HandleTypeDefttPFvPhiE>
-	modbus1.begin(&huart3, modbus_received);
- 80024de:	4a07      	ldr	r2, [pc, #28]	; (80024fc <setup+0x38>)
- 80024e0:	4907      	ldr	r1, [pc, #28]	; (8002500 <setup+0x3c>)
- 80024e2:	4808      	ldr	r0, [pc, #32]	; (8002504 <setup+0x40>)
- 80024e4:	f000 f8d1 	bl	800268a <_ZN6modbus5beginEP20__UART_HandleTypeDefPFvPhiE>
+ 80024d6:	4908      	ldr	r1, [pc, #32]	; (80024f8 <setup+0x34>)
+ 80024d8:	4808      	ldr	r0, [pc, #32]	; (80024fc <setup+0x38>)
+ 80024da:	f000 fb30 	bl	8002b3e <_ZN8mySerial5beginEP20__UART_HandleTypeDefttPFvPhiE>
+	//modbus1.begin(&huart3, modbus_received);
+	modbus.begin(12345, 34567);
+ 80024de:	f248 7207 	movw	r2, #34567	; 0x8707
+ 80024e2:	f243 0139 	movw	r1, #12345	; 0x3039
+ 80024e6:	4806      	ldr	r0, [pc, #24]	; (8002500 <setup+0x3c>)
+ 80024e8:	f000 f8f0 	bl	80026cc <_ZN14modbus_handler5beginEtt>
 }
- 80024e8:	bf00      	nop
- 80024ea:	46bd      	mov	sp, r7
- 80024ec:	bd80      	pop	{r7, pc}
- 80024ee:	bf00      	nop
- 80024f0:	08002561 	.word	0x08002561
- 80024f4:	20000570 	.word	0x20000570
- 80024f8:	2000023c 	.word	0x2000023c
- 80024fc:	0800258d 	.word	0x0800258d
- 8002500:	2000041c 	.word	0x2000041c
- 8002504:	20000098 	.word	0x20000098
+ 80024ec:	bf00      	nop
+ 80024ee:	46bd      	mov	sp, r7
+ 80024f0:	bd80      	pop	{r7, pc}
+ 80024f2:	bf00      	nop
+ 80024f4:	0800255d 	.word	0x0800255d
+ 80024f8:	20000574 	.word	0x20000574
+ 80024fc:	20000240 	.word	0x20000240
+ 8002500:	200001f4 	.word	0x200001f4
 
-08002508 <loop>:
+08002504 <loop>:
 
 void loop() {
- 8002508:	b580      	push	{r7, lr}
- 800250a:	af00      	add	r7, sp, #0
+ 8002504:	b580      	push	{r7, lr}
+ 8002506:	af00      	add	r7, sp, #0
 	Serial.looping2();
- 800250c:	480e      	ldr	r0, [pc, #56]	; (8002548 <loop+0x40>)
- 800250e:	f000 fae9 	bl	8002ae4 <_ZN8mySerial8looping2Ev>
+ 8002508:	480e      	ldr	r0, [pc, #56]	; (8002544 <loop+0x40>)
+ 800250a:	f000 fb4b 	bl	8002ba4 <_ZN8mySerial8looping2Ev>
 	//modbus1.looping();
+
 	if(backup_length != 0 && receive_status == IDLE_receive) {
- 8002512:	4b0e      	ldr	r3, [pc, #56]	; (800254c <loop+0x44>)
- 8002514:	681b      	ldr	r3, [r3, #0]
- 8002516:	2b00      	cmp	r3, #0
- 8002518:	d014      	beq.n	8002544 <loop+0x3c>
- 800251a:	4b0d      	ldr	r3, [pc, #52]	; (8002550 <loop+0x48>)
- 800251c:	781b      	ldrb	r3, [r3, #0]
- 800251e:	f083 0301 	eor.w	r3, r3, #1
- 8002522:	b2db      	uxtb	r3, r3
- 8002524:	2b00      	cmp	r3, #0
- 8002526:	d00d      	beq.n	8002544 <loop+0x3c>
+ 800250e:	4b0e      	ldr	r3, [pc, #56]	; (8002548 <loop+0x44>)
+ 8002510:	681b      	ldr	r3, [r3, #0]
+ 8002512:	2b00      	cmp	r3, #0
+ 8002514:	d014      	beq.n	8002540 <loop+0x3c>
+ 8002516:	4b0d      	ldr	r3, [pc, #52]	; (800254c <loop+0x48>)
+ 8002518:	781b      	ldrb	r3, [r3, #0]
+ 800251a:	f083 0301 	eor.w	r3, r3, #1
+ 800251e:	b2db      	uxtb	r3, r3
+ 8002520:	2b00      	cmp	r3, #0
+ 8002522:	d00d      	beq.n	8002540 <loop+0x3c>
 		transmit_complete_flag = On_transmit;
- 8002528:	4b0a      	ldr	r3, [pc, #40]	; (8002554 <loop+0x4c>)
- 800252a:	2200      	movs	r2, #0
- 800252c:	701a      	strb	r2, [r3, #0]
+ 8002524:	4b0a      	ldr	r3, [pc, #40]	; (8002550 <loop+0x4c>)
+ 8002526:	2200      	movs	r2, #0
+ 8002528:	701a      	strb	r2, [r3, #0]
 		uart_send(&huart2, backup_buffer, backup_length);
- 800252e:	4b07      	ldr	r3, [pc, #28]	; (800254c <loop+0x44>)
- 8002530:	681b      	ldr	r3, [r3, #0]
- 8002532:	b29b      	uxth	r3, r3
- 8002534:	461a      	mov	r2, r3
- 8002536:	4908      	ldr	r1, [pc, #32]	; (8002558 <loop+0x50>)
- 8002538:	4808      	ldr	r0, [pc, #32]	; (800255c <loop+0x54>)
- 800253a:	f7ff fc09 	bl	8001d50 <HAL_UART_Transmit_DMA>
+ 800252a:	4b07      	ldr	r3, [pc, #28]	; (8002548 <loop+0x44>)
+ 800252c:	681b      	ldr	r3, [r3, #0]
+ 800252e:	b29b      	uxth	r3, r3
+ 8002530:	461a      	mov	r2, r3
+ 8002532:	4908      	ldr	r1, [pc, #32]	; (8002554 <loop+0x50>)
+ 8002534:	4808      	ldr	r0, [pc, #32]	; (8002558 <loop+0x54>)
+ 8002536:	f7ff fc0b 	bl	8001d50 <HAL_UART_Transmit_DMA>
 		backup_length = 0;
- 800253e:	4b03      	ldr	r3, [pc, #12]	; (800254c <loop+0x44>)
- 8002540:	2200      	movs	r2, #0
- 8002542:	601a      	str	r2, [r3, #0]
+ 800253a:	4b03      	ldr	r3, [pc, #12]	; (8002548 <loop+0x44>)
+ 800253c:	2200      	movs	r2, #0
+ 800253e:	601a      	str	r2, [r3, #0]
 	}
 }
- 8002544:	bf00      	nop
- 8002546:	bd80      	pop	{r7, pc}
- 8002548:	2000023c 	.word	0x2000023c
- 800254c:	200005b0 	.word	0x200005b0
- 8002550:	20000095 	.word	0x20000095
- 8002554:	20000009 	.word	0x20000009
- 8002558:	200004f0 	.word	0x200004f0
- 800255c:	20000570 	.word	0x20000570
+ 8002540:	bf00      	nop
+ 8002542:	bd80      	pop	{r7, pc}
+ 8002544:	20000240 	.word	0x20000240
+ 8002548:	200005b4 	.word	0x200005b4
+ 800254c:	20000095 	.word	0x20000095
+ 8002550:	20000009 	.word	0x20000009
+ 8002554:	200004f4 	.word	0x200004f4
+ 8002558:	20000574 	.word	0x20000574
 
-08002560 <data_received2>:
+0800255c <data_received2>:
 
 void data_received2(byte* data_buffer, int length) { //lora
- 8002560:	b580      	push	{r7, lr}
- 8002562:	b082      	sub	sp, #8
- 8002564:	af00      	add	r7, sp, #0
- 8002566:	6078      	str	r0, [r7, #4]
- 8002568:	6039      	str	r1, [r7, #0]
-	//HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+ 800255c:	b580      	push	{r7, lr}
+ 800255e:	b082      	sub	sp, #8
+ 8002560:	af00      	add	r7, sp, #0
+ 8002562:	6078      	str	r0, [r7, #4]
+ 8002564:	6039      	str	r1, [r7, #0]
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+ 8002566:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+ 800256a:	4807      	ldr	r0, [pc, #28]	; (8002588 <data_received2+0x2c>)
+ 800256c:	f7fe ff56 	bl	800141c <HAL_GPIO_TogglePin>
 	receive_complete_flag = IDLE_receive;
- 800256a:	4b06      	ldr	r3, [pc, #24]	; (8002584 <data_received2+0x24>)
- 800256c:	2200      	movs	r2, #0
- 800256e:	701a      	strb	r2, [r3, #0]
+ 8002570:	4b06      	ldr	r3, [pc, #24]	; (800258c <data_received2+0x30>)
+ 8002572:	2200      	movs	r2, #0
+ 8002574:	701a      	strb	r2, [r3, #0]
 	//modbus1.request_handler1(data_buffer, length);
 	modbus.request_packet_handler(data_buffer, length);
- 8002570:	683a      	ldr	r2, [r7, #0]
- 8002572:	6879      	ldr	r1, [r7, #4]
- 8002574:	4804      	ldr	r0, [pc, #16]	; (8002588 <data_received2+0x28>)
- 8002576:	f000 f8c5 	bl	8002704 <_ZN14modbus_handler22request_packet_handlerEPhi>
+ 8002576:	683a      	ldr	r2, [r7, #0]
+ 8002578:	6879      	ldr	r1, [r7, #4]
+ 800257a:	4805      	ldr	r0, [pc, #20]	; (8002590 <data_received2+0x34>)
+ 800257c:	f000 f8c8 	bl	8002710 <_ZN14modbus_handler22request_packet_handlerEPhi>
 }
- 800257a:	bf00      	nop
- 800257c:	3708      	adds	r7, #8
- 800257e:	46bd      	mov	sp, r7
- 8002580:	bd80      	pop	{r7, pc}
- 8002582:	bf00      	nop
- 8002584:	20000094 	.word	0x20000094
- 8002588:	200001f4 	.word	0x200001f4
+ 8002580:	bf00      	nop
+ 8002582:	3708      	adds	r7, #8
+ 8002584:	46bd      	mov	sp, r7
+ 8002586:	bd80      	pop	{r7, pc}
+ 8002588:	40011000 	.word	0x40011000
+ 800258c:	20000094 	.word	0x20000094
+ 8002590:	200001f4 	.word	0x200001f4
 
-0800258c <modbus_received>:
-
-void modbus_received(byte* data_buffer, int length) {
- 800258c:	b480      	push	{r7}
- 800258e:	b083      	sub	sp, #12
- 8002590:	af00      	add	r7, sp, #0
- 8002592:	6078      	str	r0, [r7, #4]
- 8002594:	6039      	str	r1, [r7, #0]
+08002594 <UART_CallBack>:
+//void modbus_received(byte* data_buffer, int length) {
 //	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 //    Serial.send_packet(12345, 34567, data_buffer, length);
-}
- 8002596:	bf00      	nop
- 8002598:	370c      	adds	r7, #12
- 800259a:	46bd      	mov	sp, r7
- 800259c:	bc80      	pop	{r7}
- 800259e:	4770      	bx	lr
-
-080025a0 <UART_CallBack>:
+//}
 
 void UART_CallBack(UART_HandleTypeDef *huart) {
- 80025a0:	b580      	push	{r7, lr}
- 80025a2:	b082      	sub	sp, #8
- 80025a4:	af00      	add	r7, sp, #0
- 80025a6:	6078      	str	r0, [r7, #4]
-	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
- 80025a8:	f44f 5100 	mov.w	r1, #8192	; 0x2000
- 80025ac:	480c      	ldr	r0, [pc, #48]	; (80025e0 <UART_CallBack+0x40>)
- 80025ae:	f7fe ff35 	bl	800141c <HAL_GPIO_TogglePin>
+ 8002594:	b580      	push	{r7, lr}
+ 8002596:	b082      	sub	sp, #8
+ 8002598:	af00      	add	r7, sp, #0
+ 800259a:	6078      	str	r0, [r7, #4]
 	if (huart->Instance == USART2)
- 80025b2:	687b      	ldr	r3, [r7, #4]
- 80025b4:	681b      	ldr	r3, [r3, #0]
- 80025b6:	4a0b      	ldr	r2, [pc, #44]	; (80025e4 <UART_CallBack+0x44>)
- 80025b8:	4293      	cmp	r3, r2
- 80025ba:	d103      	bne.n	80025c4 <UART_CallBack+0x24>
+ 800259c:	687b      	ldr	r3, [r7, #4]
+ 800259e:	681b      	ldr	r3, [r3, #0]
+ 80025a0:	4a09      	ldr	r2, [pc, #36]	; (80025c8 <UART_CallBack+0x34>)
+ 80025a2:	4293      	cmp	r3, r2
+ 80025a4:	d103      	bne.n	80025ae <UART_CallBack+0x1a>
 		Serial.buffer_overflow();
- 80025bc:	480a      	ldr	r0, [pc, #40]	; (80025e8 <UART_CallBack+0x48>)
- 80025be:	f000 fb8f 	bl	8002ce0 <_ZN8mySerial15buffer_overflowEv>
+ 80025a6:	4809      	ldr	r0, [pc, #36]	; (80025cc <UART_CallBack+0x38>)
+ 80025a8:	f000 fc12 	bl	8002dd0 <_ZN8mySerial15buffer_overflowEv>
 //			}
 //		}
 		modbus.receive_handler(huart);
 		//modbus1.buffer_overflow();
 	}		
 }
- 80025c2:	e008      	b.n	80025d6 <UART_CallBack+0x36>
+ 80025ac:	e008      	b.n	80025c0 <UART_CallBack+0x2c>
 	else if(huart->Instance == USART3){
- 80025c4:	687b      	ldr	r3, [r7, #4]
- 80025c6:	681b      	ldr	r3, [r3, #0]
- 80025c8:	4a08      	ldr	r2, [pc, #32]	; (80025ec <UART_CallBack+0x4c>)
- 80025ca:	4293      	cmp	r3, r2
- 80025cc:	d103      	bne.n	80025d6 <UART_CallBack+0x36>
+ 80025ae:	687b      	ldr	r3, [r7, #4]
+ 80025b0:	681b      	ldr	r3, [r3, #0]
+ 80025b2:	4a07      	ldr	r2, [pc, #28]	; (80025d0 <UART_CallBack+0x3c>)
+ 80025b4:	4293      	cmp	r3, r2
+ 80025b6:	d103      	bne.n	80025c0 <UART_CallBack+0x2c>
 		modbus.receive_handler(huart);
- 80025ce:	6879      	ldr	r1, [r7, #4]
- 80025d0:	4807      	ldr	r0, [pc, #28]	; (80025f0 <UART_CallBack+0x50>)
- 80025d2:	f000 f933 	bl	800283c <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef>
+ 80025b8:	6879      	ldr	r1, [r7, #4]
+ 80025ba:	4806      	ldr	r0, [pc, #24]	; (80025d4 <UART_CallBack+0x40>)
+ 80025bc:	f000 f954 	bl	8002868 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef>
 }
- 80025d6:	bf00      	nop
- 80025d8:	3708      	adds	r7, #8
- 80025da:	46bd      	mov	sp, r7
- 80025dc:	bd80      	pop	{r7, pc}
- 80025de:	bf00      	nop
- 80025e0:	40011000 	.word	0x40011000
- 80025e4:	40004400 	.word	0x40004400
- 80025e8:	2000023c 	.word	0x2000023c
- 80025ec:	40004800 	.word	0x40004800
- 80025f0:	200001f4 	.word	0x200001f4
+ 80025c0:	bf00      	nop
+ 80025c2:	3708      	adds	r7, #8
+ 80025c4:	46bd      	mov	sp, r7
+ 80025c6:	bd80      	pop	{r7, pc}
+ 80025c8:	40004400 	.word	0x40004400
+ 80025cc:	20000240 	.word	0x20000240
+ 80025d0:	40004800 	.word	0x40004800
+ 80025d4:	200001f4 	.word	0x200001f4
 
-080025f4 <GPIO_Interrupt_Callback>:
+080025d8 <GPIO_Interrupt_Callback>:
 void GPIO_Interrupt_Callback(uint16_t pin){
- 80025f4:	b480      	push	{r7}
- 80025f6:	b083      	sub	sp, #12
- 80025f8:	af00      	add	r7, sp, #0
- 80025fa:	4603      	mov	r3, r0
- 80025fc:	80fb      	strh	r3, [r7, #6]
+ 80025d8:	b480      	push	{r7}
+ 80025da:	b083      	sub	sp, #12
+ 80025dc:	af00      	add	r7, sp, #0
+ 80025de:	4603      	mov	r3, r0
+ 80025e0:	80fb      	strh	r3, [r7, #6]
 	if(pin == GPIO_PIN_1) {//RISING
- 80025fe:	88fb      	ldrh	r3, [r7, #6]
- 8002600:	2b02      	cmp	r3, #2
- 8002602:	d111      	bne.n	8002628 <GPIO_Interrupt_Callback+0x34>
+ 80025e2:	88fb      	ldrh	r3, [r7, #6]
+ 80025e4:	2b02      	cmp	r3, #2
+ 80025e6:	d111      	bne.n	800260c <GPIO_Interrupt_Callback+0x34>
 		if(transmit_complete_flag == On_transmit) {
- 8002604:	4b11      	ldr	r3, [pc, #68]	; (800264c <GPIO_Interrupt_Callback+0x58>)
- 8002606:	781b      	ldrb	r3, [r3, #0]
- 8002608:	f083 0301 	eor.w	r3, r3, #1
- 800260c:	b2db      	uxtb	r3, r3
- 800260e:	2b00      	cmp	r3, #0
- 8002610:	d003      	beq.n	800261a <GPIO_Interrupt_Callback+0x26>
+ 80025e8:	4b11      	ldr	r3, [pc, #68]	; (8002630 <GPIO_Interrupt_Callback+0x58>)
+ 80025ea:	781b      	ldrb	r3, [r3, #0]
+ 80025ec:	f083 0301 	eor.w	r3, r3, #1
+ 80025f0:	b2db      	uxtb	r3, r3
+ 80025f2:	2b00      	cmp	r3, #0
+ 80025f4:	d003      	beq.n	80025fe <GPIO_Interrupt_Callback+0x26>
 			transmit_complete_flag = IDLE_transmit;
- 8002612:	4b0e      	ldr	r3, [pc, #56]	; (800264c <GPIO_Interrupt_Callback+0x58>)
- 8002614:	2201      	movs	r2, #1
- 8002616:	701a      	strb	r2, [r3, #0]
+ 80025f6:	4b0e      	ldr	r3, [pc, #56]	; (8002630 <GPIO_Interrupt_Callback+0x58>)
+ 80025f8:	2201      	movs	r2, #1
+ 80025fa:	701a      	strb	r2, [r3, #0]
 			// confuse if On_transmit before falling receive falling edge
 		}else{
 			receive_status = On_received;
 		}
 	}
 }
- 8002618:	e013      	b.n	8002642 <GPIO_Interrupt_Callback+0x4e>
+ 80025fc:	e013      	b.n	8002626 <GPIO_Interrupt_Callback+0x4e>
 			receive_complete_flag = On_received;
- 800261a:	4b0d      	ldr	r3, [pc, #52]	; (8002650 <GPIO_Interrupt_Callback+0x5c>)
- 800261c:	2201      	movs	r2, #1
- 800261e:	701a      	strb	r2, [r3, #0]
+ 80025fe:	4b0d      	ldr	r3, [pc, #52]	; (8002634 <GPIO_Interrupt_Callback+0x5c>)
+ 8002600:	2201      	movs	r2, #1
+ 8002602:	701a      	strb	r2, [r3, #0]
 			receive_status = IDLE_receive;
- 8002620:	4b0c      	ldr	r3, [pc, #48]	; (8002654 <GPIO_Interrupt_Callback+0x60>)
- 8002622:	2200      	movs	r2, #0
+ 8002604:	4b0c      	ldr	r3, [pc, #48]	; (8002638 <GPIO_Interrupt_Callback+0x60>)
+ 8002606:	2200      	movs	r2, #0
+ 8002608:	701a      	strb	r2, [r3, #0]
+}
+ 800260a:	e00c      	b.n	8002626 <GPIO_Interrupt_Callback+0x4e>
+	}else if(pin == GPIO_PIN_0) {//FALLING
+ 800260c:	88fb      	ldrh	r3, [r7, #6]
+ 800260e:	2b01      	cmp	r3, #1
+ 8002610:	d109      	bne.n	8002626 <GPIO_Interrupt_Callback+0x4e>
+		if(transmit_complete_flag == On_transmit) {
+ 8002612:	4b07      	ldr	r3, [pc, #28]	; (8002630 <GPIO_Interrupt_Callback+0x58>)
+ 8002614:	781b      	ldrb	r3, [r3, #0]
+ 8002616:	f083 0301 	eor.w	r3, r3, #1
+ 800261a:	b2db      	uxtb	r3, r3
+ 800261c:	2b00      	cmp	r3, #0
+ 800261e:	d102      	bne.n	8002626 <GPIO_Interrupt_Callback+0x4e>
+			receive_status = On_received;
+ 8002620:	4b05      	ldr	r3, [pc, #20]	; (8002638 <GPIO_Interrupt_Callback+0x60>)
+ 8002622:	2201      	movs	r2, #1
  8002624:	701a      	strb	r2, [r3, #0]
 }
- 8002626:	e00c      	b.n	8002642 <GPIO_Interrupt_Callback+0x4e>
-	}else if(pin == GPIO_PIN_0) {//FALLING
- 8002628:	88fb      	ldrh	r3, [r7, #6]
- 800262a:	2b01      	cmp	r3, #1
- 800262c:	d109      	bne.n	8002642 <GPIO_Interrupt_Callback+0x4e>
-		if(transmit_complete_flag == On_transmit) {
- 800262e:	4b07      	ldr	r3, [pc, #28]	; (800264c <GPIO_Interrupt_Callback+0x58>)
- 8002630:	781b      	ldrb	r3, [r3, #0]
- 8002632:	f083 0301 	eor.w	r3, r3, #1
- 8002636:	b2db      	uxtb	r3, r3
- 8002638:	2b00      	cmp	r3, #0
- 800263a:	d102      	bne.n	8002642 <GPIO_Interrupt_Callback+0x4e>
-			receive_status = On_received;
- 800263c:	4b05      	ldr	r3, [pc, #20]	; (8002654 <GPIO_Interrupt_Callback+0x60>)
- 800263e:	2201      	movs	r2, #1
- 8002640:	701a      	strb	r2, [r3, #0]
-}
- 8002642:	bf00      	nop
- 8002644:	370c      	adds	r7, #12
- 8002646:	46bd      	mov	sp, r7
- 8002648:	bc80      	pop	{r7}
- 800264a:	4770      	bx	lr
- 800264c:	20000009 	.word	0x20000009
- 8002650:	20000094 	.word	0x20000094
- 8002654:	20000095 	.word	0x20000095
+ 8002626:	bf00      	nop
+ 8002628:	370c      	adds	r7, #12
+ 800262a:	46bd      	mov	sp, r7
+ 800262c:	bc80      	pop	{r7}
+ 800262e:	4770      	bx	lr
+ 8002630:	20000009 	.word	0x20000009
+ 8002634:	20000094 	.word	0x20000094
+ 8002638:	20000095 	.word	0x20000095
 
-08002658 <_ZN6modbusC1Ev>:
+0800263c <_ZN6modbusC1Ev>:
 #include "modbus.h"
 
 modbus::modbus()
- 8002658:	b480      	push	{r7}
- 800265a:	b083      	sub	sp, #12
- 800265c:	af00      	add	r7, sp, #0
- 800265e:	6078      	str	r0, [r7, #4]
- 8002660:	687b      	ldr	r3, [r7, #4]
- 8002662:	2200      	movs	r2, #0
- 8002664:	711a      	strb	r2, [r3, #4]
- 8002666:	687b      	ldr	r3, [r7, #4]
- 8002668:	2200      	movs	r2, #0
- 800266a:	715a      	strb	r2, [r3, #5]
- 800266c:	687b      	ldr	r3, [r7, #4]
- 800266e:	2200      	movs	r2, #0
- 8002670:	719a      	strb	r2, [r3, #6]
- 8002672:	687b      	ldr	r3, [r7, #4]
- 8002674:	2203      	movs	r2, #3
- 8002676:	729a      	strb	r2, [r3, #10]
- 8002678:	687b      	ldr	r3, [r7, #4]
- 800267a:	2200      	movs	r2, #0
- 800267c:	761a      	strb	r2, [r3, #24]
+ 800263c:	b480      	push	{r7}
+ 800263e:	b083      	sub	sp, #12
+ 8002640:	af00      	add	r7, sp, #0
+ 8002642:	6078      	str	r0, [r7, #4]
+ 8002644:	687b      	ldr	r3, [r7, #4]
+ 8002646:	2200      	movs	r2, #0
+ 8002648:	711a      	strb	r2, [r3, #4]
+ 800264a:	687b      	ldr	r3, [r7, #4]
+ 800264c:	2200      	movs	r2, #0
+ 800264e:	715a      	strb	r2, [r3, #5]
+ 8002650:	687b      	ldr	r3, [r7, #4]
+ 8002652:	2200      	movs	r2, #0
+ 8002654:	719a      	strb	r2, [r3, #6]
+ 8002656:	687b      	ldr	r3, [r7, #4]
+ 8002658:	2203      	movs	r2, #3
+ 800265a:	729a      	strb	r2, [r3, #10]
+ 800265c:	687b      	ldr	r3, [r7, #4]
+ 800265e:	2200      	movs	r2, #0
+ 8002660:	761a      	strb	r2, [r3, #24]
 {
 	
 }
- 800267e:	687b      	ldr	r3, [r7, #4]
- 8002680:	4618      	mov	r0, r3
- 8002682:	370c      	adds	r7, #12
- 8002684:	46bd      	mov	sp, r7
- 8002686:	bc80      	pop	{r7}
- 8002688:	4770      	bx	lr
+ 8002662:	687b      	ldr	r3, [r7, #4]
+ 8002664:	4618      	mov	r0, r3
+ 8002666:	370c      	adds	r7, #12
+ 8002668:	46bd      	mov	sp, r7
+ 800266a:	bc80      	pop	{r7}
+ 800266c:	4770      	bx	lr
+	...
 
-0800268a <_ZN6modbus5beginEP20__UART_HandleTypeDefPFvPhiE>:
-
-void modbus::begin(UART_HandleTypeDef* uart, receive_modbus)
-{
- 800268a:	b480      	push	{r7}
- 800268c:	b085      	sub	sp, #20
- 800268e:	af00      	add	r7, sp, #0
- 8002690:	60f8      	str	r0, [r7, #12]
- 8002692:	60b9      	str	r1, [r7, #8]
- 8002694:	607a      	str	r2, [r7, #4]
-	this->uart = uart;
- 8002696:	68fb      	ldr	r3, [r7, #12]
- 8002698:	68ba      	ldr	r2, [r7, #8]
- 800269a:	611a      	str	r2, [r3, #16]
-	this->callback = callback;
- 800269c:	68fb      	ldr	r3, [r7, #12]
- 800269e:	687a      	ldr	r2, [r7, #4]
- 80026a0:	601a      	str	r2, [r3, #0]
-	//uart_dma(this->uart, data_buffer, buffer_length);
-}
- 80026a2:	bf00      	nop
- 80026a4:	3714      	adds	r7, #20
- 80026a6:	46bd      	mov	sp, r7
- 80026a8:	bc80      	pop	{r7}
- 80026aa:	4770      	bx	lr
-
-080026ac <_Z41__static_initialization_and_destruction_0ii>:
+08002670 <_Z41__static_initialization_and_destruction_0ii>:
 void modbus::get_data(byte* temp1, int* temp2)
 {
 	temp1 = data_buffer;
 	temp2 = &temper_length;
 }
 modbus modbus1;
- 80026ac:	b580      	push	{r7, lr}
- 80026ae:	b082      	sub	sp, #8
- 80026b0:	af00      	add	r7, sp, #0
- 80026b2:	6078      	str	r0, [r7, #4]
- 80026b4:	6039      	str	r1, [r7, #0]
- 80026b6:	687b      	ldr	r3, [r7, #4]
- 80026b8:	2b01      	cmp	r3, #1
- 80026ba:	d107      	bne.n	80026cc <_Z41__static_initialization_and_destruction_0ii+0x20>
- 80026bc:	683b      	ldr	r3, [r7, #0]
- 80026be:	f64f 72ff 	movw	r2, #65535	; 0xffff
- 80026c2:	4293      	cmp	r3, r2
- 80026c4:	d102      	bne.n	80026cc <_Z41__static_initialization_and_destruction_0ii+0x20>
- 80026c6:	4803      	ldr	r0, [pc, #12]	; (80026d4 <_Z41__static_initialization_and_destruction_0ii+0x28>)
- 80026c8:	f7ff ffc6 	bl	8002658 <_ZN6modbusC1Ev>
- 80026cc:	bf00      	nop
- 80026ce:	3708      	adds	r7, #8
- 80026d0:	46bd      	mov	sp, r7
- 80026d2:	bd80      	pop	{r7, pc}
- 80026d4:	20000098 	.word	0x20000098
+ 8002670:	b580      	push	{r7, lr}
+ 8002672:	b082      	sub	sp, #8
+ 8002674:	af00      	add	r7, sp, #0
+ 8002676:	6078      	str	r0, [r7, #4]
+ 8002678:	6039      	str	r1, [r7, #0]
+ 800267a:	687b      	ldr	r3, [r7, #4]
+ 800267c:	2b01      	cmp	r3, #1
+ 800267e:	d107      	bne.n	8002690 <_Z41__static_initialization_and_destruction_0ii+0x20>
+ 8002680:	683b      	ldr	r3, [r7, #0]
+ 8002682:	f64f 72ff 	movw	r2, #65535	; 0xffff
+ 8002686:	4293      	cmp	r3, r2
+ 8002688:	d102      	bne.n	8002690 <_Z41__static_initialization_and_destruction_0ii+0x20>
+ 800268a:	4803      	ldr	r0, [pc, #12]	; (8002698 <_Z41__static_initialization_and_destruction_0ii+0x28>)
+ 800268c:	f7ff ffd6 	bl	800263c <_ZN6modbusC1Ev>
+ 8002690:	bf00      	nop
+ 8002692:	3708      	adds	r7, #8
+ 8002694:	46bd      	mov	sp, r7
+ 8002696:	bd80      	pop	{r7, pc}
+ 8002698:	20000098 	.word	0x20000098
 
-080026d8 <_GLOBAL__sub_I__ZN6modbusC2Ev>:
- 80026d8:	b580      	push	{r7, lr}
- 80026da:	af00      	add	r7, sp, #0
- 80026dc:	f64f 71ff 	movw	r1, #65535	; 0xffff
- 80026e0:	2001      	movs	r0, #1
- 80026e2:	f7ff ffe3 	bl	80026ac <_Z41__static_initialization_and_destruction_0ii>
- 80026e6:	bd80      	pop	{r7, pc}
+0800269c <_GLOBAL__sub_I__ZN6modbusC2Ev>:
+ 800269c:	b580      	push	{r7, lr}
+ 800269e:	af00      	add	r7, sp, #0
+ 80026a0:	f64f 71ff 	movw	r1, #65535	; 0xffff
+ 80026a4:	2001      	movs	r0, #1
+ 80026a6:	f7ff ffe3 	bl	8002670 <_Z41__static_initialization_and_destruction_0ii>
+ 80026aa:	bd80      	pop	{r7, pc}
 
-080026e8 <_ZN14modbus_handlerC1Ev>:
+080026ac <_ZN14modbus_handlerC1Ev>:
 #include "modbus_handler.h"
 
 modbus_handler::modbus_handler()
- 80026e8:	b480      	push	{r7}
- 80026ea:	b083      	sub	sp, #12
- 80026ec:	af00      	add	r7, sp, #0
- 80026ee:	6078      	str	r0, [r7, #4]
- 80026f0:	687b      	ldr	r3, [r7, #4]
- 80026f2:	2200      	movs	r2, #0
- 80026f4:	705a      	strb	r2, [r3, #1]
+ 80026ac:	b480      	push	{r7}
+ 80026ae:	b083      	sub	sp, #12
+ 80026b0:	af00      	add	r7, sp, #0
+ 80026b2:	6078      	str	r0, [r7, #4]
+ 80026b4:	687b      	ldr	r3, [r7, #4]
+ 80026b6:	2201      	movs	r2, #1
+ 80026b8:	711a      	strb	r2, [r3, #4]
+ 80026ba:	687b      	ldr	r3, [r7, #4]
+ 80026bc:	2200      	movs	r2, #0
+ 80026be:	719a      	strb	r2, [r3, #6]
 {
 
 }
- 80026f6:	687b      	ldr	r3, [r7, #4]
- 80026f8:	4618      	mov	r0, r3
- 80026fa:	370c      	adds	r7, #12
- 80026fc:	46bd      	mov	sp, r7
- 80026fe:	bc80      	pop	{r7}
- 8002700:	4770      	bx	lr
+ 80026c0:	687b      	ldr	r3, [r7, #4]
+ 80026c2:	4618      	mov	r0, r3
+ 80026c4:	370c      	adds	r7, #12
+ 80026c6:	46bd      	mov	sp, r7
+ 80026c8:	bc80      	pop	{r7}
+ 80026ca:	4770      	bx	lr
+
+080026cc <_ZN14modbus_handler5beginEtt>:
+void modbus_handler::begin(uint16_t header, uint16_t footer)
+{
+ 80026cc:	b480      	push	{r7}
+ 80026ce:	b083      	sub	sp, #12
+ 80026d0:	af00      	add	r7, sp, #0
+ 80026d2:	6078      	str	r0, [r7, #4]
+ 80026d4:	460b      	mov	r3, r1
+ 80026d6:	807b      	strh	r3, [r7, #2]
+ 80026d8:	4613      	mov	r3, r2
+ 80026da:	803b      	strh	r3, [r7, #0]
+	header_chunk[0] = header >> 8 & 0xff;
+ 80026dc:	887b      	ldrh	r3, [r7, #2]
+ 80026de:	0a1b      	lsrs	r3, r3, #8
+ 80026e0:	b29b      	uxth	r3, r3
+ 80026e2:	b2da      	uxtb	r2, r3
+ 80026e4:	687b      	ldr	r3, [r7, #4]
+ 80026e6:	701a      	strb	r2, [r3, #0]
+	header_chunk[1] = header & 0xff;
+ 80026e8:	887b      	ldrh	r3, [r7, #2]
+ 80026ea:	b2da      	uxtb	r2, r3
+ 80026ec:	687b      	ldr	r3, [r7, #4]
+ 80026ee:	705a      	strb	r2, [r3, #1]
+	footer_chunk[0] = footer >> 8 & 0xff;
+ 80026f0:	883b      	ldrh	r3, [r7, #0]
+ 80026f2:	0a1b      	lsrs	r3, r3, #8
+ 80026f4:	b29b      	uxth	r3, r3
+ 80026f6:	b2da      	uxtb	r2, r3
+ 80026f8:	687b      	ldr	r3, [r7, #4]
+ 80026fa:	709a      	strb	r2, [r3, #2]
+	footer_chunk[1] = footer & 0xff;
+ 80026fc:	883b      	ldrh	r3, [r7, #0]
+ 80026fe:	b2da      	uxtb	r2, r3
+ 8002700:	687b      	ldr	r3, [r7, #4]
+ 8002702:	70da      	strb	r2, [r3, #3]
+}
+ 8002704:	bf00      	nop
+ 8002706:	370c      	adds	r7, #12
+ 8002708:	46bd      	mov	sp, r7
+ 800270a:	bc80      	pop	{r7}
+ 800270c:	4770      	bx	lr
 	...
 
-08002704 <_ZN14modbus_handler22request_packet_handlerEPhi>:
+08002710 <_ZN14modbus_handler22request_packet_handlerEPhi>:
 
 void modbus_handler::request_packet_handler(byte* data_packet, int length)
 {
- 8002704:	b5f0      	push	{r4, r5, r6, r7, lr}
- 8002706:	b087      	sub	sp, #28
- 8002708:	af00      	add	r7, sp, #0
- 800270a:	60f8      	str	r0, [r7, #12]
- 800270c:	60b9      	str	r1, [r7, #8]
- 800270e:	607a      	str	r2, [r7, #4]
+ 8002710:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 8002712:	b087      	sub	sp, #28
+ 8002714:	af00      	add	r7, sp, #0
+ 8002716:	60f8      	str	r0, [r7, #12]
+ 8002718:	60b9      	str	r1, [r7, #8]
+ 800271a:	607a      	str	r2, [r7, #4]
     number_of_request = data_packet[0];
- 8002710:	68bb      	ldr	r3, [r7, #8]
- 8002712:	781a      	ldrb	r2, [r3, #0]
- 8002714:	68fb      	ldr	r3, [r7, #12]
- 8002716:	709a      	strb	r2, [r3, #2]
+ 800271c:	68bb      	ldr	r3, [r7, #8]
+ 800271e:	781a      	ldrb	r2, [r3, #0]
+ 8002720:	68fb      	ldr	r3, [r7, #12]
+ 8002722:	71da      	strb	r2, [r3, #7]
     array_of_request = new request_type[number_of_request];
- 8002718:	68fb      	ldr	r3, [r7, #12]
- 800271a:	789b      	ldrb	r3, [r3, #2]
- 800271c:	461c      	mov	r4, r3
- 800271e:	4b44      	ldr	r3, [pc, #272]	; (8002830 <_ZN14modbus_handler22request_packet_handlerEPhi+0x12c>)
- 8002720:	429c      	cmp	r4, r3
- 8002722:	d803      	bhi.n	800272c <_ZN14modbus_handler22request_packet_handlerEPhi+0x28>
- 8002724:	23a4      	movs	r3, #164	; 0xa4
- 8002726:	fb03 f304 	mul.w	r3, r3, r4
- 800272a:	e001      	b.n	8002730 <_ZN14modbus_handler22request_packet_handlerEPhi+0x2c>
- 800272c:	f04f 33ff 	mov.w	r3, #4294967295
- 8002730:	4618      	mov	r0, r3
- 8002732:	f000 fd69 	bl	8003208 <_Znaj>
- 8002736:	4603      	mov	r3, r0
- 8002738:	461e      	mov	r6, r3
- 800273a:	4632      	mov	r2, r6
- 800273c:	1e63      	subs	r3, r4, #1
- 800273e:	461c      	mov	r4, r3
- 8002740:	4615      	mov	r5, r2
- 8002742:	2c00      	cmp	r4, #0
- 8002744:	db05      	blt.n	8002752 <_ZN14modbus_handler22request_packet_handlerEPhi+0x4e>
- 8002746:	4628      	mov	r0, r5
- 8002748:	f000 faf4 	bl	8002d34 <_ZN12request_typeC1Ev>
- 800274c:	35a4      	adds	r5, #164	; 0xa4
- 800274e:	3c01      	subs	r4, #1
- 8002750:	e7f7      	b.n	8002742 <_ZN14modbus_handler22request_packet_handlerEPhi+0x3e>
- 8002752:	4b38      	ldr	r3, [pc, #224]	; (8002834 <_ZN14modbus_handler22request_packet_handlerEPhi+0x130>)
- 8002754:	601e      	str	r6, [r3, #0]
+ 8002724:	68fb      	ldr	r3, [r7, #12]
+ 8002726:	79db      	ldrb	r3, [r3, #7]
+ 8002728:	461c      	mov	r4, r3
+ 800272a:	4b4c      	ldr	r3, [pc, #304]	; (800285c <_ZN14modbus_handler22request_packet_handlerEPhi+0x14c>)
+ 800272c:	429c      	cmp	r4, r3
+ 800272e:	d805      	bhi.n	800273c <_ZN14modbus_handler22request_packet_handlerEPhi+0x2c>
+ 8002730:	4623      	mov	r3, r4
+ 8002732:	009b      	lsls	r3, r3, #2
+ 8002734:	4423      	add	r3, r4
+ 8002736:	015a      	lsls	r2, r3, #5
+ 8002738:	4413      	add	r3, r2
+ 800273a:	e001      	b.n	8002740 <_ZN14modbus_handler22request_packet_handlerEPhi+0x30>
+ 800273c:	f04f 33ff 	mov.w	r3, #4294967295
+ 8002740:	4618      	mov	r0, r3
+ 8002742:	f000 fde3 	bl	800330c <_Znaj>
+ 8002746:	4603      	mov	r3, r0
+ 8002748:	461e      	mov	r6, r3
+ 800274a:	4632      	mov	r2, r6
+ 800274c:	1e63      	subs	r3, r4, #1
+ 800274e:	461c      	mov	r4, r3
+ 8002750:	4615      	mov	r5, r2
+ 8002752:	2c00      	cmp	r4, #0
+ 8002754:	db05      	blt.n	8002762 <_ZN14modbus_handler22request_packet_handlerEPhi+0x52>
+ 8002756:	4628      	mov	r0, r5
+ 8002758:	f000 fb64 	bl	8002e24 <_ZN12request_typeC1Ev>
+ 800275c:	35a5      	adds	r5, #165	; 0xa5
+ 800275e:	3c01      	subs	r4, #1
+ 8002760:	e7f7      	b.n	8002752 <_ZN14modbus_handler22request_packet_handlerEPhi+0x42>
+ 8002762:	4b3f      	ldr	r3, [pc, #252]	; (8002860 <_ZN14modbus_handler22request_packet_handlerEPhi+0x150>)
+ 8002764:	601e      	str	r6, [r3, #0]
     byte pos_pointer = 1;
- 8002756:	2301      	movs	r3, #1
- 8002758:	75fb      	strb	r3, [r7, #23]
+ 8002766:	2301      	movs	r3, #1
+ 8002768:	75fb      	strb	r3, [r7, #23]
     for(byte i = 0; i < number_of_request; i++){
- 800275a:	2300      	movs	r3, #0
- 800275c:	75bb      	strb	r3, [r7, #22]
- 800275e:	68fb      	ldr	r3, [r7, #12]
- 8002760:	789b      	ldrb	r3, [r3, #2]
- 8002762:	7dba      	ldrb	r2, [r7, #22]
- 8002764:	429a      	cmp	r2, r3
- 8002766:	d227      	bcs.n	80027b8 <_ZN14modbus_handler22request_packet_handlerEPhi+0xb4>
+ 800276a:	2300      	movs	r3, #0
+ 800276c:	75bb      	strb	r3, [r7, #22]
+ 800276e:	68fb      	ldr	r3, [r7, #12]
+ 8002770:	79db      	ldrb	r3, [r3, #7]
+ 8002772:	7dba      	ldrb	r2, [r7, #22]
+ 8002774:	429a      	cmp	r2, r3
+ 8002776:	d22b      	bcs.n	80027d0 <_ZN14modbus_handler22request_packet_handlerEPhi+0xc0>
         array_of_request[i].begin_configure(&data_packet[pos_pointer+1], data_packet[pos_pointer]);
- 8002768:	4b32      	ldr	r3, [pc, #200]	; (8002834 <_ZN14modbus_handler22request_packet_handlerEPhi+0x130>)
- 800276a:	681a      	ldr	r2, [r3, #0]
- 800276c:	7dbb      	ldrb	r3, [r7, #22]
- 800276e:	21a4      	movs	r1, #164	; 0xa4
- 8002770:	fb01 f303 	mul.w	r3, r1, r3
- 8002774:	18d0      	adds	r0, r2, r3
- 8002776:	7dfb      	ldrb	r3, [r7, #23]
- 8002778:	3301      	adds	r3, #1
- 800277a:	68ba      	ldr	r2, [r7, #8]
- 800277c:	18d1      	adds	r1, r2, r3
- 800277e:	7dfb      	ldrb	r3, [r7, #23]
- 8002780:	68ba      	ldr	r2, [r7, #8]
+ 8002778:	4b39      	ldr	r3, [pc, #228]	; (8002860 <_ZN14modbus_handler22request_packet_handlerEPhi+0x150>)
+ 800277a:	6819      	ldr	r1, [r3, #0]
+ 800277c:	7dba      	ldrb	r2, [r7, #22]
+ 800277e:	4613      	mov	r3, r2
+ 8002780:	009b      	lsls	r3, r3, #2
  8002782:	4413      	add	r3, r2
- 8002784:	781b      	ldrb	r3, [r3, #0]
- 8002786:	461a      	mov	r2, r3
- 8002788:	f000 fade 	bl	8002d48 <_ZN12request_type15begin_configureEPhi>
+ 8002784:	015a      	lsls	r2, r3, #5
+ 8002786:	4413      	add	r3, r2
+ 8002788:	18c8      	adds	r0, r1, r3
+ 800278a:	7dfb      	ldrb	r3, [r7, #23]
+ 800278c:	3301      	adds	r3, #1
+ 800278e:	68ba      	ldr	r2, [r7, #8]
+ 8002790:	18d1      	adds	r1, r2, r3
+ 8002792:	7dfb      	ldrb	r3, [r7, #23]
+ 8002794:	68ba      	ldr	r2, [r7, #8]
+ 8002796:	4413      	add	r3, r2
+ 8002798:	781b      	ldrb	r3, [r3, #0]
+ 800279a:	461a      	mov	r2, r3
+ 800279c:	f000 fb50 	bl	8002e40 <_ZN12request_type15begin_configureEPhi>
         array_of_request[i].request_number = i;
- 800278c:	4b29      	ldr	r3, [pc, #164]	; (8002834 <_ZN14modbus_handler22request_packet_handlerEPhi+0x130>)
- 800278e:	681a      	ldr	r2, [r3, #0]
- 8002790:	7dbb      	ldrb	r3, [r7, #22]
- 8002792:	21a4      	movs	r1, #164	; 0xa4
- 8002794:	fb01 f303 	mul.w	r3, r1, r3
- 8002798:	4413      	add	r3, r2
- 800279a:	7dba      	ldrb	r2, [r7, #22]
- 800279c:	70da      	strb	r2, [r3, #3]
+ 80027a0:	4b2f      	ldr	r3, [pc, #188]	; (8002860 <_ZN14modbus_handler22request_packet_handlerEPhi+0x150>)
+ 80027a2:	6819      	ldr	r1, [r3, #0]
+ 80027a4:	7dba      	ldrb	r2, [r7, #22]
+ 80027a6:	4613      	mov	r3, r2
+ 80027a8:	009b      	lsls	r3, r3, #2
+ 80027aa:	4413      	add	r3, r2
+ 80027ac:	015a      	lsls	r2, r3, #5
+ 80027ae:	4413      	add	r3, r2
+ 80027b0:	440b      	add	r3, r1
+ 80027b2:	7dba      	ldrb	r2, [r7, #22]
+ 80027b4:	711a      	strb	r2, [r3, #4]
         pos_pointer += data_packet[pos_pointer]+1;
- 800279e:	7dfb      	ldrb	r3, [r7, #23]
- 80027a0:	68ba      	ldr	r2, [r7, #8]
- 80027a2:	4413      	add	r3, r2
- 80027a4:	781a      	ldrb	r2, [r3, #0]
- 80027a6:	7dfb      	ldrb	r3, [r7, #23]
- 80027a8:	4413      	add	r3, r2
- 80027aa:	b2db      	uxtb	r3, r3
- 80027ac:	3301      	adds	r3, #1
- 80027ae:	75fb      	strb	r3, [r7, #23]
+ 80027b6:	7dfb      	ldrb	r3, [r7, #23]
+ 80027b8:	68ba      	ldr	r2, [r7, #8]
+ 80027ba:	4413      	add	r3, r2
+ 80027bc:	781a      	ldrb	r2, [r3, #0]
+ 80027be:	7dfb      	ldrb	r3, [r7, #23]
+ 80027c0:	4413      	add	r3, r2
+ 80027c2:	b2db      	uxtb	r3, r3
+ 80027c4:	3301      	adds	r3, #1
+ 80027c6:	75fb      	strb	r3, [r7, #23]
     for(byte i = 0; i < number_of_request; i++){
- 80027b0:	7dbb      	ldrb	r3, [r7, #22]
- 80027b2:	3301      	adds	r3, #1
- 80027b4:	75bb      	strb	r3, [r7, #22]
- 80027b6:	e7d2      	b.n	800275e <_ZN14modbus_handler22request_packet_handlerEPhi+0x5a>
+ 80027c8:	7dbb      	ldrb	r3, [r7, #22]
+ 80027ca:	3301      	adds	r3, #1
+ 80027cc:	75bb      	strb	r3, [r7, #22]
+ 80027ce:	e7ce      	b.n	800276e <_ZN14modbus_handler22request_packet_handlerEPhi+0x5e>
     }
     //request first element
     current_request_number = 0;
- 80027b8:	68fb      	ldr	r3, [r7, #12]
- 80027ba:	2200      	movs	r2, #0
- 80027bc:	701a      	strb	r2, [r3, #0]
+ 80027d0:	68fb      	ldr	r3, [r7, #12]
+ 80027d2:	2200      	movs	r2, #0
+ 80027d4:	715a      	strb	r2, [r3, #5]
     uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
- 80027be:	4b1d      	ldr	r3, [pc, #116]	; (8002834 <_ZN14modbus_handler22request_packet_handlerEPhi+0x130>)
- 80027c0:	681a      	ldr	r2, [r3, #0]
- 80027c2:	68fb      	ldr	r3, [r7, #12]
- 80027c4:	781b      	ldrb	r3, [r3, #0]
- 80027c6:	4619      	mov	r1, r3
- 80027c8:	23a4      	movs	r3, #164	; 0xa4
- 80027ca:	fb03 f301 	mul.w	r3, r3, r1
- 80027ce:	4413      	add	r3, r2
- 80027d0:	f103 0122 	add.w	r1, r3, #34	; 0x22
- 80027d4:	4b17      	ldr	r3, [pc, #92]	; (8002834 <_ZN14modbus_handler22request_packet_handlerEPhi+0x130>)
- 80027d6:	681a      	ldr	r2, [r3, #0]
- 80027d8:	68fb      	ldr	r3, [r7, #12]
- 80027da:	781b      	ldrb	r3, [r3, #0]
- 80027dc:	4618      	mov	r0, r3
- 80027de:	23a4      	movs	r3, #164	; 0xa4
- 80027e0:	fb03 f300 	mul.w	r3, r3, r0
- 80027e4:	4413      	add	r3, r2
- 80027e6:	f893 30a3 	ldrb.w	r3, [r3, #163]	; 0xa3
- 80027ea:	b29b      	uxth	r3, r3
- 80027ec:	461a      	mov	r2, r3
- 80027ee:	4812      	ldr	r0, [pc, #72]	; (8002838 <_ZN14modbus_handler22request_packet_handlerEPhi+0x134>)
- 80027f0:	f7ff fb1a 	bl	8001e28 <HAL_UART_Receive_DMA>
-    uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
- 80027f4:	4b0f      	ldr	r3, [pc, #60]	; (8002834 <_ZN14modbus_handler22request_packet_handlerEPhi+0x130>)
- 80027f6:	681a      	ldr	r2, [r3, #0]
- 80027f8:	68fb      	ldr	r3, [r7, #12]
- 80027fa:	781b      	ldrb	r3, [r3, #0]
- 80027fc:	4619      	mov	r1, r3
- 80027fe:	23a4      	movs	r3, #164	; 0xa4
- 8002800:	fb03 f301 	mul.w	r3, r3, r1
+ 80027d6:	4b22      	ldr	r3, [pc, #136]	; (8002860 <_ZN14modbus_handler22request_packet_handlerEPhi+0x150>)
+ 80027d8:	681a      	ldr	r2, [r3, #0]
+ 80027da:	68fb      	ldr	r3, [r7, #12]
+ 80027dc:	795b      	ldrb	r3, [r3, #5]
+ 80027de:	4619      	mov	r1, r3
+ 80027e0:	460b      	mov	r3, r1
+ 80027e2:	009b      	lsls	r3, r3, #2
+ 80027e4:	440b      	add	r3, r1
+ 80027e6:	0159      	lsls	r1, r3, #5
+ 80027e8:	440b      	add	r3, r1
+ 80027ea:	4413      	add	r3, r2
+ 80027ec:	f103 0023 	add.w	r0, r3, #35	; 0x23
+ 80027f0:	4b1b      	ldr	r3, [pc, #108]	; (8002860 <_ZN14modbus_handler22request_packet_handlerEPhi+0x150>)
+ 80027f2:	681a      	ldr	r2, [r3, #0]
+ 80027f4:	68fb      	ldr	r3, [r7, #12]
+ 80027f6:	795b      	ldrb	r3, [r3, #5]
+ 80027f8:	4619      	mov	r1, r3
+ 80027fa:	460b      	mov	r3, r1
+ 80027fc:	009b      	lsls	r3, r3, #2
+ 80027fe:	440b      	add	r3, r1
+ 8002800:	0159      	lsls	r1, r3, #5
+ 8002802:	440b      	add	r3, r1
  8002804:	4413      	add	r3, r2
- 8002806:	1d19      	adds	r1, r3, #4
- 8002808:	4b0a      	ldr	r3, [pc, #40]	; (8002834 <_ZN14modbus_handler22request_packet_handlerEPhi+0x130>)
- 800280a:	681a      	ldr	r2, [r3, #0]
- 800280c:	68fb      	ldr	r3, [r7, #12]
- 800280e:	781b      	ldrb	r3, [r3, #0]
- 8002810:	4618      	mov	r0, r3
- 8002812:	23a4      	movs	r3, #164	; 0xa4
- 8002814:	fb03 f300 	mul.w	r3, r3, r0
- 8002818:	4413      	add	r3, r2
- 800281a:	f893 30a2 	ldrb.w	r3, [r3, #162]	; 0xa2
- 800281e:	b29b      	uxth	r3, r3
- 8002820:	461a      	mov	r2, r3
- 8002822:	4805      	ldr	r0, [pc, #20]	; (8002838 <_ZN14modbus_handler22request_packet_handlerEPhi+0x134>)
- 8002824:	f7ff fa94 	bl	8001d50 <HAL_UART_Transmit_DMA>
-    
+ 8002806:	f893 30a4 	ldrb.w	r3, [r3, #164]	; 0xa4
+ 800280a:	b29b      	uxth	r3, r3
+ 800280c:	461a      	mov	r2, r3
+ 800280e:	4601      	mov	r1, r0
+ 8002810:	4814      	ldr	r0, [pc, #80]	; (8002864 <_ZN14modbus_handler22request_packet_handlerEPhi+0x154>)
+ 8002812:	f7ff fb09 	bl	8001e28 <HAL_UART_Receive_DMA>
+    uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
+ 8002816:	4b12      	ldr	r3, [pc, #72]	; (8002860 <_ZN14modbus_handler22request_packet_handlerEPhi+0x150>)
+ 8002818:	681a      	ldr	r2, [r3, #0]
+ 800281a:	68fb      	ldr	r3, [r7, #12]
+ 800281c:	795b      	ldrb	r3, [r3, #5]
+ 800281e:	4619      	mov	r1, r3
+ 8002820:	460b      	mov	r3, r1
+ 8002822:	009b      	lsls	r3, r3, #2
+ 8002824:	440b      	add	r3, r1
+ 8002826:	0159      	lsls	r1, r3, #5
+ 8002828:	440b      	add	r3, r1
+ 800282a:	4413      	add	r3, r2
+ 800282c:	1d58      	adds	r0, r3, #5
+ 800282e:	4b0c      	ldr	r3, [pc, #48]	; (8002860 <_ZN14modbus_handler22request_packet_handlerEPhi+0x150>)
+ 8002830:	681a      	ldr	r2, [r3, #0]
+ 8002832:	68fb      	ldr	r3, [r7, #12]
+ 8002834:	795b      	ldrb	r3, [r3, #5]
+ 8002836:	4619      	mov	r1, r3
+ 8002838:	460b      	mov	r3, r1
+ 800283a:	009b      	lsls	r3, r3, #2
+ 800283c:	440b      	add	r3, r1
+ 800283e:	0159      	lsls	r1, r3, #5
+ 8002840:	440b      	add	r3, r1
+ 8002842:	4413      	add	r3, r2
+ 8002844:	f893 30a3 	ldrb.w	r3, [r3, #163]	; 0xa3
+ 8002848:	b29b      	uxth	r3, r3
+ 800284a:	461a      	mov	r2, r3
+ 800284c:	4601      	mov	r1, r0
+ 800284e:	4805      	ldr	r0, [pc, #20]	; (8002864 <_ZN14modbus_handler22request_packet_handlerEPhi+0x154>)
+ 8002850:	f7ff fa7e 	bl	8001d50 <HAL_UART_Transmit_DMA>
+    //TIM2->CNT = 0;
+    //start_timer(&htim2);
 }
- 8002828:	bf00      	nop
- 800282a:	371c      	adds	r7, #28
- 800282c:	46bd      	mov	sp, r7
- 800282e:	bdf0      	pop	{r4, r5, r6, r7, pc}
- 8002830:	00c7ce0c 	.word	0x00c7ce0c
- 8002834:	20000090 	.word	0x20000090
- 8002838:	2000041c 	.word	0x2000041c
+ 8002854:	bf00      	nop
+ 8002856:	371c      	adds	r7, #28
+ 8002858:	46bd      	mov	sp, r7
+ 800285a:	bdf0      	pop	{r4, r5, r6, r7, pc}
+ 800285c:	00c6980c 	.word	0x00c6980c
+ 8002860:	20000090 	.word	0x20000090
+ 8002864:	20000420 	.word	0x20000420
 
-0800283c <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef>:
+08002868 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef>:
 
 void modbus_handler::receive_handler(UART_HandleTypeDef *huart)
 {
- 800283c:	b580      	push	{r7, lr}
- 800283e:	b082      	sub	sp, #8
- 8002840:	af00      	add	r7, sp, #0
- 8002842:	6078      	str	r0, [r7, #4]
- 8002844:	6039      	str	r1, [r7, #0]
+ 8002868:	b580      	push	{r7, lr}
+ 800286a:	b082      	sub	sp, #8
+ 800286c:	af00      	add	r7, sp, #0
+ 800286e:	6078      	str	r0, [r7, #4]
+ 8002870:	6039      	str	r1, [r7, #0]
 	HAL_UART_AbortReceive_IT(huart);
- 8002846:	6838      	ldr	r0, [r7, #0]
- 8002848:	f7ff fbbe 	bl	8001fc8 <HAL_UART_AbortReceive_IT>
+ 8002872:	6838      	ldr	r0, [r7, #0]
+ 8002874:	f7ff fba8 	bl	8001fc8 <HAL_UART_AbortReceive_IT>
+	array_of_request[current_request_number].is_data_received = true;
+ 8002878:	4b30      	ldr	r3, [pc, #192]	; (800293c <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xd4>)
+ 800287a:	681a      	ldr	r2, [r3, #0]
+ 800287c:	687b      	ldr	r3, [r7, #4]
+ 800287e:	795b      	ldrb	r3, [r3, #5]
+ 8002880:	4619      	mov	r1, r3
+ 8002882:	460b      	mov	r3, r1
+ 8002884:	009b      	lsls	r3, r3, #2
+ 8002886:	440b      	add	r3, r1
+ 8002888:	0159      	lsls	r1, r3, #5
+ 800288a:	440b      	add	r3, r1
+ 800288c:	4413      	add	r3, r2
+ 800288e:	2201      	movs	r2, #1
+ 8002890:	709a      	strb	r2, [r3, #2]
     if (current_request_number < number_of_request - 1)
- 800284c:	687b      	ldr	r3, [r7, #4]
- 800284e:	781b      	ldrb	r3, [r3, #0]
- 8002850:	461a      	mov	r2, r3
- 8002852:	687b      	ldr	r3, [r7, #4]
- 8002854:	789b      	ldrb	r3, [r3, #2]
- 8002856:	3b01      	subs	r3, #1
- 8002858:	429a      	cmp	r2, r3
- 800285a:	da3b      	bge.n	80028d4 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0x98>
+ 8002892:	687b      	ldr	r3, [r7, #4]
+ 8002894:	795b      	ldrb	r3, [r3, #5]
+ 8002896:	461a      	mov	r2, r3
+ 8002898:	687b      	ldr	r3, [r7, #4]
+ 800289a:	79db      	ldrb	r3, [r3, #7]
+ 800289c:	3b01      	subs	r3, #1
+ 800289e:	429a      	cmp	r2, r3
+ 80028a0:	da45      	bge.n	800292e <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xc6>
     {
+
+    	//stop_timer(&htim2);
+
         //request the next one
         current_request_number++;
- 800285c:	687b      	ldr	r3, [r7, #4]
- 800285e:	781b      	ldrb	r3, [r3, #0]
- 8002860:	3301      	adds	r3, #1
- 8002862:	b2da      	uxtb	r2, r3
- 8002864:	687b      	ldr	r3, [r7, #4]
- 8002866:	701a      	strb	r2, [r3, #0]
-        uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
- 8002868:	4b1e      	ldr	r3, [pc, #120]	; (80028e4 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xa8>)
- 800286a:	681a      	ldr	r2, [r3, #0]
- 800286c:	687b      	ldr	r3, [r7, #4]
- 800286e:	781b      	ldrb	r3, [r3, #0]
- 8002870:	4619      	mov	r1, r3
- 8002872:	23a4      	movs	r3, #164	; 0xa4
- 8002874:	fb03 f301 	mul.w	r3, r3, r1
- 8002878:	4413      	add	r3, r2
- 800287a:	f103 0122 	add.w	r1, r3, #34	; 0x22
- 800287e:	4b19      	ldr	r3, [pc, #100]	; (80028e4 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xa8>)
- 8002880:	681a      	ldr	r2, [r3, #0]
- 8002882:	687b      	ldr	r3, [r7, #4]
- 8002884:	781b      	ldrb	r3, [r3, #0]
- 8002886:	4618      	mov	r0, r3
- 8002888:	23a4      	movs	r3, #164	; 0xa4
- 800288a:	fb03 f300 	mul.w	r3, r3, r0
- 800288e:	4413      	add	r3, r2
- 8002890:	f893 30a3 	ldrb.w	r3, [r3, #163]	; 0xa3
- 8002894:	b29b      	uxth	r3, r3
- 8002896:	461a      	mov	r2, r3
- 8002898:	4813      	ldr	r0, [pc, #76]	; (80028e8 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xac>)
- 800289a:	f7ff fac5 	bl	8001e28 <HAL_UART_Receive_DMA>
-        uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
- 800289e:	4b11      	ldr	r3, [pc, #68]	; (80028e4 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xa8>)
- 80028a0:	681a      	ldr	r2, [r3, #0]
  80028a2:	687b      	ldr	r3, [r7, #4]
- 80028a4:	781b      	ldrb	r3, [r3, #0]
- 80028a6:	4619      	mov	r1, r3
- 80028a8:	23a4      	movs	r3, #164	; 0xa4
- 80028aa:	fb03 f301 	mul.w	r3, r3, r1
- 80028ae:	4413      	add	r3, r2
- 80028b0:	1d19      	adds	r1, r3, #4
- 80028b2:	4b0c      	ldr	r3, [pc, #48]	; (80028e4 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xa8>)
- 80028b4:	681a      	ldr	r2, [r3, #0]
- 80028b6:	687b      	ldr	r3, [r7, #4]
- 80028b8:	781b      	ldrb	r3, [r3, #0]
- 80028ba:	4618      	mov	r0, r3
- 80028bc:	23a4      	movs	r3, #164	; 0xa4
- 80028be:	fb03 f300 	mul.w	r3, r3, r0
+ 80028a4:	795b      	ldrb	r3, [r3, #5]
+ 80028a6:	3301      	adds	r3, #1
+ 80028a8:	b2da      	uxtb	r2, r3
+ 80028aa:	687b      	ldr	r3, [r7, #4]
+ 80028ac:	715a      	strb	r2, [r3, #5]
+        uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
+ 80028ae:	4b23      	ldr	r3, [pc, #140]	; (800293c <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xd4>)
+ 80028b0:	681a      	ldr	r2, [r3, #0]
+ 80028b2:	687b      	ldr	r3, [r7, #4]
+ 80028b4:	795b      	ldrb	r3, [r3, #5]
+ 80028b6:	4619      	mov	r1, r3
+ 80028b8:	460b      	mov	r3, r1
+ 80028ba:	009b      	lsls	r3, r3, #2
+ 80028bc:	440b      	add	r3, r1
+ 80028be:	0159      	lsls	r1, r3, #5
+ 80028c0:	440b      	add	r3, r1
  80028c2:	4413      	add	r3, r2
- 80028c4:	f893 30a2 	ldrb.w	r3, [r3, #162]	; 0xa2
- 80028c8:	b29b      	uxth	r3, r3
- 80028ca:	461a      	mov	r2, r3
- 80028cc:	4806      	ldr	r0, [pc, #24]	; (80028e8 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xac>)
- 80028ce:	f7ff fa3f 	bl	8001d50 <HAL_UART_Transmit_DMA>
+ 80028c4:	f103 0023 	add.w	r0, r3, #35	; 0x23
+ 80028c8:	4b1c      	ldr	r3, [pc, #112]	; (800293c <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xd4>)
+ 80028ca:	681a      	ldr	r2, [r3, #0]
+ 80028cc:	687b      	ldr	r3, [r7, #4]
+ 80028ce:	795b      	ldrb	r3, [r3, #5]
+ 80028d0:	4619      	mov	r1, r3
+ 80028d2:	460b      	mov	r3, r1
+ 80028d4:	009b      	lsls	r3, r3, #2
+ 80028d6:	440b      	add	r3, r1
+ 80028d8:	0159      	lsls	r1, r3, #5
+ 80028da:	440b      	add	r3, r1
+ 80028dc:	4413      	add	r3, r2
+ 80028de:	f893 30a4 	ldrb.w	r3, [r3, #164]	; 0xa4
+ 80028e2:	b29b      	uxth	r3, r3
+ 80028e4:	461a      	mov	r2, r3
+ 80028e6:	4601      	mov	r1, r0
+ 80028e8:	4815      	ldr	r0, [pc, #84]	; (8002940 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xd8>)
+ 80028ea:	f7ff fa9d 	bl	8001e28 <HAL_UART_Receive_DMA>
+        uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
+ 80028ee:	4b13      	ldr	r3, [pc, #76]	; (800293c <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xd4>)
+ 80028f0:	681a      	ldr	r2, [r3, #0]
+ 80028f2:	687b      	ldr	r3, [r7, #4]
+ 80028f4:	795b      	ldrb	r3, [r3, #5]
+ 80028f6:	4619      	mov	r1, r3
+ 80028f8:	460b      	mov	r3, r1
+ 80028fa:	009b      	lsls	r3, r3, #2
+ 80028fc:	440b      	add	r3, r1
+ 80028fe:	0159      	lsls	r1, r3, #5
+ 8002900:	440b      	add	r3, r1
+ 8002902:	4413      	add	r3, r2
+ 8002904:	1d58      	adds	r0, r3, #5
+ 8002906:	4b0d      	ldr	r3, [pc, #52]	; (800293c <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xd4>)
+ 8002908:	681a      	ldr	r2, [r3, #0]
+ 800290a:	687b      	ldr	r3, [r7, #4]
+ 800290c:	795b      	ldrb	r3, [r3, #5]
+ 800290e:	4619      	mov	r1, r3
+ 8002910:	460b      	mov	r3, r1
+ 8002912:	009b      	lsls	r3, r3, #2
+ 8002914:	440b      	add	r3, r1
+ 8002916:	0159      	lsls	r1, r3, #5
+ 8002918:	440b      	add	r3, r1
+ 800291a:	4413      	add	r3, r2
+ 800291c:	f893 30a3 	ldrb.w	r3, [r3, #163]	; 0xa3
+ 8002920:	b29b      	uxth	r3, r3
+ 8002922:	461a      	mov	r2, r3
+ 8002924:	4601      	mov	r1, r0
+ 8002926:	4806      	ldr	r0, [pc, #24]	; (8002940 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xd8>)
+ 8002928:	f7ff fa12 	bl	8001d50 <HAL_UART_Transmit_DMA>
     }else //done
     {
+    	//stop_timer(&htim2);
         package_data();
     }
 }
- 80028d2:	e002      	b.n	80028da <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0x9e>
+ 800292c:	e002      	b.n	8002934 <_ZN14modbus_handler15receive_handlerEP20__UART_HandleTypeDef+0xcc>
         package_data();
- 80028d4:	6878      	ldr	r0, [r7, #4]
- 80028d6:	f000 f809 	bl	80028ec <_ZN14modbus_handler12package_dataEv>
+ 800292e:	6878      	ldr	r0, [r7, #4]
+ 8002930:	f000 f808 	bl	8002944 <_ZN14modbus_handler12package_dataEv>
 }
- 80028da:	bf00      	nop
- 80028dc:	3708      	adds	r7, #8
- 80028de:	46bd      	mov	sp, r7
- 80028e0:	bd80      	pop	{r7, pc}
- 80028e2:	bf00      	nop
- 80028e4:	20000090 	.word	0x20000090
- 80028e8:	2000041c 	.word	0x2000041c
+ 8002934:	bf00      	nop
+ 8002936:	3708      	adds	r7, #8
+ 8002938:	46bd      	mov	sp, r7
+ 800293a:	bd80      	pop	{r7, pc}
+ 800293c:	20000090 	.word	0x20000090
+ 8002940:	20000420 	.word	0x20000420
 
-080028ec <_ZN14modbus_handler12package_dataEv>:
+08002944 <_ZN14modbus_handler12package_dataEv>:
 void modbus_handler::package_data()
 {
- 80028ec:	b590      	push	{r4, r7, lr}
- 80028ee:	b085      	sub	sp, #20
- 80028f0:	af00      	add	r7, sp, #0
- 80028f2:	6078      	str	r0, [r7, #4]
+ 8002944:	b590      	push	{r4, r7, lr}
+ 8002946:	b085      	sub	sp, #20
+ 8002948:	af00      	add	r7, sp, #0
+ 800294a:	6078      	str	r0, [r7, #4]
 	total_byte = 0;
- 80028f4:	687b      	ldr	r3, [r7, #4]
- 80028f6:	2200      	movs	r2, #0
- 80028f8:	705a      	strb	r2, [r3, #1]
-	byte current_pos = 4;
- 80028fa:	2304      	movs	r3, #4
- 80028fc:	73fb      	strb	r3, [r7, #15]
+ 800294c:	687b      	ldr	r3, [r7, #4]
+ 800294e:	2200      	movs	r2, #0
+ 8002950:	719a      	strb	r2, [r3, #6]
+	byte current_pos = 5;
+ 8002952:	2305      	movs	r3, #5
+ 8002954:	73fb      	strb	r3, [r7, #15]
+	byte total_valid_request = 0;
+ 8002956:	2300      	movs	r3, #0
+ 8002958:	73bb      	strb	r3, [r7, #14]
 	for(byte i = 0; i < number_of_request; i++){
- 80028fe:	2300      	movs	r3, #0
- 8002900:	73bb      	strb	r3, [r7, #14]
- 8002902:	687b      	ldr	r3, [r7, #4]
- 8002904:	789b      	ldrb	r3, [r3, #2]
- 8002906:	7bba      	ldrb	r2, [r7, #14]
- 8002908:	429a      	cmp	r2, r3
- 800290a:	d24c      	bcs.n	80029a6 <_ZN14modbus_handler12package_dataEv+0xba>
+ 800295a:	2300      	movs	r3, #0
+ 800295c:	737b      	strb	r3, [r7, #13]
+ 800295e:	687b      	ldr	r3, [r7, #4]
+ 8002960:	79db      	ldrb	r3, [r3, #7]
+ 8002962:	7b7a      	ldrb	r2, [r7, #13]
+ 8002964:	429a      	cmp	r2, r3
+ 8002966:	d25b      	bcs.n	8002a20 <_ZN14modbus_handler12package_dataEv+0xdc>
 		if(array_of_request[i].is_data_valid()) {
- 800290c:	4b41      	ldr	r3, [pc, #260]	; (8002a14 <_ZN14modbus_handler12package_dataEv+0x128>)
- 800290e:	681a      	ldr	r2, [r3, #0]
- 8002910:	7bbb      	ldrb	r3, [r7, #14]
- 8002912:	21a4      	movs	r1, #164	; 0xa4
- 8002914:	fb01 f303 	mul.w	r3, r1, r3
- 8002918:	4413      	add	r3, r2
- 800291a:	4618      	mov	r0, r3
- 800291c:	f000 fc56 	bl	80031cc <_ZN12request_type13is_data_validEv>
- 8002920:	4603      	mov	r3, r0
- 8002922:	2b00      	cmp	r3, #0
- 8002924:	d02d      	beq.n	8002982 <_ZN14modbus_handler12package_dataEv+0x96>
+ 8002968:	4b58      	ldr	r3, [pc, #352]	; (8002acc <_ZN14modbus_handler12package_dataEv+0x188>)
+ 800296a:	6819      	ldr	r1, [r3, #0]
+ 800296c:	7b7a      	ldrb	r2, [r7, #13]
+ 800296e:	4613      	mov	r3, r2
+ 8002970:	009b      	lsls	r3, r3, #2
+ 8002972:	4413      	add	r3, r2
+ 8002974:	015a      	lsls	r2, r3, #5
+ 8002976:	4413      	add	r3, r2
+ 8002978:	440b      	add	r3, r1
+ 800297a:	4618      	mov	r0, r3
+ 800297c:	f000 fca2 	bl	80032c4 <_ZN12request_type13is_data_validEv>
+ 8002980:	4603      	mov	r3, r0
+ 8002982:	2b00      	cmp	r3, #0
+ 8002984:	d048      	beq.n	8002a18 <_ZN14modbus_handler12package_dataEv+0xd4>
 			array_of_request[i].packet_encoding();
- 8002926:	4b3b      	ldr	r3, [pc, #236]	; (8002a14 <_ZN14modbus_handler12package_dataEv+0x128>)
- 8002928:	681a      	ldr	r2, [r3, #0]
- 800292a:	7bbb      	ldrb	r3, [r7, #14]
- 800292c:	21a4      	movs	r1, #164	; 0xa4
- 800292e:	fb01 f303 	mul.w	r3, r1, r3
- 8002932:	4413      	add	r3, r2
- 8002934:	4618      	mov	r0, r3
- 8002936:	f000 fa67 	bl	8002e08 <_ZN12request_type15packet_encodingEv>
-			memcpy(&testing[current_pos], array_of_request[i].encoded_packet, array_of_request[i].encode_length);
- 800293a:	7bfb      	ldrb	r3, [r7, #15]
- 800293c:	687a      	ldr	r2, [r7, #4]
- 800293e:	4413      	add	r3, r2
- 8002940:	1cd8      	adds	r0, r3, #3
- 8002942:	4b34      	ldr	r3, [pc, #208]	; (8002a14 <_ZN14modbus_handler12package_dataEv+0x128>)
- 8002944:	681a      	ldr	r2, [r3, #0]
- 8002946:	7bbb      	ldrb	r3, [r7, #14]
- 8002948:	21a4      	movs	r1, #164	; 0xa4
- 800294a:	fb01 f303 	mul.w	r3, r1, r3
- 800294e:	4413      	add	r3, r2
- 8002950:	f103 0462 	add.w	r4, r3, #98	; 0x62
- 8002954:	4b2f      	ldr	r3, [pc, #188]	; (8002a14 <_ZN14modbus_handler12package_dataEv+0x128>)
- 8002956:	681a      	ldr	r2, [r3, #0]
- 8002958:	7bbb      	ldrb	r3, [r7, #14]
- 800295a:	21a4      	movs	r1, #164	; 0xa4
- 800295c:	fb01 f303 	mul.w	r3, r1, r3
- 8002960:	4413      	add	r3, r2
- 8002962:	789b      	ldrb	r3, [r3, #2]
- 8002964:	461a      	mov	r2, r3
- 8002966:	4621      	mov	r1, r4
- 8002968:	f000 fcae 	bl	80032c8 <memcpy>
-			current_pos += array_of_request[i].encode_length;
- 800296c:	4b29      	ldr	r3, [pc, #164]	; (8002a14 <_ZN14modbus_handler12package_dataEv+0x128>)
- 800296e:	681a      	ldr	r2, [r3, #0]
- 8002970:	7bbb      	ldrb	r3, [r7, #14]
- 8002972:	21a4      	movs	r1, #164	; 0xa4
- 8002974:	fb01 f303 	mul.w	r3, r1, r3
- 8002978:	4413      	add	r3, r2
- 800297a:	789a      	ldrb	r2, [r3, #2]
- 800297c:	7bfb      	ldrb	r3, [r7, #15]
- 800297e:	4413      	add	r3, r2
- 8002980:	73fb      	strb	r3, [r7, #15]
-		}
-		total_byte += array_of_request[i].encode_length;
- 8002982:	687b      	ldr	r3, [r7, #4]
- 8002984:	785a      	ldrb	r2, [r3, #1]
- 8002986:	4b23      	ldr	r3, [pc, #140]	; (8002a14 <_ZN14modbus_handler12package_dataEv+0x128>)
+ 8002986:	4b51      	ldr	r3, [pc, #324]	; (8002acc <_ZN14modbus_handler12package_dataEv+0x188>)
  8002988:	6819      	ldr	r1, [r3, #0]
- 800298a:	7bbb      	ldrb	r3, [r7, #14]
- 800298c:	20a4      	movs	r0, #164	; 0xa4
- 800298e:	fb00 f303 	mul.w	r3, r0, r3
- 8002992:	440b      	add	r3, r1
- 8002994:	789b      	ldrb	r3, [r3, #2]
- 8002996:	4413      	add	r3, r2
- 8002998:	b2da      	uxtb	r2, r3
- 800299a:	687b      	ldr	r3, [r7, #4]
- 800299c:	705a      	strb	r2, [r3, #1]
+ 800298a:	7b7a      	ldrb	r2, [r7, #13]
+ 800298c:	4613      	mov	r3, r2
+ 800298e:	009b      	lsls	r3, r3, #2
+ 8002990:	4413      	add	r3, r2
+ 8002992:	015a      	lsls	r2, r3, #5
+ 8002994:	4413      	add	r3, r2
+ 8002996:	440b      	add	r3, r1
+ 8002998:	4618      	mov	r0, r3
+ 800299a:	f000 fab1 	bl	8002f00 <_ZN12request_type15packet_encodingEv>
+			memcpy(&reply_packet[current_pos], array_of_request[i].encoded_packet, array_of_request[i].encode_length);
+ 800299e:	7bfb      	ldrb	r3, [r7, #15]
+ 80029a0:	3308      	adds	r3, #8
+ 80029a2:	687a      	ldr	r2, [r7, #4]
+ 80029a4:	18d0      	adds	r0, r2, r3
+ 80029a6:	4b49      	ldr	r3, [pc, #292]	; (8002acc <_ZN14modbus_handler12package_dataEv+0x188>)
+ 80029a8:	6819      	ldr	r1, [r3, #0]
+ 80029aa:	7b7a      	ldrb	r2, [r7, #13]
+ 80029ac:	4613      	mov	r3, r2
+ 80029ae:	009b      	lsls	r3, r3, #2
+ 80029b0:	4413      	add	r3, r2
+ 80029b2:	015a      	lsls	r2, r3, #5
+ 80029b4:	4413      	add	r3, r2
+ 80029b6:	440b      	add	r3, r1
+ 80029b8:	f103 0463 	add.w	r4, r3, #99	; 0x63
+ 80029bc:	4b43      	ldr	r3, [pc, #268]	; (8002acc <_ZN14modbus_handler12package_dataEv+0x188>)
+ 80029be:	6819      	ldr	r1, [r3, #0]
+ 80029c0:	7b7a      	ldrb	r2, [r7, #13]
+ 80029c2:	4613      	mov	r3, r2
+ 80029c4:	009b      	lsls	r3, r3, #2
+ 80029c6:	4413      	add	r3, r2
+ 80029c8:	015a      	lsls	r2, r3, #5
+ 80029ca:	4413      	add	r3, r2
+ 80029cc:	440b      	add	r3, r1
+ 80029ce:	78db      	ldrb	r3, [r3, #3]
+ 80029d0:	461a      	mov	r2, r3
+ 80029d2:	4621      	mov	r1, r4
+ 80029d4:	f000 fcfa 	bl	80033cc <memcpy>
+			current_pos += array_of_request[i].encode_length;
+ 80029d8:	4b3c      	ldr	r3, [pc, #240]	; (8002acc <_ZN14modbus_handler12package_dataEv+0x188>)
+ 80029da:	6819      	ldr	r1, [r3, #0]
+ 80029dc:	7b7a      	ldrb	r2, [r7, #13]
+ 80029de:	4613      	mov	r3, r2
+ 80029e0:	009b      	lsls	r3, r3, #2
+ 80029e2:	4413      	add	r3, r2
+ 80029e4:	015a      	lsls	r2, r3, #5
+ 80029e6:	4413      	add	r3, r2
+ 80029e8:	440b      	add	r3, r1
+ 80029ea:	78da      	ldrb	r2, [r3, #3]
+ 80029ec:	7bfb      	ldrb	r3, [r7, #15]
+ 80029ee:	4413      	add	r3, r2
+ 80029f0:	73fb      	strb	r3, [r7, #15]
+			total_byte += array_of_request[i].encode_length;
+ 80029f2:	687b      	ldr	r3, [r7, #4]
+ 80029f4:	7999      	ldrb	r1, [r3, #6]
+ 80029f6:	4b35      	ldr	r3, [pc, #212]	; (8002acc <_ZN14modbus_handler12package_dataEv+0x188>)
+ 80029f8:	6818      	ldr	r0, [r3, #0]
+ 80029fa:	7b7a      	ldrb	r2, [r7, #13]
+ 80029fc:	4613      	mov	r3, r2
+ 80029fe:	009b      	lsls	r3, r3, #2
+ 8002a00:	4413      	add	r3, r2
+ 8002a02:	015a      	lsls	r2, r3, #5
+ 8002a04:	4413      	add	r3, r2
+ 8002a06:	4403      	add	r3, r0
+ 8002a08:	78db      	ldrb	r3, [r3, #3]
+ 8002a0a:	440b      	add	r3, r1
+ 8002a0c:	b2da      	uxtb	r2, r3
+ 8002a0e:	687b      	ldr	r3, [r7, #4]
+ 8002a10:	719a      	strb	r2, [r3, #6]
+			total_valid_request++;
+ 8002a12:	7bbb      	ldrb	r3, [r7, #14]
+ 8002a14:	3301      	adds	r3, #1
+ 8002a16:	73bb      	strb	r3, [r7, #14]
 	for(byte i = 0; i < number_of_request; i++){
- 800299e:	7bbb      	ldrb	r3, [r7, #14]
- 80029a0:	3301      	adds	r3, #1
- 80029a2:	73bb      	strb	r3, [r7, #14]
- 80029a4:	e7ad      	b.n	8002902 <_ZN14modbus_handler12package_dataEv+0x16>
+ 8002a18:	7b7b      	ldrb	r3, [r7, #13]
+ 8002a1a:	3301      	adds	r3, #1
+ 8002a1c:	737b      	strb	r3, [r7, #13]
+ 8002a1e:	e79e      	b.n	800295e <_ZN14modbus_handler12package_dataEv+0x1a>
+		}
+	}
+	reply_packet[3] = 38; //packet id for complete data modbus
+ 8002a20:	687b      	ldr	r3, [r7, #4]
+ 8002a22:	2226      	movs	r2, #38	; 0x26
+ 8002a24:	72da      	strb	r2, [r3, #11]
+	if(total_valid_request == 0) {
+ 8002a26:	7bbb      	ldrb	r3, [r7, #14]
+ 8002a28:	2b00      	cmp	r3, #0
+ 8002a2a:	d108      	bne.n	8002a3e <_ZN14modbus_handler12package_dataEv+0xfa>
+		Serial.send_error(12345, 34567, '9');
+ 8002a2c:	2339      	movs	r3, #57	; 0x39
+ 8002a2e:	f248 7207 	movw	r2, #34567	; 0x8707
+ 8002a32:	f243 0139 	movw	r1, #12345	; 0x3039
+ 8002a36:	4826      	ldr	r0, [pc, #152]	; (8002ad0 <_ZN14modbus_handler12package_dataEv+0x18c>)
+ 8002a38:	f000 f97e 	bl	8002d38 <_ZN8mySerial10send_errorEtth>
+		return;
+ 8002a3c:	e043      	b.n	8002ac6 <_ZN14modbus_handler12package_dataEv+0x182>
+	}else if(total_valid_request < number_of_request){
+ 8002a3e:	687b      	ldr	r3, [r7, #4]
+ 8002a40:	79db      	ldrb	r3, [r3, #7]
+ 8002a42:	7bba      	ldrb	r2, [r7, #14]
+ 8002a44:	429a      	cmp	r2, r3
+ 8002a46:	d202      	bcs.n	8002a4e <_ZN14modbus_handler12package_dataEv+0x10a>
+		reply_packet[3] = 23; //packet id for non complete data modbus
+ 8002a48:	687b      	ldr	r3, [r7, #4]
+ 8002a4a:	2217      	movs	r2, #23
+ 8002a4c:	72da      	strb	r2, [r3, #11]
 	}
 	//byte *temper_packet = new byte[total_byte + 6];
-	testing[2] = total_byte + 1;
- 80029a6:	687b      	ldr	r3, [r7, #4]
- 80029a8:	785b      	ldrb	r3, [r3, #1]
- 80029aa:	3301      	adds	r3, #1
- 80029ac:	b2da      	uxtb	r2, r3
- 80029ae:	687b      	ldr	r3, [r7, #4]
- 80029b0:	715a      	strb	r2, [r3, #5]
-	testing[3] = number_of_request;
- 80029b2:	687b      	ldr	r3, [r7, #4]
- 80029b4:	789a      	ldrb	r2, [r3, #2]
- 80029b6:	687b      	ldr	r3, [r7, #4]
- 80029b8:	719a      	strb	r2, [r3, #6]
+	reply_packet[2] = total_byte + 2;
+ 8002a4e:	687b      	ldr	r3, [r7, #4]
+ 8002a50:	799b      	ldrb	r3, [r3, #6]
+ 8002a52:	3302      	adds	r3, #2
+ 8002a54:	b2da      	uxtb	r2, r3
+ 8002a56:	687b      	ldr	r3, [r7, #4]
+ 8002a58:	729a      	strb	r2, [r3, #10]
+	reply_packet[4] = number_of_request;
+ 8002a5a:	687b      	ldr	r3, [r7, #4]
+ 8002a5c:	79da      	ldrb	r2, [r3, #7]
+ 8002a5e:	687b      	ldr	r3, [r7, #4]
+ 8002a60:	731a      	strb	r2, [r3, #12]
 
-
-	testing[0] = 0x30;
- 80029ba:	687b      	ldr	r3, [r7, #4]
- 80029bc:	2230      	movs	r2, #48	; 0x30
- 80029be:	70da      	strb	r2, [r3, #3]
-	testing[1] = 0x39;
- 80029c0:	687b      	ldr	r3, [r7, #4]
- 80029c2:	2239      	movs	r2, #57	; 0x39
- 80029c4:	711a      	strb	r2, [r3, #4]
-	testing[total_byte + 6 - 2] = 0x87;
- 80029c6:	687b      	ldr	r3, [r7, #4]
- 80029c8:	785b      	ldrb	r3, [r3, #1]
- 80029ca:	3304      	adds	r3, #4
- 80029cc:	687a      	ldr	r2, [r7, #4]
- 80029ce:	4413      	add	r3, r2
- 80029d0:	2287      	movs	r2, #135	; 0x87
- 80029d2:	70da      	strb	r2, [r3, #3]
-	testing[total_byte + 6 - 1] = 0x07;
- 80029d4:	687b      	ldr	r3, [r7, #4]
- 80029d6:	785b      	ldrb	r3, [r3, #1]
- 80029d8:	3305      	adds	r3, #5
- 80029da:	687a      	ldr	r2, [r7, #4]
- 80029dc:	4413      	add	r3, r2
- 80029de:	2207      	movs	r2, #7
- 80029e0:	70da      	strb	r2, [r3, #3]
-	uart_send(&huart2, testing, total_byte+6);
- 80029e2:	687b      	ldr	r3, [r7, #4]
- 80029e4:	1cd9      	adds	r1, r3, #3
- 80029e6:	687b      	ldr	r3, [r7, #4]
- 80029e8:	785b      	ldrb	r3, [r3, #1]
- 80029ea:	b29b      	uxth	r3, r3
- 80029ec:	3306      	adds	r3, #6
- 80029ee:	b29b      	uxth	r3, r3
- 80029f0:	461a      	mov	r2, r3
- 80029f2:	4809      	ldr	r0, [pc, #36]	; (8002a18 <_ZN14modbus_handler12package_dataEv+0x12c>)
- 80029f4:	f7ff f9ac 	bl	8001d50 <HAL_UART_Transmit_DMA>
-	//Serial.send_mul_modbus_packet(12345, 34567, testing, total_byte + 5);
+	reply_packet[0] = header_chunk[0];
+ 8002a62:	687b      	ldr	r3, [r7, #4]
+ 8002a64:	781a      	ldrb	r2, [r3, #0]
+ 8002a66:	687b      	ldr	r3, [r7, #4]
+ 8002a68:	721a      	strb	r2, [r3, #8]
+	reply_packet[1] = header_chunk[1];
+ 8002a6a:	687b      	ldr	r3, [r7, #4]
+ 8002a6c:	785a      	ldrb	r2, [r3, #1]
+ 8002a6e:	687b      	ldr	r3, [r7, #4]
+ 8002a70:	725a      	strb	r2, [r3, #9]
+	reply_packet[total_byte + 7 - 2] = footer_chunk[0];
+ 8002a72:	687b      	ldr	r3, [r7, #4]
+ 8002a74:	799b      	ldrb	r3, [r3, #6]
+ 8002a76:	3305      	adds	r3, #5
+ 8002a78:	687a      	ldr	r2, [r7, #4]
+ 8002a7a:	7891      	ldrb	r1, [r2, #2]
+ 8002a7c:	687a      	ldr	r2, [r7, #4]
+ 8002a7e:	4413      	add	r3, r2
+ 8002a80:	460a      	mov	r2, r1
+ 8002a82:	721a      	strb	r2, [r3, #8]
+	reply_packet[total_byte + 7 - 1] = footer_chunk[1];
+ 8002a84:	687b      	ldr	r3, [r7, #4]
+ 8002a86:	799b      	ldrb	r3, [r3, #6]
+ 8002a88:	3306      	adds	r3, #6
+ 8002a8a:	687a      	ldr	r2, [r7, #4]
+ 8002a8c:	78d1      	ldrb	r1, [r2, #3]
+ 8002a8e:	687a      	ldr	r2, [r7, #4]
+ 8002a90:	4413      	add	r3, r2
+ 8002a92:	460a      	mov	r2, r1
+ 8002a94:	721a      	strb	r2, [r3, #8]
+	transmit_complete_flag = On_transmit;
+ 8002a96:	4b0f      	ldr	r3, [pc, #60]	; (8002ad4 <_ZN14modbus_handler12package_dataEv+0x190>)
+ 8002a98:	2200      	movs	r2, #0
+ 8002a9a:	701a      	strb	r2, [r3, #0]
+	uart_send(&huart2, reply_packet, total_byte+7);
+ 8002a9c:	687b      	ldr	r3, [r7, #4]
+ 8002a9e:	f103 0108 	add.w	r1, r3, #8
+ 8002aa2:	687b      	ldr	r3, [r7, #4]
+ 8002aa4:	799b      	ldrb	r3, [r3, #6]
+ 8002aa6:	b29b      	uxth	r3, r3
+ 8002aa8:	3307      	adds	r3, #7
+ 8002aaa:	b29b      	uxth	r3, r3
+ 8002aac:	461a      	mov	r2, r3
+ 8002aae:	480a      	ldr	r0, [pc, #40]	; (8002ad8 <_ZN14modbus_handler12package_dataEv+0x194>)
+ 8002ab0:	f7ff f94e 	bl	8001d50 <HAL_UART_Transmit_DMA>
+	//Serial.send_mul_modbus_packet(12345, 34567, reply_packet, total_byte + 5);
 	//delete[] temper_packet;
 	delete[] array_of_request;
- 80029f8:	4b06      	ldr	r3, [pc, #24]	; (8002a14 <_ZN14modbus_handler12package_dataEv+0x128>)
- 80029fa:	681b      	ldr	r3, [r3, #0]
- 80029fc:	2b00      	cmp	r3, #0
- 80029fe:	d004      	beq.n	8002a0a <_ZN14modbus_handler12package_dataEv+0x11e>
- 8002a00:	4b04      	ldr	r3, [pc, #16]	; (8002a14 <_ZN14modbus_handler12package_dataEv+0x128>)
- 8002a02:	681b      	ldr	r3, [r3, #0]
- 8002a04:	4618      	mov	r0, r3
- 8002a06:	f000 fbfd 	bl	8003204 <_ZdaPv>
+ 8002ab4:	4b05      	ldr	r3, [pc, #20]	; (8002acc <_ZN14modbus_handler12package_dataEv+0x188>)
+ 8002ab6:	681b      	ldr	r3, [r3, #0]
+ 8002ab8:	2b00      	cmp	r3, #0
+ 8002aba:	d004      	beq.n	8002ac6 <_ZN14modbus_handler12package_dataEv+0x182>
+ 8002abc:	4b03      	ldr	r3, [pc, #12]	; (8002acc <_ZN14modbus_handler12package_dataEv+0x188>)
+ 8002abe:	681b      	ldr	r3, [r3, #0]
+ 8002ac0:	4618      	mov	r0, r3
+ 8002ac2:	f000 fc21 	bl	8003308 <_ZdaPv>
 }
- 8002a0a:	bf00      	nop
- 8002a0c:	3714      	adds	r7, #20
- 8002a0e:	46bd      	mov	sp, r7
- 8002a10:	bd90      	pop	{r4, r7, pc}
- 8002a12:	bf00      	nop
- 8002a14:	20000090 	.word	0x20000090
- 8002a18:	20000570 	.word	0x20000570
+ 8002ac6:	3714      	adds	r7, #20
+ 8002ac8:	46bd      	mov	sp, r7
+ 8002aca:	bd90      	pop	{r4, r7, pc}
+ 8002acc:	20000090 	.word	0x20000090
+ 8002ad0:	20000240 	.word	0x20000240
+ 8002ad4:	20000009 	.word	0x20000009
+ 8002ad8:	20000574 	.word	0x20000574
 
-08002a1c <_Z41__static_initialization_and_destruction_0ii>:
+08002adc <_Z41__static_initialization_and_destruction_0ii>:
+//	}else{
+//		first_start = 1;
+//	}
+//
+//}
 modbus_handler modbus;
- 8002a1c:	b580      	push	{r7, lr}
- 8002a1e:	b082      	sub	sp, #8
- 8002a20:	af00      	add	r7, sp, #0
- 8002a22:	6078      	str	r0, [r7, #4]
- 8002a24:	6039      	str	r1, [r7, #0]
- 8002a26:	687b      	ldr	r3, [r7, #4]
- 8002a28:	2b01      	cmp	r3, #1
- 8002a2a:	d107      	bne.n	8002a3c <_Z41__static_initialization_and_destruction_0ii+0x20>
- 8002a2c:	683b      	ldr	r3, [r7, #0]
- 8002a2e:	f64f 72ff 	movw	r2, #65535	; 0xffff
- 8002a32:	4293      	cmp	r3, r2
- 8002a34:	d102      	bne.n	8002a3c <_Z41__static_initialization_and_destruction_0ii+0x20>
- 8002a36:	4803      	ldr	r0, [pc, #12]	; (8002a44 <_Z41__static_initialization_and_destruction_0ii+0x28>)
- 8002a38:	f7ff fe56 	bl	80026e8 <_ZN14modbus_handlerC1Ev>
- 8002a3c:	bf00      	nop
- 8002a3e:	3708      	adds	r7, #8
- 8002a40:	46bd      	mov	sp, r7
- 8002a42:	bd80      	pop	{r7, pc}
- 8002a44:	200001f4 	.word	0x200001f4
+ 8002adc:	b580      	push	{r7, lr}
+ 8002ade:	b082      	sub	sp, #8
+ 8002ae0:	af00      	add	r7, sp, #0
+ 8002ae2:	6078      	str	r0, [r7, #4]
+ 8002ae4:	6039      	str	r1, [r7, #0]
+ 8002ae6:	687b      	ldr	r3, [r7, #4]
+ 8002ae8:	2b01      	cmp	r3, #1
+ 8002aea:	d107      	bne.n	8002afc <_Z41__static_initialization_and_destruction_0ii+0x20>
+ 8002aec:	683b      	ldr	r3, [r7, #0]
+ 8002aee:	f64f 72ff 	movw	r2, #65535	; 0xffff
+ 8002af2:	4293      	cmp	r3, r2
+ 8002af4:	d102      	bne.n	8002afc <_Z41__static_initialization_and_destruction_0ii+0x20>
+ 8002af6:	4803      	ldr	r0, [pc, #12]	; (8002b04 <_Z41__static_initialization_and_destruction_0ii+0x28>)
+ 8002af8:	f7ff fdd8 	bl	80026ac <_ZN14modbus_handlerC1Ev>
+ 8002afc:	bf00      	nop
+ 8002afe:	3708      	adds	r7, #8
+ 8002b00:	46bd      	mov	sp, r7
+ 8002b02:	bd80      	pop	{r7, pc}
+ 8002b04:	200001f4 	.word	0x200001f4
 
-08002a48 <_GLOBAL__sub_I__ZN14modbus_handlerC2Ev>:
- 8002a48:	b580      	push	{r7, lr}
- 8002a4a:	af00      	add	r7, sp, #0
- 8002a4c:	f64f 71ff 	movw	r1, #65535	; 0xffff
- 8002a50:	2001      	movs	r0, #1
- 8002a52:	f7ff ffe3 	bl	8002a1c <_Z41__static_initialization_and_destruction_0ii>
- 8002a56:	bd80      	pop	{r7, pc}
+08002b08 <_GLOBAL__sub_I__ZN14modbus_handlerC2Ev>:
+ 8002b08:	b580      	push	{r7, lr}
+ 8002b0a:	af00      	add	r7, sp, #0
+ 8002b0c:	f64f 71ff 	movw	r1, #65535	; 0xffff
+ 8002b10:	2001      	movs	r0, #1
+ 8002b12:	f7ff ffe3 	bl	8002adc <_Z41__static_initialization_and_destruction_0ii>
+ 8002b16:	bd80      	pop	{r7, pc}
 
-08002a58 <_ZN8mySerialC1Ev>:
+08002b18 <_ZN8mySerialC1Ev>:
  *  Created on: Aug 31, 2020
  *      Author: Admin
  */
 
 #include "mySerial.h"
 mySerial::mySerial()
- 8002a58:	b480      	push	{r7}
- 8002a5a:	b083      	sub	sp, #12
- 8002a5c:	af00      	add	r7, sp, #0
- 8002a5e:	6078      	str	r0, [r7, #4]
- 8002a60:	687b      	ldr	r3, [r7, #4]
- 8002a62:	2200      	movs	r2, #0
- 8002a64:	711a      	strb	r2, [r3, #4]
- 8002a66:	687b      	ldr	r3, [r7, #4]
- 8002a68:	2200      	movs	r2, #0
- 8002a6a:	715a      	strb	r2, [r3, #5]
- 8002a6c:	687b      	ldr	r3, [r7, #4]
- 8002a6e:	2200      	movs	r2, #0
- 8002a70:	719a      	strb	r2, [r3, #6]
+ 8002b18:	b480      	push	{r7}
+ 8002b1a:	b083      	sub	sp, #12
+ 8002b1c:	af00      	add	r7, sp, #0
+ 8002b1e:	6078      	str	r0, [r7, #4]
+ 8002b20:	687b      	ldr	r3, [r7, #4]
+ 8002b22:	2200      	movs	r2, #0
+ 8002b24:	711a      	strb	r2, [r3, #4]
+ 8002b26:	687b      	ldr	r3, [r7, #4]
+ 8002b28:	2200      	movs	r2, #0
+ 8002b2a:	715a      	strb	r2, [r3, #5]
+ 8002b2c:	687b      	ldr	r3, [r7, #4]
+ 8002b2e:	2200      	movs	r2, #0
+ 8002b30:	719a      	strb	r2, [r3, #6]
 {
 
 }
- 8002a72:	687b      	ldr	r3, [r7, #4]
- 8002a74:	4618      	mov	r0, r3
- 8002a76:	370c      	adds	r7, #12
- 8002a78:	46bd      	mov	sp, r7
- 8002a7a:	bc80      	pop	{r7}
- 8002a7c:	4770      	bx	lr
+ 8002b32:	687b      	ldr	r3, [r7, #4]
+ 8002b34:	4618      	mov	r0, r3
+ 8002b36:	370c      	adds	r7, #12
+ 8002b38:	46bd      	mov	sp, r7
+ 8002b3a:	bc80      	pop	{r7}
+ 8002b3c:	4770      	bx	lr
 
-08002a7e <_ZN8mySerial5beginEP20__UART_HandleTypeDefttPFvPhiE>:
+08002b3e <_ZN8mySerial5beginEP20__UART_HandleTypeDefttPFvPhiE>:
 
 void mySerial::begin(UART_HandleTypeDef* uart, uint16_t header, uint16_t footer, uart_received)
 {
- 8002a7e:	b580      	push	{r7, lr}
- 8002a80:	b084      	sub	sp, #16
- 8002a82:	af00      	add	r7, sp, #0
- 8002a84:	60f8      	str	r0, [r7, #12]
- 8002a86:	60b9      	str	r1, [r7, #8]
- 8002a88:	4611      	mov	r1, r2
- 8002a8a:	461a      	mov	r2, r3
- 8002a8c:	460b      	mov	r3, r1
- 8002a8e:	80fb      	strh	r3, [r7, #6]
- 8002a90:	4613      	mov	r3, r2
- 8002a92:	80bb      	strh	r3, [r7, #4]
+ 8002b3e:	b580      	push	{r7, lr}
+ 8002b40:	b084      	sub	sp, #16
+ 8002b42:	af00      	add	r7, sp, #0
+ 8002b44:	60f8      	str	r0, [r7, #12]
+ 8002b46:	60b9      	str	r1, [r7, #8]
+ 8002b48:	4611      	mov	r1, r2
+ 8002b4a:	461a      	mov	r2, r3
+ 8002b4c:	460b      	mov	r3, r1
+ 8002b4e:	80fb      	strh	r3, [r7, #6]
+ 8002b50:	4613      	mov	r3, r2
+ 8002b52:	80bb      	strh	r3, [r7, #4]
 	this->header[0] = (byte)(header>>8 & 0xff);
- 8002a94:	88fb      	ldrh	r3, [r7, #6]
- 8002a96:	0a1b      	lsrs	r3, r3, #8
- 8002a98:	b29b      	uxth	r3, r3
- 8002a9a:	b2da      	uxtb	r2, r3
- 8002a9c:	68fb      	ldr	r3, [r7, #12]
- 8002a9e:	729a      	strb	r2, [r3, #10]
+ 8002b54:	88fb      	ldrh	r3, [r7, #6]
+ 8002b56:	0a1b      	lsrs	r3, r3, #8
+ 8002b58:	b29b      	uxth	r3, r3
+ 8002b5a:	b2da      	uxtb	r2, r3
+ 8002b5c:	68fb      	ldr	r3, [r7, #12]
+ 8002b5e:	729a      	strb	r2, [r3, #10]
 	this->header[1] = (byte)(header & 0xff);
- 8002aa0:	88fb      	ldrh	r3, [r7, #6]
- 8002aa2:	b2da      	uxtb	r2, r3
- 8002aa4:	68fb      	ldr	r3, [r7, #12]
- 8002aa6:	72da      	strb	r2, [r3, #11]
+ 8002b60:	88fb      	ldrh	r3, [r7, #6]
+ 8002b62:	b2da      	uxtb	r2, r3
+ 8002b64:	68fb      	ldr	r3, [r7, #12]
+ 8002b66:	72da      	strb	r2, [r3, #11]
 	this->footer[0] = (byte)(footer>>8 & 0xff);
- 8002aa8:	88bb      	ldrh	r3, [r7, #4]
- 8002aaa:	0a1b      	lsrs	r3, r3, #8
- 8002aac:	b29b      	uxth	r3, r3
- 8002aae:	b2da      	uxtb	r2, r3
- 8002ab0:	68fb      	ldr	r3, [r7, #12]
- 8002ab2:	731a      	strb	r2, [r3, #12]
+ 8002b68:	88bb      	ldrh	r3, [r7, #4]
+ 8002b6a:	0a1b      	lsrs	r3, r3, #8
+ 8002b6c:	b29b      	uxth	r3, r3
+ 8002b6e:	b2da      	uxtb	r2, r3
+ 8002b70:	68fb      	ldr	r3, [r7, #12]
+ 8002b72:	731a      	strb	r2, [r3, #12]
 	this->footer[1] = (byte)(footer & 0xff);
- 8002ab4:	88bb      	ldrh	r3, [r7, #4]
- 8002ab6:	b2da      	uxtb	r2, r3
- 8002ab8:	68fb      	ldr	r3, [r7, #12]
- 8002aba:	735a      	strb	r2, [r3, #13]
+ 8002b74:	88bb      	ldrh	r3, [r7, #4]
+ 8002b76:	b2da      	uxtb	r2, r3
+ 8002b78:	68fb      	ldr	r3, [r7, #12]
+ 8002b7a:	735a      	strb	r2, [r3, #13]
 	this->uart = uart;
- 8002abc:	68fb      	ldr	r3, [r7, #12]
- 8002abe:	68ba      	ldr	r2, [r7, #8]
- 8002ac0:	619a      	str	r2, [r3, #24]
+ 8002b7c:	68fb      	ldr	r3, [r7, #12]
+ 8002b7e:	68ba      	ldr	r2, [r7, #8]
+ 8002b80:	619a      	str	r2, [r3, #24]
 	this->callback = callback;
- 8002ac2:	68fb      	ldr	r3, [r7, #12]
- 8002ac4:	69ba      	ldr	r2, [r7, #24]
- 8002ac6:	601a      	str	r2, [r3, #0]
+ 8002b82:	68fb      	ldr	r3, [r7, #12]
+ 8002b84:	69ba      	ldr	r2, [r7, #24]
+ 8002b86:	601a      	str	r2, [r3, #0]
 	uart_dma(this->uart, data_buffer, buffer_length);
- 8002ac8:	68fb      	ldr	r3, [r7, #12]
- 8002aca:	6998      	ldr	r0, [r3, #24]
- 8002acc:	68fb      	ldr	r3, [r7, #12]
- 8002ace:	331d      	adds	r3, #29
- 8002ad0:	f44f 7280 	mov.w	r2, #256	; 0x100
- 8002ad4:	4619      	mov	r1, r3
- 8002ad6:	f7ff f9a7 	bl	8001e28 <HAL_UART_Receive_DMA>
+ 8002b88:	68fb      	ldr	r3, [r7, #12]
+ 8002b8a:	6998      	ldr	r0, [r3, #24]
+ 8002b8c:	68fb      	ldr	r3, [r7, #12]
+ 8002b8e:	331d      	adds	r3, #29
+ 8002b90:	f44f 7280 	mov.w	r2, #256	; 0x100
+ 8002b94:	4619      	mov	r1, r3
+ 8002b96:	f7ff f947 	bl	8001e28 <HAL_UART_Receive_DMA>
 }
- 8002ada:	bf00      	nop
- 8002adc:	3710      	adds	r7, #16
- 8002ade:	46bd      	mov	sp, r7
- 8002ae0:	bd80      	pop	{r7, pc}
+ 8002b9a:	bf00      	nop
+ 8002b9c:	3710      	adds	r7, #16
+ 8002b9e:	46bd      	mov	sp, r7
+ 8002ba0:	bd80      	pop	{r7, pc}
 	...
 
-08002ae4 <_ZN8mySerial8looping2Ev>:
+08002ba4 <_ZN8mySerial8looping2Ev>:
 		}
 	}
 }
 
 void mySerial::looping2()
 {
- 8002ae4:	b580      	push	{r7, lr}
- 8002ae6:	b082      	sub	sp, #8
- 8002ae8:	af00      	add	r7, sp, #0
- 8002aea:	6078      	str	r0, [r7, #4]
+ 8002ba4:	b580      	push	{r7, lr}
+ 8002ba6:	b082      	sub	sp, #8
+ 8002ba8:	af00      	add	r7, sp, #0
+ 8002baa:	6078      	str	r0, [r7, #4]
 	if(receive_complete_flag == On_received) {
- 8002aec:	4b78      	ldr	r3, [pc, #480]	; (8002cd0 <_ZN8mySerial8looping2Ev+0x1ec>)
- 8002aee:	781b      	ldrb	r3, [r3, #0]
- 8002af0:	2b00      	cmp	r3, #0
- 8002af2:	f000 80ea 	beq.w	8002cca <_ZN8mySerial8looping2Ev+0x1e6>
+ 8002bac:	4b5f      	ldr	r3, [pc, #380]	; (8002d2c <_ZN8mySerial8looping2Ev+0x188>)
+ 8002bae:	781b      	ldrb	r3, [r3, #0]
+ 8002bb0:	2b00      	cmp	r3, #0
+ 8002bb2:	f000 80b7 	beq.w	8002d24 <_ZN8mySerial8looping2Ev+0x180>
 		write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
- 8002af6:	687b      	ldr	r3, [r7, #4]
- 8002af8:	699b      	ldr	r3, [r3, #24]
- 8002afa:	6b5b      	ldr	r3, [r3, #52]	; 0x34
- 8002afc:	681b      	ldr	r3, [r3, #0]
- 8002afe:	685b      	ldr	r3, [r3, #4]
- 8002b00:	b2db      	uxtb	r3, r3
- 8002b02:	425b      	negs	r3, r3
- 8002b04:	b2da      	uxtb	r2, r3
- 8002b06:	687b      	ldr	r3, [r7, #4]
- 8002b08:	71da      	strb	r2, [r3, #7]
-		if(data_buffer[read_pointer] == header[0] && data_buffer[(byte)(read_pointer+1)] == header[1] && data_buffer[(byte)(write_pointer-2)] == footer[0] && data_buffer[(byte)(write_pointer-1)] == footer[1]){
- 8002b0a:	687b      	ldr	r3, [r7, #4]
- 8002b0c:	7a1b      	ldrb	r3, [r3, #8]
- 8002b0e:	461a      	mov	r2, r3
- 8002b10:	687b      	ldr	r3, [r7, #4]
- 8002b12:	4413      	add	r3, r2
- 8002b14:	7f5a      	ldrb	r2, [r3, #29]
- 8002b16:	687b      	ldr	r3, [r7, #4]
- 8002b18:	7a9b      	ldrb	r3, [r3, #10]
- 8002b1a:	429a      	cmp	r2, r3
- 8002b1c:	f040 8097 	bne.w	8002c4e <_ZN8mySerial8looping2Ev+0x16a>
- 8002b20:	687b      	ldr	r3, [r7, #4]
- 8002b22:	7a1b      	ldrb	r3, [r3, #8]
- 8002b24:	3301      	adds	r3, #1
- 8002b26:	b2db      	uxtb	r3, r3
- 8002b28:	461a      	mov	r2, r3
- 8002b2a:	687b      	ldr	r3, [r7, #4]
- 8002b2c:	4413      	add	r3, r2
- 8002b2e:	7f5a      	ldrb	r2, [r3, #29]
- 8002b30:	687b      	ldr	r3, [r7, #4]
- 8002b32:	7adb      	ldrb	r3, [r3, #11]
- 8002b34:	429a      	cmp	r2, r3
- 8002b36:	f040 808a 	bne.w	8002c4e <_ZN8mySerial8looping2Ev+0x16a>
- 8002b3a:	687b      	ldr	r3, [r7, #4]
- 8002b3c:	79db      	ldrb	r3, [r3, #7]
- 8002b3e:	3b02      	subs	r3, #2
- 8002b40:	b2db      	uxtb	r3, r3
- 8002b42:	461a      	mov	r2, r3
- 8002b44:	687b      	ldr	r3, [r7, #4]
- 8002b46:	4413      	add	r3, r2
- 8002b48:	7f5a      	ldrb	r2, [r3, #29]
- 8002b4a:	687b      	ldr	r3, [r7, #4]
- 8002b4c:	7b1b      	ldrb	r3, [r3, #12]
- 8002b4e:	429a      	cmp	r2, r3
- 8002b50:	d17d      	bne.n	8002c4e <_ZN8mySerial8looping2Ev+0x16a>
- 8002b52:	687b      	ldr	r3, [r7, #4]
- 8002b54:	79db      	ldrb	r3, [r3, #7]
- 8002b56:	3b01      	subs	r3, #1
- 8002b58:	b2db      	uxtb	r3, r3
- 8002b5a:	461a      	mov	r2, r3
- 8002b5c:	687b      	ldr	r3, [r7, #4]
- 8002b5e:	4413      	add	r3, r2
- 8002b60:	7f5a      	ldrb	r2, [r3, #29]
- 8002b62:	687b      	ldr	r3, [r7, #4]
- 8002b64:	7b5b      	ldrb	r3, [r3, #13]
- 8002b66:	429a      	cmp	r2, r3
- 8002b68:	d171      	bne.n	8002c4e <_ZN8mySerial8looping2Ev+0x16a>
-			if(data_buffer[(byte)(read_pointer+2)] == ((byte)(write_pointer - read_pointer) - 5)) {
- 8002b6a:	687b      	ldr	r3, [r7, #4]
- 8002b6c:	7a1b      	ldrb	r3, [r3, #8]
- 8002b6e:	3302      	adds	r3, #2
- 8002b70:	b2db      	uxtb	r3, r3
- 8002b72:	461a      	mov	r2, r3
- 8002b74:	687b      	ldr	r3, [r7, #4]
- 8002b76:	4413      	add	r3, r2
- 8002b78:	7f5b      	ldrb	r3, [r3, #29]
- 8002b7a:	4619      	mov	r1, r3
- 8002b7c:	687b      	ldr	r3, [r7, #4]
- 8002b7e:	79da      	ldrb	r2, [r3, #7]
- 8002b80:	687b      	ldr	r3, [r7, #4]
- 8002b82:	7a1b      	ldrb	r3, [r3, #8]
- 8002b84:	1ad3      	subs	r3, r2, r3
- 8002b86:	b2db      	uxtb	r3, r3
- 8002b88:	3b05      	subs	r3, #5
- 8002b8a:	4299      	cmp	r1, r3
- 8002b8c:	d134      	bne.n	8002bf8 <_ZN8mySerial8looping2Ev+0x114>
-				if(overflow_flag == true)
- 8002b8e:	687b      	ldr	r3, [r7, #4]
- 8002b90:	791b      	ldrb	r3, [r3, #4]
- 8002b92:	2b00      	cmp	r3, #0
- 8002b94:	d00a      	beq.n	8002bac <_ZN8mySerial8looping2Ev+0xc8>
-					memcpy(&data_buffer[256], data_buffer, write_pointer);
- 8002b96:	687b      	ldr	r3, [r7, #4]
- 8002b98:	f203 101d 	addw	r0, r3, #285	; 0x11d
- 8002b9c:	687b      	ldr	r3, [r7, #4]
- 8002b9e:	f103 011d 	add.w	r1, r3, #29
- 8002ba2:	687b      	ldr	r3, [r7, #4]
- 8002ba4:	79db      	ldrb	r3, [r3, #7]
- 8002ba6:	461a      	mov	r2, r3
- 8002ba8:	f000 fb8e 	bl	80032c8 <memcpy>
-				//length_error_integral = 0; head_foot_error_integral = 0;
-				overflow_flag = false;
- 8002bac:	687b      	ldr	r3, [r7, #4]
- 8002bae:	2200      	movs	r2, #0
- 8002bb0:	711a      	strb	r2, [r3, #4]
-				packet_id = data_buffer[(byte)(read_pointer+3)];
- 8002bb2:	687b      	ldr	r3, [r7, #4]
- 8002bb4:	7a1b      	ldrb	r3, [r3, #8]
- 8002bb6:	3303      	adds	r3, #3
- 8002bb8:	b2db      	uxtb	r3, r3
- 8002bba:	461a      	mov	r2, r3
- 8002bbc:	687b      	ldr	r3, [r7, #4]
- 8002bbe:	4413      	add	r3, r2
- 8002bc0:	7f5a      	ldrb	r2, [r3, #29]
- 8002bc2:	687b      	ldr	r3, [r7, #4]
- 8002bc4:	771a      	strb	r2, [r3, #28]
-				this->callback(&data_buffer[(byte)(read_pointer+3)], data_buffer[(byte)(read_pointer+2)]);				
+ 8002bb6:	687b      	ldr	r3, [r7, #4]
+ 8002bb8:	699b      	ldr	r3, [r3, #24]
+ 8002bba:	6b5b      	ldr	r3, [r3, #52]	; 0x34
+ 8002bbc:	681b      	ldr	r3, [r3, #0]
+ 8002bbe:	685b      	ldr	r3, [r3, #4]
+ 8002bc0:	b2db      	uxtb	r3, r3
+ 8002bc2:	425b      	negs	r3, r3
+ 8002bc4:	b2da      	uxtb	r2, r3
  8002bc6:	687b      	ldr	r3, [r7, #4]
- 8002bc8:	681b      	ldr	r3, [r3, #0]
- 8002bca:	687a      	ldr	r2, [r7, #4]
- 8002bcc:	7a12      	ldrb	r2, [r2, #8]
- 8002bce:	3203      	adds	r2, #3
- 8002bd0:	b2d2      	uxtb	r2, r2
- 8002bd2:	3218      	adds	r2, #24
- 8002bd4:	6879      	ldr	r1, [r7, #4]
- 8002bd6:	440a      	add	r2, r1
- 8002bd8:	1d50      	adds	r0, r2, #5
- 8002bda:	687a      	ldr	r2, [r7, #4]
- 8002bdc:	7a12      	ldrb	r2, [r2, #8]
- 8002bde:	3202      	adds	r2, #2
- 8002be0:	b2d2      	uxtb	r2, r2
- 8002be2:	4611      	mov	r1, r2
- 8002be4:	687a      	ldr	r2, [r7, #4]
- 8002be6:	440a      	add	r2, r1
- 8002be8:	7f52      	ldrb	r2, [r2, #29]
- 8002bea:	4611      	mov	r1, r2
- 8002bec:	4798      	blx	r3
-				read_pointer = write_pointer;
- 8002bee:	687b      	ldr	r3, [r7, #4]
- 8002bf0:	79da      	ldrb	r2, [r3, #7]
- 8002bf2:	687b      	ldr	r3, [r7, #4]
- 8002bf4:	721a      	strb	r2, [r3, #8]
-				return;
- 8002bf6:	e068      	b.n	8002cca <_ZN8mySerial8looping2Ev+0x1e6>
-			}else{
-				//packet length error
-				error_debug_buffer[0] = write_pointer;
+ 8002bc8:	71da      	strb	r2, [r3, #7]
+		if(data_buffer[read_pointer] == this->header[0] && data_buffer[(byte)(read_pointer+1)] == this->header[1] && data_buffer[(byte)(write_pointer-2)] == this->footer[0] && data_buffer[(byte)(write_pointer-1)] == this->footer[1]){
+ 8002bca:	687b      	ldr	r3, [r7, #4]
+ 8002bcc:	7a1b      	ldrb	r3, [r3, #8]
+ 8002bce:	461a      	mov	r2, r3
+ 8002bd0:	687b      	ldr	r3, [r7, #4]
+ 8002bd2:	4413      	add	r3, r2
+ 8002bd4:	7f5a      	ldrb	r2, [r3, #29]
+ 8002bd6:	687b      	ldr	r3, [r7, #4]
+ 8002bd8:	7a9b      	ldrb	r3, [r3, #10]
+ 8002bda:	429a      	cmp	r2, r3
+ 8002bdc:	f040 808a 	bne.w	8002cf4 <_ZN8mySerial8looping2Ev+0x150>
+ 8002be0:	687b      	ldr	r3, [r7, #4]
+ 8002be2:	7a1b      	ldrb	r3, [r3, #8]
+ 8002be4:	3301      	adds	r3, #1
+ 8002be6:	b2db      	uxtb	r3, r3
+ 8002be8:	461a      	mov	r2, r3
+ 8002bea:	687b      	ldr	r3, [r7, #4]
+ 8002bec:	4413      	add	r3, r2
+ 8002bee:	7f5a      	ldrb	r2, [r3, #29]
+ 8002bf0:	687b      	ldr	r3, [r7, #4]
+ 8002bf2:	7adb      	ldrb	r3, [r3, #11]
+ 8002bf4:	429a      	cmp	r2, r3
+ 8002bf6:	d17d      	bne.n	8002cf4 <_ZN8mySerial8looping2Ev+0x150>
  8002bf8:	687b      	ldr	r3, [r7, #4]
- 8002bfa:	79da      	ldrb	r2, [r3, #7]
- 8002bfc:	4b35      	ldr	r3, [pc, #212]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002bfe:	701a      	strb	r2, [r3, #0]
-				error_debug_buffer[1] = read_pointer;
- 8002c00:	687b      	ldr	r3, [r7, #4]
- 8002c02:	7a1a      	ldrb	r2, [r3, #8]
- 8002c04:	4b33      	ldr	r3, [pc, #204]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002c06:	705a      	strb	r2, [r3, #1]
-				error_debug_buffer[2] = data_buffer[(byte)(read_pointer+2)];
+ 8002bfa:	79db      	ldrb	r3, [r3, #7]
+ 8002bfc:	3b02      	subs	r3, #2
+ 8002bfe:	b2db      	uxtb	r3, r3
+ 8002c00:	461a      	mov	r2, r3
+ 8002c02:	687b      	ldr	r3, [r7, #4]
+ 8002c04:	4413      	add	r3, r2
+ 8002c06:	7f5a      	ldrb	r2, [r3, #29]
  8002c08:	687b      	ldr	r3, [r7, #4]
- 8002c0a:	7a1b      	ldrb	r3, [r3, #8]
- 8002c0c:	3302      	adds	r3, #2
- 8002c0e:	b2db      	uxtb	r3, r3
- 8002c10:	461a      	mov	r2, r3
- 8002c12:	687b      	ldr	r3, [r7, #4]
- 8002c14:	4413      	add	r3, r2
- 8002c16:	7f5a      	ldrb	r2, [r3, #29]
- 8002c18:	4b2e      	ldr	r3, [pc, #184]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002c1a:	709a      	strb	r2, [r3, #2]
-				error_debug_buffer[3] = (byte)(uart->hdmarx->Instance->CNDTR);
- 8002c1c:	687b      	ldr	r3, [r7, #4]
- 8002c1e:	699b      	ldr	r3, [r3, #24]
- 8002c20:	6b5b      	ldr	r3, [r3, #52]	; 0x34
- 8002c22:	681b      	ldr	r3, [r3, #0]
- 8002c24:	685b      	ldr	r3, [r3, #4]
- 8002c26:	b2da      	uxtb	r2, r3
- 8002c28:	4b2a      	ldr	r3, [pc, #168]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002c2a:	70da      	strb	r2, [r3, #3]
-				receive_complete_flag = IDLE_receive;
- 8002c2c:	4b28      	ldr	r3, [pc, #160]	; (8002cd0 <_ZN8mySerial8looping2Ev+0x1ec>)
- 8002c2e:	2200      	movs	r2, #0
- 8002c30:	701a      	strb	r2, [r3, #0]
-				length_error_integral++;
- 8002c32:	4b29      	ldr	r3, [pc, #164]	; (8002cd8 <_ZN8mySerial8looping2Ev+0x1f4>)
- 8002c34:	781b      	ldrb	r3, [r3, #0]
- 8002c36:	3301      	adds	r3, #1
- 8002c38:	b2da      	uxtb	r2, r3
- 8002c3a:	4b27      	ldr	r3, [pc, #156]	; (8002cd8 <_ZN8mySerial8looping2Ev+0x1f4>)
- 8002c3c:	701a      	strb	r2, [r3, #0]
-				overflow_flag = false;
- 8002c3e:	687b      	ldr	r3, [r7, #4]
- 8002c40:	2200      	movs	r2, #0
- 8002c42:	711a      	strb	r2, [r3, #4]
-				read_pointer = write_pointer;
- 8002c44:	687b      	ldr	r3, [r7, #4]
- 8002c46:	79da      	ldrb	r2, [r3, #7]
- 8002c48:	687b      	ldr	r3, [r7, #4]
- 8002c4a:	721a      	strb	r2, [r3, #8]
+ 8002c0a:	7b1b      	ldrb	r3, [r3, #12]
+ 8002c0c:	429a      	cmp	r2, r3
+ 8002c0e:	d171      	bne.n	8002cf4 <_ZN8mySerial8looping2Ev+0x150>
+ 8002c10:	687b      	ldr	r3, [r7, #4]
+ 8002c12:	79db      	ldrb	r3, [r3, #7]
+ 8002c14:	3b01      	subs	r3, #1
+ 8002c16:	b2db      	uxtb	r3, r3
+ 8002c18:	461a      	mov	r2, r3
+ 8002c1a:	687b      	ldr	r3, [r7, #4]
+ 8002c1c:	4413      	add	r3, r2
+ 8002c1e:	7f5a      	ldrb	r2, [r3, #29]
+ 8002c20:	687b      	ldr	r3, [r7, #4]
+ 8002c22:	7b5b      	ldrb	r3, [r3, #13]
+ 8002c24:	429a      	cmp	r2, r3
+ 8002c26:	d165      	bne.n	8002cf4 <_ZN8mySerial8looping2Ev+0x150>
 			if(data_buffer[(byte)(read_pointer+2)] == ((byte)(write_pointer - read_pointer) - 5)) {
- 8002c4c:	e03d      	b.n	8002cca <_ZN8mySerial8looping2Ev+0x1e6>
-			}
-		}else{
-			//header footer error
-			error_debug_buffer[0] = write_pointer;
- 8002c4e:	687b      	ldr	r3, [r7, #4]
- 8002c50:	79da      	ldrb	r2, [r3, #7]
- 8002c52:	4b20      	ldr	r3, [pc, #128]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002c54:	701a      	strb	r2, [r3, #0]
-			error_debug_buffer[1] = read_pointer;
- 8002c56:	687b      	ldr	r3, [r7, #4]
- 8002c58:	7a1a      	ldrb	r2, [r3, #8]
- 8002c5a:	4b1e      	ldr	r3, [pc, #120]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002c5c:	705a      	strb	r2, [r3, #1]
-			error_debug_buffer[2] = data_buffer[read_pointer];
- 8002c5e:	687b      	ldr	r3, [r7, #4]
- 8002c60:	7a1b      	ldrb	r3, [r3, #8]
- 8002c62:	461a      	mov	r2, r3
- 8002c64:	687b      	ldr	r3, [r7, #4]
- 8002c66:	4413      	add	r3, r2
- 8002c68:	7f5a      	ldrb	r2, [r3, #29]
- 8002c6a:	4b1a      	ldr	r3, [pc, #104]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002c6c:	709a      	strb	r2, [r3, #2]
-			error_debug_buffer[3] = data_buffer[(byte)(read_pointer+1)];
- 8002c6e:	687b      	ldr	r3, [r7, #4]
- 8002c70:	7a1b      	ldrb	r3, [r3, #8]
- 8002c72:	3301      	adds	r3, #1
- 8002c74:	b2db      	uxtb	r3, r3
- 8002c76:	461a      	mov	r2, r3
- 8002c78:	687b      	ldr	r3, [r7, #4]
- 8002c7a:	4413      	add	r3, r2
- 8002c7c:	7f5a      	ldrb	r2, [r3, #29]
- 8002c7e:	4b15      	ldr	r3, [pc, #84]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002c80:	70da      	strb	r2, [r3, #3]
-			error_debug_buffer[4] = data_buffer[(byte)(write_pointer-2)];
- 8002c82:	687b      	ldr	r3, [r7, #4]
- 8002c84:	79db      	ldrb	r3, [r3, #7]
- 8002c86:	3b02      	subs	r3, #2
- 8002c88:	b2db      	uxtb	r3, r3
- 8002c8a:	461a      	mov	r2, r3
+ 8002c28:	687b      	ldr	r3, [r7, #4]
+ 8002c2a:	7a1b      	ldrb	r3, [r3, #8]
+ 8002c2c:	3302      	adds	r3, #2
+ 8002c2e:	b2db      	uxtb	r3, r3
+ 8002c30:	461a      	mov	r2, r3
+ 8002c32:	687b      	ldr	r3, [r7, #4]
+ 8002c34:	4413      	add	r3, r2
+ 8002c36:	7f5b      	ldrb	r3, [r3, #29]
+ 8002c38:	4619      	mov	r1, r3
+ 8002c3a:	687b      	ldr	r3, [r7, #4]
+ 8002c3c:	79da      	ldrb	r2, [r3, #7]
+ 8002c3e:	687b      	ldr	r3, [r7, #4]
+ 8002c40:	7a1b      	ldrb	r3, [r3, #8]
+ 8002c42:	1ad3      	subs	r3, r2, r3
+ 8002c44:	b2db      	uxtb	r3, r3
+ 8002c46:	3b05      	subs	r3, #5
+ 8002c48:	4299      	cmp	r1, r3
+ 8002c4a:	d13a      	bne.n	8002cc2 <_ZN8mySerial8looping2Ev+0x11e>
+				if(overflow_flag == true)
+ 8002c4c:	687b      	ldr	r3, [r7, #4]
+ 8002c4e:	791b      	ldrb	r3, [r3, #4]
+ 8002c50:	2b00      	cmp	r3, #0
+ 8002c52:	d00a      	beq.n	8002c6a <_ZN8mySerial8looping2Ev+0xc6>
+					memcpy(&data_buffer[256], data_buffer, write_pointer);
+ 8002c54:	687b      	ldr	r3, [r7, #4]
+ 8002c56:	f203 101d 	addw	r0, r3, #285	; 0x11d
+ 8002c5a:	687b      	ldr	r3, [r7, #4]
+ 8002c5c:	f103 011d 	add.w	r1, r3, #29
+ 8002c60:	687b      	ldr	r3, [r7, #4]
+ 8002c62:	79db      	ldrb	r3, [r3, #7]
+ 8002c64:	461a      	mov	r2, r3
+ 8002c66:	f000 fbb1 	bl	80033cc <memcpy>
+				length_error_integral = 0; head_foot_error_integral = 0;
+ 8002c6a:	4b31      	ldr	r3, [pc, #196]	; (8002d30 <_ZN8mySerial8looping2Ev+0x18c>)
+ 8002c6c:	2200      	movs	r2, #0
+ 8002c6e:	701a      	strb	r2, [r3, #0]
+ 8002c70:	4b30      	ldr	r3, [pc, #192]	; (8002d34 <_ZN8mySerial8looping2Ev+0x190>)
+ 8002c72:	2200      	movs	r2, #0
+ 8002c74:	701a      	strb	r2, [r3, #0]
+				overflow_flag = false;
+ 8002c76:	687b      	ldr	r3, [r7, #4]
+ 8002c78:	2200      	movs	r2, #0
+ 8002c7a:	711a      	strb	r2, [r3, #4]
+				packet_id = data_buffer[(byte)(read_pointer+3)];
+ 8002c7c:	687b      	ldr	r3, [r7, #4]
+ 8002c7e:	7a1b      	ldrb	r3, [r3, #8]
+ 8002c80:	3303      	adds	r3, #3
+ 8002c82:	b2db      	uxtb	r3, r3
+ 8002c84:	461a      	mov	r2, r3
+ 8002c86:	687b      	ldr	r3, [r7, #4]
+ 8002c88:	4413      	add	r3, r2
+ 8002c8a:	7f5a      	ldrb	r2, [r3, #29]
  8002c8c:	687b      	ldr	r3, [r7, #4]
- 8002c8e:	4413      	add	r3, r2
- 8002c90:	7f5a      	ldrb	r2, [r3, #29]
- 8002c92:	4b10      	ldr	r3, [pc, #64]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002c94:	711a      	strb	r2, [r3, #4]
-			error_debug_buffer[5] = data_buffer[(byte)(write_pointer-1)];
- 8002c96:	687b      	ldr	r3, [r7, #4]
- 8002c98:	79db      	ldrb	r3, [r3, #7]
- 8002c9a:	3b01      	subs	r3, #1
- 8002c9c:	b2db      	uxtb	r3, r3
- 8002c9e:	461a      	mov	r2, r3
- 8002ca0:	687b      	ldr	r3, [r7, #4]
- 8002ca2:	4413      	add	r3, r2
- 8002ca4:	7f5a      	ldrb	r2, [r3, #29]
- 8002ca6:	4b0b      	ldr	r3, [pc, #44]	; (8002cd4 <_ZN8mySerial8looping2Ev+0x1f0>)
- 8002ca8:	715a      	strb	r2, [r3, #5]
-			receive_complete_flag = IDLE_receive;
- 8002caa:	4b09      	ldr	r3, [pc, #36]	; (8002cd0 <_ZN8mySerial8looping2Ev+0x1ec>)
- 8002cac:	2200      	movs	r2, #0
- 8002cae:	701a      	strb	r2, [r3, #0]
-			head_foot_error_integral++;
- 8002cb0:	4b0a      	ldr	r3, [pc, #40]	; (8002cdc <_ZN8mySerial8looping2Ev+0x1f8>)
- 8002cb2:	781b      	ldrb	r3, [r3, #0]
- 8002cb4:	3301      	adds	r3, #1
- 8002cb6:	b2da      	uxtb	r2, r3
- 8002cb8:	4b08      	ldr	r3, [pc, #32]	; (8002cdc <_ZN8mySerial8looping2Ev+0x1f8>)
- 8002cba:	701a      	strb	r2, [r3, #0]
-			overflow_flag = false;
+ 8002c8e:	771a      	strb	r2, [r3, #28]
+				this->callback(&data_buffer[(byte)(read_pointer+3)], data_buffer[(byte)(read_pointer+2)]);				
+ 8002c90:	687b      	ldr	r3, [r7, #4]
+ 8002c92:	681b      	ldr	r3, [r3, #0]
+ 8002c94:	687a      	ldr	r2, [r7, #4]
+ 8002c96:	7a12      	ldrb	r2, [r2, #8]
+ 8002c98:	3203      	adds	r2, #3
+ 8002c9a:	b2d2      	uxtb	r2, r2
+ 8002c9c:	3218      	adds	r2, #24
+ 8002c9e:	6879      	ldr	r1, [r7, #4]
+ 8002ca0:	440a      	add	r2, r1
+ 8002ca2:	1d50      	adds	r0, r2, #5
+ 8002ca4:	687a      	ldr	r2, [r7, #4]
+ 8002ca6:	7a12      	ldrb	r2, [r2, #8]
+ 8002ca8:	3202      	adds	r2, #2
+ 8002caa:	b2d2      	uxtb	r2, r2
+ 8002cac:	4611      	mov	r1, r2
+ 8002cae:	687a      	ldr	r2, [r7, #4]
+ 8002cb0:	440a      	add	r2, r1
+ 8002cb2:	7f52      	ldrb	r2, [r2, #29]
+ 8002cb4:	4611      	mov	r1, r2
+ 8002cb6:	4798      	blx	r3
+				read_pointer = write_pointer;
+ 8002cb8:	687b      	ldr	r3, [r7, #4]
+ 8002cba:	79da      	ldrb	r2, [r3, #7]
  8002cbc:	687b      	ldr	r3, [r7, #4]
- 8002cbe:	2200      	movs	r2, #0
- 8002cc0:	711a      	strb	r2, [r3, #4]
+ 8002cbe:	721a      	strb	r2, [r3, #8]
+				return;
+ 8002cc0:	e030      	b.n	8002d24 <_ZN8mySerial8looping2Ev+0x180>
+				//packet length error
+//				error_debug_buffer[0] = write_pointer;
+//				error_debug_buffer[1] = read_pointer;
+//				error_debug_buffer[2] = data_buffer[(byte)(read_pointer+2)];
+//				error_debug_buffer[3] = (byte)(uart->hdmarx->Instance->CNDTR);
+				receive_complete_flag = IDLE_receive;
+ 8002cc2:	4b1a      	ldr	r3, [pc, #104]	; (8002d2c <_ZN8mySerial8looping2Ev+0x188>)
+ 8002cc4:	2200      	movs	r2, #0
+ 8002cc6:	701a      	strb	r2, [r3, #0]
+				length_error_integral++;
+ 8002cc8:	4b19      	ldr	r3, [pc, #100]	; (8002d30 <_ZN8mySerial8looping2Ev+0x18c>)
+ 8002cca:	781b      	ldrb	r3, [r3, #0]
+ 8002ccc:	3301      	adds	r3, #1
+ 8002cce:	b2da      	uxtb	r2, r3
+ 8002cd0:	4b17      	ldr	r3, [pc, #92]	; (8002d30 <_ZN8mySerial8looping2Ev+0x18c>)
+ 8002cd2:	701a      	strb	r2, [r3, #0]
+				send_error(12345, 34567, '7');
+ 8002cd4:	2337      	movs	r3, #55	; 0x37
+ 8002cd6:	f248 7207 	movw	r2, #34567	; 0x8707
+ 8002cda:	f243 0139 	movw	r1, #12345	; 0x3039
+ 8002cde:	6878      	ldr	r0, [r7, #4]
+ 8002ce0:	f000 f82a 	bl	8002d38 <_ZN8mySerial10send_errorEtth>
+				overflow_flag = false;
+ 8002ce4:	687b      	ldr	r3, [r7, #4]
+ 8002ce6:	2200      	movs	r2, #0
+ 8002ce8:	711a      	strb	r2, [r3, #4]
+				read_pointer = write_pointer;
+ 8002cea:	687b      	ldr	r3, [r7, #4]
+ 8002cec:	79da      	ldrb	r2, [r3, #7]
+ 8002cee:	687b      	ldr	r3, [r7, #4]
+ 8002cf0:	721a      	strb	r2, [r3, #8]
+			if(data_buffer[(byte)(read_pointer+2)] == ((byte)(write_pointer - read_pointer) - 5)) {
+ 8002cf2:	e017      	b.n	8002d24 <_ZN8mySerial8looping2Ev+0x180>
+//			error_debug_buffer[1] = read_pointer;
+//			error_debug_buffer[2] = data_buffer[read_pointer];
+//			error_debug_buffer[3] = data_buffer[(byte)(read_pointer+1)];
+//			error_debug_buffer[4] = data_buffer[(byte)(write_pointer-2)];
+//			error_debug_buffer[5] = data_buffer[(byte)(write_pointer-1)];
+			send_error(12345, 34567, '6');
+ 8002cf4:	2336      	movs	r3, #54	; 0x36
+ 8002cf6:	f248 7207 	movw	r2, #34567	; 0x8707
+ 8002cfa:	f243 0139 	movw	r1, #12345	; 0x3039
+ 8002cfe:	6878      	ldr	r0, [r7, #4]
+ 8002d00:	f000 f81a 	bl	8002d38 <_ZN8mySerial10send_errorEtth>
+			receive_complete_flag = IDLE_receive;
+ 8002d04:	4b09      	ldr	r3, [pc, #36]	; (8002d2c <_ZN8mySerial8looping2Ev+0x188>)
+ 8002d06:	2200      	movs	r2, #0
+ 8002d08:	701a      	strb	r2, [r3, #0]
+			head_foot_error_integral++;
+ 8002d0a:	4b0a      	ldr	r3, [pc, #40]	; (8002d34 <_ZN8mySerial8looping2Ev+0x190>)
+ 8002d0c:	781b      	ldrb	r3, [r3, #0]
+ 8002d0e:	3301      	adds	r3, #1
+ 8002d10:	b2da      	uxtb	r2, r3
+ 8002d12:	4b08      	ldr	r3, [pc, #32]	; (8002d34 <_ZN8mySerial8looping2Ev+0x190>)
+ 8002d14:	701a      	strb	r2, [r3, #0]
+			overflow_flag = false;
+ 8002d16:	687b      	ldr	r3, [r7, #4]
+ 8002d18:	2200      	movs	r2, #0
+ 8002d1a:	711a      	strb	r2, [r3, #4]
 			read_pointer = write_pointer;			
- 8002cc2:	687b      	ldr	r3, [r7, #4]
- 8002cc4:	79da      	ldrb	r2, [r3, #7]
- 8002cc6:	687b      	ldr	r3, [r7, #4]
- 8002cc8:	721a      	strb	r2, [r3, #8]
+ 8002d1c:	687b      	ldr	r3, [r7, #4]
+ 8002d1e:	79da      	ldrb	r2, [r3, #7]
+ 8002d20:	687b      	ldr	r3, [r7, #4]
+ 8002d22:	721a      	strb	r2, [r3, #8]
 		}
 	}
 	
 }
- 8002cca:	3708      	adds	r7, #8
- 8002ccc:	46bd      	mov	sp, r7
- 8002cce:	bd80      	pop	{r7, pc}
- 8002cd0:	20000094 	.word	0x20000094
- 8002cd4:	200004a0 	.word	0x200004a0
- 8002cd8:	20000237 	.word	0x20000237
- 8002cdc:	20000238 	.word	0x20000238
+ 8002d24:	3708      	adds	r7, #8
+ 8002d26:	46bd      	mov	sp, r7
+ 8002d28:	bd80      	pop	{r7, pc}
+ 8002d2a:	bf00      	nop
+ 8002d2c:	20000094 	.word	0x20000094
+ 8002d30:	2000023c 	.word	0x2000023c
+ 8002d34:	2000023d 	.word	0x2000023d
 
-08002ce0 <_ZN8mySerial15buffer_overflowEv>:
+08002d38 <_ZN8mySerial10send_errorEtth>:
+void mySerial::send_error(uint16_t header, uint16_t footer, uint8_t error_code)
+{
+ 8002d38:	b580      	push	{r7, lr}
+ 8002d3a:	b086      	sub	sp, #24
+ 8002d3c:	af00      	add	r7, sp, #0
+ 8002d3e:	60f8      	str	r0, [r7, #12]
+ 8002d40:	4608      	mov	r0, r1
+ 8002d42:	4611      	mov	r1, r2
+ 8002d44:	461a      	mov	r2, r3
+ 8002d46:	4603      	mov	r3, r0
+ 8002d48:	817b      	strh	r3, [r7, #10]
+ 8002d4a:	460b      	mov	r3, r1
+ 8002d4c:	813b      	strh	r3, [r7, #8]
+ 8002d4e:	4613      	mov	r3, r2
+ 8002d50:	71fb      	strb	r3, [r7, #7]
+	byte *temper_packet = new byte[7];
+ 8002d52:	2007      	movs	r0, #7
+ 8002d54:	f000 fada 	bl	800330c <_Znaj>
+ 8002d58:	4603      	mov	r3, r0
+ 8002d5a:	617b      	str	r3, [r7, #20]
+	temper_packet[0] = (byte)(header >>8 & 0xff);
+ 8002d5c:	897b      	ldrh	r3, [r7, #10]
+ 8002d5e:	0a1b      	lsrs	r3, r3, #8
+ 8002d60:	b29b      	uxth	r3, r3
+ 8002d62:	b2da      	uxtb	r2, r3
+ 8002d64:	697b      	ldr	r3, [r7, #20]
+ 8002d66:	701a      	strb	r2, [r3, #0]
+	temper_packet[1] = (byte)(header & 0xff);
+ 8002d68:	697b      	ldr	r3, [r7, #20]
+ 8002d6a:	3301      	adds	r3, #1
+ 8002d6c:	897a      	ldrh	r2, [r7, #10]
+ 8002d6e:	b2d2      	uxtb	r2, r2
+ 8002d70:	701a      	strb	r2, [r3, #0]
+	temper_packet[2] = 2;
+ 8002d72:	697b      	ldr	r3, [r7, #20]
+ 8002d74:	3302      	adds	r3, #2
+ 8002d76:	2202      	movs	r2, #2
+ 8002d78:	701a      	strb	r2, [r3, #0]
+	temper_packet[3] = 40; //packet id for error
+ 8002d7a:	697b      	ldr	r3, [r7, #20]
+ 8002d7c:	3303      	adds	r3, #3
+ 8002d7e:	2228      	movs	r2, #40	; 0x28
+ 8002d80:	701a      	strb	r2, [r3, #0]
+	temper_packet[4] = error_code;
+ 8002d82:	697b      	ldr	r3, [r7, #20]
+ 8002d84:	3304      	adds	r3, #4
+ 8002d86:	79fa      	ldrb	r2, [r7, #7]
+ 8002d88:	701a      	strb	r2, [r3, #0]
+	temper_packet[5] = (byte)(footer >>8 & 0xff);
+ 8002d8a:	893b      	ldrh	r3, [r7, #8]
+ 8002d8c:	0a1b      	lsrs	r3, r3, #8
+ 8002d8e:	b29a      	uxth	r2, r3
+ 8002d90:	697b      	ldr	r3, [r7, #20]
+ 8002d92:	3305      	adds	r3, #5
+ 8002d94:	b2d2      	uxtb	r2, r2
+ 8002d96:	701a      	strb	r2, [r3, #0]
+	temper_packet[6] = (byte)(footer & 0xff);
+ 8002d98:	697b      	ldr	r3, [r7, #20]
+ 8002d9a:	3306      	adds	r3, #6
+ 8002d9c:	893a      	ldrh	r2, [r7, #8]
+ 8002d9e:	b2d2      	uxtb	r2, r2
+ 8002da0:	701a      	strb	r2, [r3, #0]
+	transmit_complete_flag = On_transmit;
+ 8002da2:	4b09      	ldr	r3, [pc, #36]	; (8002dc8 <_ZN8mySerial10send_errorEtth+0x90>)
+ 8002da4:	2200      	movs	r2, #0
+ 8002da6:	701a      	strb	r2, [r3, #0]
+	uart_send(&huart2, temper_packet, 7);
+ 8002da8:	2207      	movs	r2, #7
+ 8002daa:	6979      	ldr	r1, [r7, #20]
+ 8002dac:	4807      	ldr	r0, [pc, #28]	; (8002dcc <_ZN8mySerial10send_errorEtth+0x94>)
+ 8002dae:	f7fe ffcf 	bl	8001d50 <HAL_UART_Transmit_DMA>
+	delete[] temper_packet;
+ 8002db2:	697b      	ldr	r3, [r7, #20]
+ 8002db4:	2b00      	cmp	r3, #0
+ 8002db6:	d002      	beq.n	8002dbe <_ZN8mySerial10send_errorEtth+0x86>
+ 8002db8:	6978      	ldr	r0, [r7, #20]
+ 8002dba:	f000 faa5 	bl	8003308 <_ZdaPv>
+}
+ 8002dbe:	bf00      	nop
+ 8002dc0:	3718      	adds	r7, #24
+ 8002dc2:	46bd      	mov	sp, r7
+ 8002dc4:	bd80      	pop	{r7, pc}
+ 8002dc6:	bf00      	nop
+ 8002dc8:	20000009 	.word	0x20000009
+ 8002dcc:	20000574 	.word	0x20000574
+
+08002dd0 <_ZN8mySerial15buffer_overflowEv>:
 	}
 	delete[] temper_packet;
 }
 
 void mySerial::buffer_overflow()
 {
- 8002ce0:	b480      	push	{r7}
- 8002ce2:	b083      	sub	sp, #12
- 8002ce4:	af00      	add	r7, sp, #0
- 8002ce6:	6078      	str	r0, [r7, #4]
+ 8002dd0:	b480      	push	{r7}
+ 8002dd2:	b083      	sub	sp, #12
+ 8002dd4:	af00      	add	r7, sp, #0
+ 8002dd6:	6078      	str	r0, [r7, #4]
 	overflow_flag = true;
- 8002ce8:	687b      	ldr	r3, [r7, #4]
- 8002cea:	2201      	movs	r2, #1
- 8002cec:	711a      	strb	r2, [r3, #4]
+ 8002dd8:	687b      	ldr	r3, [r7, #4]
+ 8002dda:	2201      	movs	r2, #1
+ 8002ddc:	711a      	strb	r2, [r3, #4]
 }
- 8002cee:	bf00      	nop
- 8002cf0:	370c      	adds	r7, #12
- 8002cf2:	46bd      	mov	sp, r7
- 8002cf4:	bc80      	pop	{r7}
- 8002cf6:	4770      	bx	lr
+ 8002dde:	bf00      	nop
+ 8002de0:	370c      	adds	r7, #12
+ 8002de2:	46bd      	mov	sp, r7
+ 8002de4:	bc80      	pop	{r7}
+ 8002de6:	4770      	bx	lr
 
-08002cf8 <_Z41__static_initialization_and_destruction_0ii>:
+08002de8 <_Z41__static_initialization_and_destruction_0ii>:
 byte length_error_integral;
 byte head_foot_error_integral;
 
 mySerial Serial;
- 8002cf8:	b580      	push	{r7, lr}
- 8002cfa:	b082      	sub	sp, #8
- 8002cfc:	af00      	add	r7, sp, #0
- 8002cfe:	6078      	str	r0, [r7, #4]
- 8002d00:	6039      	str	r1, [r7, #0]
- 8002d02:	687b      	ldr	r3, [r7, #4]
- 8002d04:	2b01      	cmp	r3, #1
- 8002d06:	d107      	bne.n	8002d18 <_Z41__static_initialization_and_destruction_0ii+0x20>
- 8002d08:	683b      	ldr	r3, [r7, #0]
- 8002d0a:	f64f 72ff 	movw	r2, #65535	; 0xffff
- 8002d0e:	4293      	cmp	r3, r2
- 8002d10:	d102      	bne.n	8002d18 <_Z41__static_initialization_and_destruction_0ii+0x20>
- 8002d12:	4803      	ldr	r0, [pc, #12]	; (8002d20 <_Z41__static_initialization_and_destruction_0ii+0x28>)
- 8002d14:	f7ff fea0 	bl	8002a58 <_ZN8mySerialC1Ev>
- 8002d18:	bf00      	nop
- 8002d1a:	3708      	adds	r7, #8
- 8002d1c:	46bd      	mov	sp, r7
- 8002d1e:	bd80      	pop	{r7, pc}
- 8002d20:	2000023c 	.word	0x2000023c
+ 8002de8:	b580      	push	{r7, lr}
+ 8002dea:	b082      	sub	sp, #8
+ 8002dec:	af00      	add	r7, sp, #0
+ 8002dee:	6078      	str	r0, [r7, #4]
+ 8002df0:	6039      	str	r1, [r7, #0]
+ 8002df2:	687b      	ldr	r3, [r7, #4]
+ 8002df4:	2b01      	cmp	r3, #1
+ 8002df6:	d107      	bne.n	8002e08 <_Z41__static_initialization_and_destruction_0ii+0x20>
+ 8002df8:	683b      	ldr	r3, [r7, #0]
+ 8002dfa:	f64f 72ff 	movw	r2, #65535	; 0xffff
+ 8002dfe:	4293      	cmp	r3, r2
+ 8002e00:	d102      	bne.n	8002e08 <_Z41__static_initialization_and_destruction_0ii+0x20>
+ 8002e02:	4803      	ldr	r0, [pc, #12]	; (8002e10 <_Z41__static_initialization_and_destruction_0ii+0x28>)
+ 8002e04:	f7ff fe88 	bl	8002b18 <_ZN8mySerialC1Ev>
+ 8002e08:	bf00      	nop
+ 8002e0a:	3708      	adds	r7, #8
+ 8002e0c:	46bd      	mov	sp, r7
+ 8002e0e:	bd80      	pop	{r7, pc}
+ 8002e10:	20000240 	.word	0x20000240
 
-08002d24 <_GLOBAL__sub_I__ZN8mySerialC2Ev>:
- 8002d24:	b580      	push	{r7, lr}
- 8002d26:	af00      	add	r7, sp, #0
- 8002d28:	f64f 71ff 	movw	r1, #65535	; 0xffff
- 8002d2c:	2001      	movs	r0, #1
- 8002d2e:	f7ff ffe3 	bl	8002cf8 <_Z41__static_initialization_and_destruction_0ii>
- 8002d32:	bd80      	pop	{r7, pc}
+08002e14 <_GLOBAL__sub_I__ZN8mySerialC2Ev>:
+ 8002e14:	b580      	push	{r7, lr}
+ 8002e16:	af00      	add	r7, sp, #0
+ 8002e18:	f64f 71ff 	movw	r1, #65535	; 0xffff
+ 8002e1c:	2001      	movs	r0, #1
+ 8002e1e:	f7ff ffe3 	bl	8002de8 <_Z41__static_initialization_and_destruction_0ii>
+ 8002e22:	bd80      	pop	{r7, pc}
 
-08002d34 <_ZN12request_typeC1Ev>:
+08002e24 <_ZN12request_typeC1Ev>:
 #include "request_type.h"
 
 request_type::request_type()
- 8002d34:	b480      	push	{r7}
- 8002d36:	b083      	sub	sp, #12
- 8002d38:	af00      	add	r7, sp, #0
- 8002d3a:	6078      	str	r0, [r7, #4]
+ 8002e24:	b480      	push	{r7}
+ 8002e26:	b083      	sub	sp, #12
+ 8002e28:	af00      	add	r7, sp, #0
+ 8002e2a:	6078      	str	r0, [r7, #4]
+ 8002e2c:	687b      	ldr	r3, [r7, #4]
+ 8002e2e:	2200      	movs	r2, #0
+ 8002e30:	709a      	strb	r2, [r3, #2]
 {
     
 }
- 8002d3c:	687b      	ldr	r3, [r7, #4]
- 8002d3e:	4618      	mov	r0, r3
- 8002d40:	370c      	adds	r7, #12
- 8002d42:	46bd      	mov	sp, r7
- 8002d44:	bc80      	pop	{r7}
- 8002d46:	4770      	bx	lr
+ 8002e32:	687b      	ldr	r3, [r7, #4]
+ 8002e34:	4618      	mov	r0, r3
+ 8002e36:	370c      	adds	r7, #12
+ 8002e38:	46bd      	mov	sp, r7
+ 8002e3a:	bc80      	pop	{r7}
+ 8002e3c:	4770      	bx	lr
+	...
 
-08002d48 <_ZN12request_type15begin_configureEPhi>:
+08002e40 <_ZN12request_type15begin_configureEPhi>:
 void request_type::begin_configure(byte *data_format, int length)
 {
- 8002d48:	b580      	push	{r7, lr}
- 8002d4a:	b084      	sub	sp, #16
- 8002d4c:	af00      	add	r7, sp, #0
- 8002d4e:	60f8      	str	r0, [r7, #12]
- 8002d50:	60b9      	str	r1, [r7, #8]
- 8002d52:	607a      	str	r2, [r7, #4]
+ 8002e40:	b580      	push	{r7, lr}
+ 8002e42:	b084      	sub	sp, #16
+ 8002e44:	af00      	add	r7, sp, #0
+ 8002e46:	60f8      	str	r0, [r7, #12]
+ 8002e48:	60b9      	str	r1, [r7, #8]
+ 8002e4a:	607a      	str	r2, [r7, #4]
     switch (data_format[0]) {
- 8002d54:	68bb      	ldr	r3, [r7, #8]
- 8002d56:	781b      	ldrb	r3, [r3, #0]
- 8002d58:	3b01      	subs	r3, #1
- 8002d5a:	2b0f      	cmp	r3, #15
- 8002d5c:	d84f      	bhi.n	8002dfe <_ZN12request_type15begin_configureEPhi+0xb6>
- 8002d5e:	a201      	add	r2, pc, #4	; (adr r2, 8002d64 <_ZN12request_type15begin_configureEPhi+0x1c>)
- 8002d60:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 8002d64:	08002da5 	.word	0x08002da5
- 8002d68:	08002dff 	.word	0x08002dff
- 8002d6c:	08002ded 	.word	0x08002ded
- 8002d70:	08002db7 	.word	0x08002db7
- 8002d74:	08002dc9 	.word	0x08002dc9
- 8002d78:	08002dff 	.word	0x08002dff
- 8002d7c:	08002dff 	.word	0x08002dff
- 8002d80:	08002dff 	.word	0x08002dff
- 8002d84:	08002dff 	.word	0x08002dff
- 8002d88:	08002dff 	.word	0x08002dff
- 8002d8c:	08002dff 	.word	0x08002dff
- 8002d90:	08002dff 	.word	0x08002dff
- 8002d94:	08002dff 	.word	0x08002dff
- 8002d98:	08002dff 	.word	0x08002dff
- 8002d9c:	08002dff 	.word	0x08002dff
- 8002da0:	08002ddb 	.word	0x08002ddb
+ 8002e4c:	68bb      	ldr	r3, [r7, #8]
+ 8002e4e:	781b      	ldrb	r3, [r3, #0]
+ 8002e50:	3b01      	subs	r3, #1
+ 8002e52:	2b0f      	cmp	r3, #15
+ 8002e54:	d84f      	bhi.n	8002ef6 <_ZN12request_type15begin_configureEPhi+0xb6>
+ 8002e56:	a201      	add	r2, pc, #4	; (adr r2, 8002e5c <_ZN12request_type15begin_configureEPhi+0x1c>)
+ 8002e58:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8002e5c:	08002e9d 	.word	0x08002e9d
+ 8002e60:	08002ef7 	.word	0x08002ef7
+ 8002e64:	08002ee5 	.word	0x08002ee5
+ 8002e68:	08002eaf 	.word	0x08002eaf
+ 8002e6c:	08002ec1 	.word	0x08002ec1
+ 8002e70:	08002ef7 	.word	0x08002ef7
+ 8002e74:	08002ef7 	.word	0x08002ef7
+ 8002e78:	08002ef7 	.word	0x08002ef7
+ 8002e7c:	08002ef7 	.word	0x08002ef7
+ 8002e80:	08002ef7 	.word	0x08002ef7
+ 8002e84:	08002ef7 	.word	0x08002ef7
+ 8002e88:	08002ef7 	.word	0x08002ef7
+ 8002e8c:	08002ef7 	.word	0x08002ef7
+ 8002e90:	08002ef7 	.word	0x08002ef7
+ 8002e94:	08002ef7 	.word	0x08002ef7
+ 8002e98:	08002ed3 	.word	0x08002ed3
         case 0x01:
             function_01_handler(&data_format[1], length-1);
- 8002da4:	68bb      	ldr	r3, [r7, #8]
- 8002da6:	1c59      	adds	r1, r3, #1
- 8002da8:	687b      	ldr	r3, [r7, #4]
- 8002daa:	3b01      	subs	r3, #1
- 8002dac:	461a      	mov	r2, r3
- 8002dae:	68f8      	ldr	r0, [r7, #12]
- 8002db0:	f000 f886 	bl	8002ec0 <_ZN12request_type19function_01_handlerEPhi>
+ 8002e9c:	68bb      	ldr	r3, [r7, #8]
+ 8002e9e:	1c59      	adds	r1, r3, #1
+ 8002ea0:	687b      	ldr	r3, [r7, #4]
+ 8002ea2:	3b01      	subs	r3, #1
+ 8002ea4:	461a      	mov	r2, r3
+ 8002ea6:	68f8      	ldr	r0, [r7, #12]
+ 8002ea8:	f000 f886 	bl	8002fb8 <_ZN12request_type19function_01_handlerEPhi>
         break;
- 8002db4:	e023      	b.n	8002dfe <_ZN12request_type15begin_configureEPhi+0xb6>
+ 8002eac:	e023      	b.n	8002ef6 <_ZN12request_type15begin_configureEPhi+0xb6>
         case 0x04:
             function_04_handler(&data_format[1], length-1);
- 8002db6:	68bb      	ldr	r3, [r7, #8]
- 8002db8:	1c59      	adds	r1, r3, #1
- 8002dba:	687b      	ldr	r3, [r7, #4]
- 8002dbc:	3b01      	subs	r3, #1
- 8002dbe:	461a      	mov	r2, r3
- 8002dc0:	68f8      	ldr	r0, [r7, #12]
- 8002dc2:	f000 f8f7 	bl	8002fb4 <_ZN12request_type19function_04_handlerEPhi>
+ 8002eae:	68bb      	ldr	r3, [r7, #8]
+ 8002eb0:	1c59      	adds	r1, r3, #1
+ 8002eb2:	687b      	ldr	r3, [r7, #4]
+ 8002eb4:	3b01      	subs	r3, #1
+ 8002eb6:	461a      	mov	r2, r3
+ 8002eb8:	68f8      	ldr	r0, [r7, #12]
+ 8002eba:	f000 f8f7 	bl	80030ac <_ZN12request_type19function_04_handlerEPhi>
         break;
- 8002dc6:	e01a      	b.n	8002dfe <_ZN12request_type15begin_configureEPhi+0xb6>
+ 8002ebe:	e01a      	b.n	8002ef6 <_ZN12request_type15begin_configureEPhi+0xb6>
         case 0x05:
             function_05_handler(&data_format[1], length-1);
- 8002dc8:	68bb      	ldr	r3, [r7, #8]
- 8002dca:	1c59      	adds	r1, r3, #1
- 8002dcc:	687b      	ldr	r3, [r7, #4]
- 8002dce:	3b01      	subs	r3, #1
- 8002dd0:	461a      	mov	r2, r3
- 8002dd2:	68f8      	ldr	r0, [r7, #12]
- 8002dd4:	f000 f92b 	bl	800302e <_ZN12request_type19function_05_handlerEPhi>
+ 8002ec0:	68bb      	ldr	r3, [r7, #8]
+ 8002ec2:	1c59      	adds	r1, r3, #1
+ 8002ec4:	687b      	ldr	r3, [r7, #4]
+ 8002ec6:	3b01      	subs	r3, #1
+ 8002ec8:	461a      	mov	r2, r3
+ 8002eca:	68f8      	ldr	r0, [r7, #12]
+ 8002ecc:	f000 f92b 	bl	8003126 <_ZN12request_type19function_05_handlerEPhi>
         break;
- 8002dd8:	e011      	b.n	8002dfe <_ZN12request_type15begin_configureEPhi+0xb6>
+ 8002ed0:	e011      	b.n	8002ef6 <_ZN12request_type15begin_configureEPhi+0xb6>
         case 0x10:
             function_10_handler(&data_format[1], length-1);
- 8002dda:	68bb      	ldr	r3, [r7, #8]
- 8002ddc:	1c59      	adds	r1, r3, #1
- 8002dde:	687b      	ldr	r3, [r7, #4]
- 8002de0:	3b01      	subs	r3, #1
- 8002de2:	461a      	mov	r2, r3
- 8002de4:	68f8      	ldr	r0, [r7, #12]
- 8002de6:	f000 f959 	bl	800309c <_ZN12request_type19function_10_handlerEPhi>
+ 8002ed2:	68bb      	ldr	r3, [r7, #8]
+ 8002ed4:	1c59      	adds	r1, r3, #1
+ 8002ed6:	687b      	ldr	r3, [r7, #4]
+ 8002ed8:	3b01      	subs	r3, #1
+ 8002eda:	461a      	mov	r2, r3
+ 8002edc:	68f8      	ldr	r0, [r7, #12]
+ 8002ede:	f000 f959 	bl	8003194 <_ZN12request_type19function_10_handlerEPhi>
         break;
- 8002dea:	e008      	b.n	8002dfe <_ZN12request_type15begin_configureEPhi+0xb6>
+ 8002ee2:	e008      	b.n	8002ef6 <_ZN12request_type15begin_configureEPhi+0xb6>
         case 0x03:
             function_03_handler(&data_format[1], length-1);
- 8002dec:	68bb      	ldr	r3, [r7, #8]
- 8002dee:	1c59      	adds	r1, r3, #1
- 8002df0:	687b      	ldr	r3, [r7, #4]
- 8002df2:	3b01      	subs	r3, #1
- 8002df4:	461a      	mov	r2, r3
- 8002df6:	68f8      	ldr	r0, [r7, #12]
- 8002df8:	f000 f89f 	bl	8002f3a <_ZN12request_type19function_03_handlerEPhi>
+ 8002ee4:	68bb      	ldr	r3, [r7, #8]
+ 8002ee6:	1c59      	adds	r1, r3, #1
+ 8002ee8:	687b      	ldr	r3, [r7, #4]
+ 8002eea:	3b01      	subs	r3, #1
+ 8002eec:	461a      	mov	r2, r3
+ 8002eee:	68f8      	ldr	r0, [r7, #12]
+ 8002ef0:	f000 f89f 	bl	8003032 <_ZN12request_type19function_03_handlerEPhi>
         break;
- 8002dfc:	bf00      	nop
+ 8002ef4:	bf00      	nop
     }
 }
- 8002dfe:	bf00      	nop
- 8002e00:	3710      	adds	r7, #16
- 8002e02:	46bd      	mov	sp, r7
- 8002e04:	bd80      	pop	{r7, pc}
- 8002e06:	bf00      	nop
+ 8002ef6:	bf00      	nop
+ 8002ef8:	3710      	adds	r7, #16
+ 8002efa:	46bd      	mov	sp, r7
+ 8002efc:	bd80      	pop	{r7, pc}
+ 8002efe:	bf00      	nop
 
-08002e08 <_ZN12request_type15packet_encodingEv>:
+08002f00 <_ZN12request_type15packet_encodingEv>:
 void request_type::packet_encoding(){
- 8002e08:	b580      	push	{r7, lr}
- 8002e0a:	b082      	sub	sp, #8
- 8002e0c:	af00      	add	r7, sp, #0
- 8002e0e:	6078      	str	r0, [r7, #4]
+ 8002f00:	b580      	push	{r7, lr}
+ 8002f02:	b082      	sub	sp, #8
+ 8002f04:	af00      	add	r7, sp, #0
+ 8002f06:	6078      	str	r0, [r7, #4]
 	switch (response_packet[1]) {
- 8002e10:	687b      	ldr	r3, [r7, #4]
- 8002e12:	f893 3023 	ldrb.w	r3, [r3, #35]	; 0x23
- 8002e16:	3b01      	subs	r3, #1
- 8002e18:	2b0f      	cmp	r3, #15
- 8002e1a:	d84d      	bhi.n	8002eb8 <_ZN12request_type15packet_encodingEv+0xb0>
- 8002e1c:	a201      	add	r2, pc, #4	; (adr r2, 8002e24 <_ZN12request_type15packet_encodingEv+0x1c>)
- 8002e1e:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 8002e22:	bf00      	nop
- 8002e24:	08002eb7 	.word	0x08002eb7
- 8002e28:	08002eb9 	.word	0x08002eb9
- 8002e2c:	08002eb7 	.word	0x08002eb7
- 8002e30:	08002e65 	.word	0x08002e65
- 8002e34:	08002eb7 	.word	0x08002eb7
- 8002e38:	08002eb9 	.word	0x08002eb9
- 8002e3c:	08002eb9 	.word	0x08002eb9
- 8002e40:	08002eb9 	.word	0x08002eb9
- 8002e44:	08002eb9 	.word	0x08002eb9
- 8002e48:	08002eb9 	.word	0x08002eb9
- 8002e4c:	08002eb9 	.word	0x08002eb9
- 8002e50:	08002eb9 	.word	0x08002eb9
- 8002e54:	08002eb9 	.word	0x08002eb9
- 8002e58:	08002eb9 	.word	0x08002eb9
- 8002e5c:	08002eb9 	.word	0x08002eb9
- 8002e60:	08002eb7 	.word	0x08002eb7
+ 8002f08:	687b      	ldr	r3, [r7, #4]
+ 8002f0a:	f893 3024 	ldrb.w	r3, [r3, #36]	; 0x24
+ 8002f0e:	3b01      	subs	r3, #1
+ 8002f10:	2b0f      	cmp	r3, #15
+ 8002f12:	d84d      	bhi.n	8002fb0 <_ZN12request_type15packet_encodingEv+0xb0>
+ 8002f14:	a201      	add	r2, pc, #4	; (adr r2, 8002f1c <_ZN12request_type15packet_encodingEv+0x1c>)
+ 8002f16:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 8002f1a:	bf00      	nop
+ 8002f1c:	08002faf 	.word	0x08002faf
+ 8002f20:	08002fb1 	.word	0x08002fb1
+ 8002f24:	08002faf 	.word	0x08002faf
+ 8002f28:	08002f5d 	.word	0x08002f5d
+ 8002f2c:	08002faf 	.word	0x08002faf
+ 8002f30:	08002fb1 	.word	0x08002fb1
+ 8002f34:	08002fb1 	.word	0x08002fb1
+ 8002f38:	08002fb1 	.word	0x08002fb1
+ 8002f3c:	08002fb1 	.word	0x08002fb1
+ 8002f40:	08002fb1 	.word	0x08002fb1
+ 8002f44:	08002fb1 	.word	0x08002fb1
+ 8002f48:	08002fb1 	.word	0x08002fb1
+ 8002f4c:	08002fb1 	.word	0x08002fb1
+ 8002f50:	08002fb1 	.word	0x08002fb1
+ 8002f54:	08002fb1 	.word	0x08002fb1
+ 8002f58:	08002faf 	.word	0x08002faf
 		case 0x01:
 
 		break;
 		case 0x04:
 			encoded_packet[0] = 0x04;
- 8002e64:	687b      	ldr	r3, [r7, #4]
- 8002e66:	2204      	movs	r2, #4
- 8002e68:	f883 2062 	strb.w	r2, [r3, #98]	; 0x62
+ 8002f5c:	687b      	ldr	r3, [r7, #4]
+ 8002f5e:	2204      	movs	r2, #4
+ 8002f60:	f883 2063 	strb.w	r2, [r3, #99]	; 0x63
 			encoded_packet[1] = start_address[0];
- 8002e6c:	687b      	ldr	r3, [r7, #4]
- 8002e6e:	781a      	ldrb	r2, [r3, #0]
- 8002e70:	687b      	ldr	r3, [r7, #4]
- 8002e72:	f883 2063 	strb.w	r2, [r3, #99]	; 0x63
+ 8002f64:	687b      	ldr	r3, [r7, #4]
+ 8002f66:	781a      	ldrb	r2, [r3, #0]
+ 8002f68:	687b      	ldr	r3, [r7, #4]
+ 8002f6a:	f883 2064 	strb.w	r2, [r3, #100]	; 0x64
 			encoded_packet[2] = start_address[1];
- 8002e76:	687b      	ldr	r3, [r7, #4]
- 8002e78:	785a      	ldrb	r2, [r3, #1]
- 8002e7a:	687b      	ldr	r3, [r7, #4]
- 8002e7c:	f883 2064 	strb.w	r2, [r3, #100]	; 0x64
+ 8002f6e:	687b      	ldr	r3, [r7, #4]
+ 8002f70:	785a      	ldrb	r2, [r3, #1]
+ 8002f72:	687b      	ldr	r3, [r7, #4]
+ 8002f74:	f883 2065 	strb.w	r2, [r3, #101]	; 0x65
 			encoded_packet[3] = response_packet[2]; //number of data byte
- 8002e80:	687b      	ldr	r3, [r7, #4]
- 8002e82:	f893 2024 	ldrb.w	r2, [r3, #36]	; 0x24
- 8002e86:	687b      	ldr	r3, [r7, #4]
- 8002e88:	f883 2065 	strb.w	r2, [r3, #101]	; 0x65
+ 8002f78:	687b      	ldr	r3, [r7, #4]
+ 8002f7a:	f893 2025 	ldrb.w	r2, [r3, #37]	; 0x25
+ 8002f7e:	687b      	ldr	r3, [r7, #4]
+ 8002f80:	f883 2066 	strb.w	r2, [r3, #102]	; 0x66
 			memcpy(&encoded_packet[4], &response_packet[3], response_length - 5);
- 8002e8c:	687b      	ldr	r3, [r7, #4]
- 8002e8e:	f103 0066 	add.w	r0, r3, #102	; 0x66
- 8002e92:	687b      	ldr	r3, [r7, #4]
- 8002e94:	f103 0125 	add.w	r1, r3, #37	; 0x25
- 8002e98:	687b      	ldr	r3, [r7, #4]
- 8002e9a:	f893 30a3 	ldrb.w	r3, [r3, #163]	; 0xa3
- 8002e9e:	3b05      	subs	r3, #5
- 8002ea0:	461a      	mov	r2, r3
- 8002ea2:	f000 fa11 	bl	80032c8 <memcpy>
+ 8002f84:	687b      	ldr	r3, [r7, #4]
+ 8002f86:	f103 0067 	add.w	r0, r3, #103	; 0x67
+ 8002f8a:	687b      	ldr	r3, [r7, #4]
+ 8002f8c:	f103 0126 	add.w	r1, r3, #38	; 0x26
+ 8002f90:	687b      	ldr	r3, [r7, #4]
+ 8002f92:	f893 30a4 	ldrb.w	r3, [r3, #164]	; 0xa4
+ 8002f96:	3b05      	subs	r3, #5
+ 8002f98:	461a      	mov	r2, r3
+ 8002f9a:	f000 fa17 	bl	80033cc <memcpy>
 			encode_length = response_length - 1;
- 8002ea6:	687b      	ldr	r3, [r7, #4]
- 8002ea8:	f893 30a3 	ldrb.w	r3, [r3, #163]	; 0xa3
- 8002eac:	3b01      	subs	r3, #1
- 8002eae:	b2da      	uxtb	r2, r3
- 8002eb0:	687b      	ldr	r3, [r7, #4]
- 8002eb2:	709a      	strb	r2, [r3, #2]
+ 8002f9e:	687b      	ldr	r3, [r7, #4]
+ 8002fa0:	f893 30a4 	ldrb.w	r3, [r3, #164]	; 0xa4
+ 8002fa4:	3b01      	subs	r3, #1
+ 8002fa6:	b2da      	uxtb	r2, r3
+ 8002fa8:	687b      	ldr	r3, [r7, #4]
+ 8002faa:	70da      	strb	r2, [r3, #3]
 		break;
- 8002eb4:	e000      	b.n	8002eb8 <_ZN12request_type15packet_encodingEv+0xb0>
+ 8002fac:	e000      	b.n	8002fb0 <_ZN12request_type15packet_encodingEv+0xb0>
 		break;
- 8002eb6:	bf00      	nop
+ 8002fae:	bf00      	nop
 		break;
 		case 0x03:
 
 		break;
 	}
 }
- 8002eb8:	bf00      	nop
- 8002eba:	3708      	adds	r7, #8
- 8002ebc:	46bd      	mov	sp, r7
- 8002ebe:	bd80      	pop	{r7, pc}
+ 8002fb0:	bf00      	nop
+ 8002fb2:	3708      	adds	r7, #8
+ 8002fb4:	46bd      	mov	sp, r7
+ 8002fb6:	bd80      	pop	{r7, pc}
 
-08002ec0 <_ZN12request_type19function_01_handlerEPhi>:
+08002fb8 <_ZN12request_type19function_01_handlerEPhi>:
 void request_type::function_01_handler(byte *data, int length) //read coil status
 {
- 8002ec0:	b580      	push	{r7, lr}
- 8002ec2:	b084      	sub	sp, #16
- 8002ec4:	af00      	add	r7, sp, #0
- 8002ec6:	60f8      	str	r0, [r7, #12]
- 8002ec8:	60b9      	str	r1, [r7, #8]
- 8002eca:	607a      	str	r2, [r7, #4]
+ 8002fb8:	b580      	push	{r7, lr}
+ 8002fba:	b084      	sub	sp, #16
+ 8002fbc:	af00      	add	r7, sp, #0
+ 8002fbe:	60f8      	str	r0, [r7, #12]
+ 8002fc0:	60b9      	str	r1, [r7, #8]
+ 8002fc2:	607a      	str	r2, [r7, #4]
     //receive format:  [register_address: 2 bytes] [number of register: 1 byte]
     //total 3 bytes
     request_packet[0] = modbus_address;
- 8002ecc:	68fb      	ldr	r3, [r7, #12]
- 8002ece:	2201      	movs	r2, #1
- 8002ed0:	711a      	strb	r2, [r3, #4]
+ 8002fc4:	68fb      	ldr	r3, [r7, #12]
+ 8002fc6:	2201      	movs	r2, #1
+ 8002fc8:	715a      	strb	r2, [r3, #5]
     request_packet[1] = 0x01;
- 8002ed2:	68fb      	ldr	r3, [r7, #12]
- 8002ed4:	2201      	movs	r2, #1
- 8002ed6:	715a      	strb	r2, [r3, #5]
+ 8002fca:	68fb      	ldr	r3, [r7, #12]
+ 8002fcc:	2201      	movs	r2, #1
+ 8002fce:	719a      	strb	r2, [r3, #6]
     request_packet[2] = data[0];	start_address[0] = data[0];
- 8002ed8:	68bb      	ldr	r3, [r7, #8]
- 8002eda:	781a      	ldrb	r2, [r3, #0]
- 8002edc:	68fb      	ldr	r3, [r7, #12]
- 8002ede:	719a      	strb	r2, [r3, #6]
- 8002ee0:	68bb      	ldr	r3, [r7, #8]
- 8002ee2:	781a      	ldrb	r2, [r3, #0]
- 8002ee4:	68fb      	ldr	r3, [r7, #12]
- 8002ee6:	701a      	strb	r2, [r3, #0]
+ 8002fd0:	68bb      	ldr	r3, [r7, #8]
+ 8002fd2:	781a      	ldrb	r2, [r3, #0]
+ 8002fd4:	68fb      	ldr	r3, [r7, #12]
+ 8002fd6:	71da      	strb	r2, [r3, #7]
+ 8002fd8:	68bb      	ldr	r3, [r7, #8]
+ 8002fda:	781a      	ldrb	r2, [r3, #0]
+ 8002fdc:	68fb      	ldr	r3, [r7, #12]
+ 8002fde:	701a      	strb	r2, [r3, #0]
     request_packet[3] = data[1];    start_address[1] = data[1];
- 8002ee8:	68bb      	ldr	r3, [r7, #8]
- 8002eea:	785a      	ldrb	r2, [r3, #1]
- 8002eec:	68fb      	ldr	r3, [r7, #12]
- 8002eee:	71da      	strb	r2, [r3, #7]
- 8002ef0:	68bb      	ldr	r3, [r7, #8]
- 8002ef2:	785a      	ldrb	r2, [r3, #1]
- 8002ef4:	68fb      	ldr	r3, [r7, #12]
- 8002ef6:	705a      	strb	r2, [r3, #1]
+ 8002fe0:	68bb      	ldr	r3, [r7, #8]
+ 8002fe2:	785a      	ldrb	r2, [r3, #1]
+ 8002fe4:	68fb      	ldr	r3, [r7, #12]
+ 8002fe6:	721a      	strb	r2, [r3, #8]
+ 8002fe8:	68bb      	ldr	r3, [r7, #8]
+ 8002fea:	785a      	ldrb	r2, [r3, #1]
+ 8002fec:	68fb      	ldr	r3, [r7, #12]
+ 8002fee:	705a      	strb	r2, [r3, #1]
     request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
- 8002ef8:	68fb      	ldr	r3, [r7, #12]
- 8002efa:	2200      	movs	r2, #0
- 8002efc:	721a      	strb	r2, [r3, #8]
+ 8002ff0:	68fb      	ldr	r3, [r7, #12]
+ 8002ff2:	2200      	movs	r2, #0
+ 8002ff4:	725a      	strb	r2, [r3, #9]
     request_packet[5] = (byte)data[2];
- 8002efe:	68bb      	ldr	r3, [r7, #8]
- 8002f00:	789a      	ldrb	r2, [r3, #2]
- 8002f02:	68fb      	ldr	r3, [r7, #12]
- 8002f04:	725a      	strb	r2, [r3, #9]
+ 8002ff6:	68bb      	ldr	r3, [r7, #8]
+ 8002ff8:	789a      	ldrb	r2, [r3, #2]
+ 8002ffa:	68fb      	ldr	r3, [r7, #12]
+ 8002ffc:	729a      	strb	r2, [r3, #10]
     CRC_16(request_packet, 6, &request_packet[6]);
- 8002f06:	68fb      	ldr	r3, [r7, #12]
- 8002f08:	1d19      	adds	r1, r3, #4
- 8002f0a:	68fb      	ldr	r3, [r7, #12]
- 8002f0c:	330a      	adds	r3, #10
- 8002f0e:	2206      	movs	r2, #6
- 8002f10:	68f8      	ldr	r0, [r7, #12]
- 8002f12:	f000 f913 	bl	800313c <_ZN12request_type6CRC_16EPhhS0_>
+ 8002ffe:	68fb      	ldr	r3, [r7, #12]
+ 8003000:	1d59      	adds	r1, r3, #5
+ 8003002:	68fb      	ldr	r3, [r7, #12]
+ 8003004:	330b      	adds	r3, #11
+ 8003006:	2206      	movs	r2, #6
+ 8003008:	68f8      	ldr	r0, [r7, #12]
+ 800300a:	f000 f913 	bl	8003234 <_ZN12request_type6CRC_16EPhhS0_>
     request_length = 8;
- 8002f16:	68fb      	ldr	r3, [r7, #12]
- 8002f18:	2208      	movs	r2, #8
- 8002f1a:	f883 20a2 	strb.w	r2, [r3, #162]	; 0xa2
+ 800300e:	68fb      	ldr	r3, [r7, #12]
+ 8003010:	2208      	movs	r2, #8
+ 8003012:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
     //calculate response length
     response_length = (byte)(data[2] >> 3) + 5; //divive for 8 and plus 5
- 8002f1e:	68bb      	ldr	r3, [r7, #8]
- 8002f20:	3302      	adds	r3, #2
- 8002f22:	781b      	ldrb	r3, [r3, #0]
- 8002f24:	10db      	asrs	r3, r3, #3
- 8002f26:	b2db      	uxtb	r3, r3
- 8002f28:	3305      	adds	r3, #5
- 8002f2a:	b2da      	uxtb	r2, r3
- 8002f2c:	68fb      	ldr	r3, [r7, #12]
- 8002f2e:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
+ 8003016:	68bb      	ldr	r3, [r7, #8]
+ 8003018:	3302      	adds	r3, #2
+ 800301a:	781b      	ldrb	r3, [r3, #0]
+ 800301c:	10db      	asrs	r3, r3, #3
+ 800301e:	b2db      	uxtb	r3, r3
+ 8003020:	3305      	adds	r3, #5
+ 8003022:	b2da      	uxtb	r2, r3
+ 8003024:	68fb      	ldr	r3, [r7, #12]
+ 8003026:	f883 20a4 	strb.w	r2, [r3, #164]	; 0xa4
 }
- 8002f32:	bf00      	nop
- 8002f34:	3710      	adds	r7, #16
- 8002f36:	46bd      	mov	sp, r7
- 8002f38:	bd80      	pop	{r7, pc}
+ 800302a:	bf00      	nop
+ 800302c:	3710      	adds	r7, #16
+ 800302e:	46bd      	mov	sp, r7
+ 8003030:	bd80      	pop	{r7, pc}
 
-08002f3a <_ZN12request_type19function_03_handlerEPhi>:
+08003032 <_ZN12request_type19function_03_handlerEPhi>:
 void request_type::function_03_handler(byte *data, int length) //read holding registers
 {
- 8002f3a:	b580      	push	{r7, lr}
- 8002f3c:	b084      	sub	sp, #16
- 8002f3e:	af00      	add	r7, sp, #0
- 8002f40:	60f8      	str	r0, [r7, #12]
- 8002f42:	60b9      	str	r1, [r7, #8]
- 8002f44:	607a      	str	r2, [r7, #4]
+ 8003032:	b580      	push	{r7, lr}
+ 8003034:	b084      	sub	sp, #16
+ 8003036:	af00      	add	r7, sp, #0
+ 8003038:	60f8      	str	r0, [r7, #12]
+ 800303a:	60b9      	str	r1, [r7, #8]
+ 800303c:	607a      	str	r2, [r7, #4]
     //receive format:  [register_address: 2 bytes] [number of register: 1 byte]
     //total 3 bytes
     request_packet[0] = modbus_address;
- 8002f46:	68fb      	ldr	r3, [r7, #12]
- 8002f48:	2201      	movs	r2, #1
- 8002f4a:	711a      	strb	r2, [r3, #4]
+ 800303e:	68fb      	ldr	r3, [r7, #12]
+ 8003040:	2201      	movs	r2, #1
+ 8003042:	715a      	strb	r2, [r3, #5]
     request_packet[1] = 0x03;
- 8002f4c:	68fb      	ldr	r3, [r7, #12]
- 8002f4e:	2203      	movs	r2, #3
- 8002f50:	715a      	strb	r2, [r3, #5]
+ 8003044:	68fb      	ldr	r3, [r7, #12]
+ 8003046:	2203      	movs	r2, #3
+ 8003048:	719a      	strb	r2, [r3, #6]
     request_packet[2] = data[0];	start_address[0] = data[0];
- 8002f52:	68bb      	ldr	r3, [r7, #8]
- 8002f54:	781a      	ldrb	r2, [r3, #0]
- 8002f56:	68fb      	ldr	r3, [r7, #12]
- 8002f58:	719a      	strb	r2, [r3, #6]
- 8002f5a:	68bb      	ldr	r3, [r7, #8]
- 8002f5c:	781a      	ldrb	r2, [r3, #0]
- 8002f5e:	68fb      	ldr	r3, [r7, #12]
- 8002f60:	701a      	strb	r2, [r3, #0]
+ 800304a:	68bb      	ldr	r3, [r7, #8]
+ 800304c:	781a      	ldrb	r2, [r3, #0]
+ 800304e:	68fb      	ldr	r3, [r7, #12]
+ 8003050:	71da      	strb	r2, [r3, #7]
+ 8003052:	68bb      	ldr	r3, [r7, #8]
+ 8003054:	781a      	ldrb	r2, [r3, #0]
+ 8003056:	68fb      	ldr	r3, [r7, #12]
+ 8003058:	701a      	strb	r2, [r3, #0]
     request_packet[3] = data[1];    start_address[1] = data[1];
- 8002f62:	68bb      	ldr	r3, [r7, #8]
- 8002f64:	785a      	ldrb	r2, [r3, #1]
- 8002f66:	68fb      	ldr	r3, [r7, #12]
- 8002f68:	71da      	strb	r2, [r3, #7]
- 8002f6a:	68bb      	ldr	r3, [r7, #8]
- 8002f6c:	785a      	ldrb	r2, [r3, #1]
- 8002f6e:	68fb      	ldr	r3, [r7, #12]
- 8002f70:	705a      	strb	r2, [r3, #1]
+ 800305a:	68bb      	ldr	r3, [r7, #8]
+ 800305c:	785a      	ldrb	r2, [r3, #1]
+ 800305e:	68fb      	ldr	r3, [r7, #12]
+ 8003060:	721a      	strb	r2, [r3, #8]
+ 8003062:	68bb      	ldr	r3, [r7, #8]
+ 8003064:	785a      	ldrb	r2, [r3, #1]
+ 8003066:	68fb      	ldr	r3, [r7, #12]
+ 8003068:	705a      	strb	r2, [r3, #1]
     request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
- 8002f72:	68fb      	ldr	r3, [r7, #12]
- 8002f74:	2200      	movs	r2, #0
- 8002f76:	721a      	strb	r2, [r3, #8]
+ 800306a:	68fb      	ldr	r3, [r7, #12]
+ 800306c:	2200      	movs	r2, #0
+ 800306e:	725a      	strb	r2, [r3, #9]
     request_packet[5] = (byte)data[2];
- 8002f78:	68bb      	ldr	r3, [r7, #8]
- 8002f7a:	789a      	ldrb	r2, [r3, #2]
- 8002f7c:	68fb      	ldr	r3, [r7, #12]
- 8002f7e:	725a      	strb	r2, [r3, #9]
+ 8003070:	68bb      	ldr	r3, [r7, #8]
+ 8003072:	789a      	ldrb	r2, [r3, #2]
+ 8003074:	68fb      	ldr	r3, [r7, #12]
+ 8003076:	729a      	strb	r2, [r3, #10]
     CRC_16(request_packet, 6, &request_packet[6]);
- 8002f80:	68fb      	ldr	r3, [r7, #12]
- 8002f82:	1d19      	adds	r1, r3, #4
- 8002f84:	68fb      	ldr	r3, [r7, #12]
- 8002f86:	330a      	adds	r3, #10
- 8002f88:	2206      	movs	r2, #6
- 8002f8a:	68f8      	ldr	r0, [r7, #12]
- 8002f8c:	f000 f8d6 	bl	800313c <_ZN12request_type6CRC_16EPhhS0_>
+ 8003078:	68fb      	ldr	r3, [r7, #12]
+ 800307a:	1d59      	adds	r1, r3, #5
+ 800307c:	68fb      	ldr	r3, [r7, #12]
+ 800307e:	330b      	adds	r3, #11
+ 8003080:	2206      	movs	r2, #6
+ 8003082:	68f8      	ldr	r0, [r7, #12]
+ 8003084:	f000 f8d6 	bl	8003234 <_ZN12request_type6CRC_16EPhhS0_>
     request_length = 8;
- 8002f90:	68fb      	ldr	r3, [r7, #12]
- 8002f92:	2208      	movs	r2, #8
- 8002f94:	f883 20a2 	strb.w	r2, [r3, #162]	; 0xa2
+ 8003088:	68fb      	ldr	r3, [r7, #12]
+ 800308a:	2208      	movs	r2, #8
+ 800308c:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
     //calculate response length
     response_length = (byte)(data[2] << 1) + 5; //multiple for 2 and plus 5
- 8002f98:	68bb      	ldr	r3, [r7, #8]
- 8002f9a:	3302      	adds	r3, #2
- 8002f9c:	781b      	ldrb	r3, [r3, #0]
- 8002f9e:	005b      	lsls	r3, r3, #1
- 8002fa0:	b2db      	uxtb	r3, r3
- 8002fa2:	3305      	adds	r3, #5
- 8002fa4:	b2da      	uxtb	r2, r3
- 8002fa6:	68fb      	ldr	r3, [r7, #12]
- 8002fa8:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
+ 8003090:	68bb      	ldr	r3, [r7, #8]
+ 8003092:	3302      	adds	r3, #2
+ 8003094:	781b      	ldrb	r3, [r3, #0]
+ 8003096:	005b      	lsls	r3, r3, #1
+ 8003098:	b2db      	uxtb	r3, r3
+ 800309a:	3305      	adds	r3, #5
+ 800309c:	b2da      	uxtb	r2, r3
+ 800309e:	68fb      	ldr	r3, [r7, #12]
+ 80030a0:	f883 20a4 	strb.w	r2, [r3, #164]	; 0xa4
 }
- 8002fac:	bf00      	nop
- 8002fae:	3710      	adds	r7, #16
- 8002fb0:	46bd      	mov	sp, r7
- 8002fb2:	bd80      	pop	{r7, pc}
+ 80030a4:	bf00      	nop
+ 80030a6:	3710      	adds	r7, #16
+ 80030a8:	46bd      	mov	sp, r7
+ 80030aa:	bd80      	pop	{r7, pc}
 
-08002fb4 <_ZN12request_type19function_04_handlerEPhi>:
+080030ac <_ZN12request_type19function_04_handlerEPhi>:
 void request_type::function_04_handler(byte *data, int length) //read input register
 {
- 8002fb4:	b580      	push	{r7, lr}
- 8002fb6:	b084      	sub	sp, #16
- 8002fb8:	af00      	add	r7, sp, #0
- 8002fba:	60f8      	str	r0, [r7, #12]
- 8002fbc:	60b9      	str	r1, [r7, #8]
- 8002fbe:	607a      	str	r2, [r7, #4]
+ 80030ac:	b580      	push	{r7, lr}
+ 80030ae:	b084      	sub	sp, #16
+ 80030b0:	af00      	add	r7, sp, #0
+ 80030b2:	60f8      	str	r0, [r7, #12]
+ 80030b4:	60b9      	str	r1, [r7, #8]
+ 80030b6:	607a      	str	r2, [r7, #4]
     //receive format:  [register_address: 2 bytes] [number of register: 1 byte]
     //total 3 bytes
     request_packet[0] = modbus_address;
- 8002fc0:	68fb      	ldr	r3, [r7, #12]
- 8002fc2:	2201      	movs	r2, #1
- 8002fc4:	711a      	strb	r2, [r3, #4]
-    request_packet[1] = 0x04;
- 8002fc6:	68fb      	ldr	r3, [r7, #12]
- 8002fc8:	2204      	movs	r2, #4
- 8002fca:	715a      	strb	r2, [r3, #5]
-    request_packet[2] = data[0];	start_address[0] = data[0];
- 8002fcc:	68bb      	ldr	r3, [r7, #8]
- 8002fce:	781a      	ldrb	r2, [r3, #0]
- 8002fd0:	68fb      	ldr	r3, [r7, #12]
- 8002fd2:	719a      	strb	r2, [r3, #6]
- 8002fd4:	68bb      	ldr	r3, [r7, #8]
- 8002fd6:	781a      	ldrb	r2, [r3, #0]
- 8002fd8:	68fb      	ldr	r3, [r7, #12]
- 8002fda:	701a      	strb	r2, [r3, #0]
-    request_packet[3] = data[1];	start_address[1] = data[1];
- 8002fdc:	68bb      	ldr	r3, [r7, #8]
- 8002fde:	785a      	ldrb	r2, [r3, #1]
- 8002fe0:	68fb      	ldr	r3, [r7, #12]
- 8002fe2:	71da      	strb	r2, [r3, #7]
- 8002fe4:	68bb      	ldr	r3, [r7, #8]
- 8002fe6:	785a      	ldrb	r2, [r3, #1]
- 8002fe8:	68fb      	ldr	r3, [r7, #12]
- 8002fea:	705a      	strb	r2, [r3, #1]
-    request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
- 8002fec:	68fb      	ldr	r3, [r7, #12]
- 8002fee:	2200      	movs	r2, #0
- 8002ff0:	721a      	strb	r2, [r3, #8]
-    request_packet[5] = (byte)data[2];
- 8002ff2:	68bb      	ldr	r3, [r7, #8]
- 8002ff4:	789a      	ldrb	r2, [r3, #2]
- 8002ff6:	68fb      	ldr	r3, [r7, #12]
- 8002ff8:	725a      	strb	r2, [r3, #9]
-    CRC_16(request_packet, 6, &request_packet[6]);
- 8002ffa:	68fb      	ldr	r3, [r7, #12]
- 8002ffc:	1d19      	adds	r1, r3, #4
- 8002ffe:	68fb      	ldr	r3, [r7, #12]
- 8003000:	330a      	adds	r3, #10
- 8003002:	2206      	movs	r2, #6
- 8003004:	68f8      	ldr	r0, [r7, #12]
- 8003006:	f000 f899 	bl	800313c <_ZN12request_type6CRC_16EPhhS0_>
-    request_length = 8;
- 800300a:	68fb      	ldr	r3, [r7, #12]
- 800300c:	2208      	movs	r2, #8
- 800300e:	f883 20a2 	strb.w	r2, [r3, #162]	; 0xa2
-    //calculate response length
-    response_length = (byte)(data[2] << 1) + 5; //multiple for 2 and plus 5
- 8003012:	68bb      	ldr	r3, [r7, #8]
- 8003014:	3302      	adds	r3, #2
- 8003016:	781b      	ldrb	r3, [r3, #0]
- 8003018:	005b      	lsls	r3, r3, #1
- 800301a:	b2db      	uxtb	r3, r3
- 800301c:	3305      	adds	r3, #5
- 800301e:	b2da      	uxtb	r2, r3
- 8003020:	68fb      	ldr	r3, [r7, #12]
- 8003022:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
-}
- 8003026:	bf00      	nop
- 8003028:	3710      	adds	r7, #16
- 800302a:	46bd      	mov	sp, r7
- 800302c:	bd80      	pop	{r7, pc}
-
-0800302e <_ZN12request_type19function_05_handlerEPhi>:
-void request_type::function_05_handler(byte *data, int length) //read coil status
-{
- 800302e:	b580      	push	{r7, lr}
- 8003030:	b084      	sub	sp, #16
- 8003032:	af00      	add	r7, sp, #0
- 8003034:	60f8      	str	r0, [r7, #12]
- 8003036:	60b9      	str	r1, [r7, #8]
- 8003038:	607a      	str	r2, [r7, #4]
-    //receive format:  [register_address: 2 bytes] [value of register: 1 byte(0 or 255)]
-    //total 3 bytes
-    request_packet[0] = modbus_address;
- 800303a:	68fb      	ldr	r3, [r7, #12]
- 800303c:	2201      	movs	r2, #1
- 800303e:	711a      	strb	r2, [r3, #4]
-    request_packet[1] = 0x05;
- 8003040:	68fb      	ldr	r3, [r7, #12]
- 8003042:	2205      	movs	r2, #5
- 8003044:	715a      	strb	r2, [r3, #5]
-    request_packet[2] = data[0];	start_address[0] = data[0];
- 8003046:	68bb      	ldr	r3, [r7, #8]
- 8003048:	781a      	ldrb	r2, [r3, #0]
- 800304a:	68fb      	ldr	r3, [r7, #12]
- 800304c:	719a      	strb	r2, [r3, #6]
- 800304e:	68bb      	ldr	r3, [r7, #8]
- 8003050:	781a      	ldrb	r2, [r3, #0]
- 8003052:	68fb      	ldr	r3, [r7, #12]
- 8003054:	701a      	strb	r2, [r3, #0]
-    request_packet[3] = data[1];	start_address[1] = data[1];
- 8003056:	68bb      	ldr	r3, [r7, #8]
- 8003058:	785a      	ldrb	r2, [r3, #1]
- 800305a:	68fb      	ldr	r3, [r7, #12]
- 800305c:	71da      	strb	r2, [r3, #7]
- 800305e:	68bb      	ldr	r3, [r7, #8]
- 8003060:	785a      	ldrb	r2, [r3, #1]
- 8003062:	68fb      	ldr	r3, [r7, #12]
- 8003064:	705a      	strb	r2, [r3, #1]
-    request_packet[4] = data[2]; 
- 8003066:	68bb      	ldr	r3, [r7, #8]
- 8003068:	789a      	ldrb	r2, [r3, #2]
- 800306a:	68fb      	ldr	r3, [r7, #12]
- 800306c:	721a      	strb	r2, [r3, #8]
-    request_packet[5] = 0x00;
- 800306e:	68fb      	ldr	r3, [r7, #12]
- 8003070:	2200      	movs	r2, #0
- 8003072:	725a      	strb	r2, [r3, #9]
-    CRC_16(request_packet, 6, &request_packet[6]);
- 8003074:	68fb      	ldr	r3, [r7, #12]
- 8003076:	1d19      	adds	r1, r3, #4
- 8003078:	68fb      	ldr	r3, [r7, #12]
- 800307a:	330a      	adds	r3, #10
- 800307c:	2206      	movs	r2, #6
- 800307e:	68f8      	ldr	r0, [r7, #12]
- 8003080:	f000 f85c 	bl	800313c <_ZN12request_type6CRC_16EPhhS0_>
-    request_length = 8;
- 8003084:	68fb      	ldr	r3, [r7, #12]
- 8003086:	2208      	movs	r2, #8
- 8003088:	f883 20a2 	strb.w	r2, [r3, #162]	; 0xa2
-    //calculate response length
-    response_length = 8;
- 800308c:	68fb      	ldr	r3, [r7, #12]
- 800308e:	2208      	movs	r2, #8
- 8003090:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
-}
- 8003094:	bf00      	nop
- 8003096:	3710      	adds	r7, #16
- 8003098:	46bd      	mov	sp, r7
- 800309a:	bd80      	pop	{r7, pc}
-
-0800309c <_ZN12request_type19function_10_handlerEPhi>:
-void request_type::function_10_handler(byte *data, int length) //read coil status
-{
- 800309c:	b580      	push	{r7, lr}
- 800309e:	b086      	sub	sp, #24
- 80030a0:	af00      	add	r7, sp, #0
- 80030a2:	60f8      	str	r0, [r7, #12]
- 80030a4:	60b9      	str	r1, [r7, #8]
- 80030a6:	607a      	str	r2, [r7, #4]
-    //receive format:  [register_address: 2 bytes] [number of register: 1 byte] [register value: number of registers x2 bytes]
-    //total 3 bytes
-    request_packet[0] = modbus_address;
- 80030a8:	68fb      	ldr	r3, [r7, #12]
- 80030aa:	2201      	movs	r2, #1
- 80030ac:	711a      	strb	r2, [r3, #4]
-    request_packet[1] = 0x10;
- 80030ae:	68fb      	ldr	r3, [r7, #12]
- 80030b0:	2210      	movs	r2, #16
- 80030b2:	715a      	strb	r2, [r3, #5]
-    request_packet[2] = data[0];	start_address[0] = data[0];
- 80030b4:	68bb      	ldr	r3, [r7, #8]
- 80030b6:	781a      	ldrb	r2, [r3, #0]
  80030b8:	68fb      	ldr	r3, [r7, #12]
- 80030ba:	719a      	strb	r2, [r3, #6]
- 80030bc:	68bb      	ldr	r3, [r7, #8]
- 80030be:	781a      	ldrb	r2, [r3, #0]
- 80030c0:	68fb      	ldr	r3, [r7, #12]
- 80030c2:	701a      	strb	r2, [r3, #0]
-    request_packet[3] = data[1];  start_address[1] = data[1];
+ 80030ba:	2201      	movs	r2, #1
+ 80030bc:	715a      	strb	r2, [r3, #5]
+    request_packet[1] = 0x04;
+ 80030be:	68fb      	ldr	r3, [r7, #12]
+ 80030c0:	2204      	movs	r2, #4
+ 80030c2:	719a      	strb	r2, [r3, #6]
+    request_packet[2] = data[0];	start_address[0] = data[0];
  80030c4:	68bb      	ldr	r3, [r7, #8]
- 80030c6:	785a      	ldrb	r2, [r3, #1]
+ 80030c6:	781a      	ldrb	r2, [r3, #0]
  80030c8:	68fb      	ldr	r3, [r7, #12]
  80030ca:	71da      	strb	r2, [r3, #7]
  80030cc:	68bb      	ldr	r3, [r7, #8]
- 80030ce:	785a      	ldrb	r2, [r3, #1]
+ 80030ce:	781a      	ldrb	r2, [r3, #0]
  80030d0:	68fb      	ldr	r3, [r7, #12]
- 80030d2:	705a      	strb	r2, [r3, #1]
+ 80030d2:	701a      	strb	r2, [r3, #0]
+    request_packet[3] = data[1];	start_address[1] = data[1];
+ 80030d4:	68bb      	ldr	r3, [r7, #8]
+ 80030d6:	785a      	ldrb	r2, [r3, #1]
+ 80030d8:	68fb      	ldr	r3, [r7, #12]
+ 80030da:	721a      	strb	r2, [r3, #8]
+ 80030dc:	68bb      	ldr	r3, [r7, #8]
+ 80030de:	785a      	ldrb	r2, [r3, #1]
+ 80030e0:	68fb      	ldr	r3, [r7, #12]
+ 80030e2:	705a      	strb	r2, [r3, #1]
     request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
- 80030d4:	68fb      	ldr	r3, [r7, #12]
- 80030d6:	2200      	movs	r2, #0
- 80030d8:	721a      	strb	r2, [r3, #8]
+ 80030e4:	68fb      	ldr	r3, [r7, #12]
+ 80030e6:	2200      	movs	r2, #0
+ 80030e8:	725a      	strb	r2, [r3, #9]
     request_packet[5] = (byte)data[2];
- 80030da:	68bb      	ldr	r3, [r7, #8]
- 80030dc:	789a      	ldrb	r2, [r3, #2]
- 80030de:	68fb      	ldr	r3, [r7, #12]
- 80030e0:	725a      	strb	r2, [r3, #9]
-    byte number_of_bytes = (byte)(data[2] << 1);
- 80030e2:	68bb      	ldr	r3, [r7, #8]
- 80030e4:	3302      	adds	r3, #2
- 80030e6:	781b      	ldrb	r3, [r3, #0]
- 80030e8:	005b      	lsls	r3, r3, #1
- 80030ea:	75fb      	strb	r3, [r7, #23]
-    request_packet[6] = number_of_bytes; //number of content bytes = number of registers x 2
- 80030ec:	68fb      	ldr	r3, [r7, #12]
- 80030ee:	7dfa      	ldrb	r2, [r7, #23]
+ 80030ea:	68bb      	ldr	r3, [r7, #8]
+ 80030ec:	789a      	ldrb	r2, [r3, #2]
+ 80030ee:	68fb      	ldr	r3, [r7, #12]
  80030f0:	729a      	strb	r2, [r3, #10]
-    memcpy(&request_packet[7], &data[3], number_of_bytes);
+    CRC_16(request_packet, 6, &request_packet[6]);
  80030f2:	68fb      	ldr	r3, [r7, #12]
- 80030f4:	f103 000b 	add.w	r0, r3, #11
- 80030f8:	68bb      	ldr	r3, [r7, #8]
- 80030fa:	3303      	adds	r3, #3
- 80030fc:	7dfa      	ldrb	r2, [r7, #23]
- 80030fe:	4619      	mov	r1, r3
- 8003100:	f000 f8e2 	bl	80032c8 <memcpy>
-    CRC_16(request_packet, number_of_bytes + 7, &request_packet[7 + number_of_bytes]);
- 8003104:	68fb      	ldr	r3, [r7, #12]
- 8003106:	1d19      	adds	r1, r3, #4
- 8003108:	7dfb      	ldrb	r3, [r7, #23]
- 800310a:	3307      	adds	r3, #7
- 800310c:	b2d8      	uxtb	r0, r3
- 800310e:	7dfb      	ldrb	r3, [r7, #23]
- 8003110:	3307      	adds	r3, #7
- 8003112:	68fa      	ldr	r2, [r7, #12]
- 8003114:	4413      	add	r3, r2
- 8003116:	3304      	adds	r3, #4
- 8003118:	4602      	mov	r2, r0
- 800311a:	68f8      	ldr	r0, [r7, #12]
- 800311c:	f000 f80e 	bl	800313c <_ZN12request_type6CRC_16EPhhS0_>
-    request_length = number_of_bytes + 9;
- 8003120:	7dfb      	ldrb	r3, [r7, #23]
- 8003122:	3309      	adds	r3, #9
- 8003124:	b2da      	uxtb	r2, r3
- 8003126:	68fb      	ldr	r3, [r7, #12]
- 8003128:	f883 20a2 	strb.w	r2, [r3, #162]	; 0xa2
+ 80030f4:	1d59      	adds	r1, r3, #5
+ 80030f6:	68fb      	ldr	r3, [r7, #12]
+ 80030f8:	330b      	adds	r3, #11
+ 80030fa:	2206      	movs	r2, #6
+ 80030fc:	68f8      	ldr	r0, [r7, #12]
+ 80030fe:	f000 f899 	bl	8003234 <_ZN12request_type6CRC_16EPhhS0_>
+    request_length = 8;
+ 8003102:	68fb      	ldr	r3, [r7, #12]
+ 8003104:	2208      	movs	r2, #8
+ 8003106:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
+    //calculate response length
+    response_length = (byte)(data[2] << 1) + 5; //multiple for 2 and plus 5
+ 800310a:	68bb      	ldr	r3, [r7, #8]
+ 800310c:	3302      	adds	r3, #2
+ 800310e:	781b      	ldrb	r3, [r3, #0]
+ 8003110:	005b      	lsls	r3, r3, #1
+ 8003112:	b2db      	uxtb	r3, r3
+ 8003114:	3305      	adds	r3, #5
+ 8003116:	b2da      	uxtb	r2, r3
+ 8003118:	68fb      	ldr	r3, [r7, #12]
+ 800311a:	f883 20a4 	strb.w	r2, [r3, #164]	; 0xa4
+}
+ 800311e:	bf00      	nop
+ 8003120:	3710      	adds	r7, #16
+ 8003122:	46bd      	mov	sp, r7
+ 8003124:	bd80      	pop	{r7, pc}
+
+08003126 <_ZN12request_type19function_05_handlerEPhi>:
+void request_type::function_05_handler(byte *data, int length) //read coil status
+{
+ 8003126:	b580      	push	{r7, lr}
+ 8003128:	b084      	sub	sp, #16
+ 800312a:	af00      	add	r7, sp, #0
+ 800312c:	60f8      	str	r0, [r7, #12]
+ 800312e:	60b9      	str	r1, [r7, #8]
+ 8003130:	607a      	str	r2, [r7, #4]
+    //receive format:  [register_address: 2 bytes] [value of register: 1 byte(0 or 255)]
+    //total 3 bytes
+    request_packet[0] = modbus_address;
+ 8003132:	68fb      	ldr	r3, [r7, #12]
+ 8003134:	2201      	movs	r2, #1
+ 8003136:	715a      	strb	r2, [r3, #5]
+    request_packet[1] = 0x05;
+ 8003138:	68fb      	ldr	r3, [r7, #12]
+ 800313a:	2205      	movs	r2, #5
+ 800313c:	719a      	strb	r2, [r3, #6]
+    request_packet[2] = data[0];	start_address[0] = data[0];
+ 800313e:	68bb      	ldr	r3, [r7, #8]
+ 8003140:	781a      	ldrb	r2, [r3, #0]
+ 8003142:	68fb      	ldr	r3, [r7, #12]
+ 8003144:	71da      	strb	r2, [r3, #7]
+ 8003146:	68bb      	ldr	r3, [r7, #8]
+ 8003148:	781a      	ldrb	r2, [r3, #0]
+ 800314a:	68fb      	ldr	r3, [r7, #12]
+ 800314c:	701a      	strb	r2, [r3, #0]
+    request_packet[3] = data[1];	start_address[1] = data[1];
+ 800314e:	68bb      	ldr	r3, [r7, #8]
+ 8003150:	785a      	ldrb	r2, [r3, #1]
+ 8003152:	68fb      	ldr	r3, [r7, #12]
+ 8003154:	721a      	strb	r2, [r3, #8]
+ 8003156:	68bb      	ldr	r3, [r7, #8]
+ 8003158:	785a      	ldrb	r2, [r3, #1]
+ 800315a:	68fb      	ldr	r3, [r7, #12]
+ 800315c:	705a      	strb	r2, [r3, #1]
+    request_packet[4] = data[2]; 
+ 800315e:	68bb      	ldr	r3, [r7, #8]
+ 8003160:	789a      	ldrb	r2, [r3, #2]
+ 8003162:	68fb      	ldr	r3, [r7, #12]
+ 8003164:	725a      	strb	r2, [r3, #9]
+    request_packet[5] = 0x00;
+ 8003166:	68fb      	ldr	r3, [r7, #12]
+ 8003168:	2200      	movs	r2, #0
+ 800316a:	729a      	strb	r2, [r3, #10]
+    CRC_16(request_packet, 6, &request_packet[6]);
+ 800316c:	68fb      	ldr	r3, [r7, #12]
+ 800316e:	1d59      	adds	r1, r3, #5
+ 8003170:	68fb      	ldr	r3, [r7, #12]
+ 8003172:	330b      	adds	r3, #11
+ 8003174:	2206      	movs	r2, #6
+ 8003176:	68f8      	ldr	r0, [r7, #12]
+ 8003178:	f000 f85c 	bl	8003234 <_ZN12request_type6CRC_16EPhhS0_>
+    request_length = 8;
+ 800317c:	68fb      	ldr	r3, [r7, #12]
+ 800317e:	2208      	movs	r2, #8
+ 8003180:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
     //calculate response length
     response_length = 8;
- 800312c:	68fb      	ldr	r3, [r7, #12]
- 800312e:	2208      	movs	r2, #8
- 8003130:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
+ 8003184:	68fb      	ldr	r3, [r7, #12]
+ 8003186:	2208      	movs	r2, #8
+ 8003188:	f883 20a4 	strb.w	r2, [r3, #164]	; 0xa4
 }
- 8003134:	bf00      	nop
- 8003136:	3718      	adds	r7, #24
- 8003138:	46bd      	mov	sp, r7
- 800313a:	bd80      	pop	{r7, pc}
+ 800318c:	bf00      	nop
+ 800318e:	3710      	adds	r7, #16
+ 8003190:	46bd      	mov	sp, r7
+ 8003192:	bd80      	pop	{r7, pc}
 
-0800313c <_ZN12request_type6CRC_16EPhhS0_>:
+08003194 <_ZN12request_type19function_10_handlerEPhi>:
+void request_type::function_10_handler(byte *data, int length) //read coil status
+{
+ 8003194:	b580      	push	{r7, lr}
+ 8003196:	b086      	sub	sp, #24
+ 8003198:	af00      	add	r7, sp, #0
+ 800319a:	60f8      	str	r0, [r7, #12]
+ 800319c:	60b9      	str	r1, [r7, #8]
+ 800319e:	607a      	str	r2, [r7, #4]
+    //receive format:  [register_address: 2 bytes] [number of register: 1 byte] [register value: number of registers x2 bytes]
+    //total 3 bytes
+    request_packet[0] = modbus_address;
+ 80031a0:	68fb      	ldr	r3, [r7, #12]
+ 80031a2:	2201      	movs	r2, #1
+ 80031a4:	715a      	strb	r2, [r3, #5]
+    request_packet[1] = 0x10;
+ 80031a6:	68fb      	ldr	r3, [r7, #12]
+ 80031a8:	2210      	movs	r2, #16
+ 80031aa:	719a      	strb	r2, [r3, #6]
+    request_packet[2] = data[0];	start_address[0] = data[0];
+ 80031ac:	68bb      	ldr	r3, [r7, #8]
+ 80031ae:	781a      	ldrb	r2, [r3, #0]
+ 80031b0:	68fb      	ldr	r3, [r7, #12]
+ 80031b2:	71da      	strb	r2, [r3, #7]
+ 80031b4:	68bb      	ldr	r3, [r7, #8]
+ 80031b6:	781a      	ldrb	r2, [r3, #0]
+ 80031b8:	68fb      	ldr	r3, [r7, #12]
+ 80031ba:	701a      	strb	r2, [r3, #0]
+    request_packet[3] = data[1];  start_address[1] = data[1];
+ 80031bc:	68bb      	ldr	r3, [r7, #8]
+ 80031be:	785a      	ldrb	r2, [r3, #1]
+ 80031c0:	68fb      	ldr	r3, [r7, #12]
+ 80031c2:	721a      	strb	r2, [r3, #8]
+ 80031c4:	68bb      	ldr	r3, [r7, #8]
+ 80031c6:	785a      	ldrb	r2, [r3, #1]
+ 80031c8:	68fb      	ldr	r3, [r7, #12]
+ 80031ca:	705a      	strb	r2, [r3, #1]
+    request_packet[4] = 0x00; //just in this case, the total of register cant overcome 255
+ 80031cc:	68fb      	ldr	r3, [r7, #12]
+ 80031ce:	2200      	movs	r2, #0
+ 80031d0:	725a      	strb	r2, [r3, #9]
+    request_packet[5] = (byte)data[2];
+ 80031d2:	68bb      	ldr	r3, [r7, #8]
+ 80031d4:	789a      	ldrb	r2, [r3, #2]
+ 80031d6:	68fb      	ldr	r3, [r7, #12]
+ 80031d8:	729a      	strb	r2, [r3, #10]
+    byte number_of_bytes = (byte)(data[2] << 1);
+ 80031da:	68bb      	ldr	r3, [r7, #8]
+ 80031dc:	3302      	adds	r3, #2
+ 80031de:	781b      	ldrb	r3, [r3, #0]
+ 80031e0:	005b      	lsls	r3, r3, #1
+ 80031e2:	75fb      	strb	r3, [r7, #23]
+    request_packet[6] = number_of_bytes; //number of content bytes = number of registers x 2
+ 80031e4:	68fb      	ldr	r3, [r7, #12]
+ 80031e6:	7dfa      	ldrb	r2, [r7, #23]
+ 80031e8:	72da      	strb	r2, [r3, #11]
+    memcpy(&request_packet[7], &data[3], number_of_bytes);
+ 80031ea:	68fb      	ldr	r3, [r7, #12]
+ 80031ec:	f103 000c 	add.w	r0, r3, #12
+ 80031f0:	68bb      	ldr	r3, [r7, #8]
+ 80031f2:	3303      	adds	r3, #3
+ 80031f4:	7dfa      	ldrb	r2, [r7, #23]
+ 80031f6:	4619      	mov	r1, r3
+ 80031f8:	f000 f8e8 	bl	80033cc <memcpy>
+    CRC_16(request_packet, number_of_bytes + 7, &request_packet[7 + number_of_bytes]);
+ 80031fc:	68fb      	ldr	r3, [r7, #12]
+ 80031fe:	1d59      	adds	r1, r3, #5
+ 8003200:	7dfb      	ldrb	r3, [r7, #23]
+ 8003202:	3307      	adds	r3, #7
+ 8003204:	b2d8      	uxtb	r0, r3
+ 8003206:	7dfb      	ldrb	r3, [r7, #23]
+ 8003208:	3307      	adds	r3, #7
+ 800320a:	68fa      	ldr	r2, [r7, #12]
+ 800320c:	4413      	add	r3, r2
+ 800320e:	3305      	adds	r3, #5
+ 8003210:	4602      	mov	r2, r0
+ 8003212:	68f8      	ldr	r0, [r7, #12]
+ 8003214:	f000 f80e 	bl	8003234 <_ZN12request_type6CRC_16EPhhS0_>
+    request_length = number_of_bytes + 9;
+ 8003218:	7dfb      	ldrb	r3, [r7, #23]
+ 800321a:	3309      	adds	r3, #9
+ 800321c:	b2da      	uxtb	r2, r3
+ 800321e:	68fb      	ldr	r3, [r7, #12]
+ 8003220:	f883 20a3 	strb.w	r2, [r3, #163]	; 0xa3
+    //calculate response length
+    response_length = 8;
+ 8003224:	68fb      	ldr	r3, [r7, #12]
+ 8003226:	2208      	movs	r2, #8
+ 8003228:	f883 20a4 	strb.w	r2, [r3, #164]	; 0xa4
+}
+ 800322c:	bf00      	nop
+ 800322e:	3718      	adds	r7, #24
+ 8003230:	46bd      	mov	sp, r7
+ 8003232:	bd80      	pop	{r7, pc}
+
+08003234 <_ZN12request_type6CRC_16EPhhS0_>:
 void request_type::CRC_16(byte* input, byte Length, byte* output)
 {
- 800313c:	b480      	push	{r7}
- 800313e:	b087      	sub	sp, #28
- 8003140:	af00      	add	r7, sp, #0
- 8003142:	60f8      	str	r0, [r7, #12]
- 8003144:	60b9      	str	r1, [r7, #8]
- 8003146:	603b      	str	r3, [r7, #0]
- 8003148:	4613      	mov	r3, r2
- 800314a:	71fb      	strb	r3, [r7, #7]
+ 8003234:	b480      	push	{r7}
+ 8003236:	b087      	sub	sp, #28
+ 8003238:	af00      	add	r7, sp, #0
+ 800323a:	60f8      	str	r0, [r7, #12]
+ 800323c:	60b9      	str	r1, [r7, #8]
+ 800323e:	603b      	str	r3, [r7, #0]
+ 8003240:	4613      	mov	r3, r2
+ 8003242:	71fb      	strb	r3, [r7, #7]
 	uint16_t reg_crc = 0xffff;
- 800314c:	f64f 73ff 	movw	r3, #65535	; 0xffff
- 8003150:	82fb      	strh	r3, [r7, #22]
+ 8003244:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 8003248:	82fb      	strh	r3, [r7, #22]
 	for(byte i = 0; i< Length; i++) {
- 8003152:	2300      	movs	r3, #0
- 8003154:	757b      	strb	r3, [r7, #21]
- 8003156:	7d7a      	ldrb	r2, [r7, #21]
- 8003158:	79fb      	ldrb	r3, [r7, #7]
- 800315a:	429a      	cmp	r2, r3
- 800315c:	d224      	bcs.n	80031a8 <_ZN12request_type6CRC_16EPhhS0_+0x6c>
+ 800324a:	2300      	movs	r3, #0
+ 800324c:	757b      	strb	r3, [r7, #21]
+ 800324e:	7d7a      	ldrb	r2, [r7, #21]
+ 8003250:	79fb      	ldrb	r3, [r7, #7]
+ 8003252:	429a      	cmp	r2, r3
+ 8003254:	d224      	bcs.n	80032a0 <_ZN12request_type6CRC_16EPhhS0_+0x6c>
 		reg_crc ^= input[i];
- 800315e:	7d7b      	ldrb	r3, [r7, #21]
- 8003160:	68ba      	ldr	r2, [r7, #8]
- 8003162:	4413      	add	r3, r2
- 8003164:	781b      	ldrb	r3, [r3, #0]
- 8003166:	b29a      	uxth	r2, r3
- 8003168:	8afb      	ldrh	r3, [r7, #22]
- 800316a:	4053      	eors	r3, r2
- 800316c:	82fb      	strh	r3, [r7, #22]
+ 8003256:	7d7b      	ldrb	r3, [r7, #21]
+ 8003258:	68ba      	ldr	r2, [r7, #8]
+ 800325a:	4413      	add	r3, r2
+ 800325c:	781b      	ldrb	r3, [r3, #0]
+ 800325e:	b29a      	uxth	r2, r3
+ 8003260:	8afb      	ldrh	r3, [r7, #22]
+ 8003262:	4053      	eors	r3, r2
+ 8003264:	82fb      	strh	r3, [r7, #22]
 		for(byte j = 0; j < 8; j++) {
- 800316e:	2300      	movs	r3, #0
- 8003170:	753b      	strb	r3, [r7, #20]
- 8003172:	7d3b      	ldrb	r3, [r7, #20]
- 8003174:	2b07      	cmp	r3, #7
- 8003176:	d813      	bhi.n	80031a0 <_ZN12request_type6CRC_16EPhhS0_+0x64>
+ 8003266:	2300      	movs	r3, #0
+ 8003268:	753b      	strb	r3, [r7, #20]
+ 800326a:	7d3b      	ldrb	r3, [r7, #20]
+ 800326c:	2b07      	cmp	r3, #7
+ 800326e:	d813      	bhi.n	8003298 <_ZN12request_type6CRC_16EPhhS0_+0x64>
 			if((reg_crc & 0x0001) == 1) reg_crc = (uint16_t)((reg_crc >> 1) ^ 0xA001);
- 8003178:	8afb      	ldrh	r3, [r7, #22]
- 800317a:	f003 0301 	and.w	r3, r3, #1
- 800317e:	2b00      	cmp	r3, #0
- 8003180:	d007      	beq.n	8003192 <_ZN12request_type6CRC_16EPhhS0_+0x56>
- 8003182:	8afb      	ldrh	r3, [r7, #22]
- 8003184:	105b      	asrs	r3, r3, #1
- 8003186:	b21a      	sxth	r2, r3
- 8003188:	4b0f      	ldr	r3, [pc, #60]	; (80031c8 <_ZN12request_type6CRC_16EPhhS0_+0x8c>)
- 800318a:	4053      	eors	r3, r2
- 800318c:	b21b      	sxth	r3, r3
- 800318e:	82fb      	strh	r3, [r7, #22]
- 8003190:	e002      	b.n	8003198 <_ZN12request_type6CRC_16EPhhS0_+0x5c>
+ 8003270:	8afb      	ldrh	r3, [r7, #22]
+ 8003272:	f003 0301 	and.w	r3, r3, #1
+ 8003276:	2b00      	cmp	r3, #0
+ 8003278:	d007      	beq.n	800328a <_ZN12request_type6CRC_16EPhhS0_+0x56>
+ 800327a:	8afb      	ldrh	r3, [r7, #22]
+ 800327c:	105b      	asrs	r3, r3, #1
+ 800327e:	b21a      	sxth	r2, r3
+ 8003280:	4b0f      	ldr	r3, [pc, #60]	; (80032c0 <_ZN12request_type6CRC_16EPhhS0_+0x8c>)
+ 8003282:	4053      	eors	r3, r2
+ 8003284:	b21b      	sxth	r3, r3
+ 8003286:	82fb      	strh	r3, [r7, #22]
+ 8003288:	e002      	b.n	8003290 <_ZN12request_type6CRC_16EPhhS0_+0x5c>
 			else reg_crc = (uint16_t)(reg_crc >> 1);
- 8003192:	8afb      	ldrh	r3, [r7, #22]
- 8003194:	105b      	asrs	r3, r3, #1
- 8003196:	82fb      	strh	r3, [r7, #22]
+ 800328a:	8afb      	ldrh	r3, [r7, #22]
+ 800328c:	105b      	asrs	r3, r3, #1
+ 800328e:	82fb      	strh	r3, [r7, #22]
 		for(byte j = 0; j < 8; j++) {
- 8003198:	7d3b      	ldrb	r3, [r7, #20]
- 800319a:	3301      	adds	r3, #1
- 800319c:	753b      	strb	r3, [r7, #20]
- 800319e:	e7e8      	b.n	8003172 <_ZN12request_type6CRC_16EPhhS0_+0x36>
+ 8003290:	7d3b      	ldrb	r3, [r7, #20]
+ 8003292:	3301      	adds	r3, #1
+ 8003294:	753b      	strb	r3, [r7, #20]
+ 8003296:	e7e8      	b.n	800326a <_ZN12request_type6CRC_16EPhhS0_+0x36>
 	for(byte i = 0; i< Length; i++) {
- 80031a0:	7d7b      	ldrb	r3, [r7, #21]
- 80031a2:	3301      	adds	r3, #1
- 80031a4:	757b      	strb	r3, [r7, #21]
- 80031a6:	e7d6      	b.n	8003156 <_ZN12request_type6CRC_16EPhhS0_+0x1a>
+ 8003298:	7d7b      	ldrb	r3, [r7, #21]
+ 800329a:	3301      	adds	r3, #1
+ 800329c:	757b      	strb	r3, [r7, #21]
+ 800329e:	e7d6      	b.n	800324e <_ZN12request_type6CRC_16EPhhS0_+0x1a>
 		}
 	}
 	output[1] = (byte)((reg_crc >> 8) & 0xff);
- 80031a8:	8afb      	ldrh	r3, [r7, #22]
- 80031aa:	0a1b      	lsrs	r3, r3, #8
- 80031ac:	b29a      	uxth	r2, r3
- 80031ae:	683b      	ldr	r3, [r7, #0]
- 80031b0:	3301      	adds	r3, #1
- 80031b2:	b2d2      	uxtb	r2, r2
- 80031b4:	701a      	strb	r2, [r3, #0]
+ 80032a0:	8afb      	ldrh	r3, [r7, #22]
+ 80032a2:	0a1b      	lsrs	r3, r3, #8
+ 80032a4:	b29a      	uxth	r2, r3
+ 80032a6:	683b      	ldr	r3, [r7, #0]
+ 80032a8:	3301      	adds	r3, #1
+ 80032aa:	b2d2      	uxtb	r2, r2
+ 80032ac:	701a      	strb	r2, [r3, #0]
 	output[0] = (byte)(reg_crc & 0xff);	
- 80031b6:	8afb      	ldrh	r3, [r7, #22]
- 80031b8:	b2da      	uxtb	r2, r3
- 80031ba:	683b      	ldr	r3, [r7, #0]
- 80031bc:	701a      	strb	r2, [r3, #0]
+ 80032ae:	8afb      	ldrh	r3, [r7, #22]
+ 80032b0:	b2da      	uxtb	r2, r3
+ 80032b2:	683b      	ldr	r3, [r7, #0]
+ 80032b4:	701a      	strb	r2, [r3, #0]
 }
- 80031be:	bf00      	nop
- 80031c0:	371c      	adds	r7, #28
- 80031c2:	46bd      	mov	sp, r7
- 80031c4:	bc80      	pop	{r7}
- 80031c6:	4770      	bx	lr
- 80031c8:	ffffa001 	.word	0xffffa001
+ 80032b6:	bf00      	nop
+ 80032b8:	371c      	adds	r7, #28
+ 80032ba:	46bd      	mov	sp, r7
+ 80032bc:	bc80      	pop	{r7}
+ 80032be:	4770      	bx	lr
+ 80032c0:	ffffa001 	.word	0xffffa001
 
-080031cc <_ZN12request_type13is_data_validEv>:
+080032c4 <_ZN12request_type13is_data_validEv>:
 bool request_type::is_data_valid()
 {
- 80031cc:	b580      	push	{r7, lr}
- 80031ce:	b084      	sub	sp, #16
- 80031d0:	af00      	add	r7, sp, #0
- 80031d2:	6078      	str	r0, [r7, #4]
-	byte temper_check[2];
-	CRC_16(response_packet, response_length, temper_check);
- 80031d4:	687b      	ldr	r3, [r7, #4]
- 80031d6:	f103 0122 	add.w	r1, r3, #34	; 0x22
- 80031da:	687b      	ldr	r3, [r7, #4]
- 80031dc:	f893 20a3 	ldrb.w	r2, [r3, #163]	; 0xa3
- 80031e0:	f107 030c 	add.w	r3, r7, #12
- 80031e4:	6878      	ldr	r0, [r7, #4]
- 80031e6:	f7ff ffa9 	bl	800313c <_ZN12request_type6CRC_16EPhhS0_>
-	return ((temper_check[0] == 0) && (temper_check[1] == 0))?true:false;
- 80031ea:	7b3b      	ldrb	r3, [r7, #12]
- 80031ec:	2b00      	cmp	r3, #0
- 80031ee:	d104      	bne.n	80031fa <_ZN12request_type13is_data_validEv+0x2e>
- 80031f0:	7b7b      	ldrb	r3, [r7, #13]
- 80031f2:	2b00      	cmp	r3, #0
- 80031f4:	d101      	bne.n	80031fa <_ZN12request_type13is_data_validEv+0x2e>
- 80031f6:	2301      	movs	r3, #1
- 80031f8:	e000      	b.n	80031fc <_ZN12request_type13is_data_validEv+0x30>
- 80031fa:	2300      	movs	r3, #0
+ 80032c4:	b580      	push	{r7, lr}
+ 80032c6:	b084      	sub	sp, #16
+ 80032c8:	af00      	add	r7, sp, #0
+ 80032ca:	6078      	str	r0, [r7, #4]
+	if (is_data_received == true){
+ 80032cc:	687b      	ldr	r3, [r7, #4]
+ 80032ce:	789b      	ldrb	r3, [r3, #2]
+ 80032d0:	2b00      	cmp	r3, #0
+ 80032d2:	d014      	beq.n	80032fe <_ZN12request_type13is_data_validEv+0x3a>
+		byte temper_check[2];
+		CRC_16(response_packet, response_length, temper_check);
+ 80032d4:	687b      	ldr	r3, [r7, #4]
+ 80032d6:	f103 0123 	add.w	r1, r3, #35	; 0x23
+ 80032da:	687b      	ldr	r3, [r7, #4]
+ 80032dc:	f893 20a4 	ldrb.w	r2, [r3, #164]	; 0xa4
+ 80032e0:	f107 030c 	add.w	r3, r7, #12
+ 80032e4:	6878      	ldr	r0, [r7, #4]
+ 80032e6:	f7ff ffa5 	bl	8003234 <_ZN12request_type6CRC_16EPhhS0_>
+		return ((temper_check[0] == 0) && (temper_check[1] == 0))?true:false;
+ 80032ea:	7b3b      	ldrb	r3, [r7, #12]
+ 80032ec:	2b00      	cmp	r3, #0
+ 80032ee:	d104      	bne.n	80032fa <_ZN12request_type13is_data_validEv+0x36>
+ 80032f0:	7b7b      	ldrb	r3, [r7, #13]
+ 80032f2:	2b00      	cmp	r3, #0
+ 80032f4:	d101      	bne.n	80032fa <_ZN12request_type13is_data_validEv+0x36>
+ 80032f6:	2301      	movs	r3, #1
+ 80032f8:	e002      	b.n	8003300 <_ZN12request_type13is_data_validEv+0x3c>
+ 80032fa:	2300      	movs	r3, #0
+ 80032fc:	e000      	b.n	8003300 <_ZN12request_type13is_data_validEv+0x3c>
+	}else{
+		return false;
+ 80032fe:	2300      	movs	r3, #0
+	}
+
 }
- 80031fc:	4618      	mov	r0, r3
- 80031fe:	3710      	adds	r7, #16
- 8003200:	46bd      	mov	sp, r7
- 8003202:	bd80      	pop	{r7, pc}
+ 8003300:	4618      	mov	r0, r3
+ 8003302:	3710      	adds	r7, #16
+ 8003304:	46bd      	mov	sp, r7
+ 8003306:	bd80      	pop	{r7, pc}
 
-08003204 <_ZdaPv>:
- 8003204:	f000 b81c 	b.w	8003240 <_ZdlPv>
+08003308 <_ZdaPv>:
+ 8003308:	f000 b81c 	b.w	8003344 <_ZdlPv>
 
-08003208 <_Znaj>:
- 8003208:	f000 b800 	b.w	800320c <_Znwj>
+0800330c <_Znaj>:
+ 800330c:	f000 b800 	b.w	8003310 <_Znwj>
 
-0800320c <_Znwj>:
- 800320c:	b510      	push	{r4, lr}
- 800320e:	2800      	cmp	r0, #0
- 8003210:	bf14      	ite	ne
- 8003212:	4604      	movne	r4, r0
- 8003214:	2401      	moveq	r4, #1
- 8003216:	4620      	mov	r0, r4
- 8003218:	f000 f846 	bl	80032a8 <malloc>
- 800321c:	b930      	cbnz	r0, 800322c <_Znwj+0x20>
- 800321e:	f000 f807 	bl	8003230 <_ZSt15get_new_handlerv>
- 8003222:	b908      	cbnz	r0, 8003228 <_Znwj+0x1c>
- 8003224:	f000 f80e 	bl	8003244 <abort>
- 8003228:	4780      	blx	r0
- 800322a:	e7f4      	b.n	8003216 <_Znwj+0xa>
- 800322c:	bd10      	pop	{r4, pc}
+08003310 <_Znwj>:
+ 8003310:	b510      	push	{r4, lr}
+ 8003312:	2800      	cmp	r0, #0
+ 8003314:	bf14      	ite	ne
+ 8003316:	4604      	movne	r4, r0
+ 8003318:	2401      	moveq	r4, #1
+ 800331a:	4620      	mov	r0, r4
+ 800331c:	f000 f846 	bl	80033ac <malloc>
+ 8003320:	b930      	cbnz	r0, 8003330 <_Znwj+0x20>
+ 8003322:	f000 f807 	bl	8003334 <_ZSt15get_new_handlerv>
+ 8003326:	b908      	cbnz	r0, 800332c <_Znwj+0x1c>
+ 8003328:	f000 f80e 	bl	8003348 <abort>
+ 800332c:	4780      	blx	r0
+ 800332e:	e7f4      	b.n	800331a <_Znwj+0xa>
+ 8003330:	bd10      	pop	{r4, pc}
 	...
 
-08003230 <_ZSt15get_new_handlerv>:
- 8003230:	4b02      	ldr	r3, [pc, #8]	; (800323c <_ZSt15get_new_handlerv+0xc>)
- 8003232:	6818      	ldr	r0, [r3, #0]
- 8003234:	f3bf 8f5b 	dmb	ish
- 8003238:	4770      	bx	lr
- 800323a:	bf00      	nop
- 800323c:	20000388 	.word	0x20000388
+08003334 <_ZSt15get_new_handlerv>:
+ 8003334:	4b02      	ldr	r3, [pc, #8]	; (8003340 <_ZSt15get_new_handlerv+0xc>)
+ 8003336:	6818      	ldr	r0, [r3, #0]
+ 8003338:	f3bf 8f5b 	dmb	ish
+ 800333c:	4770      	bx	lr
+ 800333e:	bf00      	nop
+ 8003340:	2000038c 	.word	0x2000038c
 
-08003240 <_ZdlPv>:
- 8003240:	f000 b83a 	b.w	80032b8 <free>
+08003344 <_ZdlPv>:
+ 8003344:	f000 b83a 	b.w	80033bc <free>
 
-08003244 <abort>:
- 8003244:	b508      	push	{r3, lr}
- 8003246:	2006      	movs	r0, #6
- 8003248:	f000 f930 	bl	80034ac <raise>
- 800324c:	2001      	movs	r0, #1
- 800324e:	f7fd faec 	bl	800082a <_exit>
+08003348 <abort>:
+ 8003348:	b508      	push	{r3, lr}
+ 800334a:	2006      	movs	r0, #6
+ 800334c:	f000 f930 	bl	80035b0 <raise>
+ 8003350:	2001      	movs	r0, #1
+ 8003352:	f7fd fa6a 	bl	800082a <_exit>
 	...
 
-08003254 <__errno>:
- 8003254:	4b01      	ldr	r3, [pc, #4]	; (800325c <__errno+0x8>)
- 8003256:	6818      	ldr	r0, [r3, #0]
- 8003258:	4770      	bx	lr
- 800325a:	bf00      	nop
- 800325c:	2000000c 	.word	0x2000000c
+08003358 <__errno>:
+ 8003358:	4b01      	ldr	r3, [pc, #4]	; (8003360 <__errno+0x8>)
+ 800335a:	6818      	ldr	r0, [r3, #0]
+ 800335c:	4770      	bx	lr
+ 800335e:	bf00      	nop
+ 8003360:	2000000c 	.word	0x2000000c
 
-08003260 <__libc_init_array>:
- 8003260:	b570      	push	{r4, r5, r6, lr}
- 8003262:	2500      	movs	r5, #0
- 8003264:	4e0c      	ldr	r6, [pc, #48]	; (8003298 <__libc_init_array+0x38>)
- 8003266:	4c0d      	ldr	r4, [pc, #52]	; (800329c <__libc_init_array+0x3c>)
- 8003268:	1ba4      	subs	r4, r4, r6
- 800326a:	10a4      	asrs	r4, r4, #2
- 800326c:	42a5      	cmp	r5, r4
- 800326e:	d109      	bne.n	8003284 <__libc_init_array+0x24>
- 8003270:	f000 f93a 	bl	80034e8 <_init>
- 8003274:	2500      	movs	r5, #0
- 8003276:	4e0a      	ldr	r6, [pc, #40]	; (80032a0 <__libc_init_array+0x40>)
- 8003278:	4c0a      	ldr	r4, [pc, #40]	; (80032a4 <__libc_init_array+0x44>)
- 800327a:	1ba4      	subs	r4, r4, r6
- 800327c:	10a4      	asrs	r4, r4, #2
- 800327e:	42a5      	cmp	r5, r4
- 8003280:	d105      	bne.n	800328e <__libc_init_array+0x2e>
- 8003282:	bd70      	pop	{r4, r5, r6, pc}
- 8003284:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
- 8003288:	4798      	blx	r3
- 800328a:	3501      	adds	r5, #1
- 800328c:	e7ee      	b.n	800326c <__libc_init_array+0xc>
- 800328e:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
- 8003292:	4798      	blx	r3
- 8003294:	3501      	adds	r5, #1
- 8003296:	e7f2      	b.n	800327e <__libc_init_array+0x1e>
- 8003298:	0800352c 	.word	0x0800352c
- 800329c:	0800352c 	.word	0x0800352c
- 80032a0:	0800352c 	.word	0x0800352c
- 80032a4:	0800353c 	.word	0x0800353c
+08003364 <__libc_init_array>:
+ 8003364:	b570      	push	{r4, r5, r6, lr}
+ 8003366:	2500      	movs	r5, #0
+ 8003368:	4e0c      	ldr	r6, [pc, #48]	; (800339c <__libc_init_array+0x38>)
+ 800336a:	4c0d      	ldr	r4, [pc, #52]	; (80033a0 <__libc_init_array+0x3c>)
+ 800336c:	1ba4      	subs	r4, r4, r6
+ 800336e:	10a4      	asrs	r4, r4, #2
+ 8003370:	42a5      	cmp	r5, r4
+ 8003372:	d109      	bne.n	8003388 <__libc_init_array+0x24>
+ 8003374:	f000 f93a 	bl	80035ec <_init>
+ 8003378:	2500      	movs	r5, #0
+ 800337a:	4e0a      	ldr	r6, [pc, #40]	; (80033a4 <__libc_init_array+0x40>)
+ 800337c:	4c0a      	ldr	r4, [pc, #40]	; (80033a8 <__libc_init_array+0x44>)
+ 800337e:	1ba4      	subs	r4, r4, r6
+ 8003380:	10a4      	asrs	r4, r4, #2
+ 8003382:	42a5      	cmp	r5, r4
+ 8003384:	d105      	bne.n	8003392 <__libc_init_array+0x2e>
+ 8003386:	bd70      	pop	{r4, r5, r6, pc}
+ 8003388:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+ 800338c:	4798      	blx	r3
+ 800338e:	3501      	adds	r5, #1
+ 8003390:	e7ee      	b.n	8003370 <__libc_init_array+0xc>
+ 8003392:	f856 3025 	ldr.w	r3, [r6, r5, lsl #2]
+ 8003396:	4798      	blx	r3
+ 8003398:	3501      	adds	r5, #1
+ 800339a:	e7f2      	b.n	8003382 <__libc_init_array+0x1e>
+ 800339c:	08003630 	.word	0x08003630
+ 80033a0:	08003630 	.word	0x08003630
+ 80033a4:	08003630 	.word	0x08003630
+ 80033a8:	08003640 	.word	0x08003640
 
-080032a8 <malloc>:
- 80032a8:	4b02      	ldr	r3, [pc, #8]	; (80032b4 <malloc+0xc>)
- 80032aa:	4601      	mov	r1, r0
- 80032ac:	6818      	ldr	r0, [r3, #0]
- 80032ae:	f000 b86b 	b.w	8003388 <_malloc_r>
- 80032b2:	bf00      	nop
- 80032b4:	2000000c 	.word	0x2000000c
+080033ac <malloc>:
+ 80033ac:	4b02      	ldr	r3, [pc, #8]	; (80033b8 <malloc+0xc>)
+ 80033ae:	4601      	mov	r1, r0
+ 80033b0:	6818      	ldr	r0, [r3, #0]
+ 80033b2:	f000 b86b 	b.w	800348c <_malloc_r>
+ 80033b6:	bf00      	nop
+ 80033b8:	2000000c 	.word	0x2000000c
 
-080032b8 <free>:
- 80032b8:	4b02      	ldr	r3, [pc, #8]	; (80032c4 <free+0xc>)
- 80032ba:	4601      	mov	r1, r0
- 80032bc:	6818      	ldr	r0, [r3, #0]
- 80032be:	f000 b817 	b.w	80032f0 <_free_r>
- 80032c2:	bf00      	nop
- 80032c4:	2000000c 	.word	0x2000000c
+080033bc <free>:
+ 80033bc:	4b02      	ldr	r3, [pc, #8]	; (80033c8 <free+0xc>)
+ 80033be:	4601      	mov	r1, r0
+ 80033c0:	6818      	ldr	r0, [r3, #0]
+ 80033c2:	f000 b817 	b.w	80033f4 <_free_r>
+ 80033c6:	bf00      	nop
+ 80033c8:	2000000c 	.word	0x2000000c
 
-080032c8 <memcpy>:
- 80032c8:	b510      	push	{r4, lr}
- 80032ca:	1e43      	subs	r3, r0, #1
- 80032cc:	440a      	add	r2, r1
- 80032ce:	4291      	cmp	r1, r2
- 80032d0:	d100      	bne.n	80032d4 <memcpy+0xc>
- 80032d2:	bd10      	pop	{r4, pc}
- 80032d4:	f811 4b01 	ldrb.w	r4, [r1], #1
- 80032d8:	f803 4f01 	strb.w	r4, [r3, #1]!
- 80032dc:	e7f7      	b.n	80032ce <memcpy+0x6>
+080033cc <memcpy>:
+ 80033cc:	b510      	push	{r4, lr}
+ 80033ce:	1e43      	subs	r3, r0, #1
+ 80033d0:	440a      	add	r2, r1
+ 80033d2:	4291      	cmp	r1, r2
+ 80033d4:	d100      	bne.n	80033d8 <memcpy+0xc>
+ 80033d6:	bd10      	pop	{r4, pc}
+ 80033d8:	f811 4b01 	ldrb.w	r4, [r1], #1
+ 80033dc:	f803 4f01 	strb.w	r4, [r3, #1]!
+ 80033e0:	e7f7      	b.n	80033d2 <memcpy+0x6>
 
-080032de <memset>:
- 80032de:	4603      	mov	r3, r0
- 80032e0:	4402      	add	r2, r0
- 80032e2:	4293      	cmp	r3, r2
- 80032e4:	d100      	bne.n	80032e8 <memset+0xa>
- 80032e6:	4770      	bx	lr
- 80032e8:	f803 1b01 	strb.w	r1, [r3], #1
- 80032ec:	e7f9      	b.n	80032e2 <memset+0x4>
+080033e2 <memset>:
+ 80033e2:	4603      	mov	r3, r0
+ 80033e4:	4402      	add	r2, r0
+ 80033e6:	4293      	cmp	r3, r2
+ 80033e8:	d100      	bne.n	80033ec <memset+0xa>
+ 80033ea:	4770      	bx	lr
+ 80033ec:	f803 1b01 	strb.w	r1, [r3], #1
+ 80033f0:	e7f9      	b.n	80033e6 <memset+0x4>
 	...
 
-080032f0 <_free_r>:
- 80032f0:	b538      	push	{r3, r4, r5, lr}
- 80032f2:	4605      	mov	r5, r0
- 80032f4:	2900      	cmp	r1, #0
- 80032f6:	d043      	beq.n	8003380 <_free_r+0x90>
- 80032f8:	f851 3c04 	ldr.w	r3, [r1, #-4]
- 80032fc:	1f0c      	subs	r4, r1, #4
- 80032fe:	2b00      	cmp	r3, #0
- 8003300:	bfb8      	it	lt
- 8003302:	18e4      	addlt	r4, r4, r3
- 8003304:	f000 f8ee 	bl	80034e4 <__malloc_lock>
- 8003308:	4a1e      	ldr	r2, [pc, #120]	; (8003384 <_free_r+0x94>)
- 800330a:	6813      	ldr	r3, [r2, #0]
- 800330c:	4610      	mov	r0, r2
- 800330e:	b933      	cbnz	r3, 800331e <_free_r+0x2e>
- 8003310:	6063      	str	r3, [r4, #4]
- 8003312:	6014      	str	r4, [r2, #0]
- 8003314:	4628      	mov	r0, r5
- 8003316:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
- 800331a:	f000 b8e4 	b.w	80034e6 <__malloc_unlock>
- 800331e:	42a3      	cmp	r3, r4
- 8003320:	d90b      	bls.n	800333a <_free_r+0x4a>
- 8003322:	6821      	ldr	r1, [r4, #0]
- 8003324:	1862      	adds	r2, r4, r1
- 8003326:	4293      	cmp	r3, r2
- 8003328:	bf01      	itttt	eq
- 800332a:	681a      	ldreq	r2, [r3, #0]
- 800332c:	685b      	ldreq	r3, [r3, #4]
- 800332e:	1852      	addeq	r2, r2, r1
- 8003330:	6022      	streq	r2, [r4, #0]
- 8003332:	6063      	str	r3, [r4, #4]
- 8003334:	6004      	str	r4, [r0, #0]
- 8003336:	e7ed      	b.n	8003314 <_free_r+0x24>
- 8003338:	4613      	mov	r3, r2
- 800333a:	685a      	ldr	r2, [r3, #4]
- 800333c:	b10a      	cbz	r2, 8003342 <_free_r+0x52>
- 800333e:	42a2      	cmp	r2, r4
- 8003340:	d9fa      	bls.n	8003338 <_free_r+0x48>
- 8003342:	6819      	ldr	r1, [r3, #0]
- 8003344:	1858      	adds	r0, r3, r1
- 8003346:	42a0      	cmp	r0, r4
- 8003348:	d10b      	bne.n	8003362 <_free_r+0x72>
- 800334a:	6820      	ldr	r0, [r4, #0]
- 800334c:	4401      	add	r1, r0
- 800334e:	1858      	adds	r0, r3, r1
- 8003350:	4282      	cmp	r2, r0
- 8003352:	6019      	str	r1, [r3, #0]
- 8003354:	d1de      	bne.n	8003314 <_free_r+0x24>
- 8003356:	6810      	ldr	r0, [r2, #0]
- 8003358:	6852      	ldr	r2, [r2, #4]
- 800335a:	4401      	add	r1, r0
- 800335c:	6019      	str	r1, [r3, #0]
- 800335e:	605a      	str	r2, [r3, #4]
- 8003360:	e7d8      	b.n	8003314 <_free_r+0x24>
- 8003362:	d902      	bls.n	800336a <_free_r+0x7a>
- 8003364:	230c      	movs	r3, #12
- 8003366:	602b      	str	r3, [r5, #0]
- 8003368:	e7d4      	b.n	8003314 <_free_r+0x24>
- 800336a:	6820      	ldr	r0, [r4, #0]
- 800336c:	1821      	adds	r1, r4, r0
- 800336e:	428a      	cmp	r2, r1
- 8003370:	bf01      	itttt	eq
- 8003372:	6811      	ldreq	r1, [r2, #0]
- 8003374:	6852      	ldreq	r2, [r2, #4]
- 8003376:	1809      	addeq	r1, r1, r0
- 8003378:	6021      	streq	r1, [r4, #0]
- 800337a:	6062      	str	r2, [r4, #4]
- 800337c:	605c      	str	r4, [r3, #4]
- 800337e:	e7c9      	b.n	8003314 <_free_r+0x24>
- 8003380:	bd38      	pop	{r3, r4, r5, pc}
- 8003382:	bf00      	nop
- 8003384:	2000038c 	.word	0x2000038c
+080033f4 <_free_r>:
+ 80033f4:	b538      	push	{r3, r4, r5, lr}
+ 80033f6:	4605      	mov	r5, r0
+ 80033f8:	2900      	cmp	r1, #0
+ 80033fa:	d043      	beq.n	8003484 <_free_r+0x90>
+ 80033fc:	f851 3c04 	ldr.w	r3, [r1, #-4]
+ 8003400:	1f0c      	subs	r4, r1, #4
+ 8003402:	2b00      	cmp	r3, #0
+ 8003404:	bfb8      	it	lt
+ 8003406:	18e4      	addlt	r4, r4, r3
+ 8003408:	f000 f8ee 	bl	80035e8 <__malloc_lock>
+ 800340c:	4a1e      	ldr	r2, [pc, #120]	; (8003488 <_free_r+0x94>)
+ 800340e:	6813      	ldr	r3, [r2, #0]
+ 8003410:	4610      	mov	r0, r2
+ 8003412:	b933      	cbnz	r3, 8003422 <_free_r+0x2e>
+ 8003414:	6063      	str	r3, [r4, #4]
+ 8003416:	6014      	str	r4, [r2, #0]
+ 8003418:	4628      	mov	r0, r5
+ 800341a:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+ 800341e:	f000 b8e4 	b.w	80035ea <__malloc_unlock>
+ 8003422:	42a3      	cmp	r3, r4
+ 8003424:	d90b      	bls.n	800343e <_free_r+0x4a>
+ 8003426:	6821      	ldr	r1, [r4, #0]
+ 8003428:	1862      	adds	r2, r4, r1
+ 800342a:	4293      	cmp	r3, r2
+ 800342c:	bf01      	itttt	eq
+ 800342e:	681a      	ldreq	r2, [r3, #0]
+ 8003430:	685b      	ldreq	r3, [r3, #4]
+ 8003432:	1852      	addeq	r2, r2, r1
+ 8003434:	6022      	streq	r2, [r4, #0]
+ 8003436:	6063      	str	r3, [r4, #4]
+ 8003438:	6004      	str	r4, [r0, #0]
+ 800343a:	e7ed      	b.n	8003418 <_free_r+0x24>
+ 800343c:	4613      	mov	r3, r2
+ 800343e:	685a      	ldr	r2, [r3, #4]
+ 8003440:	b10a      	cbz	r2, 8003446 <_free_r+0x52>
+ 8003442:	42a2      	cmp	r2, r4
+ 8003444:	d9fa      	bls.n	800343c <_free_r+0x48>
+ 8003446:	6819      	ldr	r1, [r3, #0]
+ 8003448:	1858      	adds	r0, r3, r1
+ 800344a:	42a0      	cmp	r0, r4
+ 800344c:	d10b      	bne.n	8003466 <_free_r+0x72>
+ 800344e:	6820      	ldr	r0, [r4, #0]
+ 8003450:	4401      	add	r1, r0
+ 8003452:	1858      	adds	r0, r3, r1
+ 8003454:	4282      	cmp	r2, r0
+ 8003456:	6019      	str	r1, [r3, #0]
+ 8003458:	d1de      	bne.n	8003418 <_free_r+0x24>
+ 800345a:	6810      	ldr	r0, [r2, #0]
+ 800345c:	6852      	ldr	r2, [r2, #4]
+ 800345e:	4401      	add	r1, r0
+ 8003460:	6019      	str	r1, [r3, #0]
+ 8003462:	605a      	str	r2, [r3, #4]
+ 8003464:	e7d8      	b.n	8003418 <_free_r+0x24>
+ 8003466:	d902      	bls.n	800346e <_free_r+0x7a>
+ 8003468:	230c      	movs	r3, #12
+ 800346a:	602b      	str	r3, [r5, #0]
+ 800346c:	e7d4      	b.n	8003418 <_free_r+0x24>
+ 800346e:	6820      	ldr	r0, [r4, #0]
+ 8003470:	1821      	adds	r1, r4, r0
+ 8003472:	428a      	cmp	r2, r1
+ 8003474:	bf01      	itttt	eq
+ 8003476:	6811      	ldreq	r1, [r2, #0]
+ 8003478:	6852      	ldreq	r2, [r2, #4]
+ 800347a:	1809      	addeq	r1, r1, r0
+ 800347c:	6021      	streq	r1, [r4, #0]
+ 800347e:	6062      	str	r2, [r4, #4]
+ 8003480:	605c      	str	r4, [r3, #4]
+ 8003482:	e7c9      	b.n	8003418 <_free_r+0x24>
+ 8003484:	bd38      	pop	{r3, r4, r5, pc}
+ 8003486:	bf00      	nop
+ 8003488:	20000390 	.word	0x20000390
 
-08003388 <_malloc_r>:
- 8003388:	b570      	push	{r4, r5, r6, lr}
- 800338a:	1ccd      	adds	r5, r1, #3
- 800338c:	f025 0503 	bic.w	r5, r5, #3
- 8003390:	3508      	adds	r5, #8
- 8003392:	2d0c      	cmp	r5, #12
- 8003394:	bf38      	it	cc
- 8003396:	250c      	movcc	r5, #12
- 8003398:	2d00      	cmp	r5, #0
- 800339a:	4606      	mov	r6, r0
- 800339c:	db01      	blt.n	80033a2 <_malloc_r+0x1a>
- 800339e:	42a9      	cmp	r1, r5
- 80033a0:	d903      	bls.n	80033aa <_malloc_r+0x22>
- 80033a2:	230c      	movs	r3, #12
- 80033a4:	6033      	str	r3, [r6, #0]
- 80033a6:	2000      	movs	r0, #0
- 80033a8:	bd70      	pop	{r4, r5, r6, pc}
- 80033aa:	f000 f89b 	bl	80034e4 <__malloc_lock>
- 80033ae:	4a21      	ldr	r2, [pc, #132]	; (8003434 <_malloc_r+0xac>)
- 80033b0:	6814      	ldr	r4, [r2, #0]
- 80033b2:	4621      	mov	r1, r4
- 80033b4:	b991      	cbnz	r1, 80033dc <_malloc_r+0x54>
- 80033b6:	4c20      	ldr	r4, [pc, #128]	; (8003438 <_malloc_r+0xb0>)
- 80033b8:	6823      	ldr	r3, [r4, #0]
- 80033ba:	b91b      	cbnz	r3, 80033c4 <_malloc_r+0x3c>
- 80033bc:	4630      	mov	r0, r6
- 80033be:	f000 f83d 	bl	800343c <_sbrk_r>
- 80033c2:	6020      	str	r0, [r4, #0]
- 80033c4:	4629      	mov	r1, r5
- 80033c6:	4630      	mov	r0, r6
- 80033c8:	f000 f838 	bl	800343c <_sbrk_r>
- 80033cc:	1c43      	adds	r3, r0, #1
- 80033ce:	d124      	bne.n	800341a <_malloc_r+0x92>
- 80033d0:	230c      	movs	r3, #12
- 80033d2:	4630      	mov	r0, r6
- 80033d4:	6033      	str	r3, [r6, #0]
- 80033d6:	f000 f886 	bl	80034e6 <__malloc_unlock>
- 80033da:	e7e4      	b.n	80033a6 <_malloc_r+0x1e>
- 80033dc:	680b      	ldr	r3, [r1, #0]
- 80033de:	1b5b      	subs	r3, r3, r5
- 80033e0:	d418      	bmi.n	8003414 <_malloc_r+0x8c>
- 80033e2:	2b0b      	cmp	r3, #11
- 80033e4:	d90f      	bls.n	8003406 <_malloc_r+0x7e>
- 80033e6:	600b      	str	r3, [r1, #0]
- 80033e8:	18cc      	adds	r4, r1, r3
- 80033ea:	50cd      	str	r5, [r1, r3]
- 80033ec:	4630      	mov	r0, r6
- 80033ee:	f000 f87a 	bl	80034e6 <__malloc_unlock>
- 80033f2:	f104 000b 	add.w	r0, r4, #11
- 80033f6:	1d23      	adds	r3, r4, #4
- 80033f8:	f020 0007 	bic.w	r0, r0, #7
- 80033fc:	1ac3      	subs	r3, r0, r3
- 80033fe:	d0d3      	beq.n	80033a8 <_malloc_r+0x20>
- 8003400:	425a      	negs	r2, r3
- 8003402:	50e2      	str	r2, [r4, r3]
- 8003404:	e7d0      	b.n	80033a8 <_malloc_r+0x20>
- 8003406:	684b      	ldr	r3, [r1, #4]
- 8003408:	428c      	cmp	r4, r1
- 800340a:	bf16      	itet	ne
- 800340c:	6063      	strne	r3, [r4, #4]
- 800340e:	6013      	streq	r3, [r2, #0]
- 8003410:	460c      	movne	r4, r1
- 8003412:	e7eb      	b.n	80033ec <_malloc_r+0x64>
- 8003414:	460c      	mov	r4, r1
- 8003416:	6849      	ldr	r1, [r1, #4]
- 8003418:	e7cc      	b.n	80033b4 <_malloc_r+0x2c>
- 800341a:	1cc4      	adds	r4, r0, #3
- 800341c:	f024 0403 	bic.w	r4, r4, #3
- 8003420:	42a0      	cmp	r0, r4
- 8003422:	d005      	beq.n	8003430 <_malloc_r+0xa8>
- 8003424:	1a21      	subs	r1, r4, r0
- 8003426:	4630      	mov	r0, r6
- 8003428:	f000 f808 	bl	800343c <_sbrk_r>
- 800342c:	3001      	adds	r0, #1
- 800342e:	d0cf      	beq.n	80033d0 <_malloc_r+0x48>
- 8003430:	6025      	str	r5, [r4, #0]
- 8003432:	e7db      	b.n	80033ec <_malloc_r+0x64>
- 8003434:	2000038c 	.word	0x2000038c
- 8003438:	20000390 	.word	0x20000390
+0800348c <_malloc_r>:
+ 800348c:	b570      	push	{r4, r5, r6, lr}
+ 800348e:	1ccd      	adds	r5, r1, #3
+ 8003490:	f025 0503 	bic.w	r5, r5, #3
+ 8003494:	3508      	adds	r5, #8
+ 8003496:	2d0c      	cmp	r5, #12
+ 8003498:	bf38      	it	cc
+ 800349a:	250c      	movcc	r5, #12
+ 800349c:	2d00      	cmp	r5, #0
+ 800349e:	4606      	mov	r6, r0
+ 80034a0:	db01      	blt.n	80034a6 <_malloc_r+0x1a>
+ 80034a2:	42a9      	cmp	r1, r5
+ 80034a4:	d903      	bls.n	80034ae <_malloc_r+0x22>
+ 80034a6:	230c      	movs	r3, #12
+ 80034a8:	6033      	str	r3, [r6, #0]
+ 80034aa:	2000      	movs	r0, #0
+ 80034ac:	bd70      	pop	{r4, r5, r6, pc}
+ 80034ae:	f000 f89b 	bl	80035e8 <__malloc_lock>
+ 80034b2:	4a21      	ldr	r2, [pc, #132]	; (8003538 <_malloc_r+0xac>)
+ 80034b4:	6814      	ldr	r4, [r2, #0]
+ 80034b6:	4621      	mov	r1, r4
+ 80034b8:	b991      	cbnz	r1, 80034e0 <_malloc_r+0x54>
+ 80034ba:	4c20      	ldr	r4, [pc, #128]	; (800353c <_malloc_r+0xb0>)
+ 80034bc:	6823      	ldr	r3, [r4, #0]
+ 80034be:	b91b      	cbnz	r3, 80034c8 <_malloc_r+0x3c>
+ 80034c0:	4630      	mov	r0, r6
+ 80034c2:	f000 f83d 	bl	8003540 <_sbrk_r>
+ 80034c6:	6020      	str	r0, [r4, #0]
+ 80034c8:	4629      	mov	r1, r5
+ 80034ca:	4630      	mov	r0, r6
+ 80034cc:	f000 f838 	bl	8003540 <_sbrk_r>
+ 80034d0:	1c43      	adds	r3, r0, #1
+ 80034d2:	d124      	bne.n	800351e <_malloc_r+0x92>
+ 80034d4:	230c      	movs	r3, #12
+ 80034d6:	4630      	mov	r0, r6
+ 80034d8:	6033      	str	r3, [r6, #0]
+ 80034da:	f000 f886 	bl	80035ea <__malloc_unlock>
+ 80034de:	e7e4      	b.n	80034aa <_malloc_r+0x1e>
+ 80034e0:	680b      	ldr	r3, [r1, #0]
+ 80034e2:	1b5b      	subs	r3, r3, r5
+ 80034e4:	d418      	bmi.n	8003518 <_malloc_r+0x8c>
+ 80034e6:	2b0b      	cmp	r3, #11
+ 80034e8:	d90f      	bls.n	800350a <_malloc_r+0x7e>
+ 80034ea:	600b      	str	r3, [r1, #0]
+ 80034ec:	18cc      	adds	r4, r1, r3
+ 80034ee:	50cd      	str	r5, [r1, r3]
+ 80034f0:	4630      	mov	r0, r6
+ 80034f2:	f000 f87a 	bl	80035ea <__malloc_unlock>
+ 80034f6:	f104 000b 	add.w	r0, r4, #11
+ 80034fa:	1d23      	adds	r3, r4, #4
+ 80034fc:	f020 0007 	bic.w	r0, r0, #7
+ 8003500:	1ac3      	subs	r3, r0, r3
+ 8003502:	d0d3      	beq.n	80034ac <_malloc_r+0x20>
+ 8003504:	425a      	negs	r2, r3
+ 8003506:	50e2      	str	r2, [r4, r3]
+ 8003508:	e7d0      	b.n	80034ac <_malloc_r+0x20>
+ 800350a:	684b      	ldr	r3, [r1, #4]
+ 800350c:	428c      	cmp	r4, r1
+ 800350e:	bf16      	itet	ne
+ 8003510:	6063      	strne	r3, [r4, #4]
+ 8003512:	6013      	streq	r3, [r2, #0]
+ 8003514:	460c      	movne	r4, r1
+ 8003516:	e7eb      	b.n	80034f0 <_malloc_r+0x64>
+ 8003518:	460c      	mov	r4, r1
+ 800351a:	6849      	ldr	r1, [r1, #4]
+ 800351c:	e7cc      	b.n	80034b8 <_malloc_r+0x2c>
+ 800351e:	1cc4      	adds	r4, r0, #3
+ 8003520:	f024 0403 	bic.w	r4, r4, #3
+ 8003524:	42a0      	cmp	r0, r4
+ 8003526:	d005      	beq.n	8003534 <_malloc_r+0xa8>
+ 8003528:	1a21      	subs	r1, r4, r0
+ 800352a:	4630      	mov	r0, r6
+ 800352c:	f000 f808 	bl	8003540 <_sbrk_r>
+ 8003530:	3001      	adds	r0, #1
+ 8003532:	d0cf      	beq.n	80034d4 <_malloc_r+0x48>
+ 8003534:	6025      	str	r5, [r4, #0]
+ 8003536:	e7db      	b.n	80034f0 <_malloc_r+0x64>
+ 8003538:	20000390 	.word	0x20000390
+ 800353c:	20000394 	.word	0x20000394
 
-0800343c <_sbrk_r>:
- 800343c:	b538      	push	{r3, r4, r5, lr}
- 800343e:	2300      	movs	r3, #0
- 8003440:	4c05      	ldr	r4, [pc, #20]	; (8003458 <_sbrk_r+0x1c>)
- 8003442:	4605      	mov	r5, r0
- 8003444:	4608      	mov	r0, r1
- 8003446:	6023      	str	r3, [r4, #0]
- 8003448:	f7fd f9fa 	bl	8000840 <_sbrk>
- 800344c:	1c43      	adds	r3, r0, #1
- 800344e:	d102      	bne.n	8003456 <_sbrk_r+0x1a>
- 8003450:	6823      	ldr	r3, [r4, #0]
- 8003452:	b103      	cbz	r3, 8003456 <_sbrk_r+0x1a>
- 8003454:	602b      	str	r3, [r5, #0]
- 8003456:	bd38      	pop	{r3, r4, r5, pc}
- 8003458:	200005b8 	.word	0x200005b8
+08003540 <_sbrk_r>:
+ 8003540:	b538      	push	{r3, r4, r5, lr}
+ 8003542:	2300      	movs	r3, #0
+ 8003544:	4c05      	ldr	r4, [pc, #20]	; (800355c <_sbrk_r+0x1c>)
+ 8003546:	4605      	mov	r5, r0
+ 8003548:	4608      	mov	r0, r1
+ 800354a:	6023      	str	r3, [r4, #0]
+ 800354c:	f7fd f978 	bl	8000840 <_sbrk>
+ 8003550:	1c43      	adds	r3, r0, #1
+ 8003552:	d102      	bne.n	800355a <_sbrk_r+0x1a>
+ 8003554:	6823      	ldr	r3, [r4, #0]
+ 8003556:	b103      	cbz	r3, 800355a <_sbrk_r+0x1a>
+ 8003558:	602b      	str	r3, [r5, #0]
+ 800355a:	bd38      	pop	{r3, r4, r5, pc}
+ 800355c:	200005bc 	.word	0x200005bc
 
-0800345c <_raise_r>:
- 800345c:	291f      	cmp	r1, #31
- 800345e:	b538      	push	{r3, r4, r5, lr}
- 8003460:	4604      	mov	r4, r0
- 8003462:	460d      	mov	r5, r1
- 8003464:	d904      	bls.n	8003470 <_raise_r+0x14>
- 8003466:	2316      	movs	r3, #22
- 8003468:	6003      	str	r3, [r0, #0]
- 800346a:	f04f 30ff 	mov.w	r0, #4294967295
- 800346e:	bd38      	pop	{r3, r4, r5, pc}
- 8003470:	6c42      	ldr	r2, [r0, #68]	; 0x44
- 8003472:	b112      	cbz	r2, 800347a <_raise_r+0x1e>
- 8003474:	f852 3021 	ldr.w	r3, [r2, r1, lsl #2]
- 8003478:	b94b      	cbnz	r3, 800348e <_raise_r+0x32>
- 800347a:	4620      	mov	r0, r4
- 800347c:	f000 f830 	bl	80034e0 <_getpid_r>
- 8003480:	462a      	mov	r2, r5
- 8003482:	4601      	mov	r1, r0
- 8003484:	4620      	mov	r0, r4
- 8003486:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
- 800348a:	f000 b817 	b.w	80034bc <_kill_r>
- 800348e:	2b01      	cmp	r3, #1
- 8003490:	d00a      	beq.n	80034a8 <_raise_r+0x4c>
- 8003492:	1c59      	adds	r1, r3, #1
- 8003494:	d103      	bne.n	800349e <_raise_r+0x42>
- 8003496:	2316      	movs	r3, #22
- 8003498:	6003      	str	r3, [r0, #0]
- 800349a:	2001      	movs	r0, #1
- 800349c:	e7e7      	b.n	800346e <_raise_r+0x12>
- 800349e:	2400      	movs	r4, #0
- 80034a0:	4628      	mov	r0, r5
- 80034a2:	f842 4025 	str.w	r4, [r2, r5, lsl #2]
- 80034a6:	4798      	blx	r3
- 80034a8:	2000      	movs	r0, #0
- 80034aa:	e7e0      	b.n	800346e <_raise_r+0x12>
+08003560 <_raise_r>:
+ 8003560:	291f      	cmp	r1, #31
+ 8003562:	b538      	push	{r3, r4, r5, lr}
+ 8003564:	4604      	mov	r4, r0
+ 8003566:	460d      	mov	r5, r1
+ 8003568:	d904      	bls.n	8003574 <_raise_r+0x14>
+ 800356a:	2316      	movs	r3, #22
+ 800356c:	6003      	str	r3, [r0, #0]
+ 800356e:	f04f 30ff 	mov.w	r0, #4294967295
+ 8003572:	bd38      	pop	{r3, r4, r5, pc}
+ 8003574:	6c42      	ldr	r2, [r0, #68]	; 0x44
+ 8003576:	b112      	cbz	r2, 800357e <_raise_r+0x1e>
+ 8003578:	f852 3021 	ldr.w	r3, [r2, r1, lsl #2]
+ 800357c:	b94b      	cbnz	r3, 8003592 <_raise_r+0x32>
+ 800357e:	4620      	mov	r0, r4
+ 8003580:	f000 f830 	bl	80035e4 <_getpid_r>
+ 8003584:	462a      	mov	r2, r5
+ 8003586:	4601      	mov	r1, r0
+ 8003588:	4620      	mov	r0, r4
+ 800358a:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+ 800358e:	f000 b817 	b.w	80035c0 <_kill_r>
+ 8003592:	2b01      	cmp	r3, #1
+ 8003594:	d00a      	beq.n	80035ac <_raise_r+0x4c>
+ 8003596:	1c59      	adds	r1, r3, #1
+ 8003598:	d103      	bne.n	80035a2 <_raise_r+0x42>
+ 800359a:	2316      	movs	r3, #22
+ 800359c:	6003      	str	r3, [r0, #0]
+ 800359e:	2001      	movs	r0, #1
+ 80035a0:	e7e7      	b.n	8003572 <_raise_r+0x12>
+ 80035a2:	2400      	movs	r4, #0
+ 80035a4:	4628      	mov	r0, r5
+ 80035a6:	f842 4025 	str.w	r4, [r2, r5, lsl #2]
+ 80035aa:	4798      	blx	r3
+ 80035ac:	2000      	movs	r0, #0
+ 80035ae:	e7e0      	b.n	8003572 <_raise_r+0x12>
 
-080034ac <raise>:
- 80034ac:	4b02      	ldr	r3, [pc, #8]	; (80034b8 <raise+0xc>)
- 80034ae:	4601      	mov	r1, r0
- 80034b0:	6818      	ldr	r0, [r3, #0]
- 80034b2:	f7ff bfd3 	b.w	800345c <_raise_r>
- 80034b6:	bf00      	nop
- 80034b8:	2000000c 	.word	0x2000000c
+080035b0 <raise>:
+ 80035b0:	4b02      	ldr	r3, [pc, #8]	; (80035bc <raise+0xc>)
+ 80035b2:	4601      	mov	r1, r0
+ 80035b4:	6818      	ldr	r0, [r3, #0]
+ 80035b6:	f7ff bfd3 	b.w	8003560 <_raise_r>
+ 80035ba:	bf00      	nop
+ 80035bc:	2000000c 	.word	0x2000000c
 
-080034bc <_kill_r>:
- 80034bc:	b538      	push	{r3, r4, r5, lr}
- 80034be:	2300      	movs	r3, #0
- 80034c0:	4c06      	ldr	r4, [pc, #24]	; (80034dc <_kill_r+0x20>)
- 80034c2:	4605      	mov	r5, r0
- 80034c4:	4608      	mov	r0, r1
- 80034c6:	4611      	mov	r1, r2
- 80034c8:	6023      	str	r3, [r4, #0]
- 80034ca:	f7fd f99e 	bl	800080a <_kill>
- 80034ce:	1c43      	adds	r3, r0, #1
- 80034d0:	d102      	bne.n	80034d8 <_kill_r+0x1c>
- 80034d2:	6823      	ldr	r3, [r4, #0]
- 80034d4:	b103      	cbz	r3, 80034d8 <_kill_r+0x1c>
- 80034d6:	602b      	str	r3, [r5, #0]
- 80034d8:	bd38      	pop	{r3, r4, r5, pc}
- 80034da:	bf00      	nop
- 80034dc:	200005b8 	.word	0x200005b8
+080035c0 <_kill_r>:
+ 80035c0:	b538      	push	{r3, r4, r5, lr}
+ 80035c2:	2300      	movs	r3, #0
+ 80035c4:	4c06      	ldr	r4, [pc, #24]	; (80035e0 <_kill_r+0x20>)
+ 80035c6:	4605      	mov	r5, r0
+ 80035c8:	4608      	mov	r0, r1
+ 80035ca:	4611      	mov	r1, r2
+ 80035cc:	6023      	str	r3, [r4, #0]
+ 80035ce:	f7fd f91c 	bl	800080a <_kill>
+ 80035d2:	1c43      	adds	r3, r0, #1
+ 80035d4:	d102      	bne.n	80035dc <_kill_r+0x1c>
+ 80035d6:	6823      	ldr	r3, [r4, #0]
+ 80035d8:	b103      	cbz	r3, 80035dc <_kill_r+0x1c>
+ 80035da:	602b      	str	r3, [r5, #0]
+ 80035dc:	bd38      	pop	{r3, r4, r5, pc}
+ 80035de:	bf00      	nop
+ 80035e0:	200005bc 	.word	0x200005bc
 
-080034e0 <_getpid_r>:
- 80034e0:	f7fd b98c 	b.w	80007fc <_getpid>
+080035e4 <_getpid_r>:
+ 80035e4:	f7fd b90a 	b.w	80007fc <_getpid>
 
-080034e4 <__malloc_lock>:
- 80034e4:	4770      	bx	lr
+080035e8 <__malloc_lock>:
+ 80035e8:	4770      	bx	lr
 
-080034e6 <__malloc_unlock>:
- 80034e6:	4770      	bx	lr
+080035ea <__malloc_unlock>:
+ 80035ea:	4770      	bx	lr
 
-080034e8 <_init>:
- 80034e8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 80034ea:	bf00      	nop
- 80034ec:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 80034ee:	bc08      	pop	{r3}
- 80034f0:	469e      	mov	lr, r3
- 80034f2:	4770      	bx	lr
+080035ec <_init>:
+ 80035ec:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80035ee:	bf00      	nop
+ 80035f0:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80035f2:	bc08      	pop	{r3}
+ 80035f4:	469e      	mov	lr, r3
+ 80035f6:	4770      	bx	lr
 
-080034f4 <_fini>:
- 80034f4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 80034f6:	bf00      	nop
- 80034f8:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 80034fa:	bc08      	pop	{r3}
- 80034fc:	469e      	mov	lr, r3
- 80034fe:	4770      	bx	lr
+080035f8 <_fini>:
+ 80035f8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 80035fa:	bf00      	nop
+ 80035fc:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 80035fe:	bc08      	pop	{r3}
+ 8003600:	469e      	mov	lr, r3
+ 8003602:	4770      	bx	lr

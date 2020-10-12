@@ -64,7 +64,7 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+byte first_start = 0;
 byte backup_buffer[125];
 int backup_length;
 byte error_debug_buffer[12];
@@ -307,6 +307,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	
 	GPIO_Interrupt_Callback(GPIO_Pin);
 }
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+//{
+//  if (htim->Instance == TIM2) {
+//	  modbus_timeout();
+//  }
+//}
 /* USER CODE END 4 */
 
 /**
