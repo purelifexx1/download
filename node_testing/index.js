@@ -9,6 +9,5 @@ var testing = {
     "xin": 1234,
     123:223
 };
-
-var ee = [2, 3, 14];
-console.log(ee[0].toString());
+var tt = testing["222"];
+if(tt == undefined) console.log("eee")

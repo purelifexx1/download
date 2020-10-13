@@ -67,7 +67,7 @@ void modbus_handler::package_data()
 	}
 	reply_packet[3] = 38; //packet id for complete data modbus
 	if(total_valid_request == 0) {
-		Serial.send_error(12345, 34567, '9');
+		Serial.send_error(12345, 34567, '9'); //no modbus packet detected
 		return;
 	}else if(total_valid_request < number_of_request){
 		reply_packet[3] = 23; //packet id for non complete data modbus

@@ -10,8 +10,20 @@ function data_handler(data_packet, io){
     for( var i = 0; i < number_of_packet; i++){
         switch(data_packet[current_pointer]){
             case 1:
-                var data_pointer = current_pointer + 2;
-                
+                var data_pointer = current_pointer + 4;
+                var start_register_address = data_packet[current_pointer+1] << 8 | data_packet[current_pointer+2];
+                var number_of_coils = data_packet[current_pointer+3];
+                var number_of_bytes = Math.ceil(data_packet[current_pointer+3]/8);
+                for(var i = data_pointer; i < data_pointer + number_of_bytes; i++){
+                    var bit_shift = 0;
+                    for(var j = start_register_address; j < start_register_address + number_of_coils; j++){
+                        var object_title = rf_table[j.toString()];
+                        var number = data_packet[i] >> bit_shift & 0x01;
+                        send_update_object[object_title] = (number == 1)?255:0;
+                        bit_shift++;
+                    }
+                }
+                current_pointer += number_of_bytes + 4;
             break;
             case 4:
                 
@@ -37,6 +49,12 @@ function data_handler(data_packet, io){
                     }
                 }
                 current_pointer += number_of_register*2 + 4;
+            break;
+            case 5:
+                var start_register_address = data_packet[current_pointer+1] << 8 | data_packet[current_pointer+2];
+                var object_title = rf_table[start_register_address.toString()];
+                send_update_object[object_title] = current_pointer[current_pointer +3];
+                current_pointer += 4;
             break;
         }
     }

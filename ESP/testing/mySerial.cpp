@@ -27,8 +27,8 @@ void mySerial::Send_packet(byte* Buffer, int Length, uint16_t header, uint16_t f
   temper_buffer[4+Length] = (byte)(footer & 0xff);
   if(receive_status == true) {
     debug_configure_serial.Print("back up data");
-	memcpy(backup_buffer, temper_buffer, Length + 5);
-	backup_length = Length + 5;
+	  memcpy(backup_buffer, temper_buffer, Length + 5);
+	  backup_length = Length + 5;
   }else{
 	transmit_complete_flag = On_transmit;
 	Send(temper_buffer, Length + 5);
@@ -84,7 +84,7 @@ void mySerial::Receive_Package()
     }else if(sync_flag == 1){
   	  if(temper_lock == false) {
   		  timeout_enable = true; temper_lock = true; 
-  		  standard_timeout = 8 + (int)(temper_byte*0.07);     
+  		  standard_timeout = 8 + (int)(temper_byte*0.8);     
   	  }
       if(temper_byte == sync_end[sync_pointer]) {
         sync_pointer++;

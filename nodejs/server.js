@@ -75,7 +75,7 @@ function timer(){
 			client.publish('data_request', buf);	
 		})			
 		storage_packet.topic_timeout = 'data_request';
-		storage_packet.content_timeout = "0";
+		storage_packet.content_timeout = "r";
 		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 		waitfor_reply = true;		
 
@@ -113,31 +113,54 @@ io.on('connection', function(socket){
 				client.publish('data_request', buf); 
 			})		
 			storage_packet.topic_timeout = 'data_request';
-			storage_packet.content_timeout = "1";
+			storage_packet.content_timeout = "s";
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;			
 		}else{
-			socket.emit("packet_ongoing");			
+			//socket.emit("packet_ongoing");			
 			request.create_request(statistic_request, function(buf){
 				archive_packet["2"] = {
 					"topic": "data_request",
 					"message": buf,
-					"content_timeout": "1"
+					"content_timeout": "s"
 				};
 			})
 		}
 		
 	})
 	socket.on("control_status_request", function(data){
+		console.log("request some coils");
+		var control_status_request = {
+			"1":{
+				"function_code": 1,
+				"start_address": "0000",
+				"number_of_coils": 1
+			},
+			"2":{
+				"function_code": 1,
+				"start_address": "0002",
+				"number_of_coils": 2 
+			}
+		}
 		if(waitfor_reply == false){
-			
+			request.create_request(control_status_request, function(buf){
+				client.publish('data_request', buf); 
+			})
+			storage_packet.topic_timeout = 'data_request';
+			storage_packet.content_timeout = "c";
 			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
 			waitfor_reply = true;
-			client.publish("data_request", "2");
 		}else{
-			socket.emit("packet_ongoing");
+			//socket.emit("packet_ongoing");
+			request.create_request(control_status_request, function(buf){
+				archive_packet["1"] = {
+					"topic": "data_request",
+					"message": buf,
+					"content_timeout": "c"
+				};
+			})
 			storage_packet.topic = "data_request";
-			storage_packet.message = "2";
+			storage_packet.message = "c";
 		}
 	})
 
@@ -164,7 +187,7 @@ io.on('connection', function(socket){
 	})
 	if (user_number != 0 && latch == true) {
 		latch = false;
-		timer_latch = setInterval(timer, 8000);
+		timer_latch = setInterval(timer, 8000);//cycle for syncying realtime data
 	}
 })
 
@@ -183,9 +206,7 @@ mqtt_branch.once('value', function(snap){
 			if(topic == 'realtime_data') {
 				connection_status_interval = 0;
 				clearTimeout(timeout_latch);
-				console.log("da nhan");
-				//message.copy(realtime_buf, 0, 0, message.length);
-				//data_handler.realtime_send(io);	
+				console.log("da nhan");	
 				modbus.data_handler(message, io);
 				waitfor_reply = false;
 				send_wait_in_line_packet(storage_packet);
@@ -217,7 +238,8 @@ mqtt_branch.once('value', function(snap){
 				connection_status_interval = 0;
 				clearTimeout(timeout_latch);
 				waitfor_reply = false;
-				data_handler.log_error(io, message)
+				data_handler.log_error(io, message);
+				send_wait_in_line_packet(storage_packet);
 			}
 		})
 
@@ -235,12 +257,13 @@ function send_wait_in_line_packet(storage_packet){
 			return parseInt(item, 10);
 		});
 		var send_object = Math.min(...wait_in_line).toString();
-		console.log("gui archive")
 		client.publish(archive_packet[send_object].topic, archive_packet[send_object].message);
 		storage_packet.topic_timeout = archive_packet[send_object].topic;
 		storage_packet.content_timeout = archive_packet[send_object].content_timeout;
 		waitfor_reply = true;
 		timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
+		console.log(archive_packet);
+		console.log(send_object);
 		delete archive_packet[send_object];
 	}
 	// if(storage_packet.topic != "" && storage_packet.message != ""){
@@ -260,8 +283,8 @@ function timeout_function(storage_packet){
 		data_handler.log_error(io, "2");
 	}
 
-	io.sockets.emit("packet_lost", storage_packet.content_timeout);
-	waitfor_reply = false
+	data_handler.log_error(io, storage_packet.content_timeout);
+	waitfor_reply = false;
 	send_wait_in_line_packet(storage_packet);
 }
 server.listen(3000);

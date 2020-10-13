@@ -12,15 +12,21 @@ var button_namespace = {
 socket.on("packet_update", function(data){
 	Object.entries(data).forEach(function(element){
 		document.getElementById(element[0]).style.background = '#4aff36';
-		$("#" + element[0]).val(element[1]);
-		
+		$("#" + element[0]).val(element[1]);		
 	});
 	setTimeout(set_color_off, 2000, data);
 })
 socket.on("realtime_data", function(data){
 	Object.entries(data).forEach(function(element){
-		document.getElementById(element[0]).style.background = '#4aff36';
-		$("#" + element[0]).val(element[1]);
+		if(element[0].startsWith("@")){
+			if (element[1] == 255)
+				document.getElementById(element[0].replace("@","")).style.background = '#4aff36';
+			else
+				document.getElementById(element[0].replace("@","")).style.background = '#eb240e';
+		}else{
+			document.getElementById(element[0]).style.background = '#4aff36';
+			$("#" + element[0]).val(element[1]);
+		}
 		
 	});
 	setTimeout(set_color_off, 2000, data);
@@ -82,7 +88,7 @@ socket.on("packet_ongoing", function(data){
 	//run timer for text
 })
 
-socket.on("packet_lost", function(data){
+socket.on("packet_timeout", function(data){
 	if (data == "0") {
 		console_log("realtime packet timeout");
 	}else if(data == "1"){
@@ -148,6 +154,10 @@ function console_log(data) {
 }
 function set_color_off(data) {
 	Object.entries(data).forEach(function(element){
-		document.getElementById(element[0]).style.background = '#ffffff';
+		if(element[0].startsWith("@")){
+			
+		}else{
+			document.getElementById(element[0]).style.background = '#ffffff';
+		}
 	})
 };

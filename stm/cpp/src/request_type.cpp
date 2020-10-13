@@ -27,7 +27,12 @@ void request_type::begin_configure(byte *data_format, int length)
 void request_type::packet_encoding(){
 	switch (response_packet[1]) {
 		case 0x01:
-
+            encoded_packet[0] = 0x01;
+            encoded_packet[1] = start_address[0];
+            encoded_packet[2] = start_address[1];
+            encoded_packet[3] = request_packet[4] <<8 | request_packet[5]; //take number of coils,
+            memcpy(&encoded_packet[4], &response_packet[3], response_length - 5);
+            encode_length = response_length - 1;
 		break;
 		case 0x04:
 			encoded_packet[0] = 0x04;
@@ -38,7 +43,11 @@ void request_type::packet_encoding(){
 			encode_length = response_length - 1;
 		break;
 		case 0x05:
-
+            encoded_packet[0] = 0x05;
+            encoded_packet[1] = start_address[0];
+            encoded_packet[2] = start_address[1];
+            encoded_packet[3] = response_packet[4];// 255 or 0
+            encode_length = 4;
 		break;
 		case 0x10:
 

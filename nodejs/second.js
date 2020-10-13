@@ -97,6 +97,15 @@ module.exports = {
 			case "q":
 				error_content = error_content.concat("lost some request at child node");
 				io.sockets.emit("error", error_content); break;
+			case "r":
+				error_content = error_content.concat("realtime packet timeout");
+				io.sockets.emit("error", error_content); break;
+			case "s":
+				error_content = error_content.concat("statistic packet timeout");
+				io.sockets.emit("error", error_content); break;
+			case "c":
+				error_content = error_content.concat("control-status packet timeout");
+				io.sockets.emit("error", error_content); break;
 		}
 	}
 

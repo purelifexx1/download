@@ -37,7 +37,10 @@ const register_reference = {
     "13086": "ambient_temp",
 
     //coil status
+    "0"    : "@charging_onoff",
+
     "2"    : "@load_control",
+    "3"    : "@manual_control",
     "5"    : "@enable_test_mode",
     "6"    : "@force_load"
 };

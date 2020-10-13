@@ -59,7 +59,7 @@ void mySerial::looping2()
 					memcpy(&data_buffer[256], data_buffer, write_pointer);
 				length_error_integral = 0; head_foot_error_integral = 0;
 				overflow_flag = false;
-				packet_id = data_buffer[(byte)(read_pointer+3)];
+				//packet_id = data_buffer[(byte)(read_pointer+3)];
 				this->callback(&data_buffer[(byte)(read_pointer+3)], data_buffer[(byte)(read_pointer+2)]);				
 				read_pointer = write_pointer;
 				return;
