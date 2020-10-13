@@ -26,8 +26,10 @@ void modbus_handler::request_packet_handler(byte* data_packet, int length)
     current_request_number = 0;
     uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
     uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
-    //TIM2->CNT = 0;
-    //start_timer(&htim2);
+    TIM2->CNT = 0;
+    TIM2->ARR = 49999;
+    first_start = 2;
+    start_timer(&htim2);
 }
 
 void modbus_handler::receive_handler(UART_HandleTypeDef *huart)
@@ -37,17 +39,19 @@ void modbus_handler::receive_handler(UART_HandleTypeDef *huart)
     if (current_request_number < number_of_request - 1)
     {
 
-    	//stop_timer(&htim2);
+    	stop_timer(&htim2);
 
         //request the next one
         current_request_number++;
         uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
-        uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
-        //TIM2->CNT = 0;
-        //start_timer(&htim2);
+        //uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
+        TIM2->CNT = 0;
+		TIM2->ARR = 49999;
+		first_start = 2;
+		start_timer(&htim2); //start timer for next request
     }else //done
     {
-    	//stop_timer(&htim2);
+    	stop_timer(&htim2);
         package_data();
     }
 }
@@ -67,6 +71,7 @@ void modbus_handler::package_data()
 	}
 	reply_packet[3] = 38; //packet id for complete data modbus
 	if(total_valid_request == 0) {
+		delete[] array_of_request;
 		Serial.send_error(12345, 34567, '9'); //no modbus packet detected
 		return;
 	}else if(total_valid_request < number_of_request){
@@ -90,25 +95,39 @@ void modbus_handler::timeout_handler()
 {
 	HAL_UART_AbortReceive_IT(&huart3);
 	if (current_request_number < number_of_request - 1){
-		//stop_timer(&htim2);
+		stop_timer(&htim2);
 		current_request_number++;
 		uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
 		uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
-		//TIM2->CNT = 0;
-		//start_timer(&htim2);
+		TIM2->CNT = 0;
+		TIM2->ARR = 49999;
+		first_start = 3;
+		start_timer(&htim2);
 	}else{
-		//stop_timer(&htim2);
+		stop_timer(&htim2);
 		package_data();
 	}
 }
-//void modbus_timeout() //global from timer interrupt
-//{
-//	if (first_start == 1){
-//		modbus.timeout_handler();
-//		first_start = 0;
-//	}else{
-//		first_start = 1;
-//	}
-//
-//}
+void modbus_handler::next_request()
+{
+	stop_timer(&htim2);
+	uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
+	TIM2->CNT = 0;
+	TIM2->ARR = 49999;
+	first_start = 3;
+	start_timer(&htim2); //start timeout for next request
+}
+void modbus_timeout() //global from timer interrupt
+{
+	if (modbus.first_start == 0){
+		modbus.timeout_handler();
+	}else if(modbus.first_start == 2){
+		modbus.first_start = 1;
+	}else if(modbus.first_start == 1){
+		modbus.next_request();
+	}else if(modbus.first_start == 3){
+		modbus.first_start = 0;
+	}
+
+}
 modbus_handler modbus;

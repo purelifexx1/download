@@ -33,7 +33,7 @@ void setup() {
 }
 
 void loop() {
-	Serial.looping2();
+	//Serial.looping2();
 	//modbus1.looping();
 
 	if(backup_length != 0 && receive_status == IDLE_receive) {
@@ -59,20 +59,7 @@ void UART_CallBack(UART_HandleTypeDef *huart) {
 	if (huart->Instance == USART2)
 		Serial.buffer_overflow();
 	else if(huart->Instance == USART3){
-//		HAL_UART_AbortReceive_IT(huart);
-//		if(modbus1.request_type == false) {
-//			Serial.send_modbus_packet(12345, 34567, modbus1.data_buffer, modbus1.temper_length);
-//		}else{
-//			if(modbus1.temper_length1 != -1) {
-//				uart_dma(huart, &modbus1.data_buffer[modbus1.request_length[modbus1.temper_length1]], modbus1.request_length[modbus1.temper_length1]);
-//				uart_send(huart, modbus1.temper_request, 8);
-//				modbus1.temper_request+=8;
-//				modbus1.temper_length1--;
-//			}else{
-//				Serial.send_multiple_modbus_packet(12345, 34567, modbus1.data_buffer, modbus1.total_length);
-//				modbus1.total_length = 0;
-//			}
-//		}
+
 		modbus.receive_handler(huart);
 		//modbus1.buffer_overflow();
 	}		
@@ -82,16 +69,17 @@ void GPIO_Interrupt_Callback(uint16_t pin){
 		if(transmit_complete_flag == On_transmit) {
 			transmit_complete_flag = IDLE_transmit;
 		}else{
-			receive_complete_flag = On_received;
-			receive_status = IDLE_receive;
+			//receive_complete_flag = On_received;
+			//receive_status = IDLE_receive;
+			Serial.looping2();
 		}
-	}else if(pin == GPIO_PIN_0) {//FALLING
+	}/*else if(pin == GPIO_PIN_0) {//FALLING
 		if(transmit_complete_flag == On_transmit) {
 			// confuse if On_transmit before falling receive falling edge
 		}else{
 			receive_status = On_received;
 		}
-	}
+	}*/
 }
 
 

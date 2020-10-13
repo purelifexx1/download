@@ -51,7 +51,7 @@ void mySerial::looping()
 
 void mySerial::looping2()
 {
-	if(receive_complete_flag == On_received) {
+	//if(receive_complete_flag == On_received) {
 		write_pointer = buffer_length - (byte)(uart->hdmarx->Instance->CNDTR);
 		if(data_buffer[read_pointer] == this->header[0] && data_buffer[(byte)(read_pointer+1)] == this->header[1] && data_buffer[(byte)(write_pointer-2)] == this->footer[0] && data_buffer[(byte)(write_pointer-1)] == this->footer[1]){
 			if(data_buffer[(byte)(read_pointer+2)] == ((byte)(write_pointer - read_pointer) - 5)) {
@@ -89,7 +89,7 @@ void mySerial::looping2()
 			overflow_flag = false;
 			read_pointer = write_pointer;			
 		}
-	}
+	//}
 	
 }
 void mySerial::send_error(uint16_t header, uint16_t footer, uint8_t error_code)

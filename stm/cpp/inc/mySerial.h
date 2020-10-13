@@ -26,14 +26,15 @@ private:
 	bool overflow_flag = false;
 	bool sync_status = false;
 	bool fixed_receive_length = false;
-	byte write_pointer, read_pointer;		
-	byte receive_length;
+
 	byte header[2];
 	byte footer[2];
 	byte data_pos[4];
 	byte length_pos[4];
 	UART_HandleTypeDef* uart;
 public:
+	byte write_pointer, read_pointer;
+	byte receive_length;
 	byte packet_id;
 	byte data_buffer[300];
 	mySerial();

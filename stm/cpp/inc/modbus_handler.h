@@ -5,8 +5,8 @@
 #include "mySerial.h"
 #define uart_send HAL_UART_Transmit_DMA
 #define uart_dma HAL_UART_Receive_DMA
-//#define start_timer HAL_TIM_Base_Start_IT
-//#define stop_timer HAL_TIM_Base_Stop_IT
+#define start_timer HAL_TIM_Base_Start_IT
+#define stop_timer HAL_TIM_Base_Stop_IT
 #define IDLE_receive false
 #define IDLE_transmit true
 #define On_received true
@@ -19,7 +19,7 @@ class modbus_handler
 		byte footer_chunk[2];
 
     public:
-		bool first_start = true;
+		byte first_start = 0;
 		void begin(uint16_t header, uint16_t footer);
 		byte current_request_number;
         modbus_handler();
@@ -30,6 +30,7 @@ class modbus_handler
         void receive_handler(UART_HandleTypeDef *huart);
         void package_data();
         void timeout_handler();
+        void next_request();
 
 };
 

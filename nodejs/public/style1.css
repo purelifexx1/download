@@ -32,5 +32,5 @@ body{
 
 .console_config {
     border: 5px solid rgb(191, 165, 216);
-    background-color: black;
+    background-color: black!important;
 }

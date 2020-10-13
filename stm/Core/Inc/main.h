@@ -46,13 +46,13 @@ void modbus_timeout();
 /* USER CODE BEGIN ET */
 
 
-extern byte first_start;
+
 extern byte backup_buffer[125];
 extern int backup_length;
 extern byte error_debug_buffer[12];
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
-//extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim2;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

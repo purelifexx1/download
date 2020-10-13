@@ -202,7 +202,7 @@ mqtt_branch.once('value', function(snap){
 		client.subscribe('onoff_load_confirm');
 		client.subscribe('error');
 		client.on('message', function(topic, message){
-
+			console.log(topic);
 			if(topic == 'realtime_data') {
 				connection_status_interval = 0;
 				clearTimeout(timeout_latch);
@@ -238,7 +238,8 @@ mqtt_branch.once('value', function(snap){
 				connection_status_interval = 0;
 				clearTimeout(timeout_latch);
 				waitfor_reply = false;
-				data_handler.log_error(io, message);
+				console.log(message);
+				data_handler.log_error(io, message.toString());
 				send_wait_in_line_packet(storage_packet);
 			}
 		})
