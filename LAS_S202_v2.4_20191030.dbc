@@ -1,0 +1,1248 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: APA DMS TESTER SRS EMS TCU ESP SAS EPS BCM LCM IP GW LAS
+VAL_TABLE_ Vt_Sig_LCDAR_BSD_LCAAlertForELK 3 "Level 2" 2 "Reserved" 1 "Level 1" 0 "No warning" ;
+VAL_TABLE_ Vt_Sig_LCDAL_BSD_LCAAlertForELK 3 "Level 2" 2 "Reserved" 1 "Level 1" 0 "No warning" ;
+VAL_TABLE_ Vt_Sig_GW_MFS_IACCenable_switch 3 "error" 2 "Fault button" 1 "Button pressed" 0 "Button unpressed" ;
+VAL_TABLE_ Vt_Sig_GW_MFS_DiagInfoSW 7 "Invalid" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Power voltage lower than 9V" 2 "Power voltage higher than 16V" 1 "Variation information wrong" 0 "Reset" ;
+VAL_TABLE_ Vt_Sig_HU_IACCEnable 3 "Reserved" 2 "On" 1 "Off" 0 "Inactive" ;
+VAL_TABLE_ Vt_Sig_LAS_IACCMode 7 "Invalid" 6 "prohibition" 5 "failure" 4 "suspend" 3 "active" 2 "reject" 1 "standby" 0 "off" ;
+VAL_TABLE_ Vt_Sig_LAS_DriverHandsOff 3 "Invalid" 2 "reserved" 1 "hands off" 0 "hands on" ;
+VAL_TABLE_ Vt_Sig_LAS_IACCTakeoverReq 7 "Invalid" 6 "take over immediately" 5 "reserved" 4 "lev 4 request" 3 "lev 3 request" 2 "lev 2 request" 1 "lev 1 request" 0 "no request" ;
+VAL_TABLE_ Vt_Sig_LAS_IACCTextInfoForDriver 31 "Invalid" 16 "IACC switch off" 15 "takeover immediately" 14 "exceed speed limit" 13 "prohibition request" 12 "hands on request" 11 "prohibitn cause unabl to activat" 10 "driver overrides steering" 9 "speed exceed" 8 "EPS not available" 7 "longitudinal control not avail" 6 "no leading vehicle" 5 "lane boundary not available" 4 "unable to activate IACC" 3 "IACC unintended exit" 2 "IACC deactivate" 1 "IACC activate" 0 "no display" ;
+VAL_TABLE_ Vt_Sig_ACC_TargetBasedLateralCon 3 "Invalid" 2 "lane based" 1 "target based" 0 "no lateral control" ;
+VAL_TABLE_ Vt_Sig_LAS_RoadCurvature 127 "Invalid" ;
+VAL_TABLE_ Vt_Sig_LAS_LLaneDistance 63 "Invalid" ;
+VAL_TABLE_ Vt_Sig_LAS_RLaneDistance 63 "Invalid" ;
+VAL_TABLE_ Vt_Sig_LAS_LLLaneDection 3 "Invalid" 2 "reserved" 1 "detected" 0 "not detected" ;
+VAL_TABLE_ Vt_Sig_LAS_LLLaneDistance 63 "Invalid" ;
+VAL_TABLE_ Vt_Sig_LAS_RRLaneDection 3 "Invalid" 2 "reserved" 1 "detected" 0 "not detected" ;
+VAL_TABLE_ Vt_Sig_LAS_RRLaneDistance 63 "Invalid" ;
+VAL_TABLE_ Vt_Sig_LAS_IACCEnableStatus 3 "Reserved" 2 "ON" 1 "OFF" 0 "Invalid" ;
+VAL_TABLE_ Vt_Sig_LAS_RLaneMarkerType 7 "invalid" 6 "reserved" 5 "other" 4 "Botts dots" 3 "double lane mark" 2 "road edge" 1 "solid" 0 "dashed" ;
+VAL_TABLE_ Vt_Sig_LAS_LLaneMarkerType 7 "invalid" 6 "reserved" 5 "other" 4 "Botts dots" 3 "double lane mark" 2 "road edge" 1 "solid" 0 "dashed" ;
+VAL_TABLE_ Vt_Sig_HU_EnterRampInfo 3 "reserved" 2 "not clear" 1 "enter ramp" 0 "not enter ramp" ;
+VAL_TABLE_ Vt_Sig_HU_RampInfo 3 "not clear" 2 "ramp entrance" 1 "ramp exit" 0 "no ramp" ;
+VAL_TABLE_ Vt_Sig_DMS_DMSStatus 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Failure" 3 "Camera Blocked" 2 "Active" 1 "Standby" 0 "Off" ;
+VAL_TABLE_ Vt_Sig_DMS_DrowsinessState 7 "Invalid" 6 "Unknown" 5 "Unavailable" 4 "Reserved" 3 "Microsleep" 2 "Drowsy" 1 "Slightly Drowsy" 0 "Awake" ;
+VAL_TABLE_ Vt_Sig_DMS_DistractionState 3 "Invalid" 2 "Reserved" 1 "Distracted" 0 "Not Distracted" ;
+VAL_TABLE_ Vt_Sig_GW_LASSwitch 3 "Fault" 2 "Reserved" 1 "Push" 0 "Not Push" ;
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ SAS_SASFailure : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ LAS_HeatReq : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ LAS_WearinessWarning : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_WarningRight : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ LAS_WarningLeft : 0|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ LAS_LaneDetectionSts : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_TextInfoForDriver : 0|5@0+ (1,0) [0|31] "" Vector__XXX
+ SG_ LAS_RightLaneRightStatus : 0|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_LeftLaneLeftStatus : 0|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_CurvatureRate : 0|14@0+ (2E-005,-0.1) [-0.1|0.1] "1/m2" Vector__XXX
+ SG_ LAS_CurrentCurvature : 0|13@0+ (2E-005,0) [0|0.1] "1/m" Vector__XXX
+ SG_ LAS_RoadType : 0|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_HeadingAngle : 0|10@0+ (0.1,-30) [-30|30] "degree" Vector__XXX
+ SG_ LAS_HostLateralOffset : 0|8@0+ (0.05,-6) [-6|6] "m" Vector__XXX
+ SG_ LAS_LaneWidth : 0|7@0+ (0.05,0) [0|6] "m" Vector__XXX
+ SG_ LAS_IACCTakeoverReq : 0|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_SLASoundEnableStatus : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ HU_SLASoundEnable : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ BCM_FrontFoglampStatus : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_RightWarningStatus : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LeftWarningStatus : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LdwSensitivityStatus : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ ESP_ECDActive : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ ESP_Wheel_Speed_FL_Direction : 0|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ EPS_TorqSensorStatus : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ EPS_SteeringTorque : 0|8@0+ (0.1794,-22.78) [-22.78|22.78] "Nm" Vector__XXX
+ SG_ EPS_EPSFailed : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ EPS_DriverInterventionSteering : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ EPS_DriverInterventionSteeringVa : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ EPS_ControlAvailable : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ SAS_TrimmingSts : 0|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 613 EMS_265: 8 EMS
+ SG_ EMS_EngineStatus : 63|2@0+ (1,0) [0|3] ""  LAS
+
+BO_ 864 GW_360: 8 GW
+ SG_ IMS_RollingCounter : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ IMS_CheckSum : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ IMS_HeadDetectSts_Yaw : 23|8@0+ (1,-75) [-75|75] "degree" Vector__XXX
+ SG_ IMS_HeadDetectSts_Roll : 15|8@0+ (1,-45) [-45|45] "degree" Vector__XXX
+ SG_ IMS_HeadDetectSts_Pitch : 7|8@0+ (1,-25) [-25|45] "degree" Vector__XXX
+
+BO_ 687 GW_2AF: 8 GW
+ SG_ LCDAR_BSD_LCAAlertForELK : 25|2@0+ (1,0) [0|3] ""  LAS
+ SG_ LCDAR_BSD_LCAStatus : 12|2@0+ (1,0) [0|3] ""  LAS
+ SG_ LCDAR_SystemStatus : 15|3@0+ (1,0) [0|7] ""  LAS
+ SG_ LCDAR_BSD_LCAAlert : 5|2@0+ (1,0) [0|3] ""  LAS
+
+BO_ 686 GW_2AE: 8 GW
+ SG_ LCDAL_BSD_LCAAlertForELK : 44|2@0+ (1,0) [0|3] ""  LAS
+ SG_ LCDAL_BSD_LCAStatus : 12|2@0+ (1,0) [0|3] ""  LAS
+ SG_ LCDAL_SystemStatus : 15|3@0+ (1,0) [0|7] ""  LAS
+ SG_ LCDAL_BSD_LCAAlert : 5|2@0+ (1,0) [0|3] ""  LAS
+
+BO_ 1399 HU_577: 8 GW
+ SG_ HU_SpeedLimitDistance : 5|6@0+ (10,0) [0|600] "m"  LAS
+ SG_ HU_CRC_577 : 63|8@0+ (1,0) [0|255] ""  LAS
+ SG_ HU_RollingCounter_577 : 51|4@0+ (1,0) [0|15] ""  LAS
+ SG_ HU_SlopeGradientFar : 25|10@0+ (0.1,-51.1) [-51.1|51.1] "%"  LAS
+ SG_ HU_SlopeGradient : 9|10@0+ (0.1,-51.1) [-51.1|51.1] "%"  LAS
+
+BO_ 1398 HU_576: 8 GW
+ SG_ HU_CRC_576 : 63|8@0+ (1,0) [0|255] ""  LAS
+ SG_ HU_RollingCounter_576 : 51|4@0+ (1,0) [0|15] ""  LAS
+ SG_ HU_NavGuiganceStatus : 47|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_SlopeDistance : 45|6@0+ (10,0) [0|600] "m"  LAS
+ SG_ HU_EnterSlopeInfo : 5|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_TunnelLength : 37|6@0+ (1,0) [0|63] "m"  LAS
+ SG_ HU_TunnelDistance : 23|6@0+ (10,0) [0|600] "m"  LAS
+ SG_ HU_EnterTunnelInfo : 3|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_RoadCurvatureFar : 17|10@0+ (1,0) [0|1023] "per_meter"  LAS
+ SG_ HU_RoadCurvature : 1|10@0+ (1,0) [0|1023] "per_meter"  LAS
+
+BO_ 960 LAS_3C0: 8 LAS
+ SG_ LAS_CheckSum_id3C0 : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ LAS_RollingCounter_id3C0 : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ LAS_LaneChangeStatus : 15|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_SLASetStatus : 1|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LaneQuality : 7|6@0+ (0.015625,0) [0|0.984375] "" Vector__XXX
+
+BO_ 1280 GW_500: 8 GW
+ SG_ HU_CurrentLocationValid : 7|1@0+ (1,0) [0|1] ""  LAS
+ SG_ HU_CurrentLocationLatitude : 35|28@0+ (1E-006,-134.217727) [-90|90] "degree"  LAS
+ SG_ HU_CurrentLocationLongitude : 4|29@0+ (1E-006,-268.435455) [-180|180] "degree"  LAS
+
+BO_ 1319 GW_527: 8 GW
+ SG_ HU_VC_CruiseControl : 10|3@0+ (1,0) [0|7] ""  LAS
+
+BO_ 896 GW_380: 8 GW
+ SG_ IP_TotalOdometer : 39|24@0+ (0.1,0) [0|999999] "Km"  LAS
+
+BO_ 731 LAS_2DB: 8 LAS
+ SG_ LAS_CheckSum_id2DB : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ LAS_RollingCounter_id2DB : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ LAS_RightPedDetection : 53|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LeftPedDetection : 55|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_HostPedLngRange_3 : 37|6@0+ (1,0) [0|62] "m" Vector__XXX
+ SG_ LAS_HostPedLngRange_2 : 21|6@0+ (1,0) [0|62] "m" Vector__XXX
+ SG_ LAS_HostPedLngRange_1 : 5|6@0+ (1,0) [0|62] "m" Vector__XXX
+ SG_ LAS_HostPedLatRange_3 : 47|8@0+ (0.2,0) [-25|25] "m" Vector__XXX
+ SG_ LAS_HostPedLatRange_2 : 31|8@0+ (0.2,0) [-25|25] "m" Vector__XXX
+ SG_ LAS_HostPedLatRange_1 : 15|8@0+ (0.2,0) [-25|25] "m" Vector__XXX
+ SG_ LAS_HostPedDetection_3 : 39|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_HostPedDetection_2 : 23|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_HostPedDetection_1 : 7|2@0+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 998 LAS_3E6: 8 LAS
+ SG_ LAS_LaneEquationStatus : 53|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LaneEquationC3 : 33|12@0+ (4.7683715820313E-007,-0.0009760856628418) [-0.0009760856628418|0.0009760856628418] "1/m2" Vector__XXX
+ SG_ LAS_LaneEquationC2 : 29|12@0+ (1.52587890625E-005,-0.031234741210938) [-0.031234741210938|0.031234741210938] "1/m" Vector__XXX
+ SG_ LAS_LaneEquationC1 : 9|12@0+ (0.000488281,-1) [-1|0.999023438] "rad" Vector__XXX
+ SG_ LAS_CheckSum_id3E6 : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ LAS_RollingCounter_id3E6 : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ LAS_RoadCurvatureFar : 0|7@0+ (0.0005,-0.03) [-0.03|0.03] "1/m" Vector__XXX
+ SG_ LAS_RoadCurvatureNear : 7|7@0+ (0.0005,-0.03) [-0.03|0.03] "1/m" Vector__XXX
+
+BO_ 680 APA_2A8: 8 APA
+ SG_ APA_APAOnOff : 6|1@0+ (1,0) [0|1] ""  LAS
+
+BO_ 906 GW_38A: 8 GW
+ SG_ GW_MFS_DiagInfoSW : 50|3@0+ (1,0) [0|7] ""  LAS
+ SG_ GW_MFS_IACCenable_switch : 59|2@0+ (1,0) [0|3] ""  LAS
+
+BO_ 854 GW_356: 8 DMS
+ SG_ IMS_RollingCounter : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ IMS_CheckSum : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ IMS_EyeGazeStatus : 21|8@0+ (1,-75) [-75|75] "degree" Vector__XXX
+ SG_ IMS_EyeDetectSatus : 13|8@0+ (1,0) [0|100] "%" Vector__XXX
+ SG_ IMS_DriverHeadDetect : 5|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ IMS_DistractionStatus : 7|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ IMS_DrowsinessStatus : 3|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ IMS_IMSStatus : 0|3@0+ (1,0) [0|7] "" Vector__XXX
+
+BO_ 1300 GW_514: 8 GW
+ SG_ HU_IACCEnable : 29|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_OverspeedWarningOffset : 38|5@0+ (1,-10) [-10|10] ""  LAS
+ SG_ HU_OverspeedWarningEnable : 33|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_OverspeedSoundWarningEnable : 31|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_FatigueDectionEnable : 21|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_LDWShakeLev : 23|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_LASWarningModeSelection : 10|3@0+ (1,0) [0|7] ""  LAS
+ SG_ HU_SLASwitch : 11|1@0+ (1,0) [0|1] ""  LAS
+ SG_ HU_HMAEnable : 12|1@0+ (1,0) [0|1] ""  LAS
+ SG_ HU_LASModeSelection : 5|3@0+ (1,0) [0|7] ""  LAS
+ SG_ HU_LdwSensitivity : 7|2@0+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 730 LAS_2DA: 8 LAS
+ SG_ LAS_RRLaneDistance : 43|6@0+ (0.2,0) [0|12] "m" Vector__XXX
+ SG_ LAS_RRLaneDection : 45|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LLLaneDistance : 35|6@0+ (0.2,0) [0|12] "m" Vector__XXX
+ SG_ LAS_LLLaneDection : 37|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_RLaneDistance : 27|6@0+ (0.1,-1) [-1|5] "m" Vector__XXX
+ SG_ LAS_LLaneDistance : 17|6@0+ (0.1,-1) [-1|5] "m" Vector__XXX
+ SG_ LAS_RoadCurvature : 8|7@0+ (0.0005,-0.03) [-0.03|0.03] "1/m" Vector__XXX
+ SG_ ACC_TargetBasedLateralControl : 10|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_IACCTextInfoForDriver : 15|5@0+ (1,0) [0|31] "" Vector__XXX
+ SG_ LAS_IACCTakeoverReq : 2|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_DriverHandsOff : 4|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_IACCMode : 7|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_CheckSum_2DA : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ LAS_RollingCounter_2DA : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 729 LAS_2D9: 8 LAS
+ SG_ LAS_FatigueDectionEnableStatus : 11|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_IACCEnableStatus : 45|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_RLaneMarkerType : 32|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_LLaneMarkerType : 35|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_HMAEnableStatus : 2|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ LAS_LASModeSelectionStatus : 5|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LDW_VoiceWarning : 37|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_OverspeedSoundWarning : 31|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_OverspeedVisualWarning : 17|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_OverspeedWarningOffset : 27|5@0+ (1,-10) [-10|10] "km/h" Vector__XXX
+ SG_ LAS_OverspeedSoundWarningEnable : 9|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_OverspeedWarningEnableStatus : 29|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_CheckSum_2D9 : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ LAS_RollingCounter_2D9 : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ LAS_HostLaneRightStatus : 20|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_HostLaneLeftStatus : 23|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_LDWShakeLevStatus : 13|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LASWarningModeSeleStatus : 0|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_SLASwitchStatus : 1|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 2617062913 XCP_DTO: 1 LAS
+ SG_ xcp_dto : 7|8@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2617062912 XCP_CRO: 1 Vector__XXX
+ SG_ xcp_cro : 7|8@0+ (1,0) [0|0] ""  LAS
+
+BO_ 673 EPS_2A1: 8 EPS
+ SG_ EPS_IACC_abortreason : 54|3@0+ (1,0) [0|7] ""  LAS
+ SG_ EPS_MeasuredTorsionBarTorValid : 47|1@0+ (1,0) [0|1] ""  LAS
+ SG_ EPS_LksHandsOnStatus : 7|2@0+ (1,0) [0|3] ""  LAS
+ SG_ EPS_Checksum_2A1 : 63|8@0+ (1,0) [0|255] ""  LAS
+ SG_ EPS_RollingCounter_2A1 : 51|4@0+ (1,0) [0|15] ""  LAS
+ SG_ EPS_SteeringAngulaSpeed : 25|10@0+ (5,-2555) [-2555|2555] "deg/s"  LAS
+ SG_ EPS_MeasuredTorsionBarTorque : 23|11@0+ (0.01,-10.23) [-10.23|10.23] "Nm"  LAS
+ SG_ EPS_SteeringAngle : 5|14@0+ (0.15,-1228.65) [-1228.65|1228.65] "degree"  LAS
+ SG_ EPS_AvailabilityStatus : 28|3@0+ (1,0) [0|7] ""  LAS
+
+BO_ 2015 BoschVideoDiagRequ_Functional: 8 TESTER
+ SG_ BoschVideoDiagRequ_Fun_Data : 7|8@0+ (1,0) [0|1.844674407371E+019] ""  LAS
+
+BO_ 2026 BoschVideoDiagResp: 8 LAS
+ SG_ BoschVideoDiagResp_Data : 7|64@0+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2018 BoschVideoDiagRequ: 8 TESTER
+ SG_ BoschVideoDiagRequ_Data : 7|64@0+ (1,0) [0|0] ""  LAS
+
+BO_ 853 EMS_355: 8 EMS
+ SG_ EMS_TotalOdometer : 31|24@0+ (0.1,0) [0|999999] "Km"  LAS
+
+BO_ 80 SRS_50: 4 SRS
+ SG_ SRS_CrashOutputStatus : 7|4@0+ (1,0) [0|15] ""  LAS
+ SG_ SRS_CrashOutputStatusChecksum : 3|4@0+ (1,0) [0|15] ""  LAS
+
+BO_ 800 GW_320: 8 GW
+ SG_ ESP_VehicleSpeedValid : 14|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 808 LCM_328: 8 LCM
+ SG_ LCM_AutoHeadlightSts : 21|1@0+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 648 BCM_288: 8 BCM
+ SG_ BCM_LowBeamStatus : 5|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ BCM_HighBeamStatus : 7|2@0+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 1281 GW_501: 8 GW
+ SG_ HU_LocalTimeYear : 15|4@0+ (1,2013) [2013|2028] "year"  LAS
+ SG_ HU_LocalTimeValid : 7|1@0+ (1,0) [0|1] ""  LAS
+ SG_ HU_LocalTimeSecond : 45|6@0+ (1,0) [0|59] "second"  LAS
+ SG_ HU_LocalTimeMonth : 11|4@0+ (1,0) [1|12] "month"  LAS
+ SG_ HU_LocalTimeMinute : 37|6@0+ (1,0) [0|59] "minute"  LAS
+ SG_ HU_LocalTimeHour : 28|5@0+ (1,0) [0|23] "hour"  LAS
+ SG_ HU_LocalTimeDate : 20|5@0+ (1,0) [1|31] "day"  LAS
+
+BO_ 762 GW_2FA: 8 GW
+ SG_ HU_RollingCounter_2FA : 51|4@0+ (1,0) [0|15] ""  LAS
+ SG_ HU_RampDistance : 47|6@0+ (10,0) [0|600] "m"  LAS
+ SG_ HU_NavSpeedLimitType : 39|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_EnterCurveInfo : 28|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_CurveDistance : 37|6@0+ (10,0) [0|600] "m"  LAS
+ SG_ HU_CRC_2FA : 63|8@0+ (1,0) [0|255] ""  LAS
+ SG_ HU_EnterRampInfo : 23|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_RampInfo : 17|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_navStatus : 31|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ HU_navSpeedLimitUnits : 21|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_navSpeedLimitStatus : 19|2@0+ (1,0) [0|3] ""  LAS
+ SG_ HU_navSpeedLimit : 15|8@0+ (1,0) [0|255] ""  LAS
+ SG_ HU_navCurrentRoadType : 26|3@0+ (1,0) [0|7] ""  LAS
+ SG_ HU_navCountryCode : 7|8@0+ (1,0) [0|255] ""  LAS
+
+BO_ 720 GW_2D0: 8 GW
+ SG_ IP_SLASwitch : 59|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ IP_HMAEnable : 58|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ BCM_Wiper_speed : 4|4@0+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 624 GW_270: 8 GW
+ SG_ BCM_HighBeamStatus : 21|2@0+ (1,0) [0|3] ""  LAS
+ SG_ BCM_LowBeamStatus : 23|2@0+ (1,0) [0|3] ""  LAS
+ SG_ BCM_RearFoglampStatus : 57|2@0+ (1,0) [0|3] ""  LAS
+ SG_ BCM_FrontFoglampStatus : 13|2@0+ (1,0) [0|3] ""  LAS
+ SG_ BCM_AutoHeadlightSts : 48|1@0+ (1,0) [0|1] ""  LAS
+ SG_ AC_EnvironmentalTempVD : 32|1@0+ (1,0) [0|1] ""  LAS
+ SG_ AC_EnvironmentalTemp : 7|8@0+ (0.5,-40) [-40|87] "degree C"  LAS
+
+BO_ 672 EPS_2A0: 8 EPS
+ SG_ EPS_TorqueAssistMode : 40|3@0+ (1,0) [0|3] ""  LAS
+ SG_ EPS_ConcussAvailabilityStatus : 53|2@0+ (1,0) [0|3] ""  LAS
+ SG_ EPS_RollingCounter_2A0 : 51|4@0+ (1,0) [0|15] ""  LAS
+ SG_ EPS_Checksum_2A0 : 63|8@0+ (1,0) [0|255] ""  LAS
+
+BO_ 600 ESP_258: 8 ESP
+ SG_ ESP_ECDAvailable : 21|1@0+ (1,0) [0|1] ""  LAS
+ SG_ Wheel_Speed_FL_Direction : 17|2@0+ (1,0) [0|3] ""  LAS
+ SG_ ESP_RollingCounter_id258 : 27|4@0+ (1,0) [0|15] ""  LAS
+ SG_ ESP_CheckSum_258 : 31|4@0+ (1,0) [0|15] ""  LAS
+ SG_ ESP_MasCylBrakePressureValid : 7|1@0+ (1,0) [0|1] ""  LAS
+ SG_ ESP_MasCylBrakePressure : 3|12@0+ (0.1,0) [0|250] "Bar"  LAS
+ SG_ Wheel_Speed_FL_Pulse : 63|8@0+ (1,0) [0|254] ""  LAS
+ SG_ Wheel_Speed_RR_Pulse : 39|8@0+ (1,0) [0|254] ""  LAS
+ SG_ Wheel_Speed_RL_Pulse : 47|8@0+ (1,0) [0|254] ""  LAS
+ SG_ Wheel_Speed_FR_Pulse : 55|8@0+ (1,0) [0|254] ""  LAS
+
+BO_ 615 EMS_267: 8 EMS
+ SG_ EMS_RollingCounter_id267 : 63|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ EMS_CheckSum_267 : 59|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ EMS_EngineStatus_EMS_267 : 41|2@0+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 728 LAS_2D8: 8 LAS
+ SG_ LAS_DFDWarning : 25|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_DFDFailed : 11|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ LAS_SteeringTorqueReq : 46|11@0+ (0.01,-8) [-8|8] "Nm" Vector__XXX
+ SG_ LAS_TakeoverReq : 10|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ LAS_LKSStatus : 39|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_HMALightDistribution : 47|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ LAS_HMAStatus : 13|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_CalibrationStatus : 9|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_CheckSum : 63|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ LAS_AliveCounter : 51|4@0+ (1,0) [0|15] "" Vector__XXX
+ SG_ LAS_SLASpdLimitUnits : 3|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_SLASpdLimit : 23|8@0+ (1,0) [0|255] "" Vector__XXX
+ SG_ LAS_SLAState : 36|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ LAS_LDWReminder : 33|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LASFailure : 27|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LAS_LDWStatus : 5|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ LDW_VibrationWarning : 7|2@0+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 656 GW_290: 8 GW
+ SG_ LCM_LASSwitch : 21|2@0+ (1,0) [0|3] ""  LAS
+ SG_ IP_LASModeSelection : 36|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ BCM_FrontWiperStatus : 63|2@0+ (1,0) [0|3] ""  LAS
+ SG_ BCM_emergencylightstatus : 61|2@0+ (1,0) [0|3] ""  LAS
+ SG_ AC_FrBlowType : 44|3@0+ (1,0) [0|7] ""  LAS
+ SG_ IP_LdwSensitivity : 33|2@0+ (1,0) [0|3] "" Vector__XXX
+ SG_ BCM_TurnLightSwitchSts : 47|2@0+ (1,0) [0|3] ""  LAS
+
+BO_ 632 ESP_278: 8 ESP
+ SG_ ESP_CheckSum_278 : 59|4@0+ (1,0) [0|15] ""  LAS
+ SG_ ESP_RollingCounter_278 : 63|4@0+ (1,0) [0|15] ""  LAS
+ SG_ ESP_YawRateValid : 55|1@0+ (1,0) [0|1] ""  LAS
+ SG_ ESP_YawRate : 37|14@0+ (0.01,-81.91) [-81.91|81.91] "degree/s"  LAS
+ SG_ ESP_LongAccel : 31|10@0+ (0.03125,-16) [-16|15.90625] "m/s2"  LAS
+ SG_ ESP_LatAccel : 23|8@0+ (0.1,-12.7) [-12.7|12.7] "m/s2"  LAS
+
+BO_ 616 TCU_268: 8 TCU
+ SG_ TCU_GearShiftPositon : 23|4@0+ (1,0) [0|15] ""  LAS
+ SG_ AT_ActualGearValid : 13|1@0+ (1,0) [0|1] ""  LAS
+ SG_ AT_ActualGear : 11|4@0+ (1,0) [0|15] ""  LAS
+ SG_ TCU_ShiftPostionValid : 12|1@0+ (1,0) [0|1] ""  LAS
+
+BO_ 384 SAS_180: 8 SAS
+ SG_ SAS_InternalStsFlg : 28|5@0+ (1,0) [0|31] "" Vector__XXX
+ SG_ SAS_CRCCheck : 63|8@0+ (1,0) [0|255] ""  LAS
+ SG_ SAS_RollingCounter : 51|4@0+ (1,0) [0|15] ""  LAS
+ SG_ SAS_SteeringAngleValid : 31|1@0+ (1,0) [0|1] ""  LAS
+ SG_ SAS_SASFailure : 30|1@0+ (1,0) [0|1] ""  LAS
+ SG_ SAS_SteeringAngle : 7|16@0- (0.1,0) [-780|780] "degree"  LAS
+ SG_ SAS_Calibrated : 29|1@0+ (1,0) [0|1] ""  LAS
+ SG_ SAS_SteeringAngleSpeed : 23|8@0+ (4,0) [0|1016] "deg/s"  LAS
+
+BO_ 520 ESP_208: 8 ESP
+ SG_ Wheel_Speed_FL_Direction : 54|2@0+ (1,0) [0|3] ""  LAS
+ SG_ Wheel_Speed_FR_Direction : 38|2@0+ (1,0) [0|3] ""  LAS
+ SG_ Wheel_Speed_RL_Direction : 22|2@0+ (1,0) [0|3] ""  LAS
+ SG_ Wheel_Speed_RR_Direction : 6|2@0+ (1,0) [0|3] ""  LAS
+ SG_ Wheel_Speed_FL_Valid_Data : 55|1@0+ (1,0) [0|1] ""  LAS
+ SG_ Wheel_Speed_RL_Valid_Data : 23|1@0+ (1,0) [0|1] ""  LAS
+ SG_ Wheel_Speed_RR_Data : 4|13@0+ (0.05625,0) [0|360] "km/h"  LAS
+ SG_ Wheel_Speed_FR_Data : 36|13@0+ (0.05625,0) [0|360] "km/h"  LAS
+ SG_ Wheel_Speed_FL_Data : 52|13@0+ (0.05625,0) [0|360] "km/h"  LAS
+ SG_ Wheel_Speed_FR_Valid_Data : 39|1@0+ (1,0) [0|1] ""  LAS
+ SG_ Wheel_Speed_RR_Valid_Data : 7|1@0+ (1,0) [0|1] ""  LAS
+ SG_ Wheel_Speed_RL_Data : 20|13@0+ (0.05625,0) [0|360] "km/h"  LAS
+
+BO_ 536 ESP_218: 8 ESP
+ SG_ ESP_CheckSum : 63|8@0+ (1,0) [0|255] ""  LAS
+ SG_ ESP_RollingCounter : 51|4@0+ (1,0) [0|15] ""  LAS
+ SG_ ESP_ESPFunctionStatus : 1|1@0+ (1,0) [0|1] ""  LAS
+ SG_ ESP_ABSActiveStatus : 7|1@0+ (1,0) [0|1] ""  LAS
+ SG_ ESP_ESPActiveStatus : 0|1@0+ (1,0) [0|1] ""  LAS
+ SG_ ESP_VehicleSpeed : 36|13@0+ (0.05625,0) [0|360] "km/h"  LAS
+ SG_ ESP_TCSFailStatus : 4|1@0+ (1,0) [0|1] ""  LAS
+ SG_ ESP_VehicleSpeedValid : 37|1@0+ (1,0) [0|1] ""  LAS
+
+BO_ 597 EMS_255: 8 EMS
+ SG_ EMS_BrakePedalStatus : 7|2@0+ (1,0) [0|3] ""  LAS
+ SG_ EMS_EngineSpeedError : 12|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ EMS_EngineSpeed : 23|16@0+ (0.25,0) [0|16383.5] "Rpm"  LAS
+ SG_ EMS_AccPedal : 47|8@0+ (0.392,0) [0|99.568] "%"  LAS
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 3221225472 LAS_HeatReq "0:NO request
+1:Have requests";
+CM_ SG_ 3221225472 EPS_TorqSensorStatus "0x0  Normal
+0x1  Abnormal";
+CM_ SG_ 3221225472 EPS_EPSFailed "0x0 = No Fail
+0x1 = Fail";
+CM_ SG_ 3221225472 EPS_DriverInterventionSteering "0x0: Not Intervention
+0x1: Intervention";
+CM_ SG_ 3221225472 EPS_DriverInterventionSteeringVa "0x0  Valid
+0x1  Invalid";
+CM_ SG_ 3221225472 EPS_ControlAvailable "0x0  Invalid
+0x1  Valid";
+CM_ SG_ 1398 HU_CRC_576 "8 bit CRC after SAE J1850 according to scheme(c-code), is generated over Byte 0 to Byte 6";
+CM_ SG_ 1398 HU_RoadCurvature "Current position curvature";
+CM_ SG_ 730 LAS_CheckSum_2DA "Checksum = (Byte1 +Byte2 …+ Byte7) XOR 0xFF";
+CM_ SG_ 729 LAS_CheckSum_2D9 "Checksum = (Byte1 +Byte2 …+ Byte7) XOR 0xFF";
+CM_ SG_ 673 EPS_Checksum_2A1 "Checksum = (Byte1 +Byte2 …+ Byte7) XOR 0xFF";
+CM_ SG_ 673 EPS_AvailabilityStatus "0 Temp inhibit
+1 Available for control
+2 Active
+3 Permanently failed";
+CM_ SG_ 80 SRS_CrashOutputStatusChecksum "Checksum=(SRS_CrashOutputStatus) XOR 0xF";
+CM_ SG_ 800 ESP_VehicleSpeedValid "0x0=Valid£» 0x1=Not Valid\
+
+ËùÓÐ³µÐÍ¾ùÒªÇó·¢´ËÐÅºÅ";
+CM_ SG_ 808 LCM_AutoHeadlightSts "0x0  Not Actived
+0x1  Actived";
+CM_ SG_ 648 BCM_LowBeamStatus "0x0 = OFF
+0x1 = ON
+0x2 = Not used
+0x3 = Reserved";
+CM_ SG_ 648 BCM_HighBeamStatus "0x0 = OFF
+0x1 = ON
+
+0x2 = Not used
+0x3 = Reserved";
+CM_ SG_ 1281 HU_LocalTimeValid "0x0 = Valid
+0x1 = Not Valid";
+CM_ SG_ 762 HU_navSpeedLimitUnits "3 - reserved
+
+2 - unit mph
+
+1 - unit kph
+
+0 - unknown.";
+CM_ SG_ 762 HU_navSpeedLimitStatus "3 - reserved
+2 - reserved
+
+1 - invalid
+
+0 - valid";
+CM_ SG_ 720 IP_SLASwitch "0  OFF
+1  ON";
+CM_ SG_ 720 IP_HMAEnable "0  OFF
+1  ON
+Off in default";
+CM_ SG_ 720 BCM_Wiper_speed "0 Switch wiper off
+1..14 Stage 1..14 Desired number of wiper strokes perminute
+15 Signal invalid";
+CM_ SG_ 624 BCM_HighBeamStatus "0x0 = OFF
+0x1 = ON
+
+0x2 = Not used
+0x3 = Reserved";
+CM_ SG_ 624 BCM_LowBeamStatus "0x0 = OFF
+0x1 = ON
+0x2 = Not used
+0x3 = Reserved";
+CM_ SG_ 624 AC_EnvironmentalTempVD "0x0 : Valid
+0x1 : Invalid";
+CM_ SG_ 672 EPS_RollingCounter_2A0 "rolling counter";
+CM_ SG_ 672 EPS_Checksum_2A0 "Checksum = (Byte1 +Byte2 …+ Byte7) XOR 0xFF";
+CM_ SG_ 600 ESP_CheckSum_258 "checksum={Byte1(Bit1—Bit4)}XOR{ Byte1(Bit5—Bit8)} XOR {Byte2(Bit1—Bit4)}XOR...{ Byte8(Bit5—Bit8)};";
+CM_ SG_ 600 ESP_MasCylBrakePressureValid "0x0: Valid;
+0x1: Invalid";
+CM_ SG_ 600 ESP_MasCylBrakePressure "Indicated the pressure of brake master cylinder,but not the pressure of brake";
+CM_ SG_ 615 EMS_EngineStatus_EMS_267 "0x0: Stop
+0x1: Crank
+0x2: Running
+0x3: Reserved";
+CM_ SG_ 728 LAS_SteeringTorqueReq "Negative for the left and positive for the right";
+CM_ SG_ 728 LAS_CheckSum "Checksum = (Byte1 +Byte2 …+ Byte7) XOR 0xFF";
+CM_ SG_ 728 LAS_SLASpdLimit "Enumeration of possible speed limits:
+0-no speed limit detected
+1-SL5
+2-SL10
+…
+32-SL160
+33-253: Reserved
+254-Unknown
+255-SLEND";
+CM_ SG_ 656 BCM_FrontWiperStatus "0x0 = OFF
+0x1 = Low
+0x2 = High
+0x3 = Error";
+CM_ SG_ 656 BCM_emergencylightstatus "0x0 = OFF
+0x1 = ON
+0x2 = Not used
+0x3 = Error";
+CM_ SG_ 656 AC_FrBlowType "0x0 = blow face
+0x1 = blow face/blow feet
+0x2 = blow feet
+0x3 = blow fee/defroster
+0x4 = defroster
+0x5-0x6 = Reserved
+0x7 = invalid.";
+CM_ SG_ 656 IP_LdwSensitivity "0x0: early_early_aktiv
+0x1: early_late_aktiv
+0x2: late_late_aktiv, Reserved
+0x3: Fault";
+CM_ SG_ 632 ESP_CheckSum_278 "checksum={Byte1(Bit1—Bit4)}XOR{ Byte1(Bit5—Bit8)} XOR {Byte2(Bit1—Bit4)}XOR...{ Byte8(Bit5—Bit8)}";
+CM_ SG_ 616 TCU_GearShiftPositon "0h: Parking;
+1h: Reverse
+2h: Neutral;
+3h: D;
+4h: D3;
+5h: D2;
+6h: L ;
+7h: M;
+8h-Dh: Reserved
+Eh: Unreliable;
+Fh: Invalid";
+CM_ SG_ 616 AT_ActualGearValid "0x0: Valid
+0x1: Invalid";
+CM_ SG_ 616 AT_ActualGear "0h: Neutral;
+1h: 1st gear
+2h: 2nd gear;
+3h: 3rd gear;
+4h: 4th gear;
+5h: 5th gear
+6h: 6th gear;
+7h-8h:Reserved
+
+9h: Reverse;
+Ah: Parking
+Bh-Eh: Reserved;
+Fh: Invalid";
+CM_ SG_ 616 TCU_ShiftPostionValid "0=Valid; 1=Invalid";
+CM_ SG_ 384 SAS_CRCCheck "8 bit CRC after SAE J1850 according to scheme(c-code), isgenerated over Byte 0 to Byte 6";
+CM_ SG_ 384 SAS_RollingCounter "message counter of the steering wheel angle";
+CM_ SG_ 384 SAS_SteeringAngle "??????????,??????
+Steering wheel angle (N : value of the message) : 
+= N × 0.1 , for 0 < N = 32767
+ = (N-65536) × 0.1 , for N > 32767
+Note: that Clockwise rotation is ‘-‘ and anti-Clockwise rotation is ‘+‘";
+CM_ SG_ 384 SAS_SteeringAngleSpeed "??????????,??????
+SteeringAngleSpeed(N : value of the message) :
+= N × 4 , for 0 < N = 254
+ = error signaled , for N > 254";
+CM_ SG_ 536 ESP_CheckSum "Checksum = (Byte1 +Byte2 …+ Byte7) XOR 0xFF";
+CM_ SG_ 536 ESP_ESPFunctionStatus "0x0:  OFF
+0x1:  ON";
+CM_ SG_ 536 ESP_VehicleSpeed "0x0~0x1900=0~360km/h
+0x1901~0x1FFE=Reserved
+0x1FFF=Invalid";
+CM_ SG_ 536 ESP_VehicleSpeedValid "0x0=Valid£» 0x1=Not Valid\
+
+ËùÓÐ³µÐÍ¾ùÒªÇó·¢´ËÐÅºÅ";
+CM_ SG_ 597 EMS_BrakePedalStatus "EMS_BrakePedalStatus£ºÖÆ¶¯Ì¤°å×´Ì¬";
+CM_ SG_ 597 EMS_EngineSpeedError "EMS_EngineSpeedError£º·¢¶¯»ú×ªËÙ¹ÊÕÏ";
+CM_ SG_ 597 EMS_EngineSpeed "0x0~0xFFFE=0~16383.5Rmp
+0xFFFF=Invalid";
+CM_ SG_ 597 EMS_AccPedal "EMS_AccPedal:¼ÓËÙÌ¤°åÎ»ÖÃ(Invalid value=0xFF)";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ SG_  "NWM-WakeupAllowed" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType","Event","NotUsed","NotUsed","NotUsed","NotUsed";
+BA_DEF_ SG_  "GenSigCycleTime" INT 0 0;
+BA_DEF_ SG_  "GenSigCycleTimeActive" INT 0 0;
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ SG_  "GenSigStartValue" INT 0 0;
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NotUsed","NotUsed","NotUsed","NotUsed","Cyclic","NotUsed","IfActive","NoMsgSendType","NotUsed";
+BA_DEF_ BO_  "NmMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "TpTxIndex" INT 0 255;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_ BU_  "GenNodSleepTime" INT 0 65535;
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmNode" ENUM  "No","Yes";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ SG_  "SystemSignalLongSymbol" STRING ;
+BA_DEF_REL_ BU_BO_REL_  "GenMsgCycleTimeFast" INT 0 65535;
+BA_DEF_REL_ BU_BO_REL_  "GenMsgNrOfRepetition" INT 0 65535;
+BA_DEF_REL_ BU_BO_REL_  "GenMsgDelayTime" INT 0 65535;
+BA_DEF_REL_ BU_BO_REL_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "NWM-WakeupAllowed" "";
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigCycleTime" 0;
+BA_DEF_DEF_  "GenSigCycleTimeActive" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_DEF_DEF_  "GenNodSleepTime" 0;
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "NmNode" "No";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "NodeLayerModules" "OSEKNM01.dll,CANoeILNLVector.dll";
+BA_DEF_DEF_REL_ "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_REL_ "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_REL_ "GenMsgDelayTime" 0;
+BA_DEF_DEF_REL_ "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "SystemSignalLongSymbol" "";
+BA_ "BusType" "CAN";
+BA_ "DBName" "LAS";
+BA_ "NmStationAddress" BU_ DMS 16;
+BA_ "NmStationAddress" BU_ SRS 17;
+BA_ "NmStationAddress" BU_ TCU 2;
+BA_ "NmStationAddress" BU_ ESP 3;
+BA_ "NmStationAddress" BU_ SAS 1;
+BA_ "NmStationAddress" BU_ EPS 5;
+BA_ "NmStationAddress" BU_ BCM 4;
+BA_ "NmStationAddress" BU_ LCM 8;
+BA_ "NmStationAddress" BU_ IP 7;
+BA_ "NmStationAddress" BU_ GW 6;
+BA_ "NmStationAddress" BU_ LAS 9;
+BA_ "GenMsgSendType" BO_ 613 0;
+BA_ "GenMsgCycleTime" BO_ 613 10;
+BA_ "GenMsgSendType" BO_ 864 0;
+BA_ "GenMsgCycleTime" BO_ 864 100;
+BA_ "GenMsgSendType" BO_ 687 0;
+BA_ "GenMsgCycleTime" BO_ 687 50;
+BA_ "GenMsgCycleTime" BO_ 686 50;
+BA_ "GenMsgSendType" BO_ 686 0;
+BA_ "GenMsgCycleTime" BO_ 1399 100;
+BA_ "GenMsgSendType" BO_ 1399 0;
+BA_ "GenMsgSendType" BO_ 1398 0;
+BA_ "GenMsgCycleTime" BO_ 1398 100;
+BA_ "GenMsgSendType" BO_ 960 0;
+BA_ "GenMsgCycleTime" BO_ 960 100;
+BA_ "GenMsgCycleTime" BO_ 1280 1000;
+BA_ "GenMsgSendType" BO_ 1280 0;
+BA_ "GenMsgSendType" BO_ 1319 7;
+BA_ "GenMsgCycleTime" BO_ 896 500;
+BA_ "GenMsgSendType" BO_ 896 0;
+BA_ "GenMsgSendType" BO_ 731 0;
+BA_ "GenMsgCycleTime" BO_ 731 100;
+BA_ "GenMsgCycleTime" BO_ 998 100;
+BA_ "GenMsgSendType" BO_ 998 0;
+BA_ "GenMsgCycleTime" BO_ 680 20;
+BA_ "GenMsgSendType" BO_ 680 0;
+BA_ "GenMsgCycleTime" BO_ 906 40;
+BA_ "GenMsgSendType" BO_ 906 0;
+BA_ "GenMsgCycleTime" BO_ 854 100;
+BA_ "GenMsgSendType" BO_ 854 0;
+BA_ "GenMsgSendType" BO_ 1300 7;
+BA_ "GenMsgSendType" BO_ 730 0;
+BA_ "GenMsgCycleTime" BO_ 730 100;
+BA_ "GenMsgSendType" BO_ 729 0;
+BA_ "GenMsgCycleTime" BO_ 729 100;
+BA_ "GenMsgSendType" BO_ 673 0;
+BA_ "GenMsgCycleTime" BO_ 673 20;
+BA_ "GenMsgCycleTime" BO_ 853 100;
+BA_ "GenMsgSendType" BO_ 853 0;
+BA_ "GenMsgCycleTime" BO_ 80 500;
+BA_ "GenMsgSendType" BO_ 80 0;
+BA_ "GenMsgCycleTime" BO_ 800 100;
+BA_ "GenMsgSendType" BO_ 800 0;
+BA_ "GenMsgCycleTime" BO_ 808 200;
+BA_ "GenMsgSendType" BO_ 808 0;
+BA_ "GenMsgCycleTime" BO_ 648 40;
+BA_ "GenMsgSendType" BO_ 648 0;
+BA_ "GenMsgCycleTime" BO_ 1281 1000;
+BA_ "GenMsgSendType" BO_ 1281 0;
+BA_ "GenMsgCycleTime" BO_ 762 100;
+BA_ "GenMsgSendType" BO_ 762 0;
+BA_ "GenMsgCycleTime" BO_ 720 100;
+BA_ "GenMsgSendType" BO_ 720 0;
+BA_ "GenMsgCycleTime" BO_ 624 40;
+BA_ "GenMsgSendType" BO_ 624 0;
+BA_ "GenMsgCycleTime" BO_ 672 20;
+BA_ "GenMsgSendType" BO_ 672 0;
+BA_ "GenMsgCycleTime" BO_ 600 20;
+BA_ "GenMsgSendType" BO_ 600 0;
+BA_ "GenMsgCycleTime" BO_ 615 10;
+BA_ "GenMsgSendType" BO_ 615 0;
+BA_ "GenMsgCycleTime" BO_ 728 20;
+BA_ "GenMsgSendType" BO_ 728 0;
+BA_ "GenMsgCycleTime" BO_ 656 100;
+BA_ "GenMsgSendType" BO_ 656 0;
+BA_ "GenMsgSendType" BO_ 632 0;
+BA_ "GenMsgCycleTime" BO_ 632 20;
+BA_ "GenMsgSendType" BO_ 616 0;
+BA_ "GenMsgCycleTime" BO_ 616 10;
+BA_ "GenMsgSendType" BO_ 384 0;
+BA_ "GenMsgCycleTime" BO_ 384 10;
+BA_ "GenMsgSendType" BO_ 520 0;
+BA_ "GenMsgCycleTime" BO_ 520 20;
+BA_ "GenMsgSendType" BO_ 536 0;
+BA_ "GenMsgCycleTime" BO_ 536 10;
+BA_ "GenMsgSendType" BO_ 597 0;
+BA_ "GenMsgCycleTime" BO_ 597 10;
+BA_ "GenSigCycleTime" SG_ 3221225472 SAS_SASFailure 10;
+BA_ "GenSigSendType" SG_ 3221225472 SAS_SASFailure 0;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_HeatReq 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_WearinessWarning 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_WarningRight 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_WarningLeft 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_LaneDetectionSts 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_TextInfoForDriver 100;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_RightLaneRightStatus 100;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_LeftLaneLeftStatus 100;
+BA_ "GenSigStartValue" SG_ 3221225472 LAS_CurvatureRate 5000;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_CurvatureRate 100;
+BA_ "GenSigStartValue" SG_ 3221225472 LAS_CurrentCurvature 8191;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_CurrentCurvature 100;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_RoadType 100;
+BA_ "GenSigStartValue" SG_ 3221225472 LAS_HeadingAngle 1023;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_HeadingAngle 100;
+BA_ "GenSigStartValue" SG_ 3221225472 LAS_HostLateralOffset 120;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_HostLateralOffset 100;
+BA_ "GenSigStartValue" SG_ 3221225472 LAS_LaneWidth 127;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_LaneWidth 100;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_IACCTakeoverReq 100;
+BA_ "GenSigStartValue" SG_ 3221225472 LAS_SLASoundEnableStatus 1;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_SLASoundEnableStatus 100;
+BA_ "GenSigSendType" SG_ 3221225472 HU_SLASoundEnable 5;
+BA_ "GenSigCycleTime" SG_ 3221225472 BCM_FrontFoglampStatus 40;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_RightWarningStatus 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_LeftWarningStatus 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 LAS_LdwSensitivityStatus 100;
+BA_ "GenSigCycleTime" SG_ 3221225472 EPS_TorqSensorStatus 20;
+BA_ "GenSigStartValue" SG_ 3221225472 EPS_SteeringTorque 0;
+BA_ "GenSigCycleTime" SG_ 3221225472 EPS_SteeringTorque 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 EPS_EPSFailed 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 EPS_DriverInterventionSteering 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 EPS_DriverInterventionSteeringVa 20;
+BA_ "SystemSignalLongSymbol" SG_ 3221225472 EPS_DriverInterventionSteeringVa "EPS_DriverInterventionSteeringValidity";
+BA_ "GenSigCycleTime" SG_ 3221225472 EPS_ControlAvailable 20;
+BA_ "GenSigCycleTime" SG_ 3221225472 SAS_TrimmingSts 10;
+BA_ "GenSigStartValue" SG_ 864 IMS_RollingCounter 0;
+BA_ "GenSigStartValue" SG_ 864 IMS_CheckSum 0;
+BA_ "GenSigStartValue" SG_ 864 IMS_HeadDetectSts_Yaw 255;
+BA_ "GenSigStartValue" SG_ 864 IMS_HeadDetectSts_Roll 255;
+BA_ "GenSigStartValue" SG_ 864 IMS_HeadDetectSts_Pitch 255;
+BA_ "GenSigCycleTime" SG_ 687 LCDAR_BSD_LCAAlertForELK 50;
+BA_ "GenSigCycleTime" SG_ 686 LCDAL_BSD_LCAAlertForELK 50;
+BA_ "GenSigStartValue" SG_ 1399 HU_SpeedLimitDistance 63;
+BA_ "GenSigStartValue" SG_ 1399 HU_SlopeGradientFar 1023;
+BA_ "GenSigStartValue" SG_ 1399 HU_SlopeGradient 1023;
+BA_ "GenSigCycleTime" SG_ 1398 HU_NavGuiganceStatus 20;
+BA_ "GenSigStartValue" SG_ 1398 HU_SlopeDistance 63;
+BA_ "GenSigCycleTime" SG_ 1398 HU_SlopeDistance 20;
+BA_ "GenSigCycleTime" SG_ 1398 HU_EnterSlopeInfo 20;
+BA_ "GenSigCycleTime" SG_ 1398 HU_TunnelLength 20;
+BA_ "GenSigStartValue" SG_ 1398 HU_TunnelLength 63;
+BA_ "GenSigCycleTime" SG_ 1398 HU_TunnelDistance 20;
+BA_ "GenSigStartValue" SG_ 1398 HU_TunnelDistance 63;
+BA_ "GenSigStartValue" SG_ 1398 HU_RoadCurvatureFar 511;
+BA_ "GenSigStartValue" SG_ 1398 HU_RoadCurvature 511;
+BA_ "GenSigStartValue" SG_ 1280 HU_CurrentLocationLatitude 134217727;
+BA_ "GenSigStartValue" SG_ 1280 HU_CurrentLocationLongitude 268435455;
+BA_ "GenSigStartValue" SG_ 731 LAS_HostPedLngRange_3 63;
+BA_ "GenSigStartValue" SG_ 731 LAS_HostPedLngRange_2 63;
+BA_ "GenSigStartValue" SG_ 731 LAS_HostPedLngRange_1 63;
+BA_ "GenSigStartValue" SG_ 731 LAS_HostPedLatRange_3 125;
+BA_ "GenSigStartValue" SG_ 731 LAS_HostPedLatRange_2 125;
+BA_ "GenSigStartValue" SG_ 731 LAS_HostPedLatRange_1 125;
+BA_ "GenSigStartValue" SG_ 998 LAS_LaneEquationC3 2047;
+BA_ "GenSigStartValue" SG_ 998 LAS_LaneEquationC2 2047;
+BA_ "GenSigStartValue" SG_ 998 LAS_LaneEquationC1 2047;
+BA_ "GenSigStartValue" SG_ 998 LAS_RoadCurvatureFar 60;
+BA_ "GenSigStartValue" SG_ 998 LAS_RoadCurvatureNear 60;
+BA_ "GenSigStartValue" SG_ 854 IMS_EyeGazeStatus 255;
+BA_ "GenSigStartValue" SG_ 854 IMS_EyeDetectSatus 255;
+BA_ "GenSigStartValue" SG_ 854 IMS_IMSStatus 1;
+BA_ "GenSigSendType" SG_ 1300 HU_OverspeedWarningOffset 5;
+BA_ "GenSigSendType" SG_ 1300 HU_OverspeedWarningEnable 5;
+BA_ "GenSigSendType" SG_ 1300 HU_OverspeedSoundWarningEnable 5;
+BA_ "GenSigSendType" SG_ 1300 HU_FatigueDectionEnable 5;
+BA_ "GenSigSendType" SG_ 1300 HU_LDWShakeLev 5;
+BA_ "GenSigSendType" SG_ 1300 HU_LASWarningModeSelection 5;
+BA_ "GenSigSendType" SG_ 1300 HU_SLASwitch 5;
+BA_ "GenSigSendType" SG_ 1300 HU_HMAEnable 5;
+BA_ "GenSigSendType" SG_ 1300 HU_LASModeSelection 5;
+BA_ "GenSigSendType" SG_ 1300 HU_LdwSensitivity 5;
+BA_ "GenSigStartValue" SG_ 730 LAS_RRLaneDistance 28;
+BA_ "GenSigStartValue" SG_ 730 LAS_LLLaneDistance 28;
+BA_ "GenSigStartValue" SG_ 730 LAS_RLaneDistance 28;
+BA_ "GenSigStartValue" SG_ 730 LAS_LLaneDistance 28;
+BA_ "GenSigStartValue" SG_ 730 LAS_RoadCurvature 60;
+BA_ "GenSigCycleTime" SG_ 730 LAS_CheckSum_2DA 100;
+BA_ "GenSigCycleTime" SG_ 730 LAS_RollingCounter_2DA 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_FatigueDectionEnableStatus 1;
+BA_ "GenSigCycleTime" SG_ 729 LAS_FatigueDectionEnableStatus 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_IACCEnableStatus 1;
+BA_ "GenSigStartValue" SG_ 729 LAS_RLaneMarkerType 1;
+BA_ "GenSigStartValue" SG_ 729 LAS_LLaneMarkerType 1;
+BA_ "GenSigStartValue" SG_ 729 LAS_HMAEnableStatus 0;
+BA_ "GenSigCycleTime" SG_ 729 LAS_HMAEnableStatus 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_LASModeSelectionStatus 5;
+BA_ "GenSigCycleTime" SG_ 729 LAS_LASModeSelectionStatus 100;
+BA_ "GenSigCycleTime" SG_ 729 LDW_VoiceWarning 100;
+BA_ "GenSigCycleTime" SG_ 729 LAS_OverspeedSoundWarning 100;
+BA_ "GenSigCycleTime" SG_ 729 LAS_OverspeedVisualWarning 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_OverspeedWarningOffset 10;
+BA_ "GenSigCycleTime" SG_ 729 LAS_OverspeedWarningOffset 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_OverspeedSoundWarningEnable 1;
+BA_ "GenSigCycleTime" SG_ 729 LAS_OverspeedSoundWarningEnable 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_OverspeedWarningEnableStatus 2;
+BA_ "GenSigCycleTime" SG_ 729 LAS_OverspeedWarningEnableStatus 100;
+BA_ "GenSigCycleTime" SG_ 729 LAS_CheckSum_2D9 100;
+BA_ "GenSigCycleTime" SG_ 729 LAS_RollingCounter_2D9 100;
+BA_ "GenSigCycleTime" SG_ 729 LAS_HostLaneRightStatus 100;
+BA_ "GenSigCycleTime" SG_ 729 LAS_HostLaneLeftStatus 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_LDWShakeLevStatus 2;
+BA_ "GenSigCycleTime" SG_ 729 LAS_LDWShakeLevStatus 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_LASWarningModeSeleStatus 3;
+BA_ "GenSigCycleTime" SG_ 729 LAS_LASWarningModeSeleStatus 100;
+BA_ "GenSigStartValue" SG_ 729 LAS_SLASwitchStatus 1;
+BA_ "GenSigCycleTime" SG_ 729 LAS_SLASwitchStatus 100;
+BA_ "GenSigCycleTime" SG_ 673 EPS_MeasuredTorsionBarTorValid 20;
+BA_ "GenSigCycleTime" SG_ 673 EPS_LksHandsOnStatus 20;
+BA_ "GenSigCycleTime" SG_ 673 EPS_Checksum_2A1 20;
+BA_ "GenSigCycleTime" SG_ 673 EPS_RollingCounter_2A1 20;
+BA_ "GenSigCycleTime" SG_ 673 EPS_SteeringAngulaSpeed 20;
+BA_ "GenSigCycleTime" SG_ 673 EPS_MeasuredTorsionBarTorque 20;
+BA_ "GenSigCycleTime" SG_ 673 EPS_SteeringAngle 20;
+BA_ "GenSigStartValue" SG_ 673 EPS_SteeringAngle 0;
+BA_ "GenSigCycleTime" SG_ 673 EPS_AvailabilityStatus 20;
+BA_ "GenSigCycleTime" SG_ 853 EMS_TotalOdometer 100;
+BA_ "GenSigCycleTime" SG_ 80 SRS_CrashOutputStatus 500;
+BA_ "GenSigCycleTime" SG_ 80 SRS_CrashOutputStatusChecksum 500;
+BA_ "GenSigCycleTime" SG_ 800 ESP_VehicleSpeedValid 10;
+BA_ "GenSigSendType" SG_ 800 ESP_VehicleSpeedValid 0;
+BA_ "GenSigCycleTime" SG_ 648 BCM_LowBeamStatus 40;
+BA_ "GenSigCycleTime" SG_ 648 BCM_HighBeamStatus 40;
+BA_ "GenSigCycleTime" SG_ 1281 HU_LocalTimeYear 1000;
+BA_ "GenSigCycleTime" SG_ 1281 HU_LocalTimeValid 1000;
+BA_ "GenSigCycleTime" SG_ 1281 HU_LocalTimeSecond 1000;
+BA_ "GenSigStartValue" SG_ 1281 HU_LocalTimeMonth 1;
+BA_ "GenSigCycleTime" SG_ 1281 HU_LocalTimeMonth 1000;
+BA_ "GenSigCycleTime" SG_ 1281 HU_LocalTimeMinute 1000;
+BA_ "GenSigCycleTime" SG_ 1281 HU_LocalTimeHour 1000;
+BA_ "GenSigStartValue" SG_ 1281 HU_LocalTimeDate 1;
+BA_ "GenSigCycleTime" SG_ 1281 HU_LocalTimeDate 1000;
+BA_ "GenSigStartValue" SG_ 762 HU_RampDistance 63;
+BA_ "GenSigStartValue" SG_ 762 HU_CurveDistance 63;
+BA_ "GenSigStartValue" SG_ 762 HU_EnterRampInfo 0;
+BA_ "GenSigStartValue" SG_ 762 HU_RampInfo 0;
+BA_ "GenSigCycleTime" SG_ 762 HU_navStatus 100;
+BA_ "GenSigCycleTime" SG_ 762 HU_navSpeedLimitUnits 100;
+BA_ "GenSigCycleTime" SG_ 762 HU_navSpeedLimitStatus 100;
+BA_ "GenSigStartValue" SG_ 762 HU_navSpeedLimit 254;
+BA_ "GenSigCycleTime" SG_ 762 HU_navSpeedLimit 100;
+BA_ "GenSigCycleTime" SG_ 762 HU_navCurrentRoadType 100;
+BA_ "GenSigCycleTime" SG_ 762 HU_navCountryCode 100;
+BA_ "GenSigCycleTime" SG_ 720 IP_SLASwitch 100;
+BA_ "GenSigCycleTime" SG_ 720 IP_HMAEnable 100;
+BA_ "GenSigCycleTime" SG_ 720 BCM_Wiper_speed 100;
+BA_ "GenSigCycleTime" SG_ 624 BCM_HighBeamStatus 40;
+BA_ "GenSigCycleTime" SG_ 624 BCM_LowBeamStatus 40;
+BA_ "GenSigCycleTime" SG_ 624 BCM_RearFoglampStatus 40;
+BA_ "GenSigCycleTime" SG_ 624 BCM_FrontFoglampStatus 40;
+BA_ "GenSigCycleTime" SG_ 624 BCM_AutoHeadlightSts 40;
+BA_ "GenSigStartValue" SG_ 624 AC_EnvironmentalTempVD 1;
+BA_ "GenSigCycleTime" SG_ 624 AC_EnvironmentalTempVD 40;
+BA_ "GenSigStartValue" SG_ 624 AC_EnvironmentalTemp 255;
+BA_ "GenSigCycleTime" SG_ 624 AC_EnvironmentalTemp 40;
+BA_ "GenSigCycleTimeActive" SG_ 624 AC_EnvironmentalTemp 0;
+BA_ "GenSigStartValue" SG_ 672 EPS_TorqueAssistMode 3;
+BA_ "GenSigCycleTime" SG_ 672 EPS_ConcussAvailabilityStatus 20;
+BA_ "GenSigCycleTime" SG_ 672 EPS_RollingCounter_2A0 20;
+BA_ "GenSigCycleTime" SG_ 672 EPS_Checksum_2A0 20;
+BA_ "GenSigCycleTime" SG_ 600 ESP_ECDAvailable 20;
+BA_ "GenSigCycleTime" SG_ 600 Wheel_Speed_FL_Direction 20;
+BA_ "GenSigCycleTime" SG_ 600 ESP_RollingCounter_id258 20;
+BA_ "GenSigCycleTime" SG_ 600 ESP_CheckSum_258 20;
+BA_ "GenSigCycleTime" SG_ 600 ESP_MasCylBrakePressureValid 20;
+BA_ "GenSigCycleTime" SG_ 600 ESP_MasCylBrakePressure 20;
+BA_ "GenSigCycleTime" SG_ 615 EMS_EngineStatus_EMS_267 10;
+BA_ "GenSigSendType" SG_ 615 EMS_EngineStatus_EMS_267 0;
+BA_ "GenSigCycleTime" SG_ 728 LAS_DFDFailed 20;
+BA_ "GenSigStartValue" SG_ 728 LAS_SteeringTorqueReq 800;
+BA_ "GenSigCycleTime" SG_ 728 LAS_SteeringTorqueReq 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_TakeoverReq 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_LKSStatus 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_HMALightDistribution 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_HMAStatus 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_CalibrationStatus 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_CheckSum 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_AliveCounter 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_SLASpdLimitUnits 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_SLASpdLimit 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_SLAState 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_LDWReminder 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_LASFailure 20;
+BA_ "GenSigCycleTime" SG_ 728 LAS_LDWStatus 20;
+BA_ "GenSigCycleTime" SG_ 728 LDW_VibrationWarning 20;
+BA_ "GenSigCycleTime" SG_ 656 LCM_LASSwitch 100;
+BA_ "GenSigCycleTime" SG_ 656 IP_LASModeSelection 100;
+BA_ "GenSigCycleTime" SG_ 656 BCM_FrontWiperStatus 100;
+BA_ "GenSigCycleTime" SG_ 656 BCM_emergencylightstatus 100;
+BA_ "GenSigCycleTime" SG_ 656 AC_FrBlowType 100;
+BA_ "GenSigStartValue" SG_ 656 IP_LdwSensitivity 3;
+BA_ "GenSigCycleTime" SG_ 656 IP_LdwSensitivity 100;
+BA_ "GenSigStartValue" SG_ 656 BCM_TurnLightSwitchSts 3;
+BA_ "GenSigCycleTime" SG_ 656 BCM_TurnLightSwitchSts 100;
+BA_ "GenSigCycleTime" SG_ 632 ESP_CheckSum_278 20;
+BA_ "GenSigCycleTime" SG_ 632 ESP_RollingCounter_278 20;
+BA_ "GenSigCycleTime" SG_ 632 ESP_YawRateValid 20;
+BA_ "GenSigCycleTime" SG_ 632 ESP_YawRate 20;
+BA_ "GenSigCycleTime" SG_ 632 ESP_LongAccel 20;
+BA_ "GenSigCycleTime" SG_ 632 ESP_LatAccel 20;
+BA_ "GenSigCycleTime" SG_ 616 TCU_GearShiftPositon 10;
+BA_ "GenSigStartValue" SG_ 616 TCU_GearShiftPositon 14;
+BA_ "GenSigCycleTime" SG_ 616 AT_ActualGearValid 10;
+BA_ "GenSigCycleTime" SG_ 616 AT_ActualGear 10;
+BA_ "GenSigCycleTime" SG_ 616 TCU_ShiftPostionValid 10;
+BA_ "GenSigSendType" SG_ 616 TCU_ShiftPostionValid 0;
+BA_ "GenSigCycleTime" SG_ 384 SAS_InternalStsFlg 10;
+BA_ "GenSigCycleTime" SG_ 384 SAS_CRCCheck 10;
+BA_ "GenSigSendType" SG_ 384 SAS_CRCCheck 0;
+BA_ "GenSigCycleTime" SG_ 384 SAS_RollingCounter 10;
+BA_ "GenSigSendType" SG_ 384 SAS_RollingCounter 0;
+BA_ "GenSigCycleTime" SG_ 384 SAS_SteeringAngleValid 10;
+BA_ "GenSigSendType" SG_ 384 SAS_SteeringAngleValid 0;
+BA_ "GenSigCycleTime" SG_ 384 SAS_SASFailure 10;
+BA_ "GenSigSendType" SG_ 384 SAS_SASFailure 0;
+BA_ "GenSigCycleTime" SG_ 384 SAS_SteeringAngle 10;
+BA_ "GenSigSendType" SG_ 384 SAS_SteeringAngle 0;
+BA_ "GenSigStartValue" SG_ 384 SAS_SteeringAngle 32767;
+BA_ "GenSigCycleTime" SG_ 384 SAS_Calibrated 10;
+BA_ "GenSigSendType" SG_ 384 SAS_Calibrated 0;
+BA_ "GenSigCycleTime" SG_ 384 SAS_SteeringAngleSpeed 10;
+BA_ "GenSigSendType" SG_ 384 SAS_SteeringAngleSpeed 0;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_FL_Direction 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_FR_Direction 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_RL_Direction 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_RR_Direction 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_FL_Valid_Data 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_RL_Valid_Data 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_RR_Data 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_FR_Data 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_FL_Data 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_FR_Valid_Data 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_RR_Valid_Data 20;
+BA_ "GenSigCycleTime" SG_ 520 Wheel_Speed_RL_Data 20;
+BA_ "GenSigCycleTime" SG_ 536 ESP_CheckSum 10;
+BA_ "GenSigCycleTime" SG_ 536 ESP_RollingCounter 10;
+BA_ "GenSigCycleTime" SG_ 536 ESP_ESPFunctionStatus 10;
+BA_ "GenSigSendType" SG_ 536 ESP_ESPFunctionStatus 0;
+BA_ "GenSigStartValue" SG_ 536 ESP_ESPFunctionStatus 1;
+BA_ "GenSigCycleTime" SG_ 536 ESP_ABSActiveStatus 10;
+BA_ "GenSigSendType" SG_ 536 ESP_ABSActiveStatus 0;
+BA_ "GenSigCycleTime" SG_ 536 ESP_ESPActiveStatus 10;
+BA_ "GenSigSendType" SG_ 536 ESP_ESPActiveStatus 0;
+BA_ "GenSigCycleTime" SG_ 536 ESP_VehicleSpeed 10;
+BA_ "GenSigSendType" SG_ 536 ESP_VehicleSpeed 0;
+BA_ "GenSigStartValue" SG_ 536 ESP_TCSFailStatus 0;
+BA_ "GenSigCycleTime" SG_ 536 ESP_TCSFailStatus 10;
+BA_ "GenSigSendType" SG_ 536 ESP_TCSFailStatus 0;
+BA_ "GenSigCycleTime" SG_ 536 ESP_VehicleSpeedValid 10;
+BA_ "GenSigSendType" SG_ 536 ESP_VehicleSpeedValid 0;
+BA_ "GenSigCycleTime" SG_ 597 EMS_BrakePedalStatus 10;
+BA_ "GenSigSendType" SG_ 597 EMS_BrakePedalStatus 0;
+BA_ "GenSigCycleTime" SG_ 597 EMS_EngineSpeedError 10;
+BA_ "GenSigSendType" SG_ 597 EMS_EngineSpeedError 0;
+BA_ "GenSigCycleTime" SG_ 597 EMS_EngineSpeed 10;
+BA_ "GenSigSendType" SG_ 597 EMS_EngineSpeed 0;
+BA_ "GenSigCycleTime" SG_ 597 EMS_AccPedal 10;
+BA_ "GenSigSendType" SG_ 597 EMS_AccPedal 0;
+VAL_ 3221225472 SAS_SASFailure 1 "Failure" 0 "No Failure" ;
+VAL_ 3221225472 LAS_HeatReq 1 "Request" 0 "No Request" ;
+VAL_ 3221225472 LAS_WearinessWarning 3 "reserved" 2 "warning Lever 2" 1 "warning Lever 1" 0 "no  warning" ;
+VAL_ 3221225472 LAS_WarningRight 1 "warning" 0 "No warning" ;
+VAL_ 3221225472 LAS_WarningLeft 1 "warning" 0 "No warning" ;
+VAL_ 3221225472 LAS_LaneDetectionSts 3 "both sides detected" 2 "only left lane detected;" 1 "only right lane detected;" 0 "no detection of both sides;" ;
+VAL_ 3221225472 LAS_TextInfoForDriver 31 "Invalid" 1 "0x1-0x1E (reserved)" 0 "no display" ;
+VAL_ 3221225472 LAS_RightLaneRightStatus 7 "invalid" 6 "reserved" 5 "reserved" 4 "reserved" 3 "reserved" 2 "reserved" 1 "Tracking" 0 "No display" ;
+VAL_ 3221225472 LAS_LeftLaneLeftStatus 7 "invalid" 6 "reserved" 5 "reserved" 4 "reserved" 3 "reserved" 2 "reserved" 1 "Tracking" 0 "No display" ;
+VAL_ 3221225472 LAS_CurvatureRate 16383 "Invalid" ;
+VAL_ 3221225472 LAS_CurrentCurvature 8191 "Invalid" ;
+VAL_ 3221225472 LAS_RoadType 7 "Invalid" ;
+VAL_ 3221225472 LAS_HeadingAngle 1023 "Invalid" ;
+VAL_ 3221225472 LAS_HostLateralOffset 255 "Invalid" ;
+VAL_ 3221225472 LAS_LaneWidth 2047 "Invalid" ;
+VAL_ 3221225472 LAS_IACCTakeoverReq 7 "Invalid" 6 "reserved" 5 "reserved" 4 "reserved" 3 "reserved" 2 "level 2 request" 1 "level 1 request" 0 "no request" ;
+VAL_ 3221225472 LAS_SLASoundEnableStatus 3 "Reserved" 2 "On" 1 "Off" 0 "Invalid" ;
+VAL_ 3221225472 HU_SLASoundEnable 3 "Reserved" 2 "On" 1 "Off" 0 "Invalid" ;
+VAL_ 3221225472 BCM_FrontFoglampStatus 3 "Error" 2 "Not used" 1 "ON" 0 "OFF" ;
+VAL_ 3221225472 LAS_RightWarningStatus 3 "warning" 2 "Intervention" 1 "Tracking" 0 "No Display" ;
+VAL_ 3221225472 LAS_LeftWarningStatus 3 "warning" 2 "Intervention" 1 "Tracking" 0 "No Display" ;
+VAL_ 3221225472 LAS_LdwSensitivityStatus 3 "Fault" 2 "late_late_aktiv" 1 "early_late_aktiv" 0 "early_early_aktiv" ;
+VAL_ 3221225472 ESP_ECDActive 1 "Active" 0 "NotActive" ;
+VAL_ 3221225472 ESP_Wheel_Speed_FL_Direction 3 "Invalid" 2 "Standstill" 1 "Backward" 0 "Forward" ;
+VAL_ 3221225472 EPS_TorqSensorStatus 1 "Abnormal" 0 "Normal" ;
+VAL_ 3221225472 EPS_SteeringTorque 255 "INVALID" ;
+VAL_ 3221225472 EPS_EPSFailed 1 "Fail" 0 "No fail" ;
+VAL_ 3221225472 EPS_DriverInterventionSteering 1 "Intervention" 0 "Not intervention" ;
+VAL_ 3221225472 EPS_DriverInterventionSteeringVa 1 "Invalid" 0 "Valid" ;
+VAL_ 3221225472 EPS_ControlAvailable 1 "Valid" 0 "Invalid" ;
+VAL_ 3221225472 SAS_TrimmingSts 1 "Sensor trimmed" 0 "Sensor not trimmed" ;
+VAL_ 613 EMS_EngineStatus 3 "Reserved" 2 "Running" 1 "Crank" 0 "Stop" ;
+VAL_ 864 IMS_HeadDetectSts_Yaw 255 "Invalid" ;
+VAL_ 864 IMS_HeadDetectSts_Roll 255 "Invalid" ;
+VAL_ 864 IMS_HeadDetectSts_Pitch 255 "Invalid" ;
+VAL_ 687 LCDAR_BSD_LCAAlertForELK 3 "Level 2" 2 "Reserved" 1 "Level 1" 0 "No warning" ;
+VAL_ 687 LCDAR_BSD_LCAStatus 3 "Reserved" 2 "Active" 1 "Inactive" 0 "OFF" ;
+VAL_ 687 LCDAR_SystemStatus 7 "Calibration" 6 "Hot" 5 "ShutDown" 4 "Faulty" 3 "Blocked" 2 "Running" 1 "StartUp" 0 "Configuration" ;
+VAL_ 687 LCDAR_BSD_LCAAlert 3 "LCA warning level 2" 2 "Not Used" 1 "LCA warning level 1" 0 "No LCA warning" ;
+VAL_ 686 LCDAL_BSD_LCAAlertForELK 3 "Level 2" 2 "Reserved" 1 "Level 1" 0 "No warning" ;
+VAL_ 686 LCDAL_BSD_LCAStatus 3 "Reserved" 2 "Active" 1 "Inactive" 0 "OFF" ;
+VAL_ 686 LCDAL_SystemStatus 7 "Calibration" 6 "Hot" 5 "ShutDown" 4 "Faulty" 3 "Blocked" 2 "Running" 1 "StartUp" 0 "Configuration" ;
+VAL_ 686 LCDAL_BSD_LCAAlert 3 "LCA warning level 2" 2 "Not Used" 1 "LCA warning level 1" 0 "No LCA warning" ;
+VAL_ 1399 HU_SpeedLimitDistance 63 "Invalid" ;
+VAL_ 1399 HU_SlopeGradientFar 1023 "Invalid" ;
+VAL_ 1399 HU_SlopeGradient 1023 "Invalid" ;
+VAL_ 1398 HU_NavGuiganceStatus 3 "Reserved" 2 "Reserved" 1 "There is a navigation guide path" 0 "No navigation guide path" ;
+VAL_ 1398 HU_SlopeDistance 63 "Invalid" ;
+VAL_ 1398 HU_EnterSlopeInfo 3 "Ramp exit" 2 "In the ramp" 1 "Ramp entrance" 0 "unknown" ;
+VAL_ 1398 HU_TunnelLength 63 "Invalid" ;
+VAL_ 1398 HU_TunnelDistance 63 "Invalid" ;
+VAL_ 1398 HU_EnterTunnelInfo 3 "Tunnel exit" 2 "In the tunnel" 1 "Tunnel entrance" 0 "unknown" ;
+VAL_ 1398 HU_RoadCurvatureFar 1023 "Invalid" ;
+VAL_ 1398 HU_RoadCurvature 1023 "Invalid" ;
+VAL_ 960 LAS_LaneChangeStatus 3 "invalid" 2 "have changed lane" 1 "in changing lane" 0 "not change lane " ;
+VAL_ 960 LAS_SLASetStatus 3 "invalid" 2 "unavailable" 1 "available" 0 "unknown" ;
+VAL_ 1280 HU_CurrentLocationValid 1 "Not Valid" 0 "Valid" ;
+VAL_ 1280 HU_CurrentLocationLatitude 134217727 "zero point" 268435455 "invalid" ;
+VAL_ 1280 HU_CurrentLocationLongitude 268435455 "zero point" 536870911 "invalid" ;
+VAL_ 1319 HU_VC_CruiseControl 7 "Invalid" 6 "Reserved" 5 "Cancel" 4 "IACC Resume" 3 "IACC Activate" 2 "ACC Resume" 1 "ACC Activate" 0 "No Request" ;
+VAL_ 896 IP_TotalOdometer 16777215 "invalid" ;
+VAL_ 731 LAS_RightPedDetection 3 "invalid" 2 "multiple pedestrians detected" 1 "one pedestrian detected" 0 "not detected" ;
+VAL_ 731 LAS_LeftPedDetection 3 "invalid" 2 "multiple pedestrians detected" 1 "one pedestrian detected" 0 "not detected" ;
+VAL_ 731 LAS_HostPedLngRange_3 63 "invalid" ;
+VAL_ 731 LAS_HostPedLngRange_2 63 "invalid" ;
+VAL_ 731 LAS_HostPedLngRange_1 63 "invalid" ;
+VAL_ 731 LAS_HostPedLatRange_3 255 "invalid" ;
+VAL_ 731 LAS_HostPedLatRange_2 255 "invalid" ;
+VAL_ 731 LAS_HostPedLatRange_1 255 "Invalid" ;
+VAL_ 731 LAS_HostPedDetection_3 3 "invalid" 2 "reserved" 1 "detected" 0 "not detected" ;
+VAL_ 731 LAS_HostPedDetection_2 3 "invalid" 2 "reserved" 1 "detected" 0 "not detected" ;
+VAL_ 731 LAS_HostPedDetection_1 3 "invalid" 2 "reserved" 1 "detected" 0 "not detected" ;
+VAL_ 998 LAS_LaneEquationStatus 3 "Invalid" 2 "Right Lane" 1 "Left Lane" 0 "unknown" ;
+VAL_ 998 LAS_RoadCurvatureFar 127 "Invalid" ;
+VAL_ 998 LAS_RoadCurvatureNear 127 "Invalid" ;
+VAL_ 680 APA_APAOnOff 1 "ON" 0 "OFF" ;
+VAL_ 906 GW_MFS_DiagInfoSW 7 "Invalid" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Power voltage lower than 9V" 2 "Power voltage higher than 16V" 1 "Variation information wrong" 0 "Reset" ;
+VAL_ 906 GW_MFS_IACCenable_switch 3 "error" 2 "Fault button" 1 "Button pressed" 0 "Button unpressed" ;
+VAL_ 854 IMS_EyeGazeStatus 255 "Invalid" ;
+VAL_ 854 IMS_EyeDetectSatus 255 "Invalid" ;
+VAL_ 854 IMS_DriverHeadDetect 3 "Reserved" 2 "detected" 1 "Not detected" 0 "Invalid" ;
+VAL_ 854 IMS_DistractionStatus 3 "Invalid" 2 "Reserved" 1 "Distracted" 0 "Not Distracted" ;
+VAL_ 854 IMS_DrowsinessStatus 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Microsleep" 2 "Drowsy" 1 "Slightly Drowsy" 0 "Awake" ;
+VAL_ 854 IMS_IMSStatus 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Failure" 3 "Camera Blocked" 2 "Active" 1 "Standby" 0 "Off" ;
+VAL_ 1300 HU_IACCEnable 3 "Reserved" 2 "On" 1 "Off" 0 "Inactive" ;
+VAL_ 1300 HU_OverspeedWarningOffset 31 "Invalid" ;
+VAL_ 1300 HU_OverspeedWarningEnable 3 "Reserved" 2 "ON" 1 "OFF" 0 "Inactive" ;
+VAL_ 1300 HU_OverspeedSoundWarningEnable 3 "Reserved" 2 "On" 1 "Off" 0 "Inactive" ;
+VAL_ 1300 HU_FatigueDectionEnable 3 "Reserved" 2 "ON" 1 "OFF" 0 "Inactive" ;
+VAL_ 1300 HU_LDWShakeLev 3 "high" 2 "normal" 1 "low" 0 "Inactive" ;
+VAL_ 1300 HU_LASWarningModeSelection 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "sound and vibration" 3 "vibration" 2 "sound" 1 "visual" 0 "Inactive" ;
+VAL_ 1300 HU_SLASwitch 1 "on" 0 "off" ;
+VAL_ 1300 HU_HMAEnable 1 "on" 0 "off" ;
+VAL_ 1300 HU_LASModeSelection 7 "Reserved" 6 "LDW+LCS" 5 "LDW+LKA" 4 "ASC" 3 "LCS" 2 "LKA" 1 "LDW" 0 "Inactive" ;
+VAL_ 1300 HU_LdwSensitivity 3 "Fault" 2 "late_late_aktiv" 1 "early_late_aktiv" 0 "early_early_aktiv" ;
+VAL_ 730 LAS_RRLaneDistance 63 "Invalid" ;
+VAL_ 730 LAS_RRLaneDection 3 "Invalid" 2 "reserved" 1 "detected" 0 "not detected" ;
+VAL_ 730 LAS_LLLaneDistance 63 "Invalid" ;
+VAL_ 730 LAS_LLLaneDection 3 "Invalid" 2 "reserved" 1 "detected" 0 "not detected" ;
+VAL_ 730 LAS_RLaneDistance 63 "Invalid" ;
+VAL_ 730 LAS_LLaneDistance 63 "Invalid" ;
+VAL_ 730 LAS_RoadCurvature 127 "Invalid" ;
+VAL_ 730 ACC_TargetBasedLateralControl 3 "Invalid" 2 "lane based" 1 "target based" 0 "no lateral control" ;
+VAL_ 730 LAS_IACCTextInfoForDriver 31 "Invalid" 16 "IACC switch off" 15 "takeover immediately" 14 "exceed speed limit" 13 "prohibition request" 12 "hands on request" 11 "prohibitn cause unabl to activat" 10 "driver overrides steering" 9 "speed exceed" 8 "EPS not available" 7 "longitudinal control not avail" 6 "no leading vehicle" 5 "lane boundary not available" 4 "unable to activate IACC" 3 "IACC unintended exit" 2 "IACC deactivate" 1 "IACC activate" 0 "no display" ;
+VAL_ 730 LAS_IACCTakeoverReq 7 "Invalid" 6 "take over immediately" 5 "reserved" 4 "lev 4 request" 3 "lev 3 request" 2 "lev 2 request" 1 "lev 1 request" 0 "no request" ;
+VAL_ 730 LAS_DriverHandsOff 3 "Invalid" 2 "reserved" 1 "hands off" 0 "hands on" ;
+VAL_ 730 LAS_IACCMode 7 "Invalid" 6 "prohibition" 5 "failure" 4 "suspend" 3 "active" 2 "reject" 1 "standby" 0 "off" ;
+VAL_ 729 LAS_FatigueDectionEnableStatus 3 "Reserved" 2 "ON" 1 "OFF" 0 "Invalid" ;
+VAL_ 729 LAS_IACCEnableStatus 3 "Reserved" 2 "ON" 1 "OFF" 0 "Invalid" ;
+VAL_ 729 LAS_RLaneMarkerType 7 "invalid" 6 "reserved" 5 "other" 4 "Botts dots" 3 "double lane mark" 2 "road edge" 1 "solid" 0 "dashed" ;
+VAL_ 729 LAS_LLaneMarkerType 7 "invalid" 6 "reserved" 5 "other" 4 "Botts dots" 3 "double lane mark" 2 "road edge" 1 "solid" 0 "dashed" ;
+VAL_ 729 LAS_HMAEnableStatus 1 "on" 0 "off" ;
+VAL_ 729 LAS_LASModeSelectionStatus 7 "Reserved" 6 "LDW+LCS" 5 "LDW+LKA" 4 "ASC" 3 "LCS" 2 "LKA" 1 "LDW" 0 "Invalid" ;
+VAL_ 729 LDW_VoiceWarning 3 "Invalid" 2 "Right Warning" 1 "Left Warning" 0 "No Warning" ;
+VAL_ 729 LAS_OverspeedSoundWarning 3 "Invalid" 2 "Reserved" 1 "warning" 0 "No Warning" ;
+VAL_ 729 LAS_OverspeedVisualWarning 3 "Invalid" 2 "Reserved" 1 "warning" 0 "No Warning" ;
+VAL_ 729 LAS_OverspeedWarningOffset 31 "Invalid" ;
+VAL_ 729 LAS_OverspeedSoundWarningEnable 3 "Reserved" 2 "On" 1 "Off" 0 "Invalid" ;
+VAL_ 729 LAS_OverspeedWarningEnableStatus 3 "Reserved" 2 "ON" 1 "OFF" 0 "Invalid" ;
+VAL_ 729 LAS_HostLaneRightStatus 7 "Reserved" 6 "reserved" 5 "crossing" 4 "keeping" 3 "warning" 2 "Intervention" 1 "Tracking" 0 "No display" ;
+VAL_ 729 LAS_HostLaneLeftStatus 7 "Reserved" 6 "reserved" 5 "crossing" 4 "keeping" 3 "warning" 2 "Intervention" 1 "Tracking" 0 "No display" ;
+VAL_ 729 LAS_LDWShakeLevStatus 3 "high" 2 "normal" 1 "low" 0 "Invalid" ;
+VAL_ 729 LAS_LASWarningModeSeleStatus 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "sound and vibration" 3 "vibration" 2 "sound" 1 "visual" 0 "Invalid" ;
+VAL_ 729 LAS_SLASwitchStatus 1 "on" 0 "off" ;
+VAL_ 673 EPS_IACC_abortreason 5 "Other Default" 4 "DAE ThermalSecurity" 3 "request torque error" 2 "vehicle speed error" 1 "driver recovery(over ride)" 0 "no driving interruption" ;
+VAL_ 673 EPS_MeasuredTorsionBarTorValid 1 "Invalid" ;
+VAL_ 673 EPS_LksHandsOnStatus 2 "reserved" 1 "Hands off steering wheel" 0 "Hands on steering wheel" 3 "Invalid" ;
+VAL_ 673 EPS_SteeringAngulaSpeed 1023 "Invalid" ;
+VAL_ 673 EPS_MeasuredTorsionBarTorque 2047 "Invalid" ;
+VAL_ 673 EPS_SteeringAngle 16383 "Invalid" ;
+VAL_ 673 EPS_AvailabilityStatus 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Permanent Failure" 3 "failed" 2 "Active" 1 "Available for control" 0 "EPS not available,no error" ;
+VAL_ 853 EMS_TotalOdometer 16777215 "INVALID" ;
+VAL_ 80 SRS_CrashOutputStatus 15 "Not Used" 14 "Not Used" 13 "Not Used" 12 "Not Used" 11 "Not Used" 10 "Not Used" 9 "Not Used" 8 "Not Used" 7 "Not Used" 6 "Not Used" 5 "Not Used" 4 "Not Used" 3 "Not Used" 2 "Not Used" 1 "Crash" 0 "No crash" ;
+VAL_ 800 ESP_VehicleSpeedValid 1 "Not Valid" 0 "Valid" ;
+VAL_ 648 BCM_LowBeamStatus 3 "Invalid" 2 "Not used" 1 "ON" 0 "OFF" ;
+VAL_ 648 BCM_HighBeamStatus 3 "Invalid" 2 "Not used" 1 "ON" 0 "OFF" ;
+VAL_ 1281 HU_LocalTimeValid 1 "Invalid" 0 "Valid" ;
+VAL_ 762 HU_RampDistance 63 "unknown" 62 "reserved" 61 "Out of Range" 0 "0~600m" ;
+VAL_ 762 HU_NavSpeedLimitType 3 "Reserved" 2 "Road Camera" 1 "Speed-limit Sign" 0 "Unknown" ;
+VAL_ 762 HU_EnterCurveInfo 3 "Curve exit" 2 "Corners" 1 "Corners imports" 0 "unknown" ;
+VAL_ 762 HU_CurveDistance 3 "unknown" 2 "reserved" 1 "Out of Range" 0 "0~600m" ;
+VAL_ 762 HU_EnterRampInfo 3 "reserved" 2 "not clear" 1 "enter ramp" 0 "not enter ramp" ;
+VAL_ 762 HU_RampInfo 3 "not clear" 2 "ramp entrance" 1 "ramp exit" 0 "no ramp" ;
+VAL_ 762 HU_navStatus 1 "Error" 0 "Normal" ;
+VAL_ 762 HU_navSpeedLimitUnits 3 "Reserved" 2 "Unit mph" 1 "Unit kph" 0 "Unknown" ;
+VAL_ 762 HU_navSpeedLimitStatus 3 "Reserved" 2 "Reserved" 1 "Invalid" 0 "Valid" ;
+VAL_ 762 HU_navSpeedLimit 255 "Slend" 254 "Unknown" 32 "SL160" 31 "SL155" 30 "SL150" 29 "SL145" 28 "SL140" 27 "SL135" 26 "SL130" 25 "SL125" 24 "SL120" 23 "SL115" 22 "SL110" 21 "SL105" 20 "SL100" 19 "SL95" 18 "SL90" 17 "SL85" 16 "SL80" 15 "SL75" 14 "SL70" 13 "SL65" 12 "SL60" 11 "SL55" 10 "SL50" 9 "SL45" 8 "SL40" 7 "SL35" 6 "SL30" 5 "SL25" 4 "SL20" 3 "SL15" 2 "SL10" 1 "SL5" 0 "No speed limit detected" ;
+VAL_ 762 HU_navCurrentRoadType 7 "Reserved" 6 "Reserved" 5 "Highway,national road,speed road" 4 "Province road,mainly city road" 3 "Mainly city road,normal province road,main street" 2 "Road type2:Main road in city" 1 "Road type1:Secondary roads" 0 "Road type unknown:Small road,walking street" ;
+VAL_ 720 IP_SLASwitch 1 "Switch on" 0 "Switch off" ;
+VAL_ 720 IP_HMAEnable 1 "ON" 0 "OFF" ;
+VAL_ 720 BCM_Wiper_speed 15 "Signal invalid" 14 "Stage 14" 13 "Stage 13" 12 "Stage 12" 11 "Stage 11" 10 "Stage 10" 9 "Stage 9" 8 "Stage 8" 7 "Stage 7" 6 "Stage 6" 5 "Stage 5" 4 "Stage 4" 3 "Stage 3" 2 "Stage 2" 1 "Stage 1" 0 "Switch wiper off" ;
+VAL_ 624 BCM_HighBeamStatus 3 "Invalid" 2 "Not used" 1 "ON" 0 "OFF" ;
+VAL_ 624 BCM_LowBeamStatus 3 "Invalid" 2 "Not used" 1 "ON" 0 "OFF" ;
+VAL_ 624 BCM_RearFoglampStatus 3 "Error" 2 "Not used" 1 "ON" 0 "OFF" ;
+VAL_ 624 BCM_FrontFoglampStatus 3 "Error" 2 "Not used" 1 "ON" 0 "OFF" ;
+VAL_ 624 BCM_AutoHeadlightSts 1 "Actived" 0 "Not actived" ;
+VAL_ 624 AC_EnvironmentalTempVD 1 "Invalid" 0 "Valid" ;
+VAL_ 624 AC_EnvironmentalTemp 255 "Invalid" ;
+VAL_ 672 EPS_TorqueAssistMode 7 "reserved" 6 "reserved" 5 "reserved" 4 "IACC" 3 "Unknown" 2 "Heavy" 1 "Light" 0 "Normal" ;
+VAL_ 672 EPS_ConcussAvailabilityStatus 3 "Invalid" 2 "EPS Concuss failure EPS" 1 "Concuss Active " 0 "Concuss Availability " ;
+VAL_ 600 ESP_ECDAvailable 1 "Invalid" 0 "Valid" ;
+VAL_ 600 Wheel_Speed_FL_Direction 3 "Invalid" 2 "Standstill" 1 "Backward" 0 "Forward" ;
+VAL_ 600 ESP_MasCylBrakePressureValid 1 "Invalid" 0 "Valid" ;
+VAL_ 600 ESP_MasCylBrakePressure 4095 "Invalid" ;
+VAL_ 600 Wheel_Speed_FL_Pulse 255 "Invalid value" ;
+VAL_ 600 Wheel_Speed_RR_Pulse 255 "Invalid value" ;
+VAL_ 600 Wheel_Speed_RL_Pulse 255 "Invalid value" ;
+VAL_ 600 Wheel_Speed_FR_Pulse 255 "Invalid value" ;
+VAL_ 615 EMS_EngineStatus_EMS_267 3 "Reserved" 2 "Running" 1 "crank" 0 "Stop" ;
+VAL_ 728 LAS_DFDWarning 3 "invalid" 2 "level 2 warning" 1 "level 1 warning" 0 "no warning" ;
+VAL_ 728 LAS_DFDFailed 1 "failed" 0 "not failed" ;
+VAL_ 728 LAS_SteeringTorqueReq 2047 "Invalid" ;
+VAL_ 728 LAS_TakeoverReq 1 "Req" 0 "Not req" ;
+VAL_ 728 LAS_LKSStatus 7 "Failure" 5 "reserved" 4 "reserved" 3 "reserved" 2 "On" 1 "Ready" 0 "Off" ;
+VAL_ 728 LAS_HMALightDistribution 1 "High beam recommended" 0 "High beam not recommended" ;
+VAL_ 728 LAS_HMAStatus 3 "Failure" 2 "Active" 1 "Standby" 0 "Off" ;
+VAL_ 728 LAS_CalibrationStatus 3 "reserved" 2 "Calibration Failed" 1 "Calibration In Process" 0 " Calibration Success" ;
+VAL_ 728 LAS_CheckSum 0 "Checksum=(Byte1+Byte2+...+Byte7)" ;
+VAL_ 728 LAS_SLASpdLimitUnits 3 "reserved" 2 "unit mph" 1 "unit kph" 0 "unknown" ;
+VAL_ 728 LAS_SLASpdLimit 255 "SLEND" 254 "Unknown" 32 "SL160" 31 "SL155" 30 "SL150" 29 "SL145" 28 "SL140" 27 "SL135" 26 "SL130" 25 "SL125" 24 "SL120" 23 "SL115" 22 "SL110" 21 "SL105" 20 "SL100" 19 "SL95" 18 "SL90" 17 "SL85" 16 "SL80" 15 "SL75" 14 "SL70" 13 "SL65" 12 "SL60" 11 "SL55" 10 "SL50" 9 "SL45" 8 "SL40" 7 "SL35" 6 "SL30" 5 "SL25" 4 "SL20" 3 "SL15" 2 "SL10" 1 "SL5" 0 "no speed limit detected" ;
+VAL_ 728 LAS_SLAState 7 "Defect" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Navigation only mode" 2 "Vision only mode" 1 "Fusion mode" 0 "Off" ;
+VAL_ 728 LAS_LDWReminder 3 "reserved" 2 "LDWRightReminder" 1 "LDWLeftReminder" 0 "No Reminder" ;
+VAL_ 728 LAS_LASFailure 3 "Permanent Failure" 2 "Temporary Failure" 1 "Camera Blocked" 0 "No Error" ;
+VAL_ 728 LAS_LDWStatus 3 "Failure" 2 "On" 1 "Ready" 0 "Off" ;
+VAL_ 728 LDW_VibrationWarning 3 "Invalid" 2 "Right Warning" 1 "Left Warning" 0 "No Warning" ;
+VAL_ 656 LCM_LASSwitch 3 "Fault" 2 "Reserved" 1 "Push" 0 "Not Push" ;
+VAL_ 656 IP_LASModeSelection 7 "Reserved" 6 "LDW+LCS" 5 "LDW+LKA" 4 "ASC" 3 "LCS" 2 "LKA" 1 "LDW" 0 "Invalid" ;
+VAL_ 656 BCM_FrontWiperStatus 3 "Error" 2 "High" 1 "Low" 0 "OFF" ;
+VAL_ 656 BCM_emergencylightstatus 3 "Error" 2 "Not used" 1 "ON" 0 "OFF" ;
+VAL_ 656 AC_FrBlowType 7 "Invalid" 6 "Reserved" 5 "Reserved" 4 "defroster" 3 "blow feet/defroster" 2 "blow feet" 1 "blow face/blow feet" 0 "blow face" ;
+VAL_ 656 IP_LdwSensitivity 3 "Fault" 2 "late_late_aktiv" 1 "early_late_aktiv" 0 "early_early_aktiv" ;
+VAL_ 656 BCM_TurnLightSwitchSts 3 "Invalid" 2 "Right Actived" 1 "Left Actived" 0 "Not Actived " ;
+VAL_ 632 ESP_YawRateValid 1 "Invalid" 0 "Valid" ;
+VAL_ 632 ESP_YawRate 16383 "Invalid" ;
+VAL_ 632 ESP_LongAccel 1023 "Invalid" ;
+VAL_ 632 ESP_LatAccel 255 "Invalid" ;
+VAL_ 616 TCU_GearShiftPositon 15 "Invalid" 14 "Unreliable" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "Reserved" 7 "M/S" 6 "L" 5 "D2" 4 "D3" 3 "D" 2 "Neutral" 1 "Reverse" 0 "Parking" ;
+VAL_ 616 AT_ActualGearValid 1 "Invalid" 0 "Valid" ;
+VAL_ 616 AT_ActualGear 15 "Invalid" 14 "Reserved" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Parking" 9 "Reverse" 8 "8th gear" 7 "7th gear" 6 "6th gear" 5 "5th gear" 4 "4th gear" 3 "3rd gear" 2 "2nd gear" 1 "1st gear" 0 "Neutral" ;
+VAL_ 616 TCU_ShiftPostionValid 1 "Invalid" 0 "Valid" ;
+VAL_ 384 SAS_SteeringAngleValid 1 "Invalid" 0 "Valid" ;
+VAL_ 384 SAS_SASFailure 1 "Failure" 0 "No Failure" ;
+VAL_ 384 SAS_SteeringAngle 32767 "Invalid value" ;
+VAL_ 384 SAS_Calibrated 1 "Not Calibrated" 0 "Calibrated" ;
+VAL_ 384 SAS_SteeringAngleSpeed 255 "Invalid" ;
+VAL_ 520 Wheel_Speed_FL_Direction 3 "Invalid" 2 "Standstill" 1 "Backward" 0 "Forward" ;
+VAL_ 520 Wheel_Speed_FR_Direction 3 "Invalid" 2 "Standstill" 1 "backward" 0 "Forward" ;
+VAL_ 520 Wheel_Speed_RL_Direction 3 "Invalid" 2 "Standstill" 1 "backward" 0 "Forward" ;
+VAL_ 520 Wheel_Speed_RR_Direction 3 "Invalid" 2 "Standstill" 1 "backward" 0 "Forward" ;
+VAL_ 520 Wheel_Speed_FL_Valid_Data 1 "Not Valid" 0 "Valid " ;
+VAL_ 520 Wheel_Speed_RL_Valid_Data 1 "Not Valid" 0 "Valid" ;
+VAL_ 520 Wheel_Speed_RR_Data 8191 "Invalid value" ;
+VAL_ 520 Wheel_Speed_FR_Data 8191 "Invalid value" ;
+VAL_ 520 Wheel_Speed_FL_Data 8191 "Invalid value" ;
+VAL_ 520 Wheel_Speed_FR_Valid_Data 1 "Not Valid" 0 "Valid" ;
+VAL_ 520 Wheel_Speed_RR_Valid_Data 1 "Not Valid" 0 "Valid" ;
+VAL_ 520 Wheel_Speed_RL_Data 8191 "Invalid value" ;
+VAL_ 536 ESP_ESPFunctionStatus 1 "ON" 0 "OFF" ;
+VAL_ 536 ESP_ABSActiveStatus 1 "Active" 0 "Not Active" ;
+VAL_ 536 ESP_ESPActiveStatus 1 "Active" 0 "Not Active" ;
+VAL_ 536 ESP_VehicleSpeed 6400 "360" 8190 "Reserved" 6401 "Reserved" 0 "0" 8191 "Invalid " ;
+VAL_ 536 ESP_TCSFailStatus 1 "Error" 0 "No error" ;
+VAL_ 536 ESP_VehicleSpeedValid 1 "Not Valid" 0 "Valid" ;
+VAL_ 597 EMS_BrakePedalStatus 3 "Error" 2 "Reserved" 1 "Pressed" 0 "Not Pressed" ;
+VAL_ 597 EMS_EngineSpeedError 1 "Error" 0 "No error" ;
+VAL_ 597 EMS_EngineSpeed 65535 "Invalid" ;
+VAL_ 597 EMS_AccPedal 255 "Invalid" ;
+
