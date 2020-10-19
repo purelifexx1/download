@@ -2,8 +2,8 @@
 var socket = io("http://localhost:3000");
 var button_status;
 var button_namespace = {
-	onoff_charging: false,
-	output_control: false,
+	charging_onoff: false,
+	load_control: false,
 	manual_control: false,
 	default_control: false,
 	load_testmode: false,
@@ -19,10 +19,14 @@ socket.on("packet_update", function(data){
 socket.on("realtime_data", function(data){
 	Object.entries(data).forEach(function(element){
 		if(element[0].startsWith("@")){
-			if (element[1] == 255)
+			if (element[1] == 255) {
 				document.getElementById(element[0].replace("@","")).style.background = '#4aff36';
-			else
+				button_namespace[element[0].replace("@","")] = true;
+			}
+			else{
 				document.getElementById(element[0].replace("@","")).style.background = '#eb240e';
+				button_namespace[element[0].replace("@","")] = false;
+			}
 		}else{
 			document.getElementById(element[0]).style.background = '#4aff36';
 			$("#" + element[0]).val(element[1]);
@@ -112,6 +116,7 @@ socket.on("server_update_enable", function(data){
 })
 
 $(document).ready(function(){
+	console.log(document.getElementById("bt-2").background);
 	$("#nut").click(function(){
 		socket.emit("hello");
 	})
@@ -124,21 +129,33 @@ $(document).ready(function(){
 	})
 	$("#bt-2").click(function(){
 		socket.emit("statistic_request");
-		// socket.emit("output_control");
 		console.log("ok nha");
 	})
-	$("#bt-3").click(function(){
-
+	$("#get_bt_status").click(function(){
+		socket.emit("control_status_request");
+	})
+	$("#charging_onoff").click(function(){
+		if(button_namespace.charging_onoff == true)
+			socket.emit("change_coil_status", ["0000", "0", "1"]);
+		else
+			socket.emit("change_coil_status", ["0000", "255", "1"]);
 	})
 	$("#database_update").click(function(){
 		socket.emit("update_database");
 		console_log("new time stamp for realtime data has been updated")
 	})
 	$("#manual_control").click(function(){
-		socket.emit("manual_control");
+		if(button_namespace.manual_control == true)
+			socket.emit("change_coil_status", ["0003", "0", "2"]);
+		else
+			socket.emit("change_coil_status", ["0003", "255", 
+		"2"]);
 	})
-	$("#default_control").click(function(){
-		socket.emit("default_control");
+	$("#load_control").click(function(){
+		if(button_namespace.load_control == true)
+			socket.emit("change_coil_status", ["0002", "0", "0"]);
+		else
+			socket.emit("change_coil_status", ["0002", "255", "0"]);
 	})
 	$("#load_testmode").click(function(){
 		socket.emit("load_testmode");

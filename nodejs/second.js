@@ -106,6 +106,9 @@ module.exports = {
 			case "c":
 				error_content = error_content.concat("control-status packet timeout");
 				io.sockets.emit("error", error_content); break;
+			case "r":
+				error_content = error_content.concat("change charging status packet timeout");
+				io.sockets.emit("error", error_content); break;
 		}
 	}
 

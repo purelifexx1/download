@@ -9,7 +9,7 @@
 #include "modbus.h"
 #define led_pin 2
 #define wifi_config_pin 22
-#define mqtt_config_pin 23
+#define mqtt_config_pin 18
 #define aux_pin 21
 #define aux_pin1 19
 #define IDLE_receive false

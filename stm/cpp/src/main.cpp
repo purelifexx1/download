@@ -35,7 +35,9 @@ void setup() {
 void loop() {
 	//Serial.looping2();
 	//modbus1.looping();
-
+	transmit_complete_flag = On_transmit;
+	uart_send(&huart2, (uint8_t*)("helloo"), 6);
+	HAL_Delay(2000);
 	if(backup_length != 0 && receive_status == IDLE_receive) {
 		transmit_complete_flag = On_transmit;
 		uart_send(&huart2, backup_buffer, backup_length);
@@ -65,7 +67,7 @@ void UART_CallBack(UART_HandleTypeDef *huart) {
 	}		
 }
 void GPIO_Interrupt_Callback(uint16_t pin){
-	if(pin == GPIO_PIN_1) {//RISING
+	if(pin == GPIO_PIN_7) {//RISING
 		if(transmit_complete_flag == On_transmit) {
 			transmit_complete_flag = IDLE_transmit;
 		}else{

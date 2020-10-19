@@ -44,7 +44,7 @@ function  fc_05_request(data) {
     array[1] = data.function_code;
     array[2] = start_register_value >> 8 & 0xff;
     array[3] = start_register_value & 0xff;
-    array[4] = data.status; // 255 or 0
+    array[4] = data.status & 0xff; // 255 or 0
     return array;
 }
 

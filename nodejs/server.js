@@ -119,7 +119,7 @@ io.on('connection', function(socket){
 		}else{
 			//socket.emit("packet_ongoing");			
 			request.create_request(statistic_request, function(buf){
-				archive_packet["2"] = {
+				archive_packet["4"] = {
 					"topic": "data_request",
 					"message": buf,
 					"content_timeout": "s"
@@ -153,7 +153,7 @@ io.on('connection', function(socket){
 		}else{
 			//socket.emit("packet_ongoing");
 			request.create_request(control_status_request, function(buf){
-				archive_packet["1"] = {
+				archive_packet["3"] = {
 					"topic": "data_request",
 					"message": buf,
 					"content_timeout": "c"
@@ -161,6 +161,37 @@ io.on('connection', function(socket){
 			})
 			storage_packet.topic = "data_request";
 			storage_packet.message = "c";
+		}
+	})
+
+	socket.on("change_coil_status", function(data){
+		console.log("change coil status");
+		var coil_status_change = {
+			"1":{
+				"function_code": 5,
+				"start_address": data[0],
+				"status": parseInt(data[1], 10)
+			},
+		}
+		if(waitfor_reply == false){
+			request.create_request(coil_status_change, function(buf){
+				client.publish('data_request', buf); 
+			})
+			storage_packet.topic_timeout = 'data_request';
+			storage_packet.content_timeout = "r";
+			timeout_latch = setTimeout(timeout_function, 4000, storage_packet);
+			waitfor_reply = true;
+		}else{
+			//socket.emit("packet_ongoing");
+			request.create_request(coil_status_change, function(buf){
+				archive_packet[data[2]] = {
+					"topic": "data_request",
+					"message": buf,
+					"content_timeout": "r"
+				};
+			})
+			storage_packet.topic = "data_request";
+			storage_packet.message = "r";
 		}
 	})
 
