@@ -58,7 +58,7 @@ function data_handler(data_packet, io){
             break;
         }
     }
-    console.log(send_update_object);
+    //console.log(send_update_object);
     io.sockets.emit("packet_update", send_update_object);
 }
 module.exports.data_handler = data_handler;

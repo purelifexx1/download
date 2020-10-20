@@ -35,9 +35,6 @@ void setup() {
 void loop() {
 	//Serial.looping2();
 	//modbus1.looping();
-	transmit_complete_flag = On_transmit;
-	uart_send(&huart2, (uint8_t*)("helloo"), 6);
-	HAL_Delay(2000);
 	if(backup_length != 0 && receive_status == IDLE_receive) {
 		transmit_complete_flag = On_transmit;
 		uart_send(&huart2, backup_buffer, backup_length);

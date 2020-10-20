@@ -116,7 +116,6 @@ socket.on("server_update_enable", function(data){
 })
 
 $(document).ready(function(){
-	console.log(document.getElementById("bt-2").background);
 	$("#nut").click(function(){
 		socket.emit("hello");
 	})
