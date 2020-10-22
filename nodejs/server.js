@@ -38,6 +38,7 @@ var mqtt_status = false;
 var server_update = false;
 var sec_value = 0;
 var connection_status_interval = 0;
+var continous_status = false;
 
 setInterval(function(){
 	if(server_update == true) {
@@ -52,7 +53,7 @@ setInterval(function(){
 }, 1000);
 
 function timer(){
-	if (mqtt_status == true && waitfor_reply == false) {
+	if (mqtt_status == true && waitfor_reply == false && continous_status == true) {
 		console.log("send");
 		var real_time_request = {
 			"1":{
@@ -86,13 +87,20 @@ var realtime_buf = data_handler.realtime_buf;
 var statistic_buf = data_handler.statistic_buf;
 
 io.on('connection', function(socket){
-	console.log("co nguoi connect");	
-	
+	console.log("co nguoi connect");		
 	user_number++;
 	socket.on("change_update_enable", function(data){
 		server_update = !server_update;
 		io.sockets.emit("server_update_enable", server_update);
 		sec_value = 0;
+	})
+
+	socket.on("realtime_stat", function(data){
+		if(data == "1"){
+			continous_status = true;
+		}else{
+			continous_status = false
+		}
 	})
 
 	socket.on("update_database", function(data){

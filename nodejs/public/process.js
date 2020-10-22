@@ -116,8 +116,13 @@ socket.on("server_update_enable", function(data){
 })
 
 $(document).ready(function(){
-	$("#nut").click(function(){
-		socket.emit("hello");
+	$("#enable_realtime").click(function(){
+		var obj_box = document.getElementById("enable_realtime");
+		if(obj_box.checked == true){
+			socket.emit("realtime_stat", "1");
+		}else{
+			socket.emit("realtime_stat", "0");
+		}
 	})
 	$("#statistic_request").click(function(){
 		socket.emit("statistic_request");
