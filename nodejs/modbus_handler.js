@@ -5,6 +5,7 @@ const rf_table = table.reference_table;
 var send_object_data = {};
 function data_handler(data_packet, io){
     var number_of_packet = data_packet[0];
+    
     var current_pointer = 1;
     var send_update_object = {};
     for( var i = 0; i < number_of_packet; i++){
@@ -14,11 +15,11 @@ function data_handler(data_packet, io){
                 var start_register_address = data_packet[current_pointer+1] << 8 | data_packet[current_pointer+2];
                 var number_of_coils = data_packet[current_pointer+3];
                 var number_of_bytes = Math.ceil(data_packet[current_pointer+3]/8);
-                for(var i = data_pointer; i < data_pointer + number_of_bytes; i++){
+                for(var c = data_pointer; c < data_pointer + number_of_bytes; c++){
                     var bit_shift = 0;
                     for(var j = start_register_address; j < start_register_address + number_of_coils; j++){
                         var object_title = rf_table[j.toString()];
-                        var number = data_packet[i] >> bit_shift & 0x01;
+                        var number = data_packet[c] >> bit_shift & 0x01;
                         send_update_object[object_title] = (number == 1)?255:0;
                         bit_shift++;
                     }
@@ -44,8 +45,11 @@ function data_handler(data_packet, io){
                         
                         var number = (data_packet[data_pointer] << 8) | data_packet[data_pointer+1];
                         data_pointer+=2;
-                        send_update_object[object_title] = number/100;
-                        
+                        if(object_title.startsWith("~")){
+                            send_update_object[object_title] = number;
+                        }else{
+                            send_update_object[object_title] = number/100;
+                        }
                     }
                 }
                 current_pointer += number_of_register*2 + 4;
@@ -53,12 +57,12 @@ function data_handler(data_packet, io){
             case 5:
                 var start_register_address = data_packet[current_pointer+1] << 8 | data_packet[current_pointer+2];
                 var object_title = rf_table[start_register_address.toString()];
-                send_update_object[object_title] = current_pointer[current_pointer +3];
+                send_update_object[object_title] = data_packet[current_pointer +3];
                 current_pointer += 4;
             break;
         }
     }
     //console.log(send_update_object);
-    io.sockets.emit("packet_update", send_update_object);
+    io.sockets.emit("realtime_data", send_update_object);
 }
 module.exports.data_handler = data_handler;

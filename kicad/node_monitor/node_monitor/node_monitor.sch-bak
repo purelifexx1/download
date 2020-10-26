@@ -121,7 +121,7 @@ F 1 "SW_DIP_x06" H 7550 4276 50  0000 C CNN
 F 2 "Package_DIP:DIP-12_W7.62mm" H 7550 3800 50  0001 C CNN
 F 3 "~" H 7550 3800 50  0001 C CNN
 	1    7550 3800
-	1    0    0    -1  
+	-1   0    0    -1  
 $EndComp
 Wire Wire Line
 	7250 3600 7250 3700
@@ -245,18 +245,10 @@ F 3 "~" H 4300 3250 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4500 3350 4500 3400
-Text GLabel 5200 3850 0    50   Input ~ 0
-RLI
-Text GLabel 5200 3950 0    50   Input ~ 0
-MODE
-Text GLabel 5200 4050 0    50   Input ~ 0
-MANUAL
 Text GLabel 5200 4550 0    50   Input ~ 0
 VCCI
 Text GLabel 5200 4650 0    50   Input ~ 0
 GND1
-Text GLabel 6250 4250 2    50   Input ~ 0
-AUX
 Text GLabel 6250 4150 2    50   Input ~ 0
 LRXI
 Text GLabel 6250 4050 2    50   Input ~ 0
@@ -267,9 +259,9 @@ Text GLabel 7250 3600 0    50   Input ~ 0
 3V3
 Text GLabel 7250 3800 0    50   Input ~ 0
 RLD
-Text GLabel 7250 3900 0    50   Input ~ 0
-LTXD
 Text GLabel 7250 4000 0    50   Input ~ 0
+LTXD
+Text GLabel 7250 3900 0    50   Input ~ 0
 LRXD
 Text GLabel 7850 3500 2    50   Input ~ 0
 VCCI
@@ -279,9 +271,9 @@ Text GLabel 7850 3700 2    50   Input ~ 0
 MANUAL
 Text GLabel 7850 3800 2    50   Input ~ 0
 RLI
-Text GLabel 7850 3900 2    50   Input ~ 0
-LTXI
 Text GLabel 7850 4000 2    50   Input ~ 0
+LTXI
+Text GLabel 7850 3900 2    50   Input ~ 0
 LRXI
 Text GLabel 7500 2400 0    50   Input ~ 0
 M0
@@ -345,4 +337,29 @@ Text GLabel 6500 1350 0    50   Input ~ 0
 GND1
 Text GLabel 6250 2850 1    50   Input ~ 0
 GND1
+Text GLabel 6250 3950 2    50   Input ~ 0
+RLI
+Text GLabel 6250 3850 2    50   Input ~ 0
+MANUAL
+Text GLabel 6250 3750 2    50   Input ~ 0
+MODE
+Text GLabel 6250 3650 2    50   Input ~ 0
+AUX
+Text GLabel 5200 4750 0    50   Input ~ 0
+3V3
+$Comp
+L Connector:Conn_01x02_Male J8
+U 1 1 5F8D920A
+P 8600 3350
+F 0 "J8" H 8708 3531 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 8708 3440 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 8600 3350 50  0001 C CNN
+F 3 "~" H 8600 3350 50  0001 C CNN
+	1    8600 3350
+	1    0    0    -1  
+$EndComp
+Text GLabel 8800 3350 2    50   Input ~ 0
+LRXD
+Text GLabel 8800 3450 2    50   Input ~ 0
+LTXD
 $EndSCHEMATC

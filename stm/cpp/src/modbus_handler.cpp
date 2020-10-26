@@ -42,6 +42,7 @@ void modbus_handler::receive_handler(UART_HandleTypeDef *huart)
     	stop_timer(&htim2);
 
         //request the next one
+    	attemp = 0;
         current_request_number++;
         uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
         //uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
@@ -96,7 +97,12 @@ void modbus_handler::timeout_handler()
 	HAL_UART_AbortReceive_IT(&huart3);
 	if (current_request_number < number_of_request - 1){
 		stop_timer(&htim2);
-		current_request_number++;
+		if (attemp == 1) {
+			current_request_number++;
+			attemp = 0;
+		}else{
+			attemp++;
+		}
 		uart_dma(&huart3, array_of_request[current_request_number].response_packet, array_of_request[current_request_number].response_length);
 		uart_send(&huart3, array_of_request[current_request_number].request_packet, array_of_request[current_request_number].request_length);
 		TIM2->CNT = 0;

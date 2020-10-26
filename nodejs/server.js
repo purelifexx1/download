@@ -183,7 +183,7 @@ io.on('connection', function(socket){
 		}
 		if(waitfor_reply == false){
 			request.create_request(coil_status_change, function(buf){
-				client.publish('data_request', buf); 
+				client.publish('data_request', buf);
 			})
 			storage_packet.topic_timeout = 'data_request';
 			storage_packet.content_timeout = "r";
@@ -330,4 +330,11 @@ function timeout_function(storage_packet){
 server.listen(3000);
 app.get("/", function(req, res){
 	res.render("index1");
+})
+app.get("/main", function(req, res){
+	res.render("index1");
+})
+
+app.post("/testing", function(req, res){
+	res.redirect("/main");
 })

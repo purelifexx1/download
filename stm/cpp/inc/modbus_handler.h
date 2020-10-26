@@ -19,6 +19,7 @@ class modbus_handler
 		byte footer_chunk[2];
 
     public:
+		byte attemp = 0;
 		byte first_start = 0;
 		void begin(uint16_t header, uint16_t footer);
 		byte current_request_number;

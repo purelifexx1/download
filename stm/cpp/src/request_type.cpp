@@ -70,7 +70,7 @@ void request_type::function_01_handler(byte *data, int length) //read coil statu
     CRC_16(request_packet, 6, &request_packet[6]);
     request_length = 8;
     //calculate response length
-    response_length = (byte)(data[2] >> 3) + 5; //divive for 8 and plus 5
+    response_length = (byte)((data[2] + 8) >> 3) + 5; //divive for 8 and plus 5
 }
 void request_type::function_03_handler(byte *data, int length) //read holding registers
 {
@@ -117,7 +117,7 @@ void request_type::function_05_handler(byte *data, int length) //read coil statu
     //calculate response length
     response_length = 8;
 }
-void request_type::function_10_handler(byte *data, int length) //read coil status
+void request_type::function_10_handler(byte *data, int length) //preset multiple coil
 {
     //receive format:  [register_address: 2 bytes] [number of register: 1 byte] [register value: number of registers x2 bytes]
     //total 3 bytes
