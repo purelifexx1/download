@@ -50,7 +50,7 @@ void request_type::packet_encoding(){
             encode_length = 4;
 		break;
 		case 0x10:
-
+            
 		break;
 		case 0x03:
 
