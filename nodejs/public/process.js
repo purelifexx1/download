@@ -119,9 +119,9 @@ $(document).ready(function(){
 	$("#enable_realtime").click(function(){
 		var obj_box = document.getElementById("enable_realtime");
 		if(obj_box.checked == true){
-			socket.emit("realtime_stat", "1");
+			socket.emit("realtime_stat", {"status":"1", "cycle":document.getElementById("realtime_cycle").textContent});
 		}else{
-			socket.emit("realtime_stat", "0");
+			socket.emit("realtime_stat", {"status":"0", "cycle":document.getElementById("realtime_cycle").textContent});
 		}
 	})
 	$("#statistic_request").click(function(){
@@ -144,9 +144,14 @@ $(document).ready(function(){
 		else
 			socket.emit("change_coil_status", ["0000", "255", "1"]);
 	})
-	$("#database_update").click(function(){
-		socket.emit("update_database");
-		console_log("new time stamp for realtime data has been updated")
+	$("#enable_database").click(function(){
+		if(document.getElementById("enable_database").checked == true){
+			socket.emit("update_database", true);
+		}else{
+			socket.emit("update_database", false);
+		}
+		// socket.emit("update_database");
+		// console_log("new time stamp for realtime data has been updated")
 	})
 	$("#manual_control").click(function(){
 		if(button_namespace.manual_control == true)

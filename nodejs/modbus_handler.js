@@ -1,7 +1,8 @@
 
 const table = require("./modbus_table");
+const eee = require('./second');
 const rf_table = table.reference_table;
-
+var database = {};
 var send_object_data = {};
 function data_handler(data_packet, io){
     var number_of_packet = data_packet[0];
@@ -46,7 +47,7 @@ function data_handler(data_packet, io){
                         var number = (data_packet[data_pointer] << 8) | data_packet[data_pointer+1];
                         data_pointer+=2;
                         if(object_title.startsWith("~")){
-                            send_update_object[object_title] = number;
+                            send_update_object[object_title.replace("~","")] = number;
                         }else{
                             send_update_object[object_title] = number/100;
                         }
@@ -63,6 +64,12 @@ function data_handler(data_packet, io){
         }
     }
     //console.log(send_update_object);
+    database = send_update_object;
+    //console.log(database);
     io.sockets.emit("realtime_data", send_update_object);
 }
+function cac(mainb){
+    eee.update_server(mainb, database);
+}
+module.exports.cac = cac;
 module.exports.data_handler = data_handler;

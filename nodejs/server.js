@@ -39,13 +39,15 @@ var server_update = false;
 var sec_value = 0;
 var connection_status_interval = 0;
 var continous_status = false;
+var cycle = 8000;
+var enable_database = false;
 
 setInterval(function(){
 	if(server_update == true) {
 		sec_value++;
 		if(sec_value < 3600) {
 			//send data to firebase
-			data_handler.update_server(main_branch);
+			//data_handler.update_server(main_branch);
 			sec_value = 0;
 		}
 		server_update = false;
@@ -96,15 +98,17 @@ io.on('connection', function(socket){
 	})
 
 	socket.on("realtime_stat", function(data){
-		if(data == "1"){
+		if(data.status == "1"){
 			continous_status = true;
+			cycle = parseInt(data.cycle, 10);
 		}else{
 			continous_status = false
 		}
 	})
 
 	socket.on("update_database", function(data){
-		data_handler.update_server(main_branch);
+		//data_handler.update_server(main_branch);
+		enable_database = data;
 	})
 
 	socket.on("statistic_request", function(data){
@@ -226,7 +230,7 @@ io.on('connection', function(socket){
 	})
 	if (user_number != 0 && latch == true) {
 		latch = false;
-		timer_latch = setInterval(timer, 8000);//cycle for syncying realtime data
+		timer_latch = setInterval(timer, cycle);//cycle for syncying realtime data
 	}
 })
 
@@ -249,6 +253,9 @@ mqtt_branch.once('value', function(snap){
 				modbus.data_handler(message, io);
 				waitfor_reply = false;
 				send_wait_in_line_packet(storage_packet);
+				if(enable_database == true){
+					modbus.cac(main_branch);
+				}
 			}
 
 			if(topic == 'statistic_data') {

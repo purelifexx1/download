@@ -64,12 +64,12 @@ module.exports = {
 		});
 		io.sockets.emit("control_status_data", coils_status);
 	},
-	update_server: function(main_branch){
+	update_server: function(main_branch, data_object){
 		var real_time = get_realtime();
 		var date = real_time.day + " " + monthNames[real_time.month] + " " + real_time.year;
 		var time = real_time.hour + ":" + real_time.min + ":" + real_time.sec;
 		var date_branch = main_branch.child(date + " at " + time);
-		date_branch.update(struct_realtime_data);
+		date_branch.update(data_object);
 		console.log(date + " at " + time);
 	},
 	log_error: function(io, error_code){
