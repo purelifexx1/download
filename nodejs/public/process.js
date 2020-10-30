@@ -119,9 +119,9 @@ $(document).ready(function(){
 	$("#enable_realtime").click(function(){
 		var obj_box = document.getElementById("enable_realtime");
 		if(obj_box.checked == true){
-			socket.emit("realtime_stat", {"status":"1", "cycle":document.getElementById("realtime_cycle").textContent});
+			socket.emit("realtime_stat", {"status":"1", "cycle":document.getElementById("realtime_cycle").val()});
 		}else{
-			socket.emit("realtime_stat", {"status":"0", "cycle":document.getElementById("realtime_cycle").textContent});
+			socket.emit("realtime_stat", {"status":"0", "cycle":document.getElementById("realtime_cycle").val()});
 		}
 	})
 	$("#statistic_request").click(function(){
