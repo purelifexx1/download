@@ -1,0 +1,558 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testmodule title="SAIC_AS28P_A6.0_RC03" version="1.0">
+	
+	<testgroup title="Tests">
+		<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+		<!-- <testgroup title = "Precondition">
+			<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+			<testcase title="Tx Message:SAS_HSC2_FrP00(ID:0x1E5)::StrgWhlAngHSC2: 0" ident="-">
+				<set title="E_pubc_EPS_SAS_HSC2_FrP00_StrgWhlAngHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_EPS_SAS_HSC2_FrP00_StrgWhlAngHSC2_Rv">32768</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_EPS_SAS_HSC2_FrP00_tx" ident="-">
+					<envvar name = "E_pubc_EPS_SAS_HSC2_FrP00_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_EPS_SAS_HSC2_FrP00_tx" ident="-">
+					<envvar name = "E_pubc_EPS_SAS_HSC2_FrP00_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:SAS_HSC2_FrP00(ID:0x1E5)::StrgWhlAngGrdHSC2: 0" ident="-">
+				<set title="E_pubc_EPS_SAS_HSC2_FrP00_StrgWhlAngGrdHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_EPS_SAS_HSC2_FrP00_StrgWhlAngGrdHSC2_Rv">2048</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_EPS_SAS_HSC2_FrP00_tx" ident="-">
+					<envvar name = "E_pubc_EPS_SAS_HSC2_FrP00_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_EPS_SAS_HSC2_FrP00_tx" ident="-">
+					<envvar name = "E_pubc_EPS_SAS_HSC2_FrP00_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:EPS_HSC2_FrP03(ID:0x1EC)::DrvrStrgDlvrdToqHSC2: 1" ident="-">
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_DrvrStrgDlvrdToqHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_DrvrStrgDlvrdToqHSC2_Rv">1124</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_tx" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_tx" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:EPS_HSC2_FrP03(ID:0x1EC)::ChLKACtrlStsHSC2: 1" ident="-">
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_ChLKACtrlStsHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_ChLKACtrlStsHSC2_Rv">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_tx" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_tx" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:EPS_HSC2_FrP03(ID:0x1EC)::ChLKARespToqHSC2: 1" ident="-">
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_ChLKARespToqHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_ChLKARespToqHSC2_Rv">1124</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_tx" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_EPS_EPS_HSC2_FrP03_tx" ident="-">
+					<envvar name = "E_pubc_EPS_EPS_HSC2_FrP03_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:GW_HSC2_FrP01(ID:0x1F1)::SysPwrMd_h2HSC2: 2" ident="-">
+				<set title="E_pubc_GW_GW_HSC2_FrP01_SysPwrMd_h2HSC2_Rv" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_FrP01_SysPwrMd_h2HSC2_Rv">2</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_GW_GW_HSC2_FrP01_tx" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_FrP01_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_GW_GW_HSC2_FrP01_tx" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_FrP01_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:GW_HSC2_FrP10(ID:0x3F1)::OtsdAirTemCrVal_h2HSC2: 23" ident="-">
+				<set title="E_pubc_GW_GW_HSC2_FrP10_OtsdAirTemCrVal_h2HSC2_Rv" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_FrP10_OtsdAirTemCrVal_h2HSC2_Rv">126</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_GW_GW_HSC2_FrP10_tx" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_FrP10_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_GW_GW_HSC2_FrP10_tx" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_FrP10_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:SCS_HSC2_FrP02(ID:0x185)::VSELongtAccHSC2: 0" ident="-">
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP02_VSELongtAccHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP02_VSELongtAccHSC2_Rv">0</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP02_tx" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP02_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP02_tx" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP02_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:SCS_HSC2_FrP02(ID:0x185)::VSELatAccHSC2: 0" ident="-">
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP02_VSELatAccHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP02_VSELatAccHSC2_Rv">0</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP02_tx" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP02_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP02_tx" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP02_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:SCS_HSC2_FrP05(ID:0x1E9)::VehDynYawRateHSC2: 0" ident="-">
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP05_VehDynYawRateHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP05_VehDynYawRateHSC2_Rv">0</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP05_tx" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP05_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP05_tx" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP05_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:SCS_HSC2_FrP19(ID:0x23C)::VehSpdAvgHSC2: 85" ident="-">
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_VehSpdAvgHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_VehSpdAvgHSC2_Rv">5440</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx" ident="-">
+					<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx">0</envvar>
+				</set>	
+			</testcase>
+			<testcase title="Tx Message:GW_HSC2_BCM_FrP06(ID:0x21C)::ClstrDspdVehSpdHSC2: 85" ident="-">
+				<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_ClstrDspdVehSpdHSC2_Rv" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_ClstrDspdVehSpdHSC2_Rv">85</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				
+				<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_tx" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_tx">1</envvar>
+				</set>	
+				<wait time="5" title="wait" />
+				<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_tx" ident="-">
+					<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_tx">0</envvar>
+				</set>	
+			</testcase>
+
+		</testgroup> -->
+		
+		<!-- <testgroup title = "Speed">
+			<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+			<testgroup title = "Both of speed is 85kph">
+				<testcase title="Tx Message:SCS_HSC2_FrP19(ID:0x23C)::VehSpdAvgHSC2: 85" ident="-">
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_VehSpdAvgHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_VehSpdAvgHSC2_Rv">5440</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx">0</envvar>
+					</set>	
+				</testcase>
+				<testcase title="Tx Message:GW_HSC2_BCM_FrP06(ID:0x21C)::ClstrDspdVehSpdHSC2: 85" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_ClstrDspdVehSpdHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_ClstrDspdVehSpdHSC2_Rv">85</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Both of speed is 55kph">
+				<testcase title="Tx Message:SCS_HSC2_FrP19(ID:0x23C)::VehSpdAvgHSC2: 55" ident="-">
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_VehSpdAvgHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_VehSpdAvgHSC2_Rv">3520</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx">0</envvar>
+					</set>	
+				</testcase>
+				<testcase title="Tx Message:GW_HSC2_BCM_FrP06(ID:0x21C)::ClstrDspdVehSpdHSC2: 55" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_ClstrDspdVehSpdHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_ClstrDspdVehSpdHSC2_Rv">55</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Both of speed is 20kph">
+				<testcase title="Tx Message:SCS_HSC2_FrP19(ID:0x23C)::VehSpdAvgHSC2: 20" ident="-">
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_VehSpdAvgHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_VehSpdAvgHSC2_Rv">1280</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx" ident="-">
+						<envvar name = "E_pubc_Stability_Control_System_SCS_HSC2_FrP19_tx">0</envvar>
+					</set>	
+				</testcase>
+				<testcase title="Tx Message:GW_HSC2_BCM_FrP06(ID:0x21C)::ClstrDspdVehSpdHSC2: 20" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_ClstrDspdVehSpdHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_ClstrDspdVehSpdHSC2_Rv">20</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_BCM_FrP06_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_BCM_FrP06_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+		</testgroup> -->
+		
+		<testgroup title = "Function">
+			<externalref type = "doors" owner = "TAE - DOORS extension" title = "SAIC_LabT_FUNCTION"/>
+			<!-- <testgroup title = "Enable LDW function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+				<testcase title="Tx Message:GW_HSC2_FICM_FrP02(ID:0x376)::LDWLKASwReqHSC2:2 to 0 in 300ms" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">2</envvar>
+					</set>	
+					<wait time="300" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">0</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Disable LDW function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+				<testcase title="Tx Message:GW_HSC2_FICM_FrP02(ID:0x376)::LDWLKASwReqHSC2:1" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Enable LKS function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+				<testcase title="Tx Message:GW_HSC2_FICM_FrP02(ID:0x376)::LDWLKASwReqHSC2:4 to 0 in 300ms" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">4</envvar>
+					</set>	
+					<wait time="300" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">0</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Disable LKS function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+				<testcase title="Tx Message:GW_HSC2_FICM_FrP02(ID:0x376)::LDWLKASwReqHSC2:1" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Enable TJA function by correct way">
+				<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+				<testcase title="Tx Message:GW_HSC2_FICM_FrP08(ID:0x2F6)::TJAICASwReqHSC2: 2" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP08_TJAICASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP08_TJAICASwReqHSC2_Rv">2</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP08_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP08_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP08_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP08_tx">0</envvar>
+					</set>	
+				</testcase>
+				<testcase title="Tx Message:RDR1_Header(ID:0x100)::StatusACC: 4" ident="-">
+					<set title="E_pric_Radar_RDR1_Header_StatusACC_Rv" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_StatusACC_Rv">4</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_tx" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_tx" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_tx">0</envvar>
+					</set>	
+				</testcase>
+				<testcase title="Tx Message:RDR1_Header(ID:0x100)::FRS_ALOD_ControlType: 2 to 3 in 340ms" ident="-">
+					<set title="E_pric_Radar_RDR1_Header_FRS_ALOD_ControlType_Rv" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_FRS_ALOD_ControlType_Rv">2</envvar>
+					</set>	
+					<wait time="340" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_FRS_ALOD_ControlType_Rv" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_FRS_ALOD_ControlType_Rv">3</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_tx" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_tx" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Disable TJA function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+				<testcase title="Tx Message:GW_HSC2_FICM_FrP08(ID:0x2F6)::TJAICASwReqHSC2: 1" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP08_TJAICASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP08_TJAICASwReqHSC2_Rv">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP08_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP08_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP08_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP08_tx">0</envvar>
+					</set>	
+				</testcase>
+				<testcase title="Tx Message:RDR1_Header(ID:0x100)::StatusACC: 0" ident="-">
+					<set title="E_pric_Radar_RDR1_Header_StatusACC_Rv" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_StatusACC_Rv">0</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_tx" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_tx" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_tx">0</envvar>
+					</set>	
+				</testcase>
+				<testcase title="Tx Message:RDR1_Header(ID:0x100)::FRS_ALOD_ControlType: 0" ident="-">
+					<set title="E_pric_Radar_RDR1_Header_FRS_ALOD_ControlType_Rv" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_FRS_ALOD_ControlType_Rv">0</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_tx" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pric_Radar_RDR1_Header_tx" ident="-">
+						<envvar name = "E_pric_Radar_RDR1_Header_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Enable RDP function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+				<testcase title="Tx Message:GW_HSC2_FICM_FrP02(ID:0x376)::LDWLKASwReqHSC2:3 to 0 in 300ms" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">3</envvar>
+					</set>	
+					<wait time="300" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">0</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup>
+			<testgroup title = "Disable RDP function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="SAIC_LabT_FUNCTION" />
+				<testcase title="Tx Message:GW_HSC2_FICM_FrP02(ID:0x376)::LDWLKASwReqHSC2:1" ident="-">
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_LDWLKASwReqHSC2_Rv">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">1</envvar>
+					</set>	
+					<wait time="5" title="wait" />
+					<set title="E_pubc_GW_GW_HSC2_FICM_FrP02_tx" ident="-">
+						<envvar name = "E_pubc_GW_GW_HSC2_FICM_FrP02_tx">0</envvar>
+					</set>	
+				</testcase>
+			</testgroup> -->
+			<testgroup title = "Enable HMA function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+				<testcase title="Tester Present is ON " ident="-">
+					<set title="EnvTesterPresentOnOff">
+						<envvar name="EnvTesterPresentOnOff">1</envvar>
+					</set>
+					<wait time="0" title="wait" />
+				</testcase>
+				<capltestcase name="DiagSessionCtrl" title="Change to Extended session with Service 0x10 03" ident="Positive response is received: 0x50 03 00 32 00 C8">
+					<caplparam type="string" name="sessionName">Extended</caplparam>
+				</capltestcase>
+				<testcase title="Request Seed from the camera 0x27 01" ident="Positive response is received: 0x67 01 .{4}">
+					<set title="EnvLogInLevel1">
+						<envvar name="EnvLogInLevel1">1</envvar>
+					</set>
+					<wait time="0" title="wait" />
+				</testcase>
+				<testcase title="Wait for Seed-Key Calculation." ident="-">
+					<wait time="1000" title="wait" />
+				</testcase>
+				<testcase title="Send valid Key to the camera : 0x27 02 XX XX XX XX (Where XX XX XX XX is the exact calculated key using seed key algorithm)" ident="Positive response is received: 0x67 02">
+					<set title="EnvLogInLevel1">
+						<envvar name="EnvLogInLevel1">0</envvar>
+					</set>
+					<wait time="0" title="wait" />
+				</testcase>
+				<testcase title="Wait 100ms" ident="-">
+					<wait time="100" title="wait" />
+				</testcase>
+				<capltestcase name="RequestResponse" title="Write the string to enable LDW function: 0x2E C0 01 83 E0" ident="Positive response is received: 0x6E C0 01">
+					<caplparam name="Request" type="string">2ec00183e0</caplparam>
+					<caplparam name="Response" type="string">6ec001</caplparam>
+					<caplparam name="CompareMode" type="string">Equal</caplparam>
+				</capltestcase>
+				<testcase title="Tester Present is OFF " ident="- ">
+							<set title="EnvTesterPresentOnOff">
+					<envvar name="EnvTesterPresentOnOff">0</envvar>
+					</set>
+					<wait time="0" title="wait" />
+				</testcase>
+				<capltestcase name="DiagSessionCtrl" title="Change to Default session with Service 0x10 01" ident="Positive response is received: 0x50 01 00 32 00 C8">
+					<caplparam type="string" name="sessionName">Default</caplparam>
+				</capltestcase>
+			</testgroup>
+			<testgroup title = "Disable HMA function">
+				<externalref type="doors" owner="TAE - DOORS extension" title="CHERY_LabT_SIT" />
+				<testcase title="Tester Present is ON " ident="-">
+					<set title="EnvTesterPresentOnOff">
+						<envvar name="EnvTesterPresentOnOff">1</envvar>
+					</set>
+					<wait time="0" title="wait" />
+				</testcase>
+				<capltestcase name="DiagSessionCtrl" title="Change to Extended session with Service 0x10 03" ident="Positive response is received: 0x50 03 00 32 00 C8">
+					<caplparam type="string" name="sessionName">Extended</caplparam>
+				</capltestcase>
+				<testcase title="Request Seed from the camera 0x27 01" ident="Positive response is received: 0x67 01 .{4}">
+					<set title="EnvLogInLevel1">
+						<envvar name="EnvLogInLevel1">1</envvar>
+					</set>
+					<wait time="0" title="wait" />
+				</testcase>
+				<testcase title="Wait for Seed-Key Calculation." ident="-">
+					<wait time="1000" title="wait" />
+				</testcase>
+				<testcase title="Send valid Key to the camera : 0x27 02 XX XX XX XX (Where XX XX XX XX is the exact calculated key using seed key algorithm)" ident="Positive response is received: 0x67 02">
+					<set title="EnvLogInLevel1">
+						<envvar name="EnvLogInLevel1">0</envvar>
+					</set>
+					<wait time="0" title="wait" />
+				</testcase>
+				<capltestcase name="RequestResponse" title="Write the string to enable LDW function: 0x2E C0 01 82 E0" ident="Positive response is received: 0x6E C0 01">
+					<caplparam name="Request" type="string">2ec00182e0</caplparam>
+					<caplparam name="Response" type="string">6ec001</caplparam>
+					<caplparam name="CompareMode" type="string">Equal</caplparam>
+				</capltestcase>
+				<testcase title="Tester Present is OFF " ident="- ">
+							<set title="EnvTesterPresentOnOff">
+					<envvar name="EnvTesterPresentOnOff">0</envvar>
+					</set>
+					<wait time="0" title="wait" />
+				</testcase>
+			</testgroup>
+			
+		</testgroup>
+		
+
+	</testgroup>
+</testmodule>
