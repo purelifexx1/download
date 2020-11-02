@@ -1,0 +1,1182 @@
+Analysis & Synthesis report for test
+Wed Jun 17 19:24:46 2020
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. User-Specified and Inferred Latches
+  9. Registers Removed During Synthesis
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Source assignments for encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component
+ 14. Source assignments for encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component
+ 15. Source assignments for encoder:inst13|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component
+ 16. Source assignments for encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component
+ 17. Source assignments for encoder:inst14|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component
+ 18. Source assignments for encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component
+ 19. Parameter Settings for User Entity Instance: dda_module:inst|test:inst
+ 20. Parameter Settings for User Entity Instance: dda_module:inst|test:inst4
+ 21. Parameter Settings for User Entity Instance: dda_module:inst|test:inst5
+ 22. Parameter Settings for User Entity Instance: dda_module:inst|test:inst11
+ 23. Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component
+ 24. Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst11|lpm_bustri:lpm_bustri_component
+ 25. Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst13|lpm_bustri:lpm_bustri_component
+ 26. Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst17|lpm_bustri:lpm_bustri_component
+ 27. Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst19|lpm_bustri:lpm_bustri_component
+ 28. Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst2|lpm_bustri:lpm_bustri_component
+ 29. Parameter Settings for User Entity Instance: encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component
+ 30. Parameter Settings for User Entity Instance: encoder:inst9|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component
+ 31. Parameter Settings for User Entity Instance: encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component
+ 32. Parameter Settings for User Entity Instance: encoder:inst13|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component
+ 33. Parameter Settings for User Entity Instance: encoder:inst13|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component
+ 34. Parameter Settings for User Entity Instance: encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component
+ 35. Parameter Settings for User Entity Instance: encoder:inst14|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component
+ 36. Parameter Settings for User Entity Instance: encoder:inst14|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component
+ 37. Parameter Settings for User Entity Instance: encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component
+ 38. Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component
+ 39. Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst11|lpm_bustri:lpm_bustri_component
+ 40. Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst13|lpm_bustri:lpm_bustri_component
+ 41. Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst17|lpm_bustri:lpm_bustri_component
+ 42. Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst19|lpm_bustri:lpm_bustri_component
+ 43. Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst2|lpm_bustri:lpm_bustri_component
+ 44. Analysis & Synthesis Messages
+ 45. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                               ;
++-----------------------------+----------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Wed Jun 17 19:24:46 2020        ;
+; Quartus II Version          ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
+; Revision Name               ; test                                         ;
+; Top-level Entity Name       ; xuat_xung                                    ;
+; Family                      ; MAX II                                       ;
+; Total logic elements        ; 627                                          ;
+; Total pins                  ; 44                                           ;
+; Total virtual pins          ; 0                                            ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                                ;
++-----------------------------+----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EPM570T100C5       ;                    ;
+; Top-level entity name                                                      ; xuat_xung          ; test               ;
+; Family name                                                                ; MAX II             ; Stratix II         ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Show Parameter Settings Tables in Synthesis Report                         ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 2      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                          ;
++----------------------------------+-----------------+------------------------------------------+-----------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                                ; File Name with Absolute Path                                    ;
++----------------------------------+-----------------+------------------------------------------+-----------------------------------------------------------------+
+; xuat_xung.bdf                    ; yes             ; User Block Diagram/Schematic File        ; F:/THESIS/SOURCE/robot_CPLD/CPLD/xuat_xung.bdf                  ;
+; test.v                           ; yes             ; User Verilog HDL File                    ; F:/THESIS/SOURCE/robot_CPLD/CPLD/test.v                         ;
+; enc_filter.bdf                   ; yes             ; User Block Diagram/Schematic File        ; F:/THESIS/SOURCE/robot_CPLD/CPLD/enc_filter.bdf                 ;
+; encoder.bdf                      ; yes             ; User Block Diagram/Schematic File        ; F:/THESIS/SOURCE/robot_CPLD/CPLD/encoder.bdf                    ;
+; lpm_bustri0.v                    ; yes             ; User Wizard-Generated File               ; F:/THESIS/SOURCE/robot_CPLD/CPLD/lpm_bustri0.v                  ;
+; lpm_xor0.v                       ; yes             ; User Wizard-Generated File               ; F:/THESIS/SOURCE/robot_CPLD/CPLD/lpm_xor0.v                     ;
+; lpm_counter0.v                   ; yes             ; User Wizard-Generated File               ; F:/THESIS/SOURCE/robot_CPLD/CPLD/lpm_counter0.v                 ;
+; lpm_counter_enc.v                ; yes             ; User Wizard-Generated File               ; F:/THESIS/SOURCE/robot_CPLD/CPLD/lpm_counter_enc.v              ;
+; encoder_counter.bdf              ; yes             ; User Block Diagram/Schematic File        ; F:/THESIS/SOURCE/robot_CPLD/CPLD/encoder_counter.bdf            ;
+; read_encoder.bdf                 ; yes             ; User Block Diagram/Schematic File        ; F:/THESIS/SOURCE/robot_CPLD/CPLD/read_encoder.bdf               ;
+; read_limit.bdf                   ; yes             ; User Block Diagram/Schematic File        ; F:/THESIS/SOURCE/robot_CPLD/CPLD/read_limit.bdf                 ;
+; limit_capture.bdf                ; yes             ; User Block Diagram/Schematic File        ; F:/THESIS/SOURCE/robot_CPLD/CPLD/limit_capture.bdf              ;
+; dda_module.bdf                   ; yes             ; Auto-Found Block Diagram/Schematic File  ; F:/THESIS/SOURCE/robot_CPLD/CPLD/dda_module.bdf                 ;
+; 74373b.bdf                       ; yes             ; Megafunction                             ; c:/altera/91sp2/quartus/libraries/others/maxplus2/74373b.bdf    ;
+; 74138.bdf                        ; yes             ; Megafunction                             ; c:/altera/91sp2/quartus/libraries/others/maxplus2/74138.bdf     ;
+; lpm_bustri.tdf                   ; yes             ; Megafunction                             ; c:/altera/91sp2/quartus/libraries/megafunctions/lpm_bustri.tdf  ;
+; lpm_counter.tdf                  ; yes             ; Megafunction                             ; c:/altera/91sp2/quartus/libraries/megafunctions/lpm_counter.tdf ;
+; db/cntr_r2h.tdf                  ; yes             ; Auto-Generated Megafunction              ; F:/THESIS/SOURCE/robot_CPLD/CPLD/db/cntr_r2h.tdf                ;
+; lpm_xor.tdf                      ; yes             ; Megafunction                             ; c:/altera/91sp2/quartus/libraries/megafunctions/lpm_xor.tdf     ;
+; db/cntr_g7h.tdf                  ; yes             ; Auto-Generated Megafunction              ; F:/THESIS/SOURCE/robot_CPLD/CPLD/db/cntr_g7h.tdf                ;
+; 74377b.bdf                       ; yes             ; Megafunction                             ; c:/altera/91sp2/quartus/libraries/others/maxplus2/74377b.bdf    ;
+; enadff.bdf                       ; yes             ; Megafunction                             ; c:/altera/91sp2/quartus/libraries/others/maxplus2/enadff.bdf    ;
+; 74244.bdf                        ; yes             ; Megafunction                             ; c:/altera/91sp2/quartus/libraries/others/maxplus2/74244.bdf     ;
++----------------------------------+-----------------+------------------------------------------+-----------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Total logic elements                        ; 627   ;
+;     -- Combinational with no register       ; 307   ;
+;     -- Register only                        ; 153   ;
+;     -- Combinational with a register        ; 167   ;
+;                                             ;       ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 206   ;
+;     -- 3 input functions                    ; 186   ;
+;     -- 2 input functions                    ; 74    ;
+;     -- 1 input functions                    ; 8     ;
+;     -- 0 input functions                    ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 455   ;
+;     -- arithmetic mode                      ; 172   ;
+;     -- qfbk mode                            ; 0     ;
+;     -- register cascade mode                ; 0     ;
+;     -- synchronous clear/load mode          ; 9     ;
+;     -- asynchronous clear/load mode         ; 96    ;
+;                                             ;       ;
+; Total registers                             ; 320   ;
+; Total logic cells in carry chains           ; 188   ;
+; I/O pins                                    ; 44    ;
+; Maximum fan-out node                        ; CLK   ;
+; Maximum fan-out                             ; 98    ;
+; Total fan-out                               ; 2426  ;
+; Average fan-out                             ; 3.62  ;
++---------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                   ;
++-------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                      ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                                                                                             ; Library Name ;
++-------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |xuat_xung                                      ; 627 (1)     ; 320          ; 0          ; 44   ; 0            ; 307 (1)      ; 153 (0)           ; 167 (0)          ; 188 (0)         ; 0 (0)      ; |xuat_xung                                                                                                                      ; work         ;
+;    |74138:inst10|                               ; 2 (2)       ; 0            ; 0          ; 0    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|74138:inst10                                                                                                         ; work         ;
+;    |74373b:inst1|                               ; 6 (6)       ; 0            ; 0          ; 0    ; 0            ; 6 (6)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|74373b:inst1                                                                                                         ; work         ;
+;    |dda_module:inst|                            ; 229 (5)     ; 92           ; 0          ; 0    ; 0            ; 137 (5)      ; 33 (0)            ; 59 (0)           ; 86 (0)          ; 0 (0)      ; |xuat_xung|dda_module:inst                                                                                                      ; work         ;
+;       |74373b:inst18|                           ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|dda_module:inst|74373b:inst18                                                                                        ; work         ;
+;       |74373b:inst20|                           ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|dda_module:inst|74373b:inst20                                                                                        ; work         ;
+;       |74373b:inst2|                            ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|dda_module:inst|74373b:inst2                                                                                         ; work         ;
+;       |74373b:inst7|                            ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|dda_module:inst|74373b:inst7                                                                                         ; work         ;
+;       |test:inst11|                             ; 68 (68)     ; 38           ; 0          ; 0    ; 0            ; 30 (30)      ; 9 (9)             ; 29 (29)          ; 35 (35)         ; 0 (0)      ; |xuat_xung|dda_module:inst|test:inst11                                                                                          ; work         ;
+;       |test:inst4|                              ; 48 (48)     ; 18           ; 0          ; 0    ; 0            ; 30 (30)      ; 8 (8)             ; 10 (10)          ; 17 (17)         ; 0 (0)      ; |xuat_xung|dda_module:inst|test:inst4                                                                                           ; work         ;
+;       |test:inst5|                              ; 38 (38)     ; 18           ; 0          ; 0    ; 0            ; 20 (20)      ; 8 (8)             ; 10 (10)          ; 17 (17)         ; 0 (0)      ; |xuat_xung|dda_module:inst|test:inst5                                                                                           ; work         ;
+;       |test:inst|                               ; 38 (38)     ; 18           ; 0          ; 0    ; 0            ; 20 (20)      ; 8 (8)             ; 10 (10)          ; 17 (17)         ; 0 (0)      ; |xuat_xung|dda_module:inst|test:inst                                                                                            ; work         ;
+;    |encoder:inst13|                             ; 46 (0)      ; 44           ; 0          ; 0    ; 0            ; 2 (0)        ; 8 (0)             ; 36 (0)           ; 34 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst13                                                                                                       ; work         ;
+;       |enc_filter:inst|                         ; 8 (8)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 6 (6)             ; 2 (2)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst13|enc_filter:inst                                                                                       ; work         ;
+;       |encoder_counter:inst1|                   ; 36 (3)      ; 34           ; 0          ; 0    ; 0            ; 2 (1)        ; 2 (2)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst13|encoder_counter:inst1                                                                                 ; work         ;
+;          |lpm_counter_enc:inst5|                ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst13|encoder_counter:inst1|lpm_counter_enc:inst5                                                           ; work         ;
+;             |lpm_counter:lpm_counter_component| ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst13|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component                         ; work         ;
+;                |cntr_r2h:auto_generated|        ; 32 (32)     ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (32)          ; 32 (32)         ; 0 (0)      ; |xuat_xung|encoder:inst13|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component|cntr_r2h:auto_generated ; work         ;
+;          |lpm_xor0:inst|                        ; 1 (0)       ; 0            ; 0          ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst13|encoder_counter:inst1|lpm_xor0:inst                                                                   ; work         ;
+;             |lpm_xor:lpm_xor_component|         ; 1 (1)       ; 0            ; 0          ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst13|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component                                         ; work         ;
+;       |lpm_counter0:inst3|                      ; 2 (0)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; 2 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst13|lpm_counter0:inst3                                                                                    ; work         ;
+;          |lpm_counter:lpm_counter_component|    ; 2 (0)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; 2 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component                                                  ; work         ;
+;             |cntr_g7h:auto_generated|           ; 2 (2)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; 2 (2)           ; 0 (0)      ; |xuat_xung|encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated                          ; work         ;
+;    |encoder:inst14|                             ; 46 (0)      ; 44           ; 0          ; 0    ; 0            ; 2 (0)        ; 8 (0)             ; 36 (0)           ; 34 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst14                                                                                                       ; work         ;
+;       |enc_filter:inst|                         ; 8 (8)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 6 (6)             ; 2 (2)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst14|enc_filter:inst                                                                                       ; work         ;
+;       |encoder_counter:inst1|                   ; 36 (3)      ; 34           ; 0          ; 0    ; 0            ; 2 (1)        ; 2 (2)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst14|encoder_counter:inst1                                                                                 ; work         ;
+;          |lpm_counter_enc:inst5|                ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst14|encoder_counter:inst1|lpm_counter_enc:inst5                                                           ; work         ;
+;             |lpm_counter:lpm_counter_component| ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst14|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component                         ; work         ;
+;                |cntr_r2h:auto_generated|        ; 32 (32)     ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (32)          ; 32 (32)         ; 0 (0)      ; |xuat_xung|encoder:inst14|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component|cntr_r2h:auto_generated ; work         ;
+;          |lpm_xor0:inst|                        ; 1 (0)       ; 0            ; 0          ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst14|encoder_counter:inst1|lpm_xor0:inst                                                                   ; work         ;
+;             |lpm_xor:lpm_xor_component|         ; 1 (1)       ; 0            ; 0          ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst14|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component                                         ; work         ;
+;       |lpm_counter0:inst3|                      ; 2 (0)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; 2 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst14|lpm_counter0:inst3                                                                                    ; work         ;
+;          |lpm_counter:lpm_counter_component|    ; 2 (0)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; 2 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component                                                  ; work         ;
+;             |cntr_g7h:auto_generated|           ; 2 (2)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; 2 (2)           ; 0 (0)      ; |xuat_xung|encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated                          ; work         ;
+;    |encoder:inst9|                              ; 46 (0)      ; 44           ; 0          ; 0    ; 0            ; 2 (0)        ; 8 (0)             ; 36 (0)           ; 34 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst9                                                                                                        ; work         ;
+;       |enc_filter:inst|                         ; 8 (8)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 6 (6)             ; 2 (2)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst9|enc_filter:inst                                                                                        ; work         ;
+;       |encoder_counter:inst1|                   ; 36 (3)      ; 34           ; 0          ; 0    ; 0            ; 2 (1)        ; 2 (2)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst9|encoder_counter:inst1                                                                                  ; work         ;
+;          |lpm_counter_enc:inst5|                ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5                                                            ; work         ;
+;             |lpm_counter:lpm_counter_component| ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (0)           ; 32 (0)          ; 0 (0)      ; |xuat_xung|encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component                          ; work         ;
+;                |cntr_r2h:auto_generated|        ; 32 (32)     ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 32 (32)          ; 32 (32)         ; 0 (0)      ; |xuat_xung|encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component|cntr_r2h:auto_generated  ; work         ;
+;          |lpm_xor0:inst|                        ; 1 (0)       ; 0            ; 0          ; 0    ; 0            ; 1 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst9|encoder_counter:inst1|lpm_xor0:inst                                                                    ; work         ;
+;             |lpm_xor:lpm_xor_component|         ; 1 (1)       ; 0            ; 0          ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst9|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component                                          ; work         ;
+;       |lpm_counter0:inst3|                      ; 2 (0)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; 2 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst9|lpm_counter0:inst3                                                                                     ; work         ;
+;          |lpm_counter:lpm_counter_component|    ; 2 (0)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (0)            ; 2 (0)           ; 0 (0)      ; |xuat_xung|encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component                                                   ; work         ;
+;             |cntr_g7h:auto_generated|           ; 2 (2)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; 2 (2)           ; 0 (0)      ; |xuat_xung|encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated                           ; work         ;
+;    |limit_capture:inst17|                       ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 32 (0)            ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17                                                                                                 ; work         ;
+;       |74377b:inst12|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst12|enadff:3                                                                          ; work         ;
+;       |74377b:inst13|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst13|enadff:3                                                                          ; work         ;
+;       |74377b:inst14|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst14|enadff:3                                                                          ; work         ;
+;       |74377b:inst|                             ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst                                                                                     ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst|enadff:10                                                                           ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst|enadff:15                                                                           ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst|enadff:18                                                                           ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst|enadff:19                                                                           ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst|enadff:24                                                                           ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst|enadff:25                                                                           ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst|enadff:2                                                                            ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst17|74377b:inst|enadff:3                                                                            ; work         ;
+;    |limit_capture:inst18|                       ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 32 (0)            ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18                                                                                                 ; work         ;
+;       |74377b:inst12|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst12|enadff:3                                                                          ; work         ;
+;       |74377b:inst13|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst13|enadff:3                                                                          ; work         ;
+;       |74377b:inst14|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst14|enadff:3                                                                          ; work         ;
+;       |74377b:inst|                             ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst                                                                                     ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst|enadff:10                                                                           ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst|enadff:15                                                                           ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst|enadff:18                                                                           ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst|enadff:19                                                                           ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst|enadff:24                                                                           ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst|enadff:25                                                                           ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst|enadff:2                                                                            ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst18|74377b:inst|enadff:3                                                                            ; work         ;
+;    |limit_capture:inst19|                       ; 32 (0)      ; 32           ; 0          ; 0    ; 0            ; 0 (0)        ; 32 (0)            ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19                                                                                                 ; work         ;
+;       |74377b:inst12|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst12|enadff:3                                                                          ; work         ;
+;       |74377b:inst13|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst13|enadff:3                                                                          ; work         ;
+;       |74377b:inst14|                           ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14                                                                                   ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14|enadff:10                                                                         ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14|enadff:15                                                                         ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14|enadff:18                                                                         ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14|enadff:19                                                                         ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14|enadff:24                                                                         ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14|enadff:25                                                                         ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14|enadff:2                                                                          ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst14|enadff:3                                                                          ; work         ;
+;       |74377b:inst|                             ; 8 (0)       ; 8            ; 0          ; 0    ; 0            ; 0 (0)        ; 8 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst                                                                                     ; work         ;
+;          |enadff:10|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst|enadff:10                                                                           ; work         ;
+;          |enadff:15|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst|enadff:15                                                                           ; work         ;
+;          |enadff:18|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst|enadff:18                                                                           ; work         ;
+;          |enadff:19|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst|enadff:19                                                                           ; work         ;
+;          |enadff:24|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst|enadff:24                                                                           ; work         ;
+;          |enadff:25|                            ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst|enadff:25                                                                           ; work         ;
+;          |enadff:2|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst|enadff:2                                                                            ; work         ;
+;          |enadff:3|                             ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|limit_capture:inst19|74377b:inst|enadff:3                                                                            ; work         ;
+;    |read_encoder:inst16|                        ; 76 (6)      ; 0            ; 0          ; 0    ; 0            ; 76 (6)       ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|read_encoder:inst16                                                                                                  ; work         ;
+;       |lpm_bustri0:inst19|                      ; 4 (0)       ; 0            ; 0          ; 0    ; 0            ; 4 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|read_encoder:inst16|lpm_bustri0:inst19                                                                               ; work         ;
+;          |lpm_bustri:lpm_bustri_component|      ; 4 (4)       ; 0            ; 0          ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|read_encoder:inst16|lpm_bustri0:inst19|lpm_bustri:lpm_bustri_component                                               ; work         ;
+;       |lpm_bustri0:inst3|                       ; 66 (0)      ; 0            ; 0          ; 0    ; 0            ; 66 (0)       ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|read_encoder:inst16|lpm_bustri0:inst3                                                                                ; work         ;
+;          |lpm_bustri:lpm_bustri_component|      ; 66 (66)     ; 0            ; 0          ; 0    ; 0            ; 66 (66)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|read_encoder:inst16|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component                                                ; work         ;
+;    |read_encoder:inst20|                        ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|read_encoder:inst20                                                                                                  ; work         ;
+;    |read_limit:inst15|                          ; 71 (0)      ; 0            ; 0          ; 0    ; 0            ; 71 (0)       ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|read_limit:inst15                                                                                                    ; work         ;
+;       |74244:inst7|                             ; 71 (71)     ; 0            ; 0          ; 0    ; 0            ; 71 (71)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |xuat_xung|read_limit:inst15|74244:inst7                                                                                        ; work         ;
++-------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                   ;
++-----------------------------------------------------+------------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal    ; Free of Timing Hazards ;
++-----------------------------------------------------+------------------------+------------------------+
+; dda_module:inst|74373b:inst2|19                     ; dda_module:inst|inst8  ; yes                    ;
+; dda_module:inst|74373b:inst7|19                     ; dda_module:inst|inst10 ; yes                    ;
+; dda_module:inst|74373b:inst18|19                    ; dda_module:inst|inst21 ; yes                    ;
+; dda_module:inst|74373b:inst20|19                    ; dda_module:inst|inst22 ; yes                    ;
+; 74373b:inst1|18                                     ; NADV                   ; yes                    ;
+; 74373b:inst1|17                                     ; NADV                   ; yes                    ;
+; 74373b:inst1|16                                     ; NADV                   ; yes                    ;
+; 74373b:inst1|14                                     ; NADV                   ; yes                    ;
+; 74373b:inst1|13                                     ; NADV                   ; yes                    ;
+; 74373b:inst1|12                                     ; NADV                   ; yes                    ;
+; dda_module:inst|74373b:inst7|12                     ; dda_module:inst|inst10 ; yes                    ;
+; dda_module:inst|74373b:inst7|13                     ; dda_module:inst|inst10 ; yes                    ;
+; dda_module:inst|74373b:inst7|14                     ; dda_module:inst|inst10 ; yes                    ;
+; dda_module:inst|74373b:inst7|15                     ; dda_module:inst|inst10 ; yes                    ;
+; dda_module:inst|74373b:inst7|16                     ; dda_module:inst|inst10 ; yes                    ;
+; dda_module:inst|74373b:inst7|17                     ; dda_module:inst|inst10 ; yes                    ;
+; dda_module:inst|74373b:inst7|18                     ; dda_module:inst|inst10 ; yes                    ;
+; dda_module:inst|74373b:inst18|12                    ; dda_module:inst|inst21 ; yes                    ;
+; dda_module:inst|74373b:inst18|13                    ; dda_module:inst|inst21 ; yes                    ;
+; dda_module:inst|74373b:inst18|14                    ; dda_module:inst|inst21 ; yes                    ;
+; dda_module:inst|74373b:inst18|15                    ; dda_module:inst|inst21 ; yes                    ;
+; dda_module:inst|74373b:inst18|16                    ; dda_module:inst|inst21 ; yes                    ;
+; dda_module:inst|74373b:inst18|17                    ; dda_module:inst|inst21 ; yes                    ;
+; dda_module:inst|74373b:inst18|18                    ; dda_module:inst|inst21 ; yes                    ;
+; dda_module:inst|74373b:inst20|12                    ; dda_module:inst|inst22 ; yes                    ;
+; dda_module:inst|74373b:inst20|13                    ; dda_module:inst|inst22 ; yes                    ;
+; dda_module:inst|74373b:inst20|14                    ; dda_module:inst|inst22 ; yes                    ;
+; dda_module:inst|74373b:inst20|15                    ; dda_module:inst|inst22 ; yes                    ;
+; dda_module:inst|74373b:inst20|16                    ; dda_module:inst|inst22 ; yes                    ;
+; dda_module:inst|74373b:inst20|17                    ; dda_module:inst|inst22 ; yes                    ;
+; dda_module:inst|74373b:inst20|18                    ; dda_module:inst|inst22 ; yes                    ;
+; dda_module:inst|74373b:inst2|12                     ; dda_module:inst|inst8  ; yes                    ;
+; dda_module:inst|74373b:inst2|13                     ; dda_module:inst|inst8  ; yes                    ;
+; dda_module:inst|74373b:inst2|14                     ; dda_module:inst|inst8  ; yes                    ;
+; dda_module:inst|74373b:inst2|15                     ; dda_module:inst|inst8  ; yes                    ;
+; dda_module:inst|74373b:inst2|16                     ; dda_module:inst|inst8  ; yes                    ;
+; dda_module:inst|74373b:inst2|17                     ; dda_module:inst|inst8  ; yes                    ;
+; dda_module:inst|74373b:inst2|18                     ; dda_module:inst|inst8  ; yes                    ;
+; Number of user-specified and inferred latches = 38  ;                        ;                        ;
++-----------------------------------------------------+------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                           ;
++-------------------------------------------------------------------------------------------------------+------------------------------------------------------+
+; Register name                                                                                         ; Reason for Removal                                   ;
++-------------------------------------------------------------------------------------------------------+------------------------------------------------------+
+; dda_module:inst|test:inst11|Ntemp[7]                                                                  ; Stuck at GND due to stuck port data_in               ;
+; dda_module:inst|test:inst5|Ntemp[7]                                                                   ; Stuck at GND due to stuck port data_in               ;
+; dda_module:inst|test:inst4|Ntemp[7]                                                                   ; Stuck at GND due to stuck port data_in               ;
+; dda_module:inst|test:inst|Ntemp[7]                                                                    ; Stuck at GND due to stuck port data_in               ;
+; encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated|safe_q[2] ; Lost fanout                                          ;
+; encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated|safe_q[2] ; Lost fanout                                          ;
+; encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated|safe_q[2]  ; Lost fanout                                          ;
+; dda_module:inst|test:inst|pre_WR                                                                      ; Merged with dda_module:inst|test:inst11|pre_WR       ;
+; dda_module:inst|test:inst4|pre_WR                                                                     ; Merged with dda_module:inst|test:inst11|pre_WR       ;
+; dda_module:inst|test:inst5|pre_WR                                                                     ; Merged with dda_module:inst|test:inst11|pre_WR       ;
+; dda_module:inst|test:inst4|busy                                                                       ; Merged with dda_module:inst|test:inst11|busy         ;
+; dda_module:inst|test:inst5|busy                                                                       ; Merged with dda_module:inst|test:inst11|busy         ;
+; dda_module:inst|test:inst|busy                                                                        ; Merged with dda_module:inst|test:inst11|busy         ;
+; dda_module:inst|test:inst4|clk20u                                                                     ; Merged with dda_module:inst|test:inst11|clk20u       ;
+; dda_module:inst|test:inst5|clk20u                                                                     ; Merged with dda_module:inst|test:inst11|clk20u       ;
+; dda_module:inst|test:inst|clk20u                                                                      ; Merged with dda_module:inst|test:inst11|clk20u       ;
+; dda_module:inst|test:inst4|clk_20cnt[0]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[0] ;
+; dda_module:inst|test:inst5|clk_20cnt[0]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[0] ;
+; dda_module:inst|test:inst|clk_20cnt[0]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[0] ;
+; dda_module:inst|test:inst4|clk_20cnt[1]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[1] ;
+; dda_module:inst|test:inst5|clk_20cnt[1]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[1] ;
+; dda_module:inst|test:inst|clk_20cnt[1]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[1] ;
+; dda_module:inst|test:inst4|clk_20cnt[2]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[2] ;
+; dda_module:inst|test:inst5|clk_20cnt[2]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[2] ;
+; dda_module:inst|test:inst|clk_20cnt[2]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[2] ;
+; dda_module:inst|test:inst4|clk_20cnt[3]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[3] ;
+; dda_module:inst|test:inst5|clk_20cnt[3]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[3] ;
+; dda_module:inst|test:inst|clk_20cnt[3]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[3] ;
+; dda_module:inst|test:inst4|clk_20cnt[4]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[4] ;
+; dda_module:inst|test:inst5|clk_20cnt[4]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[4] ;
+; dda_module:inst|test:inst|clk_20cnt[4]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[4] ;
+; dda_module:inst|test:inst4|clk_20cnt[5]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[5] ;
+; dda_module:inst|test:inst5|clk_20cnt[5]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[5] ;
+; dda_module:inst|test:inst|clk_20cnt[5]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[5] ;
+; dda_module:inst|test:inst4|clk_20cnt[6]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[6] ;
+; dda_module:inst|test:inst5|clk_20cnt[6]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[6] ;
+; dda_module:inst|test:inst|clk_20cnt[6]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[6] ;
+; dda_module:inst|test:inst4|clk_20cnt[7]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[7] ;
+; dda_module:inst|test:inst5|clk_20cnt[7]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[7] ;
+; dda_module:inst|test:inst|clk_20cnt[7]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[7] ;
+; dda_module:inst|test:inst4|clk_20cnt[8]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[8] ;
+; dda_module:inst|test:inst5|clk_20cnt[8]                                                               ; Merged with dda_module:inst|test:inst11|clk_20cnt[8] ;
+; dda_module:inst|test:inst|clk_20cnt[8]                                                                ; Merged with dda_module:inst|test:inst11|clk_20cnt[8] ;
+; dda_module:inst|test:inst4|clk_cnt[0]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[0]   ;
+; dda_module:inst|test:inst5|clk_cnt[0]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[0]   ;
+; dda_module:inst|test:inst|clk_cnt[0]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[0]   ;
+; dda_module:inst|test:inst4|clk_cnt[1]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[1]   ;
+; dda_module:inst|test:inst5|clk_cnt[1]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[1]   ;
+; dda_module:inst|test:inst|clk_cnt[1]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[1]   ;
+; dda_module:inst|test:inst4|clk_cnt[2]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[2]   ;
+; dda_module:inst|test:inst5|clk_cnt[2]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[2]   ;
+; dda_module:inst|test:inst|clk_cnt[2]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[2]   ;
+; dda_module:inst|test:inst4|clk_cnt[3]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[3]   ;
+; dda_module:inst|test:inst5|clk_cnt[3]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[3]   ;
+; dda_module:inst|test:inst|clk_cnt[3]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[3]   ;
+; dda_module:inst|test:inst4|clk_cnt[4]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[4]   ;
+; dda_module:inst|test:inst5|clk_cnt[4]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[4]   ;
+; dda_module:inst|test:inst|clk_cnt[4]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[4]   ;
+; dda_module:inst|test:inst4|clk_cnt[5]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[5]   ;
+; dda_module:inst|test:inst5|clk_cnt[5]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[5]   ;
+; dda_module:inst|test:inst|clk_cnt[5]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[5]   ;
+; dda_module:inst|test:inst4|clk_cnt[6]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[6]   ;
+; dda_module:inst|test:inst5|clk_cnt[6]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[6]   ;
+; dda_module:inst|test:inst|clk_cnt[6]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[6]   ;
+; dda_module:inst|test:inst4|clk_cnt[7]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[7]   ;
+; dda_module:inst|test:inst5|clk_cnt[7]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[7]   ;
+; dda_module:inst|test:inst|clk_cnt[7]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[7]   ;
+; dda_module:inst|test:inst4|clk_cnt[8]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[8]   ;
+; dda_module:inst|test:inst5|clk_cnt[8]                                                                 ; Merged with dda_module:inst|test:inst11|clk_cnt[8]   ;
+; dda_module:inst|test:inst|clk_cnt[8]                                                                  ; Merged with dda_module:inst|test:inst11|clk_cnt[8]   ;
+; dda_module:inst|test:inst11|clk_20cnt[0]                                                              ; Merged with dda_module:inst|test:inst11|clk20u       ;
+; Total Number of Removed Registers = 71                                                                ;                                                      ;
++-------------------------------------------------------------------------------------------------------+------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 320   ;
+; Number of registers using Synchronous Clear  ; 9     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 96    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 268   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; dda_module:inst|test:inst4|acc[3]       ; 1       ;
+; dda_module:inst|test:inst4|acc[1]       ; 1       ;
+; dda_module:inst|test:inst4|acc[4]       ; 1       ;
+; dda_module:inst|test:inst4|acc[5]       ; 1       ;
+; dda_module:inst|test:inst4|acc[6]       ; 1       ;
+; dda_module:inst|test:inst4|acc[7]       ; 1       ;
+; dda_module:inst|test:inst5|acc[3]       ; 1       ;
+; dda_module:inst|test:inst5|acc[1]       ; 1       ;
+; dda_module:inst|test:inst5|acc[4]       ; 1       ;
+; dda_module:inst|test:inst5|acc[5]       ; 1       ;
+; dda_module:inst|test:inst5|acc[6]       ; 1       ;
+; dda_module:inst|test:inst5|acc[7]       ; 1       ;
+; dda_module:inst|test:inst11|acc[3]      ; 1       ;
+; dda_module:inst|test:inst11|acc[1]      ; 1       ;
+; dda_module:inst|test:inst11|acc[4]      ; 1       ;
+; dda_module:inst|test:inst11|acc[5]      ; 1       ;
+; dda_module:inst|test:inst11|acc[6]      ; 1       ;
+; dda_module:inst|test:inst11|acc[7]      ; 1       ;
+; dda_module:inst|test:inst|acc[3]        ; 1       ;
+; dda_module:inst|test:inst|acc[1]        ; 1       ;
+; dda_module:inst|test:inst|acc[4]        ; 1       ;
+; dda_module:inst|test:inst|acc[5]        ; 1       ;
+; dda_module:inst|test:inst|acc[6]        ; 1       ;
+; dda_module:inst|test:inst|acc[7]        ; 1       ;
+; Total number of inverted registers = 24 ;         ;
++-----------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |xuat_xung|dda_module:inst|test:inst11|clk_cnt[2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |xuat_xung|dda_module:inst|test:inst11|clk_20cnt[7] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |xuat_xung|dda_module:inst|test:inst|acc[0]         ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |xuat_xung|dda_module:inst|test:inst4|acc[2]        ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |xuat_xung|dda_module:inst|test:inst5|acc[2]        ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |xuat_xung|dda_module:inst|test:inst11|acc[2]       ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |xuat_xung|dda_module:inst|test:inst|acc[2]         ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |xuat_xung|dda_module:inst|test:inst4|acc[3]        ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |xuat_xung|dda_module:inst|test:inst5|acc[5]        ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |xuat_xung|dda_module:inst|test:inst11|acc[6]       ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |xuat_xung|dda_module:inst|test:inst|acc[6]         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Source assignments for encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component ;
++---------------------------+-------+------+-------------------------------------------------------------------------+
+; Assignment                ; Value ; From ; To                                                                      ;
++---------------------------+-------+------+-------------------------------------------------------------------------+
+; SUPPRESS_DA_RULE_INTERNAL ; a101  ; -    ; -                                                                       ;
+; SUPPRESS_DA_RULE_INTERNAL ; s102  ; -    ; -                                                                       ;
+; SUPPRESS_DA_RULE_INTERNAL ; s103  ; -    ; -                                                                       ;
++---------------------------+-------+------+-------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------+
+; Source assignments for encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component ;
++---------------------------+-------+------+------------------------------------------------+
+; Assignment                ; Value ; From ; To                                             ;
++---------------------------+-------+------+------------------------------------------------+
+; SUPPRESS_DA_RULE_INTERNAL ; a101  ; -    ; -                                              ;
+; SUPPRESS_DA_RULE_INTERNAL ; s102  ; -    ; -                                              ;
+; SUPPRESS_DA_RULE_INTERNAL ; s103  ; -    ; -                                              ;
++---------------------------+-------+------+------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Source assignments for encoder:inst13|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component ;
++---------------------------+-------+------+--------------------------------------------------------------------------+
+; Assignment                ; Value ; From ; To                                                                       ;
++---------------------------+-------+------+--------------------------------------------------------------------------+
+; SUPPRESS_DA_RULE_INTERNAL ; a101  ; -    ; -                                                                        ;
+; SUPPRESS_DA_RULE_INTERNAL ; s102  ; -    ; -                                                                        ;
+; SUPPRESS_DA_RULE_INTERNAL ; s103  ; -    ; -                                                                        ;
++---------------------------+-------+------+--------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------+
+; Source assignments for encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component ;
++---------------------------+-------+------+-------------------------------------------------+
+; Assignment                ; Value ; From ; To                                              ;
++---------------------------+-------+------+-------------------------------------------------+
+; SUPPRESS_DA_RULE_INTERNAL ; a101  ; -    ; -                                               ;
+; SUPPRESS_DA_RULE_INTERNAL ; s102  ; -    ; -                                               ;
+; SUPPRESS_DA_RULE_INTERNAL ; s103  ; -    ; -                                               ;
++---------------------------+-------+------+-------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Source assignments for encoder:inst14|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component ;
++---------------------------+-------+------+--------------------------------------------------------------------------+
+; Assignment                ; Value ; From ; To                                                                       ;
++---------------------------+-------+------+--------------------------------------------------------------------------+
+; SUPPRESS_DA_RULE_INTERNAL ; a101  ; -    ; -                                                                        ;
+; SUPPRESS_DA_RULE_INTERNAL ; s102  ; -    ; -                                                                        ;
+; SUPPRESS_DA_RULE_INTERNAL ; s103  ; -    ; -                                                                        ;
++---------------------------+-------+------+--------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------+
+; Source assignments for encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component ;
++---------------------------+-------+------+-------------------------------------------------+
+; Assignment                ; Value ; From ; To                                              ;
++---------------------------+-------+------+-------------------------------------------------+
+; SUPPRESS_DA_RULE_INTERNAL ; a101  ; -    ; -                                               ;
+; SUPPRESS_DA_RULE_INTERNAL ; s102  ; -    ; -                                               ;
+; SUPPRESS_DA_RULE_INTERNAL ; s103  ; -    ; -                                               ;
++---------------------------+-------+------+-------------------------------------------------+
+
+
++------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dda_module:inst|test:inst ;
++----------------+-------+-----------------------------------------------+
+; Parameter Name ; Value ; Type                                          ;
++----------------+-------+-----------------------------------------------+
+; Nmax           ; 250   ; Unsigned Integer                              ;
++----------------+-------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dda_module:inst|test:inst4 ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; Nmax           ; 250   ; Unsigned Integer                               ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dda_module:inst|test:inst5 ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; Nmax           ; 250   ; Unsigned Integer                               ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: dda_module:inst|test:inst11 ;
++----------------+-------+-------------------------------------------------+
+; Parameter Name ; Value ; Type                                            ;
++----------------+-------+-------------------------------------------------+
+; Nmax           ; 250   ; Unsigned Integer                                ;
++----------------+-------+-------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst11|lpm_bustri:lpm_bustri_component ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst13|lpm_bustri:lpm_bustri_component ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst17|lpm_bustri:lpm_bustri_component ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst19|lpm_bustri:lpm_bustri_component ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst16|lpm_bustri0:inst2|lpm_bustri:lpm_bustri_component ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component ;
++------------------------+-----------+-----------------------------------------------------------------------------------------------------+
+; Parameter Name         ; Value     ; Type                                                                                                ;
++------------------------+-----------+-----------------------------------------------------------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON        ; AUTO_CARRY                                                                                          ;
+; IGNORE_CARRY_BUFFERS   ; OFF       ; IGNORE_CARRY                                                                                        ;
+; AUTO_CASCADE_CHAINS    ; ON        ; AUTO_CASCADE                                                                                        ;
+; IGNORE_CASCADE_BUFFERS ; OFF       ; IGNORE_CASCADE                                                                                      ;
+; LPM_WIDTH              ; 32        ; Signed Integer                                                                                      ;
+; LPM_DIRECTION          ; DEFAULT   ; Untyped                                                                                             ;
+; LPM_MODULUS            ; 0         ; Untyped                                                                                             ;
+; LPM_AVALUE             ; UNUSED    ; Untyped                                                                                             ;
+; LPM_SVALUE             ; UNUSED    ; Untyped                                                                                             ;
+; LPM_PORT_UPDOWN        ; PORT_USED ; Untyped                                                                                             ;
+; DEVICE_FAMILY          ; MAX II    ; Untyped                                                                                             ;
+; CARRY_CHAIN            ; MANUAL    ; Untyped                                                                                             ;
+; CARRY_CHAIN_LENGTH     ; 48        ; CARRY_CHAIN_LENGTH                                                                                  ;
+; NOT_GATE_PUSH_BACK     ; ON        ; NOT_GATE_PUSH_BACK                                                                                  ;
+; CARRY_CNT_EN           ; SMART     ; Untyped                                                                                             ;
+; LABWIDE_SCLR           ; ON        ; Untyped                                                                                             ;
+; USE_NEW_VERSION        ; TRUE      ; Untyped                                                                                             ;
+; CBXI_PARAMETER         ; cntr_r2h  ; Untyped                                                                                             ;
++------------------------+-----------+-----------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst9|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component ;
++----------------+-------+-------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 1     ; Signed Integer                                                                                  ;
+; LPM_SIZE       ; 4     ; Signed Integer                                                                                  ;
++----------------+-------+-------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component ;
++------------------------+-------------+--------------------------------------------------------------------------+
+; Parameter Name         ; Value       ; Type                                                                     ;
++------------------------+-------------+--------------------------------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON          ; AUTO_CARRY                                                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF         ; IGNORE_CARRY                                                             ;
+; AUTO_CASCADE_CHAINS    ; ON          ; AUTO_CASCADE                                                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF         ; IGNORE_CASCADE                                                           ;
+; LPM_WIDTH              ; 3           ; Signed Integer                                                           ;
+; LPM_DIRECTION          ; UP          ; Untyped                                                                  ;
+; LPM_MODULUS            ; 0           ; Untyped                                                                  ;
+; LPM_AVALUE             ; UNUSED      ; Untyped                                                                  ;
+; LPM_SVALUE             ; UNUSED      ; Untyped                                                                  ;
+; LPM_PORT_UPDOWN        ; PORT_UNUSED ; Untyped                                                                  ;
+; DEVICE_FAMILY          ; MAX II      ; Untyped                                                                  ;
+; CARRY_CHAIN            ; MANUAL      ; Untyped                                                                  ;
+; CARRY_CHAIN_LENGTH     ; 48          ; CARRY_CHAIN_LENGTH                                                       ;
+; NOT_GATE_PUSH_BACK     ; ON          ; NOT_GATE_PUSH_BACK                                                       ;
+; CARRY_CNT_EN           ; SMART       ; Untyped                                                                  ;
+; LABWIDE_SCLR           ; ON          ; Untyped                                                                  ;
+; USE_NEW_VERSION        ; TRUE        ; Untyped                                                                  ;
+; CBXI_PARAMETER         ; cntr_g7h    ; Untyped                                                                  ;
++------------------------+-------------+--------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst13|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component ;
++------------------------+-----------+------------------------------------------------------------------------------------------------------+
+; Parameter Name         ; Value     ; Type                                                                                                 ;
++------------------------+-----------+------------------------------------------------------------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON        ; AUTO_CARRY                                                                                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF       ; IGNORE_CARRY                                                                                         ;
+; AUTO_CASCADE_CHAINS    ; ON        ; AUTO_CASCADE                                                                                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF       ; IGNORE_CASCADE                                                                                       ;
+; LPM_WIDTH              ; 32        ; Signed Integer                                                                                       ;
+; LPM_DIRECTION          ; DEFAULT   ; Untyped                                                                                              ;
+; LPM_MODULUS            ; 0         ; Untyped                                                                                              ;
+; LPM_AVALUE             ; UNUSED    ; Untyped                                                                                              ;
+; LPM_SVALUE             ; UNUSED    ; Untyped                                                                                              ;
+; LPM_PORT_UPDOWN        ; PORT_USED ; Untyped                                                                                              ;
+; DEVICE_FAMILY          ; MAX II    ; Untyped                                                                                              ;
+; CARRY_CHAIN            ; MANUAL    ; Untyped                                                                                              ;
+; CARRY_CHAIN_LENGTH     ; 48        ; CARRY_CHAIN_LENGTH                                                                                   ;
+; NOT_GATE_PUSH_BACK     ; ON        ; NOT_GATE_PUSH_BACK                                                                                   ;
+; CARRY_CNT_EN           ; SMART     ; Untyped                                                                                              ;
+; LABWIDE_SCLR           ; ON        ; Untyped                                                                                              ;
+; USE_NEW_VERSION        ; TRUE      ; Untyped                                                                                              ;
+; CBXI_PARAMETER         ; cntr_r2h  ; Untyped                                                                                              ;
++------------------------+-----------+------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst13|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 1     ; Signed Integer                                                                                   ;
+; LPM_SIZE       ; 4     ; Signed Integer                                                                                   ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component ;
++------------------------+-------------+---------------------------------------------------------------------------+
+; Parameter Name         ; Value       ; Type                                                                      ;
++------------------------+-------------+---------------------------------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON          ; AUTO_CARRY                                                                ;
+; IGNORE_CARRY_BUFFERS   ; OFF         ; IGNORE_CARRY                                                              ;
+; AUTO_CASCADE_CHAINS    ; ON          ; AUTO_CASCADE                                                              ;
+; IGNORE_CASCADE_BUFFERS ; OFF         ; IGNORE_CASCADE                                                            ;
+; LPM_WIDTH              ; 3           ; Signed Integer                                                            ;
+; LPM_DIRECTION          ; UP          ; Untyped                                                                   ;
+; LPM_MODULUS            ; 0           ; Untyped                                                                   ;
+; LPM_AVALUE             ; UNUSED      ; Untyped                                                                   ;
+; LPM_SVALUE             ; UNUSED      ; Untyped                                                                   ;
+; LPM_PORT_UPDOWN        ; PORT_UNUSED ; Untyped                                                                   ;
+; DEVICE_FAMILY          ; MAX II      ; Untyped                                                                   ;
+; CARRY_CHAIN            ; MANUAL      ; Untyped                                                                   ;
+; CARRY_CHAIN_LENGTH     ; 48          ; CARRY_CHAIN_LENGTH                                                        ;
+; NOT_GATE_PUSH_BACK     ; ON          ; NOT_GATE_PUSH_BACK                                                        ;
+; CARRY_CNT_EN           ; SMART       ; Untyped                                                                   ;
+; LABWIDE_SCLR           ; ON          ; Untyped                                                                   ;
+; USE_NEW_VERSION        ; TRUE        ; Untyped                                                                   ;
+; CBXI_PARAMETER         ; cntr_g7h    ; Untyped                                                                   ;
++------------------------+-------------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst14|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component ;
++------------------------+-----------+------------------------------------------------------------------------------------------------------+
+; Parameter Name         ; Value     ; Type                                                                                                 ;
++------------------------+-----------+------------------------------------------------------------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON        ; AUTO_CARRY                                                                                           ;
+; IGNORE_CARRY_BUFFERS   ; OFF       ; IGNORE_CARRY                                                                                         ;
+; AUTO_CASCADE_CHAINS    ; ON        ; AUTO_CASCADE                                                                                         ;
+; IGNORE_CASCADE_BUFFERS ; OFF       ; IGNORE_CASCADE                                                                                       ;
+; LPM_WIDTH              ; 32        ; Signed Integer                                                                                       ;
+; LPM_DIRECTION          ; DEFAULT   ; Untyped                                                                                              ;
+; LPM_MODULUS            ; 0         ; Untyped                                                                                              ;
+; LPM_AVALUE             ; UNUSED    ; Untyped                                                                                              ;
+; LPM_SVALUE             ; UNUSED    ; Untyped                                                                                              ;
+; LPM_PORT_UPDOWN        ; PORT_USED ; Untyped                                                                                              ;
+; DEVICE_FAMILY          ; MAX II    ; Untyped                                                                                              ;
+; CARRY_CHAIN            ; MANUAL    ; Untyped                                                                                              ;
+; CARRY_CHAIN_LENGTH     ; 48        ; CARRY_CHAIN_LENGTH                                                                                   ;
+; NOT_GATE_PUSH_BACK     ; ON        ; NOT_GATE_PUSH_BACK                                                                                   ;
+; CARRY_CNT_EN           ; SMART     ; Untyped                                                                                              ;
+; LABWIDE_SCLR           ; ON        ; Untyped                                                                                              ;
+; USE_NEW_VERSION        ; TRUE      ; Untyped                                                                                              ;
+; CBXI_PARAMETER         ; cntr_r2h  ; Untyped                                                                                              ;
++------------------------+-----------+------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst14|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 1     ; Signed Integer                                                                                   ;
+; LPM_SIZE       ; 4     ; Signed Integer                                                                                   ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component ;
++------------------------+-------------+---------------------------------------------------------------------------+
+; Parameter Name         ; Value       ; Type                                                                      ;
++------------------------+-------------+---------------------------------------------------------------------------+
+; AUTO_CARRY_CHAINS      ; ON          ; AUTO_CARRY                                                                ;
+; IGNORE_CARRY_BUFFERS   ; OFF         ; IGNORE_CARRY                                                              ;
+; AUTO_CASCADE_CHAINS    ; ON          ; AUTO_CASCADE                                                              ;
+; IGNORE_CASCADE_BUFFERS ; OFF         ; IGNORE_CASCADE                                                            ;
+; LPM_WIDTH              ; 3           ; Signed Integer                                                            ;
+; LPM_DIRECTION          ; UP          ; Untyped                                                                   ;
+; LPM_MODULUS            ; 0           ; Untyped                                                                   ;
+; LPM_AVALUE             ; UNUSED      ; Untyped                                                                   ;
+; LPM_SVALUE             ; UNUSED      ; Untyped                                                                   ;
+; LPM_PORT_UPDOWN        ; PORT_UNUSED ; Untyped                                                                   ;
+; DEVICE_FAMILY          ; MAX II      ; Untyped                                                                   ;
+; CARRY_CHAIN            ; MANUAL      ; Untyped                                                                   ;
+; CARRY_CHAIN_LENGTH     ; 48          ; CARRY_CHAIN_LENGTH                                                        ;
+; NOT_GATE_PUSH_BACK     ; ON          ; NOT_GATE_PUSH_BACK                                                        ;
+; CARRY_CNT_EN           ; SMART       ; Untyped                                                                   ;
+; LABWIDE_SCLR           ; ON          ; Untyped                                                                   ;
+; USE_NEW_VERSION        ; TRUE        ; Untyped                                                                   ;
+; CBXI_PARAMETER         ; cntr_g7h    ; Untyped                                                                   ;
++------------------------+-------------+---------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst11|lpm_bustri:lpm_bustri_component ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst13|lpm_bustri:lpm_bustri_component ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst17|lpm_bustri:lpm_bustri_component ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst19|lpm_bustri:lpm_bustri_component ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: read_encoder:inst20|lpm_bustri0:inst2|lpm_bustri:lpm_bustri_component ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; LPM_WIDTH      ; 16    ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Wed Jun 17 19:24:42 2020
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off test -c test
+Info: Found 1 design units, including 1 entities, in source file xuat_xung.bdf
+    Info: Found entity 1: xuat_xung
+Info: Found 1 design units, including 1 entities, in source file test.v
+    Info: Found entity 1: test
+Info: Found 1 design units, including 1 entities, in source file enc_filter.bdf
+    Info: Found entity 1: enc_filter
+Warning: Can't analyze file -- file encoder_module.bdf is missing
+Info: Found 1 design units, including 1 entities, in source file encoder.bdf
+    Info: Found entity 1: encoder
+Info: Found 1 design units, including 1 entities, in source file lpm_bustri0.v
+    Info: Found entity 1: lpm_bustri0
+Info: Found 1 design units, including 1 entities, in source file lpm_xor0.v
+    Info: Found entity 1: lpm_xor0
+Info: Found 1 design units, including 1 entities, in source file lpm_counter0.v
+    Info: Found entity 1: lpm_counter0
+Info: Found 1 design units, including 1 entities, in source file lpm_counter_enc.v
+    Info: Found entity 1: lpm_counter_enc
+Info: Found 1 design units, including 1 entities, in source file encoder_counter.bdf
+    Info: Found entity 1: encoder_counter
+Info: Found 1 design units, including 1 entities, in source file read_encoder.bdf
+    Info: Found entity 1: read_encoder
+Info: Found 1 design units, including 1 entities, in source file read_limit.bdf
+    Info: Found entity 1: read_limit
+Info: Found 1 design units, including 1 entities, in source file limit_capture.bdf
+    Info: Found entity 1: limit_capture
+Info: Elaborating entity "xuat_xung" for the top level hierarchy
+Warning: Pin "STOP" not connected
+Warning: Using design file dda_module.bdf, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info: Found entity 1: dda_module
+Info: Elaborating entity "dda_module" for hierarchy "dda_module:inst"
+Info: Elaborating entity "test" for hierarchy "dda_module:inst|test:inst"
+Warning (10230): Verilog HDL assignment warning at test.v(14): truncated value with size 32 to match size of target (9)
+Warning (10230): Verilog HDL assignment warning at test.v(39): truncated value with size 32 to match size of target (9)
+Warning (10230): Verilog HDL assignment warning at test.v(46): truncated value with size 32 to match size of target (9)
+Warning (10230): Verilog HDL assignment warning at test.v(52): truncated value with size 32 to match size of target (9)
+Warning (10230): Verilog HDL assignment warning at test.v(59): truncated value with size 32 to match size of target (9)
+Info: Elaborating entity "74373b" for hierarchy "dda_module:inst|74373b:inst2"
+Info: Elaborated megafunction instantiation "dda_module:inst|74373b:inst2"
+Info: Elaborating entity "74138" for hierarchy "dda_module:inst|74138:inst41"
+Info: Elaborated megafunction instantiation "dda_module:inst|74138:inst41"
+Info: Elaborating entity "read_encoder" for hierarchy "read_encoder:inst16"
+Info: Elaborating entity "lpm_bustri0" for hierarchy "read_encoder:inst16|lpm_bustri0:inst3"
+Info: Elaborating entity "lpm_bustri" for hierarchy "read_encoder:inst16|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component"
+Info: Elaborated megafunction instantiation "read_encoder:inst16|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component"
+Info: Instantiated megafunction "read_encoder:inst16|lpm_bustri0:inst3|lpm_bustri:lpm_bustri_component" with the following parameter:
+    Info: Parameter "lpm_type" = "LPM_BUSTRI"
+    Info: Parameter "lpm_width" = "16"
+Info: Elaborating entity "encoder" for hierarchy "encoder:inst9"
+Info: Elaborating entity "encoder_counter" for hierarchy "encoder:inst9|encoder_counter:inst1"
+Info: Elaborating entity "lpm_counter_enc" for hierarchy "encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5"
+Info: Elaborating entity "lpm_counter" for hierarchy "encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component"
+Info: Elaborated megafunction instantiation "encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component"
+Info: Instantiated megafunction "encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component" with the following parameter:
+    Info: Parameter "lpm_direction" = "UNUSED"
+    Info: Parameter "lpm_port_updown" = "PORT_USED"
+    Info: Parameter "lpm_type" = "LPM_COUNTER"
+    Info: Parameter "lpm_width" = "32"
+Info: Found 1 design units, including 1 entities, in source file db/cntr_r2h.tdf
+    Info: Found entity 1: cntr_r2h
+Info: Elaborating entity "cntr_r2h" for hierarchy "encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component|cntr_r2h:auto_generated"
+Info: Elaborating entity "lpm_xor0" for hierarchy "encoder:inst9|encoder_counter:inst1|lpm_xor0:inst"
+Info: Elaborating entity "lpm_xor" for hierarchy "encoder:inst9|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component"
+Info: Elaborated megafunction instantiation "encoder:inst9|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component"
+Info: Instantiated megafunction "encoder:inst9|encoder_counter:inst1|lpm_xor0:inst|lpm_xor:lpm_xor_component" with the following parameter:
+    Info: Parameter "lpm_size" = "4"
+    Info: Parameter "lpm_type" = "LPM_XOR"
+    Info: Parameter "lpm_width" = "1"
+Info: Elaborating entity "enc_filter" for hierarchy "encoder:inst9|enc_filter:inst"
+Info: Elaborating entity "lpm_counter0" for hierarchy "encoder:inst9|lpm_counter0:inst3"
+Info: Elaborating entity "lpm_counter" for hierarchy "encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component"
+Info: Elaborated megafunction instantiation "encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component"
+Info: Instantiated megafunction "encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component" with the following parameter:
+    Info: Parameter "lpm_direction" = "UP"
+    Info: Parameter "lpm_port_updown" = "PORT_UNUSED"
+    Info: Parameter "lpm_type" = "LPM_COUNTER"
+    Info: Parameter "lpm_width" = "3"
+Info: Found 1 design units, including 1 entities, in source file db/cntr_g7h.tdf
+    Info: Found entity 1: cntr_g7h
+Info: Elaborating entity "cntr_g7h" for hierarchy "encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated"
+Info: Elaborating entity "limit_capture" for hierarchy "limit_capture:inst17"
+Warning: Block or symbol "74377b" of instance "inst" overlaps another block or symbol
+Info: Elaborating entity "74377b" for hierarchy "limit_capture:inst17|74377b:inst"
+Info: Elaborated megafunction instantiation "limit_capture:inst17|74377b:inst"
+Info: Elaborating entity "enadff" for hierarchy "limit_capture:inst17|74377b:inst|enadff:15"
+Info: Elaborated megafunction instantiation "limit_capture:inst17|74377b:inst|enadff:15", which is child of megafunction instantiation "limit_capture:inst17|74377b:inst"
+Info: Elaborating entity "read_limit" for hierarchy "read_limit:inst15"
+Info: Elaborating entity "74244" for hierarchy "read_limit:inst15|74244:inst7"
+Info: Elaborated megafunction instantiation "read_limit:inst15|74244:inst7"
+Warning: Tri-state node(s) do not directly drive top-level pin(s)
+    Warning: Converted tri-state buffer "74373b:inst1|73" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "74373b:inst1|72" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "74373b:inst1|71" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "74373b:inst1|69" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "74373b:inst1|68" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "74373b:inst1|67" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst20|74" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst20|73" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst20|72" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst20|71" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst20|70" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst20|69" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst20|68" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst20|67" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst18|74" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst18|73" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst18|72" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst18|71" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst18|70" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst18|69" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst18|68" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst18|67" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst7|74" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst7|73" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst7|72" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst7|71" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst7|70" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst7|69" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst7|68" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst7|67" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst2|74" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst2|73" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst2|72" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst2|71" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst2|70" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst2|69" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst2|68" feeding internal logic into a wire
+    Warning: Converted tri-state buffer "dda_module:inst|74373b:inst2|67" feeding internal logic into a wire
+Info: 3 registers lost all their fanouts during netlist optimizations. The first 3 are displayed below.
+    Info: Register "encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated|safe_q[2]" lost all its fanouts during netlist optimizations.
+    Info: Register "encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated|safe_q[2]" lost all its fanouts during netlist optimizations.
+    Info: Register "encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component|cntr_g7h:auto_generated|safe_q[2]" lost all its fanouts during netlist optimizations.
+Warning: Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "STOP"
+Info: Implemented 671 device resources after synthesis - the final resource count might be different
+    Info: Implemented 18 input pins
+    Info: Implemented 10 output pins
+    Info: Implemented 16 bidirectional pins
+    Info: Implemented 627 logic cells
+Info: Generated suppressed messages file F:/THESIS/SOURCE/robot_CPLD/CPLD/test.map.smsg
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 50 warnings
+    Info: Peak virtual memory: 241 megabytes
+    Info: Processing ended: Wed Jun 17 19:24:47 2020
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:06
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in F:/THESIS/SOURCE/robot_CPLD/CPLD/test.map.smsg.
+
+

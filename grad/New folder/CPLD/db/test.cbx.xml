@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="test">
+		<CBX_INST_ENTRY INSTANCE_NAME="|xuat_xung|encoder:inst13|lpm_counter0:inst3|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_g7h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|xuat_xung|encoder:inst14|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_r2h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|xuat_xung|encoder:inst9|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_r2h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|xuat_xung|encoder:inst13|encoder_counter:inst1|lpm_counter_enc:inst5|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_r2h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|xuat_xung|encoder:inst14|lpm_counter0:inst3|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_g7h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|xuat_xung|encoder:inst9|lpm_counter0:inst3|lpm_counter:lpm_counter_component" CBX_FILE_NAME="cntr_g7h.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
