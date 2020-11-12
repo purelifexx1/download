@@ -1,0 +1,4 @@
+control_pi.c:9:6:begin_configuration	24	static
+control_pi.c:17:7:output_control_function	16	static
+control_pi.c:35:6:control_loop	24	static
+control_pi.c:39:6:reset	4	static
