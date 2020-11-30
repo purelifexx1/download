@@ -1,0 +1,1128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>958</width>
+    <height>557</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Motomini Server</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>0</y>
+      <width>226</width>
+      <height>124</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>IP address</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Port</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>File Port</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QLineEdit" name="txt_ip">
+           <property name="text">
+            <string>192.168.1.13</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_port">
+           <property name="text">
+            <string>10040</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_filePort">
+           <property name="text">
+            <string>10041</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_connect">
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Connect</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="btn_servo">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>130</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Servo On</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>0</y>
+      <width>238</width>
+      <height>240</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_9">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Current position</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>X</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Y</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Z</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Roll</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Pitch</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Yaw</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QLineEdit" name="txt_getX"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_getY"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_getZ"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_getRoll"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_getPitch"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_getYaw"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_29">
+           <property name="text">
+            <string>mm</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_28">
+           <property name="text">
+            <string>mm</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_32">
+           <property name="text">
+            <string>mm</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_27">
+           <property name="text">
+            <string>deg</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_30">
+           <property name="text">
+            <string>deg</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_31">
+           <property name="text">
+            <string>deg</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_26">
+           <property name="text">
+            <string>mm/s</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Get Position</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>270</y>
+      <width>256</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QRadioButton" name="rbtn_linkAbs">
+       <property name="text">
+        <string>Link Abs</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="rbtn_lineAbs">
+       <property name="text">
+        <string>Line Abs</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="rbtn_LineInc">
+       <property name="text">
+        <string>Line Inc</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>551</x>
+      <y>-7</y>
+      <width>295</width>
+      <height>273</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_11">
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Set position</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>X</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>Y</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>Z</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>Roll</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_16">
+           <property name="text">
+            <string>Pitch</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_17">
+           <property name="text">
+            <string>Yaw</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_18">
+           <property name="text">
+            <string>Speed</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QLineEdit" name="txt_setX">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_setY">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_setZ">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_setRoll">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_setPitch">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_setYaw">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="txt_setSpeed">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <widget class="QLabel" name="label_19">
+           <property name="text">
+            <string>mm</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_20">
+           <property name="text">
+            <string>mm</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_21">
+           <property name="text">
+            <string>mm</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_22">
+           <property name="text">
+            <string>deg</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_23">
+           <property name="text">
+            <string>deg</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_24">
+           <property name="text">
+            <string>deg</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_25">
+           <property name="text">
+            <string>mm/s - deg/s</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QRadioButton" name="rbtn_xyz">
+           <property name="text">
+            <string>XYZ</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbtn_rpy">
+           <property name="text">
+            <string>RPY</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>Set Position</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="lb_run_status">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>250</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_33">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>250</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Robot Status :</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>234</width>
+      <height>67</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_12">
+       <item>
+        <widget class="QPushButton" name="btn_saveJob">
+         <property name="text">
+          <string>Save job</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_loadJob">
+         <property name="text">
+          <string>Load job</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <item>
+        <widget class="QLineEdit" name="txt_saveJob">
+         <property name="text">
+          <string>MASTER.JBI</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txt_loadJob">
+         <property name="text">
+          <string>TESTS.JBI</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>270</y>
+      <width>411</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Incremental Position</string>
+    </property>
+    <widget class="QLabel" name="label_34">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>T1</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_35">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>T2</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_36">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>T3</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_37">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>120</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>T4</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_38">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>150</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>T5</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_39">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>180</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>T6</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t1_inc">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>30</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Increase</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t1_dec">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>30</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Decrease</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t2_inc">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>60</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Increase</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t2_dec">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>60</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Decrease</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t3_inc">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>90</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Increase</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t3_dec">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>90</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Decrease</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t4_inc">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>120</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Increase</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t4_dec">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>120</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Decrease</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t5_inc">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>150</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Increase</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t5_dec">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>150</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Decrease</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t6_inc">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>180</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Increase</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="t6_dec">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>180</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Decrease</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radiobt_rotation">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>30</y>
+       <width>111</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Rotation velocity</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radiobt_linear">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>50</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Linear velocity</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_dis_mm">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>100</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_40">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>80</y>
+       <width>61</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DISTANCE</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_41">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>100</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>mm</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_dis_deg">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>130</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_42">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>130</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>deg</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_sp_degps">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>200</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="slider_sp_mps">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>170</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_43">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>170</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>mm/s</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_44">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>200</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>deg/s</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_45">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>150</y>
+       <width>61</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>SPEED</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_dis_mm_val">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>100</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_dis_deg_val">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>130</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_sp_mps_val">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>170</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_sp_degps_val">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>200</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>958</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>slider_dis_mm</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_dis_mm_val</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>317</x>
+     <y>436</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>415</x>
+     <y>436</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>slider_dis_deg</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_dis_deg_val</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>354</x>
+     <y>464</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>415</x>
+     <y>464</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>slider_sp_mps</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_sp_mps_val</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>504</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>502</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>slider_sp_degps</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_sp_degps_val</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>374</x>
+     <y>532</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>418</x>
+     <y>536</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
