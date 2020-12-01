@@ -43,7 +43,7 @@ QT_MOC_LITERAL(7, 119, 13), // "timerCallback"
 QT_MOC_LITERAL(8, 133, 22), // "on_btn_saveJob_clicked"
 QT_MOC_LITERAL(9, 156, 22), // "on_btn_loadJob_clicked"
 QT_MOC_LITERAL(10, 179, 18), // "inc_dec_bt_clicked"
-QT_MOC_LITERAL(11, 198, 23) // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(11, 198, 23) // "on_fk_calculate_clicked"
 
     },
     "MainWindow\0on_btn_connect_clicked\0\0"
@@ -51,7 +51,7 @@ QT_MOC_LITERAL(11, 198, 23) // "on_pushButton_3_clicked"
     "on_pushButton_2_clicked\0updateUICallback\0"
     "timerCallback\0on_btn_saveJob_clicked\0"
     "on_btn_loadJob_clicked\0inc_dec_bt_clicked\0"
-    "on_pushButton_3_clicked"
+    "on_fk_calculate_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -110,6 +110,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->on_btn_saveJob_clicked(); break;
         case 7: _t->on_btn_loadJob_clicked(); break;
         case 8: _t->inc_dec_bt_clicked(); break;
+        case 9: _t->on_fk_calculate_clicked(); break;
         default: ;
         }
     }

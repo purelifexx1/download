@@ -5,7 +5,7 @@
 #include <QThread>
 #include <QString>
 #include <iostream>
-
+#include <qmath.h>
 
 using namespace std;
 
@@ -215,3 +215,22 @@ void MainWindow::inc_dec_bt_clicked()
 }
 
 
+void MainWindow::on_fk_calculate_clicked()
+{
+    QVector<float> input_theta(6);
+    QVector<float> output_result(6);
+    input_theta[0] = qDegreesToRadians(ui->theta1->text().toDouble());
+    input_theta[1] = qDegreesToRadians(ui->theta2->text().toDouble());
+    input_theta[2] = qDegreesToRadians(ui->theta3->text().toDouble());
+    input_theta[3] = qDegreesToRadians(ui->theta4->text().toDouble());
+    input_theta[4] = qDegreesToRadians(ui->theta5->text().toDouble());
+    input_theta[5] = qDegreesToRadians(ui->theta6->text().toDouble());
+    yrc100micro_com.foward_kinematic(&input_theta, &output_result);
+    ui->fk_x->setText(QString::number(output_result[0]));
+    ui->fk_y->setText(QString::number(output_result[1]));
+    ui->fk_z->setText(QString::number(output_result[2]));
+    ui->fk_rx->setText(QString::number(qRadiansToDegrees(output_result[3])));
+    ui->fk_ry->setText(QString::number(qRadiansToDegrees(output_result[4])));
+    ui->fk_rz->setText(QString::number(qRadiansToDegrees(output_result[5])));
+
+}

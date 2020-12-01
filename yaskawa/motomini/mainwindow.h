@@ -37,7 +37,8 @@ private slots:
 
     void inc_dec_bt_clicked();
 
-    void on_pushButton_3_clicked();
+
+    void on_fk_calculate_clicked();
 
 private:
     Ui::MainWindow *ui;
