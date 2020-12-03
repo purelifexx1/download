@@ -102,12 +102,12 @@ void MainWindow::on_pushButton_2_clicked()
         set_position.append(ui->txt_setX->text().toDouble());
         set_position.append(ui->txt_setY->text().toDouble());
         set_position.append(ui->txt_setZ->text().toDouble());
-        set_position.append(172);
-        set_position.append(0);
-        set_position.append(-135);
+        set_position.append(ui->txt_setRoll->text().toDouble());
+        set_position.append(ui->txt_setPitch->text().toDouble());
+        set_position.append(ui->txt_setYaw->text().toDouble());
         if(ui->rbtn_linkAbs->isChecked())
             yrc100micro_com.YRC1000microMoveCartesian(CMD_DATA_MOVE_COORDINATE_ROBOT,
-                CMD_HEADER_MOVE_INSTANCE_LINK_ABSOLUTE,CMD_DATA_MOVE_SPEED_TYPE_V_SPEED,set_speed,&set_position);
+                CMD_HEADER_MOVE_INSTANCE_LINK_ABSOLUTE,CMD_DATA_MOVE_SPEED_TYPE_LINK,set_speed,&set_position);
         else if(ui->rbtn_lineAbs->isChecked())
             yrc100micro_com.YRC1000microMoveCartesian(CMD_DATA_MOVE_COORDINATE_ROBOT,
                 CMD_HEADER_MOVE_INSTANCE_STRAIGHT_ABSOLUTE,CMD_DATA_MOVE_SPEED_TYPE_V_SPEED,set_speed,&set_position);
@@ -233,4 +233,14 @@ void MainWindow::on_fk_calculate_clicked()
     ui->fk_ry->setText(QString::number(qRadiansToDegrees(output_result[4])));
     ui->fk_rz->setText(QString::number(qRadiansToDegrees(output_result[5])));
 
+}
+
+void MainWindow::on_bt_convert_clicked()
+{
+    ui->theta1_d->setText(QString::number(ui->theta1_p->text().toFloat()*30.0f/34816.0f));
+    ui->theta2_d->setText(QString::number(ui->theta2_p->text().toFloat()*90.0f/102400.0f));
+    ui->theta3_d->setText(QString::number(ui->theta3_p->text().toFloat()*90.0f/51200.0f));
+    ui->theta4_d->setText(QString::number(ui->theta4_p->text().toFloat()*30.0f/10240.0f));
+    ui->theta5_d->setText(QString::number(ui->theta5_p->text().toFloat()*30.0f/10240.0f));
+    ui->theta6_d->setText(QString::number(ui->theta6_p->text().toFloat()*30.0f/10240.0f));
 }

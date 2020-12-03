@@ -40,6 +40,8 @@ private slots:
 
     void on_fk_calculate_clicked();
 
+    void on_bt_convert_clicked();
+
 private:
     Ui::MainWindow *ui;
     QPalette pal_red = palette();

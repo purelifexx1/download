@@ -111,9 +111,9 @@ QByteArray YRC1000micro_command::setRobotPositionCartesian(quint8 request_id_ind
     quint32 x_u = (quint32)(position->at(0)*1000);
     quint32 y_u = (quint32)(position->at(1)*1000);
     quint32 z_u = (quint32)(position->at(2)*1000);
-    quint32 roll_u = (quint32)(-position->at(3)*10000);
-    quint32 pitch_u = (quint32)(-position->at(4)*10000);
-    quint32 yaw_u = (quint32)(-position->at(5)*10000);
+    quint32 roll_u = (quint32)(position->at(3)*10000);
+    quint32 pitch_u = (quint32)(position->at(4)*10000);
+    quint32 yaw_u = (quint32)(position->at(5)*10000);
 
     cmd[DATA_MOVE_SPEED_TYPE+HEADER_SIZE] = speed_type;
     cmd[DATA_MOVE_COORDINATE+HEADER_SIZE]= coordinate;
