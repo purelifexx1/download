@@ -99,8 +99,8 @@ void mySerial::Receive_Package()
             this->callback_function(&data_buffer[1], byte_number);
           else{
             receive_complete_flag = false;
-            debug_configure_serial.Print("packet length error");
-            client.publish("error", "5");
+            //debug_configure_serial.Print("packet length error");
+            //client.publish("error", "5");
           }
           return;
         }
@@ -146,8 +146,8 @@ void mySerial::timer_runout_function()
     sync_flag = 0;
     sync_pointer = 0;	
     //error handler after this
-	debug_configure_serial.Print("packet received timeout at central node");
-	client.publish("error", "0"); //packet received timeout at centrall node
+	//debug_configure_serial.Print("packet received timeout at central node");
+	//client.publish("error", "0"); //packet received timeout at centrall node
   }
 }
 void mySerial::testing()
