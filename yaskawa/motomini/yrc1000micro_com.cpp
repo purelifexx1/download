@@ -251,8 +251,9 @@ void YRC1000micro_com::foward_kinematic(QVector<float>*theta, QVector<float>*out
     QVector<float> cv_theta(6, 0);
     QVector<float> alpha(6, 0);
 
+    a[0] = 20;
     a[1] = 165;
-    d[3] = -185;
+    d[3] = -165;
     d[5] = -40;
 
     cv_theta[0] = theta->at(0);
