@@ -41,19 +41,44 @@ void MainWindow::on_bt_connect_clicked()
         mSerial->setStopBits(QSerialPort::OneStop);
         mSerial->setFlowControl(QSerialPort::NoFlowControl);
         mSerial->open(QIODevice::ReadWrite);
+        Received_Thread = new ReceiveThread(this);
+        Received_Thread->set_serial_object(mSerial);
+        connect(Received_Thread, SIGNAL(packet_received(QByteArray)), this, SLOT(received_callback(QByteArray)));
+        Received_Thread->start();
 
     }else if(ui->bt_connect->text() == "Disconnect"){
         ui->bt_connect->setText("Connect");
         ui->bt_connect->setStyleSheet("background-color:red");
+        Received_Thread->stop = true;
         mSerial->close();
         delete mSerial;
+        delete Received_Thread;
     }
+}
+
+void MainWindow::received_callback(QByteArray data)
+{
+    qDebug() << data;
 }
 
 void MainWindow::on_bt_robot_stop_clicked()
 {
-    QByteArray command[74];
-    command[0] = 40;
+    QByteArray command;
+    command[0] = 0x28;
+    command[1] = '0';
+    command.append("STOP");
+    command[6] = 0x29;
+    mSerial->write(command, 7);
+}
 
 
+
+void MainWindow::on_bt_scan_limit_clicked()
+{
+    QByteArray command;
+    command[0] = 0x28;
+    command[1] = '1';
+    command.append("SCAN");
+    command[6] = 0x29;
+    mSerial->write(command, 7);
 }
