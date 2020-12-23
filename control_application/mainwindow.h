@@ -23,6 +23,10 @@ private slots:
     void on_bt_robot_stop_clicked();
     void on_bt_scan_limit_clicked();
 
+    void on_bt_home_clicked();
+
+    void on_bt_movL_clicked();
+
 public slots:
     void received_callback(QByteArray data);
 private:

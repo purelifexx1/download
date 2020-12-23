@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QtSerialPort/QtSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
+#include <stdio.h>
 QSerialPort *mSerial;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -66,9 +67,10 @@ void MainWindow::on_bt_robot_stop_clicked()
     QByteArray command;
     command[0] = 0x28;
     command[1] = '0';
-    command.append("STOP");
-    command[6] = 0x29;
-    mSerial->write(command, 7);
+    command.append(" STOP");
+    int temper_length = command.length();
+    command[temper_length] = 0x29;
+    mSerial->write(command, temper_length + 1);
 }
 
 
@@ -78,7 +80,33 @@ void MainWindow::on_bt_scan_limit_clicked()
     QByteArray command;
     command[0] = 0x28;
     command[1] = '1';
-    command.append("SCAN");
-    command[6] = 0x29;
-    mSerial->write(command, 7);
+    command.append(" SCAN");
+    int temper_length = command.length();
+    command[temper_length] = 0x29;
+    mSerial->write(command, temper_length + 1);
+}
+
+void MainWindow::on_bt_home_clicked()
+{
+    QByteArray command;
+    command[0] = 0x28;
+    command[1] = '3';
+    command.append(" HOME");
+    command.append(ui->tb_v_factor->text());
+    command.append(ui->tb_a_factor->text());
+    int temper_length = command.length();
+    command[temper_length] = 0x29;
+    mSerial->write(command, temper_length + 1);
+}
+
+void MainWindow::on_bt_movL_clicked()
+{
+    QByteArray command;
+    command[0] = 0x28;
+    command[1] = '4';
+    command.append("MOVL");
+    command.append(ui->tb_x_cor->text());
+    command.append(ui->tb_y_cor->text());
+
+
 }
