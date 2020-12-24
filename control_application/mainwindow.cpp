@@ -29,6 +29,11 @@ void MainWindow::on_bt_refresh_clicked()
             ui->com_list->addItem(port.portName());
 }
 
+void MainWindow::addspace(QByteArray *obj)
+{
+    obj->append(" ");
+}
+
 void MainWindow::on_bt_connect_clicked()
 {
     if (ui->bt_connect->text() == "Connect"){
@@ -65,12 +70,12 @@ void MainWindow::received_callback(QByteArray data)
 void MainWindow::on_bt_robot_stop_clicked()
 {
     QByteArray command;
-    command[0] = 0x28;
-    command[1] = '0';
-    command.append(" STOP");
-    int temper_length = command.length();
-    command[temper_length] = 0x29;
-    mSerial->write(command, temper_length + 1);
+    command.append(0x28);
+    command.append('0');
+    addspace(&command);
+    command.append("STOP");
+    command.append(0x29);
+    mSerial->write(command, command.length());
 }
 
 
@@ -78,35 +83,105 @@ void MainWindow::on_bt_robot_stop_clicked()
 void MainWindow::on_bt_scan_limit_clicked()
 {
     QByteArray command;
-    command[0] = 0x28;
-    command[1] = '1';
-    command.append(" SCAN");
-    int temper_length = command.length();
-    command[temper_length] = 0x29;
-    mSerial->write(command, temper_length + 1);
+    command.append(0x28);
+    command.append('1');
+    addspace(&command);
+    command.append("SCAN");
+    command.append(0x29);
+    mSerial->write(command, command.length());
 }
 
 void MainWindow::on_bt_home_clicked()
 {
     QByteArray command;
-    command[0] = 0x28;
-    command[1] = '3';
-    command.append(" HOME");
+    command.append(0x28);
+    command.append('2');
+    addspace(&command);
+    command.append("HOME");
+    addspace(&command);
     command.append(ui->tb_v_factor->text());
+    addspace(&command);
     command.append(ui->tb_a_factor->text());
-    int temper_length = command.length();
-    command[temper_length] = 0x29;
-    mSerial->write(command, temper_length + 1);
+    command.append(0x29);
+    mSerial->write(command, command.length());
 }
 
 void MainWindow::on_bt_movL_clicked()
 {
     QByteArray command;
-    command[0] = 0x28;
-    command[1] = '4';
+    command.append(0x28);
+    command.append('3');
+    addspace(&command);
     command.append("MOVL");
+    addspace(&command);
     command.append(ui->tb_x_cor->text());
+    addspace(&command);
     command.append(ui->tb_y_cor->text());
+    addspace(&command);
+    command.append(ui->tb_z_cor->text());
+    addspace(&command);
+    command.append(ui->tb_roll_ang->text());
+    addspace(&command);
+    command.append(ui->tb_v_factor->text());
+    addspace(&command);
+    if(ui->rb_qva->isChecked() == true) {
+        command.append('0');
+        addspace(&command);
+        command.append(ui->tb_a_factor->text());
+    }else if(ui->rb_qvt->isChecked() == true){
+        command.append('1');
+        addspace(&command);
+        command.append(ui->tb_time->text());
+    }
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}
 
+void MainWindow::on_bt_model_setting_clicked()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append("10");
+    addspace(&command);
+    command.append("SETT");
+    addspace(&command);
+    if(ui->rb_abs->isChecked() == true){
+        command.append('0');
+    }else if(ui->rb_inc->isChecked() == false){
+        command.append('1');
+    }
+    addspace(&command);
+    if(ui->rb_lspb->isChecked() == true){
+        command.append('0');
+    }else if(ui->rb_scur->isChecked() == false){
+        command.append('1');
+    }
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}
 
+void MainWindow::on_bt_on_magnet_clicked()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append('7');
+    addspace(&command);
+    command.append("OUTP");
+    addspace(&command);
+    command.append("1");
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}
+
+void MainWindow::on_bt_off_magnet_clicked()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append('7');
+    addspace(&command);
+    command.append("OUTP");
+    addspace(&command);
+    command.append("0");
+    command.append(0x29);
+    mSerial->write(command, command.length());
 }

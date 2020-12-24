@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>913</width>
-    <height>450</height>
+    <width>1245</width>
+    <height>731</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -179,27 +179,14 @@
       <string>Move Home</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>90</y>
-       <width>80</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>70</y>
-      <width>461</width>
-      <height>191</height>
+      <y>10</y>
+      <width>671</width>
+      <height>511</height>
      </rect>
     </property>
     <property name="title">
@@ -300,8 +287,8 @@
     <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>80</y>
+       <x>300</x>
+       <y>60</y>
        <width>47</width>
        <height>13</height>
       </rect>
@@ -313,8 +300,8 @@
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>50</y>
+       <x>300</x>
+       <y>30</y>
        <width>47</width>
        <height>13</height>
       </rect>
@@ -326,8 +313,8 @@
     <widget class="QLineEdit" name="tb_a_factor">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>50</y>
+       <x>180</x>
+       <y>30</y>
        <width>113</width>
        <height>21</height>
       </rect>
@@ -336,8 +323,8 @@
     <widget class="QLineEdit" name="tb_v_factor">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>80</y>
+       <x>180</x>
+       <y>60</y>
        <width>113</width>
        <height>21</height>
       </rect>
@@ -346,8 +333,8 @@
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>110</y>
+       <x>300</x>
+       <y>90</y>
        <width>47</width>
        <height>13</height>
       </rect>
@@ -359,47 +346,18 @@
     <widget class="QLineEdit" name="tb_time">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>110</y>
+       <x>180</x>
+       <y>90</y>
        <width>113</width>
        <height>21</height>
       </rect>
      </property>
     </widget>
-    <widget class="QRadioButton" name="rb_qvt">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>160</y>
-       <width>84</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>QVT</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="rb_qva">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>160</y>
-       <width>84</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>QVA</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="bt_movL">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>150</y>
+       <x>190</x>
+       <y>120</y>
        <width>80</width>
        <height>21</height>
       </rect>
@@ -408,6 +366,191 @@
       <string>Move Line</string>
      </property>
     </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>170</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Calculate model</string>
+     </property>
+     <widget class="QRadioButton" name="rb_qva">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>20</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>QVA</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rb_qvt">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>QVT</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>150</y>
+       <width>151</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Move method</string>
+     </property>
+     <widget class="QRadioButton" name="rb_inc">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Incremental</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rb_abs">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>20</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Absolute</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>200</y>
+       <width>131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Trajectory planning model</string>
+     </property>
+     <widget class="QRadioButton" name="rb_scur">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>20</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>SCurve</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rb_lspb">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>84</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LSPB</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="bt_model_setting">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>250</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Set</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_4">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>300</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>260</y>
+       <width>171</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Output shaft</string>
+     </property>
+     <widget class="QPushButton" name="bt_off_magnet">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>20</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Magnet off</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bt_on_magnet">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Magnet on</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -415,7 +558,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>913</width>
+     <width>1245</width>
      <height>20</height>
     </rect>
    </property>

@@ -27,9 +27,16 @@ private slots:
 
     void on_bt_movL_clicked();
 
+    void on_bt_model_setting_clicked();
+
+    void on_bt_on_magnet_clicked();
+
+    void on_bt_off_magnet_clicked();
+
 public slots:
     void received_callback(QByteArray data);
 private:
     Ui::MainWindow *ui;
+    void addspace(QByteArray *obj);
 };
 #endif // MAINWINDOW_H
