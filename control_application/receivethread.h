@@ -19,6 +19,7 @@ public:
     int attemp = 0;
 signals:
     void packet_received(QByteArray);
+
 private:
     QSerialPort *mSerial;
 };

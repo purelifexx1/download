@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "receivethread.h"
+#include "define_parameter.h"
+#include "packet_handler.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -12,9 +14,13 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     ReceiveThread *Received_Thread;
+    define_parameter *system_parameter = new define_parameter();
+    packet_handler *_packet_handler = new packet_handler();
+
 private slots:
     void on_bt_refresh_clicked();
 
@@ -33,10 +39,13 @@ private slots:
 
     void on_bt_off_magnet_clicked();
 
+    void on_bt_read_position_clicked();
+
 public slots:
     void received_callback(QByteArray data);
+    void display_event(Display_packet data);
 private:
     Ui::MainWindow *ui;
-    void addspace(QByteArray *obj);
+    void QbyteArray_AddValue(QByteArray *object_array, QVariant convert_object, TypeDef_Conversion input_type);
 };
 #endif // MAINWINDOW_H

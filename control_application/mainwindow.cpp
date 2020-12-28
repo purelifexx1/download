@@ -4,7 +4,7 @@
 #include <QDebug>
 #include <QtSerialPort/QtSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
-#include <stdio.h>
+
 QSerialPort *mSerial;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->bt_connect->setStyleSheet("background-color:red");
     ui->bt_connect->setText("Connect");
+    connect(_packet_handler, SIGNAL(on_display_event(Display_packet)), this, SLOT(display_event(Display_packet)));
 }
 
 MainWindow::~MainWindow()
@@ -20,6 +21,26 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::display_event(Display_packet data)
+{
+    switch (data.action_id) {
+        case DISPLAY_POSITION:
+            ui->tb_x_cur_cor->setText(QString::number(data.Scara_position.x));
+            ui->tb_y_cur_cor->setText(QString::number(data.Scara_position.y));
+            ui->tb_z_cur_cor->setText(QString::number(data.Scara_position.z));
+            ui->tb_roll_cur_cor->setText(QString::number(data.Scara_position.roll));
+            ui->tb_theta1_cur_val->setText(QString::number(data.Scara_position.theta1));
+            ui->tb_theta2_cur_val->setText(QString::number(data.Scara_position.theta2));
+            ui->tb_theta4_cur_val->setText(QString::number(data.Scara_position.theta4));
+            ui->tb_d3_cur_val->setText(QString::number(data.Scara_position.D3));
+        break;
+    }
+}
+
+void MainWindow::QbyteArray_AddValue(QByteArray *object_array, QVariant convert_object, TypeDef_Conversion input_type)
+{
+    system_parameter->Convert_And_Append(object_array, convert_object, input_type);
+}
 
 void MainWindow::on_bt_refresh_clicked()
 {
@@ -27,11 +48,6 @@ void MainWindow::on_bt_refresh_clicked()
     const auto list_of_port = QSerialPortInfo::availablePorts();
         for (const QSerialPortInfo &port : list_of_port)
             ui->com_list->addItem(port.portName());
-}
-
-void MainWindow::addspace(QByteArray *obj)
-{
-    obj->append(" ");
 }
 
 void MainWindow::on_bt_connect_clicked()
@@ -65,28 +81,25 @@ void MainWindow::on_bt_connect_clicked()
 void MainWindow::received_callback(QByteArray data)
 {
     qDebug() << data;
+    _packet_handler->categorize(data);
 }
 
 void MainWindow::on_bt_robot_stop_clicked()
 {
     QByteArray command;
     command.append(0x28);
-    command.append('0');
-    addspace(&command);
-    command.append("STOP");
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_STOPNOW);
     command.append(0x29);
     mSerial->write(command, command.length());
 }
-
-
 
 void MainWindow::on_bt_scan_limit_clicked()
 {
     QByteArray command;
     command.append(0x28);
-    command.append('1');
-    addspace(&command);
-    command.append("SCAN");
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_SCAN_LIMIT);
     command.append(0x29);
     mSerial->write(command, command.length());
 }
@@ -95,13 +108,10 @@ void MainWindow::on_bt_home_clicked()
 {
     QByteArray command;
     command.append(0x28);
-    command.append('2');
-    addspace(&command);
-    command.append("HOME");
-    addspace(&command);
-    command.append(ui->tb_v_factor->text());
-    addspace(&command);
-    command.append(ui->tb_a_factor->text());
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_MOVE_HOME);
+    QbyteArray_AddValue(&command, ui->tb_v_factor->text(), DOUBLE_STRING_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_a_factor->text(), DOUBLE_STRING_VALUE);
     command.append(0x29);
     mSerial->write(command, command.length());
 }
@@ -110,28 +120,19 @@ void MainWindow::on_bt_movL_clicked()
 {
     QByteArray command;
     command.append(0x28);
-    command.append('3');
-    addspace(&command);
-    command.append("MOVL");
-    addspace(&command);
-    command.append(ui->tb_x_cor->text());
-    addspace(&command);
-    command.append(ui->tb_y_cor->text());
-    addspace(&command);
-    command.append(ui->tb_z_cor->text());
-    addspace(&command);
-    command.append(ui->tb_roll_ang->text());
-    addspace(&command);
-    command.append(ui->tb_v_factor->text());
-    addspace(&command);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_MOVE_LINE);
+    QbyteArray_AddValue(&command, ui->tb_x_cor->text(), DOUBLE_STRING_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_y_cor->text(), DOUBLE_STRING_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_z_cor->text(), DOUBLE_STRING_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_roll_ang->text(), DOUBLE_STRING_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_v_factor->text(), DOUBLE_STRING_VALUE);
     if(ui->rb_qva->isChecked() == true) {
-        command.append('0');
-        addspace(&command);
-        command.append(ui->tb_a_factor->text());
+        command.append(DUTY_MODE_INIT_QVA);
+        QbyteArray_AddValue(&command, ui->tb_a_factor->text(), DOUBLE_STRING_VALUE);
     }else if(ui->rb_qvt->isChecked() == true){
-        command.append('1');
-        addspace(&command);
-        command.append(ui->tb_time->text());
+        command.append(DUTY_MODE_INIT_QVT);
+        QbyteArray_AddValue(&command, ui->tb_time->text(), DOUBLE_STRING_VALUE);
     }
     command.append(0x29);
     mSerial->write(command, command.length());
@@ -141,20 +142,18 @@ void MainWindow::on_bt_model_setting_clicked()
 {
     QByteArray command;
     command.append(0x28);
-    command.append("10");
-    addspace(&command);
-    command.append("SETT");
-    addspace(&command);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_SETTING);
     if(ui->rb_abs->isChecked() == true){
-        command.append('0');
+        command.append(DUTY_COORDINATES_ABS);
     }else if(ui->rb_inc->isChecked() == false){
-        command.append('1');
+        command.append(DUTY_COORDINATES_REL);
     }
-    addspace(&command);
+
     if(ui->rb_lspb->isChecked() == true){
-        command.append('0');
+        command.append(DUTY_TRAJECTORY_LSPB);
     }else if(ui->rb_scur->isChecked() == false){
-        command.append('1');
+        command.append(DUTY_TRAJECTORY_SCURVE);
     }
     command.append(0x29);
     mSerial->write(command, command.length());
@@ -164,11 +163,9 @@ void MainWindow::on_bt_on_magnet_clicked()
 {
     QByteArray command;
     command.append(0x28);
-    command.append('7');
-    addspace(&command);
-    command.append("OUTP");
-    addspace(&command);
-    command.append("1");
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_OUTPUT);
+    command.append('\1');
     command.append(0x29);
     mSerial->write(command, command.length());
 }
@@ -177,11 +174,19 @@ void MainWindow::on_bt_off_magnet_clicked()
 {
     QByteArray command;
     command.append(0x28);
-    command.append('7');
-    addspace(&command);
-    command.append("OUTP");
-    addspace(&command);
-    command.append("0");
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_OUTPUT);
+    command.append('\0');
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}
+
+void MainWindow::on_bt_read_position_clicked()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_READ_POSITION);
     command.append(0x29);
     mSerial->write(command, command.length());
 }

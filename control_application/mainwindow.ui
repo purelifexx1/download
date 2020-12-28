@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1245</width>
-    <height>731</height>
+    <width>743</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -53,10 +53,10 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>50</y>
-      <width>311</width>
-      <height>201</height>
+      <x>10</x>
+      <y>30</y>
+      <width>291</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="title">
@@ -183,10 +183,10 @@
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>330</x>
       <y>10</y>
-      <width>671</width>
-      <height>511</height>
+      <width>391</width>
+      <height>341</height>
      </rect>
     </property>
     <property name="title">
@@ -314,7 +314,7 @@
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>30</y>
+       <y>60</y>
        <width>113</width>
        <height>21</height>
       </rect>
@@ -324,7 +324,7 @@
      <property name="geometry">
       <rect>
        <x>180</x>
-       <y>60</y>
+       <y>30</y>
        <width>113</width>
        <height>21</height>
       </rect>
@@ -369,9 +369,9 @@
     <widget class="QGroupBox" name="groupBox_3">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>170</y>
-       <width>101</width>
+       <x>10</x>
+       <y>160</y>
+       <width>111</width>
        <height>41</height>
       </rect>
      </property>
@@ -383,7 +383,7 @@
        <rect>
         <x>50</x>
         <y>20</y>
-        <width>84</width>
+        <width>51</width>
         <height>19</height>
        </rect>
       </property>
@@ -396,7 +396,7 @@
        <rect>
         <x>0</x>
         <y>20</y>
-        <width>84</width>
+        <width>41</width>
         <height>19</height>
        </rect>
       </property>
@@ -411,8 +411,8 @@
     <widget class="QGroupBox" name="groupBox_4">
      <property name="geometry">
       <rect>
-       <x>460</x>
-       <y>150</y>
+       <x>230</x>
+       <y>160</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -450,8 +450,8 @@
     <widget class="QGroupBox" name="groupBox_5">
      <property name="geometry">
       <rect>
-       <x>460</x>
-       <y>200</y>
+       <x>230</x>
+       <y>210</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -489,8 +489,8 @@
     <widget class="QPushButton" name="bt_model_setting">
      <property name="geometry">
       <rect>
-       <x>460</x>
-       <y>250</y>
+       <x>230</x>
+       <y>260</y>
        <width>80</width>
        <height>21</height>
       </rect>
@@ -499,26 +499,13 @@
       <string>Set</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>300</y>
-       <width>80</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
     <widget class="QGroupBox" name="groupBox_6">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>260</y>
+       <x>20</x>
+       <y>220</y>
        <width>171</width>
-       <height>81</height>
+       <height>51</height>
       </rect>
      </property>
      <property name="title">
@@ -552,13 +539,223 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupBox_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>210</y>
+      <width>311</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Current position</string>
+    </property>
+    <widget class="QLineEdit" name="tb_x_cur_cor">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="tb_y_cur_cor">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="tb_z_cur_cor">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="tb_roll_cur_cor">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>110</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="tb_theta1_cur_val">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>20</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="tb_theta2_cur_val">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>50</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="tb_d3_cur_val">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>80</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="tb_theta4_cur_val">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>110</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>20</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>50</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Y</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>80</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Z</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>110</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Roll</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>110</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>theta4</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>20</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>theta1</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>80</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>D3</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>50</y>
+       <width>47</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>theta2</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="bt_read_position">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>140</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Read position</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1245</width>
+     <width>743</width>
      <height>20</height>
     </rect>
    </property>
