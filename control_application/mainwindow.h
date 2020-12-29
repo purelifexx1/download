@@ -41,6 +41,10 @@ private slots:
 
     void on_bt_read_position_clicked();
 
+    void on_bt_keycommand();
+
+    void on_bt_key_setsp_clicked();
+
 public slots:
     void received_callback(QByteArray data);
     void display_event(Display_packet data);

@@ -14,6 +14,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->bt_connect->setStyleSheet("background-color:red");
     ui->bt_connect->setText("Connect");
     connect(_packet_handler, SIGNAL(on_display_event(Display_packet)), this, SLOT(display_event(Display_packet)));
+    QString temp = "bt_inc_";
+    for(int i = 1; i <= 6; i++){
+        QPushButton *object_bt = this->findChild<QPushButton*>(temp + QString::number(i));
+        connect(object_bt, SIGNAL(clicked()), this, SLOT(on_bt_keycommand()));
+    }
 }
 
 MainWindow::~MainWindow()
@@ -86,14 +91,12 @@ void MainWindow::received_callback(QByteArray data)
 
 void MainWindow::on_bt_robot_stop_clicked()
 {
-//    QByteArray command;
-//    command.append(0x28);
-//    command.append(COMMAND_TRANSMISION);
-//    command.append(CMD_STOPNOW);
-//    command.append(0x29);
-//    mSerial->write(command, command.length());
-    QPushButton *testing = this->findChild<QPushButton*>("bt_robot_stop");
-    qDebug() <<testing->text();
+    QByteArray command;
+    command.append(0x28);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_STOPNOW);
+    command.append(0x29);
+    mSerial->write(command, command.length());
 
 }
 
@@ -190,6 +193,33 @@ void MainWindow::on_bt_read_position_clicked()
     command.append(0x28);
     command.append(COMMAND_TRANSMISION);
     command.append(CMD_READ_POSITION);
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}
+
+void MainWindow::on_bt_keycommand()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_KEYBOARD);
+    QPushButton *obj_sender = (QPushButton*)sender();
+    uint8_t selection = (uint8_t)obj_sender->objectName().split('_')[2].toInt();
+    command.append(selection);
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}
+
+void MainWindow::on_bt_key_setsp_clicked()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_KEY_SPEED);
+    uint8_t key_speed = (uint8_t)ui->tb_key_setsp->text().toInt();
+    key_speed = (key_speed > 7)?7:key_speed;
+    key_speed = (key_speed < 1)?1:key_speed;
+    command.append(key_speed);
     command.append(0x29);
     mSerial->write(command, command.length());
 }

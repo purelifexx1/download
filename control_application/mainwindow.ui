@@ -55,7 +55,7 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>291</width>
+      <width>311</width>
       <height>171</height>
      </rect>
     </property>
@@ -88,7 +88,7 @@
       <string>scan limit</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="test1">
+    <widget class="QPushButton" name="bt_inc_1">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -101,7 +101,7 @@
       <string>Inc x</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="bt_inc_2">
      <property name="geometry">
       <rect>
        <x>110</x>
@@ -114,7 +114,7 @@
       <string>Dec x</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="bt_inc_4">
      <property name="geometry">
       <rect>
        <x>110</x>
@@ -127,7 +127,7 @@
       <string>Dec y</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="test1_2">
+    <widget class="QPushButton" name="bt_inc_3">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -140,7 +140,7 @@
       <string>Inc y</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="bt_inc_6">
      <property name="geometry">
       <rect>
        <x>110</x>
@@ -153,7 +153,7 @@
       <string>Dec z</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="test1_3">
+    <widget class="QPushButton" name="bt_inc_5">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -177,6 +177,29 @@
      </property>
      <property name="text">
       <string>Move Home</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="bt_key_setsp">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>130</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Set key speed</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="tb_key_setsp">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>100</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
      </property>
     </widget>
    </widget>

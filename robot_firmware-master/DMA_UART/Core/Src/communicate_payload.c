@@ -75,9 +75,9 @@ int32_t	packPayload		(uint8_t *input_buff, uint8_t *output_buff, int32_t in_leng
  *  				  -1 if error
  */
 int32_t	unPackPayload	(uint8_t *message_buff, int32_t in_lenght) {
-	// if (in_lenght < MIN_MESSAGE_LENGHT) {
-	// 	return -1;
-	// }// check minimum lenght
+	if (in_lenght < MIN_MESSAGE_LENGHT) {
+		return -1;
+	}// check minimum lenght
 
 	if ( (START_CHAR != message_buff[0]) || (END_CHAR != message_buff[in_lenght - 1]) ) {
 		return -1;

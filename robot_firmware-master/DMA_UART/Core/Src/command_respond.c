@@ -219,6 +219,39 @@ Robot_CommandTypedef 	commandRead	(uint8_t *message, int32_t length, int32_t *id
 				}
 				break;
 				
+				// Set manual key
+				case CMD_KEYBOARD:
+				{
+					if(length == 3){ // 1 byte output value + 2 byte define
+						int temp_pointer = 2;
+						duty_cmd->keyboard = (SCARA_KeyTypeDef)message[temp_pointer];
+						duty_cmd->robot_method = SCARA_METHOD_MANUAL;
+						duty_cmd->change_method = FALSE;
+						return CMD_KEYBOARD;
+					}else{
+						return CMD_ERROR;
+					}					
+				}
+				break;
+
+				// Set manual key speed
+				case CMD_KEY_SPEED:
+				{
+					if(length == 3){ // 1 byte key value + 2 byte define
+						int temp_pointer = 2;
+						int32_t speed = (int32_t)message[temp_pointer];
+						// check limit
+						if ((speed < SHIFT_SPEED_MIN) || (speed > SHIFT_SPPED_MAX)) {
+							return CMD_ERROR;
+						}
+						duty_cmd->key_speed = speed;
+						return CMD_KEY_SPEED;
+					}else{
+						return CMD_ERROR;
+					}
+				}
+				break;
+
 				//Unknow command id
 				default:
 				{

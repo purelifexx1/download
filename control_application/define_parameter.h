@@ -33,6 +33,26 @@ typedef enum
 
 typedef enum
 {
+    SCARA_KEY_X_INC,
+    SCARA_KEY_X_DEC,
+    SCARA_KEY_Y_INC,
+    SCARA_KEY_Y_DEC,
+    SCARA_KEY_Z_INC,
+    SCARA_KEY_Z_DEC,
+    SCARA_KEY_ROLL_INC,
+    SCARA_KEY_ROLL_DEC,
+    SCARA_KEY_VAR0_INC,
+    SCARA_KEY_VAR0_DEC,
+    SCARA_KEY_VAR1_INC,
+    SCARA_KEY_VAR1_DEC,
+    SCARA_KEY_VAR2_INC,
+    SCARA_KEY_VAR2_DEC,
+    SCARA_KEY_VAR3_INC,
+    SCARA_KEY_VAR3_DEC,// 16 key board
+}SCARA_KeyTypeDef;
+
+typedef enum
+{
     CMD_STOPNOW,
     CMD_SCAN_LIMIT,
     CMD_MOVE_HOME,

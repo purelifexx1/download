@@ -16,7 +16,7 @@
 #define ADD_CHAR		(0x7D)
 #define XOR_CHAR		(0x02)
 
-#define MIN_MESSAGE_LENGHT	(6)
+#define MIN_MESSAGE_LENGHT	(4)
 
 int32_t	packPayload		(uint8_t *input_buff, uint8_t *output_buff, int32_t len);
 int32_t	unPackPayload	(uint8_t *message_buff, int32_t in_lenght);
