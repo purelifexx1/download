@@ -12,6 +12,7 @@
 #include  "robot_scara.h"
 
 
+
 typedef enum
 {
 	CMD_STOPNOW = 0x00,
@@ -60,8 +61,36 @@ typedef enum
 typedef enum
 {
 	FILE_TRANSMISION,
-	COMMAND_TRANSMISION
+	COMMAND_TRANSMISION,
+	RESPONSE_TRANSMISION
 }Transfer_Protocol;
+
+typedef enum
+{
+	ACCEPT_COMMAND,
+	STUPID_CODE,
+	WRONG_SPACE_TYPE,
+	WRONG_TASK_TYPE,
+	WRONG_JOINT_TYPE,
+	WRONG_TRAJECTORY_TYPE,
+	WRONG_PARAMETER,
+	OVER_WORKSPACE,
+	WRONG_MODE_INIT,
+	OVER_VELOCITY,
+	OVER_ACCELERATE,
+	WRONG_JOINT_NUM,
+	WRONG_COORDINATE,
+	OUTPUT_ON,
+	OUTPUT_OFF,
+	WRONG_OUTPUT_VALUE,
+	ABSOLUTE,
+	RELATIVE,
+	LSPB,
+	S_CURVE,
+	CHECK_PARAMETER,
+	MANUAL_SPEED,
+	UNKNOW_COMMAND
+}Response_ID;
 /*** Instance Form ***/
 
 
@@ -73,12 +102,18 @@ Robot_CommandTypedef 	commandRead		(uint8_t *message, int32_t length,
 
 Robot_RespondTypedef	commandReply	(Robot_CommandTypedef cmd_type,
 										DUTY_Command_TypeDef duty_cmd,
-										uint8_t *detail);
+										uint8_t *detail, int32_t *detail_length);
+
+
 
 int32_t					commandRespond	(Robot_RespondTypedef rpd,
 										int32_t id_command,
 										char *detail,
 										char *respond);
-
+int32_t 				commandRespond1 (Robot_RespondTypedef rpd,
+										int32_t id_command,
+										char *detail,
+										int32_t detail_length,
+										char *respond);
 
 #endif /* INC_COMMAND_RESPOND_H_ */

@@ -131,4 +131,8 @@
 #define		d4				(77.674f)
 #define		a4				(32.36f)
 
+/* Coordinate value scale number for transmission */
+#define COR_FOWARD_SCALE 1000000
+#define COR_INVERSE_SCALE 0.000001
+
 #endif /* INC_SYSTEM_PARAMS_H_ */

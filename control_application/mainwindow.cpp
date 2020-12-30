@@ -91,14 +91,18 @@ void MainWindow::received_callback(QByteArray data)
 
 void MainWindow::on_bt_robot_stop_clicked()
 {
-    QByteArray command;
-    command.append(0x28);
-    command.append(COMMAND_TRANSMISION);
-    command.append(CMD_STOPNOW);
-    command.append(0x29);
-    mSerial->write(command, command.length());
-
+//    QByteArray command;
+//    command.append(0x28);
+//    command.append(COMMAND_TRANSMISION);
+//    command.append(CMD_STOPNOW);
+//    command.append(0x29);
+//    mSerial->write(command, command.length());
+    int32_t testing = 1234;
+    QByteArray tt;
+    tt.append(reinterpret_cast<const char*>(&testing), 4);
+    qDebug()<<tt;
 }
+
 
 void MainWindow::on_bt_scan_limit_clicked()
 {

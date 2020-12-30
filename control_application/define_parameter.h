@@ -2,7 +2,9 @@
 #define DEFINE_PARAMETER_H
 
 #include <QtCore>
-
+#define SCARA_FOWARD_SCALE 1000000
+#define SCARA_INVERSE_SCALE 0.000001
+#define NUM_OF_STATUS 23
 typedef enum
 {
     DISPLAY_POSITION
@@ -10,8 +12,30 @@ typedef enum
 
 typedef enum
 {
+    MAGNET_ON,
+    MAGNET_OFF,
+    WRONG_VALUE_FOR_OUTPUT_LEVEL
+}Response_Detail_code;
+
+typedef enum
+{
     POSITION_DATA = 0x09
 }command_code ;
+
+typedef enum
+{
+    RPD_IDLE	,
+    RPD_BUSY	,
+    RPD_POSITION,
+    RPD_START	,
+    RPD_RUNNING	,
+    RPD_DONE	,
+    RPD_STOP	,
+    RPD_ERROR	,
+    RPD_OK 		,
+    RPD_DUTY	,
+    NUM_OF_RESPO
+}Robot_RespondTypedef;
 
 typedef enum
 {
@@ -83,7 +107,8 @@ typedef enum
 typedef enum
 {
     FILE_TRANSMISION,
-    COMMAND_TRANSMISION
+    COMMAND_TRANSMISION,
+    RESPONSE_TRANSMISION
 }Transfer_Protocol;
 
 typedef enum
@@ -93,7 +118,8 @@ typedef enum
     DOUBLE_STRING_VALUE,
     DOUBLE_VALUE,
     BYTE_VALUE,
-    INT16_VALUE
+    INT16_VALUE,
+    SCARA_COR_VALUE
 }TypeDef_Conversion ;
 
 typedef struct
@@ -120,7 +146,30 @@ class define_parameter
 {
 
 public:
-
+    QString DETAIL_STATUS[NUM_OF_STATUS]  = {"Accept Command",
+                                             "Stupid Code",
+                                             "Wrong Space Type",
+                                             "Wrong Task Type",
+                                             "Wrong Joint Type",
+                                             "Wrong Trajectory Type",
+                                             "Wrong Parameters",
+                                             "Over Workspace",
+                                             "Wrong Mode Init",
+                                             "Over Velocity",
+                                             "Over Accelerate",
+                                             "Wrong Joint Num",
+                                             "Wrong Coordinate type",
+                                             "Output On",
+                                             "Output Off",
+                                             "Wrong output value",
+                                             "Absolute",
+                                             "Relative",
+                                             "LSPB",
+                                             "S-CURVE",
+                                             "Check parameter",
+                                             "Manual speed ",
+                                             "Unknow command"
+                                            };
     define_parameter();
     void Convert_And_Append(QByteArray *object_array, QVariant convert_object, TypeDef_Conversion input_type);
 };

@@ -94,6 +94,8 @@ Robot_CommandTypedef 	commandRead	(uint8_t *message, int32_t length, int32_t *id
                     if (length == 18){ // 2 double number + 2 define byte
                         memcpy(&duty_cmd->v_factor, &message[temp_pointer+=8], 8);
 						memcpy(&duty_cmd->a_factor, &message[temp_pointer], 8); 
+						// duty_cmd->v_factor = (*(int32_t*)(&message[temp_pointer+=8])*COR_INVERSE_SCALE;
+						// duty_cmd->a_factor = (*(int32_t*)(&message[temp_pointer])*COR_INVERSE_SCALE;
                     }else{
                         return CMD_ERROR;
                     }
@@ -271,7 +273,7 @@ Robot_CommandTypedef 	commandRead	(uint8_t *message, int32_t length, int32_t *id
 
 Robot_RespondTypedef	commandReply	(Robot_CommandTypedef cmd_type,
 										DUTY_Command_TypeDef duty_cmd,
-										uint8_t *detail) {
+										uint8_t *detail, int32_t *detail_length) {
 	Robot_RespondTypedef ret;
 
 	switch(cmd_type) {
@@ -288,12 +290,16 @@ Robot_RespondTypedef	commandReply	(Robot_CommandTypedef cmd_type,
 		{
 			if (1 == duty_cmd.sub_para_int) {
 				scaraSetOutput(1);
-				strcpy( (char *)detail, "Output ON");
+				// strcpy( (char *)detail, "Output ON");
+				// detail_length += 9;
+				detail[(*detail_length)++] = OUTPUT_ON;
 			} else if (0 == duty_cmd.sub_para_int) {
 				scaraSetOutput(0);
-				strcpy( (char *)detail, "Output OFF");
+				detail[(*detail_length)++] = OUTPUT_OFF;
 			} else {
-				strcpy( (char *)detail, "Wrong Value");
+				// strcpy( (char *)detail, "Wrong Value");
+				// detail_length += 11;
+				detail[(*detail_length)++] = WRONG_OUTPUT_VALUE ;
 				return RPD_ERROR;
 			}
 			ret = RPD_OK;
@@ -323,20 +329,22 @@ Robot_RespondTypedef	commandReply	(Robot_CommandTypedef cmd_type,
 		break;
 	case CMD_SETTING:
 		if ( DUTY_COORDINATES_ABS == duty_cmd.coordinate_type) {
-			strcpy( (char *)detail, "ABSOLUTE.");
+			// strcpy( (char *)detail, "ABSOLUTE.");
+			// detail_length += 9;
+			detail[(*detail_length)++] = ABSOLUTE;
 		} else if ( DUTY_COORDINATES_REL == duty_cmd.coordinate_type) {
-			strcpy( (char *)detail, "RELATIVE.");
+			detail[(*detail_length)++] = RELATIVE;
 		} else {
-			strcat((char *)detail, DETAIL_STATUS[SCARA_STATUS_ERROR_COORDINATE]);
+			detail[(*detail_length)++] = WRONG_COORDINATE;
 			return RPD_ERROR;
 		}
 
 		if ( DUTY_TRAJECTORY_LSPB == duty_cmd.trajec_type) {
-			strcat((char *)detail, " LSPB");
+			detail[(*detail_length)++] = LSPB;
 		} else if ( DUTY_TRAJECTORY_SCURVE == duty_cmd.trajec_type) {
-			strcat((char *)detail, " S-CURVE");
+			detail[(*detail_length)++] = S_CURVE;
 		} else {
-			strcat((char *)detail, DETAIL_STATUS[SCARA_STATUS_ERROR_TRAJECTORY]);
+			detail[(*detail_length)++] = WRONG_TRAJECTORY_TYPE;
 			return RPD_ERROR;
 		}
 		ret = RPD_OK;
@@ -363,15 +371,19 @@ Robot_RespondTypedef	commandReply	(Robot_CommandTypedef cmd_type,
 		ret = RPD_DUTY;
 		break;
 	case CMD_KEY_SPEED:
-		sprintf((char*) detail, "MANUAL SPEED = %d", duty_cmd.key_speed);
+		// sprintf((char*) detail, "MANUAL SPEED = %d", duty_cmd.key_speed);
+		detail[(*detail_length)++] = MANUAL_SPEED;
+		detail[(*detail_length)++] = (uint8_t)(duty_cmd.key_speed);
 		ret = RPD_OK;
 		break;
 	case CMD_ERROR:
-		strcpy( (char *)detail, "Check parameters");
+		// strcpy( (char *)detail, "Check parameters");
+		detail[(*detail_length)++] = CHECK_PARAMETER;
 		ret = RPD_ERROR;
 		break;
 	default:
-		strcpy( (char *)detail, "Unknown command");
+		// strcpy( (char *)detail, "Unknown command");
+		detail[(*detail_length)++] = UNKNOW_COMMAND;
 		ret = RPD_ERROR;
 	}
 	return ret;
@@ -420,3 +432,22 @@ int32_t				commandRespond	(Robot_RespondTypedef rpd,
 
 	return (int32_t)out_lenght;
 }
+
+int32_t				commandRespond1	(Robot_RespondTypedef rpd,
+										int32_t id_command,
+										char *detail,
+										int32_t detail_length,
+										char *respond) {
+	int32_t out_length = 0;
+	respond[out_length++] = 0x28;
+	respond[out_length++] = RESPONSE_TRANSMISION;
+	respond[out_length++] = rpd;
+	if(detail_length != 0){
+		memcpy(&respond[out_length], detail, detail_length);
+		out_length += detail_length;
+	}
+	respond[out_length++] = 0x29;
+
+	return out_length;
+}
+

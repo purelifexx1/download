@@ -386,7 +386,8 @@ void						scaraSetDutyState	(SCARA_DutyStateTypeDef state);
 void						scaraSetMode		(SCARA_ModeTypeDef mode);
 void						scaraSetMethod		(SCARA_MethodTypeDef method);
 
-void 						scaraPosition_packaging(uint8_t *data_packet, SCARA_PositionTypeDef position);
+int32_t 					scaraPosition_packaging(uint8_t *data_packet, SCARA_PositionTypeDef position);
+void 						Append_Coordinate_Value(int32_t append_value, uint8_t* append_position);
 void						scaraGetPosition	(SCARA_PositionTypeDef *pos);
 SCARA_ModeTypeDef			scaraGetMode		(void);
 SCARA_MethodTypeDef			scaraGetMethod		(void);

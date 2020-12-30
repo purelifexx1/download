@@ -46,5 +46,12 @@ void define_parameter::Convert_And_Append(QByteArray *object_array, QVariant con
             object_array->append(reinterpret_cast<const char*>(&number), sizeof(number));
         }
         break;
+        case SCARA_COR_VALUE:
+        {
+            QString temp = convert_object.toString();
+            int32_t number = (int32_t)(temp.toDouble()*SCARA_FOWARD_SCALE);
+            object_array->append(reinterpret_cast<const char*>(&number), sizeof(number));
+        }
+        break;
     }
 }

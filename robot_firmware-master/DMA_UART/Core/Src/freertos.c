@@ -703,6 +703,7 @@ void Start_USB_RX_Task(void const * argument)
 	uint8_t				message[150];
 	int32_t				respond_lenght;
 	int32_t				message_lenght;
+	int32_t 			detail_length;
 
 	// Default value
 	duty_cmd.key_speed = 1;
@@ -723,7 +724,8 @@ void Start_USB_RX_Task(void const * argument)
 				  LOG_REPORT((char*) temp, __LINE__);
 				  cmd_type = commandRead(temp, ret, &id_command, &duty_cmd);
 				  memset(detail, 0, sizeof(detail));
-				  rpd_type = commandReply(cmd_type, duty_cmd, detail);
+				  detail_length = 0;
+				  rpd_type = commandReply(cmd_type, duty_cmd, detail, &detail_length);
 
 				  if ( RPD_DUTY == rpd_type) {
 					  DUTY_Command_TypeDef *dataMail;
@@ -739,19 +741,20 @@ void Start_USB_RX_Task(void const * argument)
 						  //LOG_REPORT("DUTY SEND", __LINE__);
 					  }
 
-				  }else if( RPD_POSITION == rpd_type) { 
-					  CDC_Transmit_FS(detail, 84);
+				//   }else if( RPD_POSITION == rpd_type) { 
+				// 	  CDC_Transmit_FS(detail, 84);
 				  }else {
-					  memset(respond, 0, sizeof(respond));
-					  memset(message, 0, sizeof(message));
-					  respond_lenght	= commandRespond(rpd_type, id_command,
-							  	  	  	  (char *)detail,
+					//   memset(respond, 0, sizeof(respond));
+					//   memset(message, 0, sizeof(message));
+					  respond_lenght	= commandRespond1(rpd_type, id_command,
+							  	  	  	  (char *)detail, detail_length,
 										  (char *)respond);
-					  message_lenght	= packPayload(respond, message, respond_lenght);
+					  //message_lenght	= packPayload(respond, message, respond_lenght);
+					  CDC_Transmit_FS(respond, respond_lenght);
 					  // Mutex
-					  osMutexWait(usbTxMutexHandle, osWaitForever);
-					  ringBuff_PushArray(&cmd_tx_ringbuff, message, message_lenght);
-					  osMutexRelease(usbTxMutexHandle);
+					//   osMutexWait(usbTxMutexHandle, osWaitForever);
+					//   ringBuff_PushArray(&cmd_tx_ringbuff, message, message_lenght);
+					//   osMutexRelease(usbTxMutexHandle);
 				  }
 			  }
 		  }

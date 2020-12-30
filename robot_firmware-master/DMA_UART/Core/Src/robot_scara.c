@@ -1358,13 +1358,30 @@ int32_t					scaraPosition2String(char *result, SCARA_PositionTypeDef position) {
 	return lenght_buff;
 }
 
-void scaraPosition_packaging(uint8_t *data_packet, SCARA_PositionTypeDef position)
+int32_t scaraPosition_packaging(uint8_t *data_packet, SCARA_PositionTypeDef position)
 {
-	data_packet[0] = 0x28;
-	data_packet[83] = 0x29;
-	data_packet[1] = 0x09;
-	memcpy(&data_packet[2], &position.t, 80);
-	data_packet[82] = lowlayer_readLimitSwitch();
+	// data_packet[0] = 0x28;
+	// data_packet[83] = 0x29;
+	// data_packet[1] = 0x09;
+	// memcpy(&data_packet[2], &position.t, 80);
+	// data_packet[82] = lowlayer_readLimitSwitch();
+	int32_t cur_ptr = 0;
+	Append_Coordinate_Value((int32_t)(position.x*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+	Append_Coordinate_Value((int32_t)(position.y*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+	Append_Coordinate_Value((int32_t)(position.z*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+	Append_Coordinate_Value((int32_t)(position.roll*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+	Append_Coordinate_Value((int32_t)(position.Theta1*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+	Append_Coordinate_Value((int32_t)(position.Theta2*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+	Append_Coordinate_Value((int32_t)(position.v_d3*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+	Append_Coordinate_Value((int32_t)(position.v_theta4*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+}
+
+void Append_Coordinate_Value(int32_t append_value, uint8_t* append_position)
+{
+	append_position[0] = (uint8_t)(append_value & 0xff);
+	append_position[1] = (uint8_t)(append_value >> 8 & 0xff);
+	append_position[2] = (uint8_t)(append_value >> 16 & 0xff);
+	append_position[3] = (uint8_t)(append_value >> 24 & 0xff);
 }
 
 /* Convert key command to duty */
