@@ -3,7 +3,7 @@
 
 #include <QtCore>
 #define SCARA_FOWARD_SCALE 1000000
-#define SCARA_INVERSE_SCALE 0.000001
+#define SCARA_INVERSE_SCALE 0.000001f
 #define NUM_OF_STATUS 23
 #define NUM_OF_COMMAND_STRING 24
 typedef enum
@@ -149,20 +149,32 @@ typedef enum
 
 typedef struct
 {
-    int32_t x;
-    int32_t y;
-    int32_t z;
-    int32_t roll;
-    int32_t theta1;
-    int32_t theta2;
-    int32_t D3;
-    int32_t theta4;
-}Scara_position_TypeDef ;
+    double x;
+    double y;
+    double z;
+    double roll;
+    double theta1;
+    double theta2;
+    double D3;
+    double theta4;
+}Scara_Position_RealData;
+
+typedef struct
+{
+    int32_t raw_x;
+    int32_t raw_y;
+    int32_t raw_z;
+    int32_t raw_roll;
+    int32_t raw_theta1;
+    int32_t raw_theta2;
+    int32_t raw_D3;
+    int32_t raw_theta4;
+}Scara_Position_RawData;
 
 typedef struct
 {
     display_id action_id;
-    Scara_position_TypeDef Scara_position;
+    Scara_Position_RealData RealData;
     Robot_CommandTypedef Command_ID;
     Robot_RespondTypedef Respond_Type;
     Response_ID Reference_String;

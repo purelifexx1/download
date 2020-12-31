@@ -33,14 +33,8 @@ void packet_handler::categorize(QByteArray packet)
 
 void packet_handler::routing(QByteArray packet)
 {
-//    int packet_length = packet.length();
-//    switch (packet.at(0)) {
-//        case POSITION_DATA:
-//            Scara_position_received(packet.mid(1, packet_length - 2));
-//        break;
-//    }
     int packet_length = packet.length();
-    switch (packet.at(0)){
+    switch (packet.at(0)){ // Transmission protocol
         case FILE_TRANSMISION:
 
         break;
@@ -48,7 +42,7 @@ void packet_handler::routing(QByteArray packet)
             // error format
         break;
         case RESPONSE_TRANSMISION:
-            switch (packet.at(1)) {
+            switch (packet.at(1)) { // RPD type
                 case RPD_IDLE:
 
                 break;
@@ -56,7 +50,11 @@ void packet_handler::routing(QByteArray packet)
 
                 break;
                 case RPD_POSITION:
-                    Scara_position_received(packet.mid(2, packet_length-2));
+                    if(packet.at(2) == CMD_READ_POSITION){ // check if CMD_ID is correct
+                        Scara_position_received(packet.mid(3, packet_length-3));
+                    }else{
+                        // incorrect packet format
+                    }
                 break;
                 case RPD_START:
 
@@ -89,16 +87,17 @@ void packet_handler::routing(QByteArray packet)
 
 void packet_handler::Scara_position_received(QByteArray data)
 {
-    Scara_position_TypeDef *Scara_position_data = reinterpret_cast<Scara_position_TypeDef*>(data.data());
+    Scara_Position_RawData *RawData = reinterpret_cast<Scara_Position_RawData*>(data.data());
     Display_packet display_packet;
-    display_packet.Scara_position.theta1 = (double)(Scara_position_data->theta1*SCARA_INVERSE_SCALE);
-    display_packet.Scara_position.theta2 = (double)(Scara_position_data->theta2*SCARA_INVERSE_SCALE);
-    display_packet.Scara_position.theta4 = (double)(Scara_position_data->theta4*SCARA_INVERSE_SCALE);
-    display_packet.Scara_position.D3 = (double)(Scara_position_data->D3*SCARA_INVERSE_SCALE);
-    display_packet.Scara_position.x = (double)(Scara_position_data->x*SCARA_INVERSE_SCALE);
-    display_packet.Scara_position.y = (double)(Scara_position_data->y*SCARA_INVERSE_SCALE);
-    display_packet.Scara_position.z = (double)(Scara_position_data->z*SCARA_INVERSE_SCALE);
-    display_packet.Scara_position.roll = (double)(Scara_position_data->roll*SCARA_INVERSE_SCALE);
+
+    display_packet.RealData.theta1 = (double)(RawData->raw_theta1*SCARA_INVERSE_SCALE);
+    display_packet.RealData.theta2 = (double)(RawData->raw_theta2*SCARA_INVERSE_SCALE);
+    display_packet.RealData.theta4 = (double)(RawData->raw_theta4*SCARA_INVERSE_SCALE);
+    display_packet.RealData.D3 = (double)(RawData->raw_D3*SCARA_INVERSE_SCALE);
+    display_packet.RealData.x = (double)(RawData->raw_x*SCARA_INVERSE_SCALE);
+    display_packet.RealData.y = (double)(RawData->raw_y*SCARA_INVERSE_SCALE);
+    display_packet.RealData.z = (double)(RawData->raw_z*SCARA_INVERSE_SCALE);
+    display_packet.RealData.roll = (double)(RawData->raw_roll*SCARA_INVERSE_SCALE);
     display_packet.action_id = DISPLAY_POSITION;
     emit on_display_event(display_packet);
 }

@@ -30,14 +30,15 @@ void MainWindow::display_event(Display_packet data)
 {
     switch (data.action_id) {
         case DISPLAY_POSITION:
-            ui->tb_x_cur_cor->setText(QString::number(data.Scara_position.x));
-            ui->tb_y_cur_cor->setText(QString::number(data.Scara_position.y));
-            ui->tb_z_cur_cor->setText(QString::number(data.Scara_position.z));
-            ui->tb_roll_cur_cor->setText(QString::number(data.Scara_position.roll));
-            ui->tb_theta1_cur_val->setText(QString::number(data.Scara_position.theta1));
-            ui->tb_theta2_cur_val->setText(QString::number(data.Scara_position.theta2));
-            ui->tb_theta4_cur_val->setText(QString::number(data.Scara_position.theta4));
-            ui->tb_d3_cur_val->setText(QString::number(data.Scara_position.D3));
+            ui->tb_x_cur_cor->setText(QString::number(data.RealData.x));
+            ui->tb_y_cur_cor->setText(QString::number(data.RealData.y));
+            ui->tb_z_cur_cor->setText(QString::number(data.RealData.z));
+            ui->tb_roll_cur_cor->setText(QString::number(data.RealData.roll));
+            ui->tb_theta1_cur_val->setText(QString::number(data.RealData.theta1));
+            ui->tb_theta2_cur_val->setText(QString::number(data.RealData.theta2));
+            ui->tb_theta4_cur_val->setText(QString::number(data.RealData.theta4));
+            ui->tb_d3_cur_val->setText(QString::number(data.RealData.D3));
+            ui->tb_console->append("Position data received");
         break;
         case DISPLAY_ERROR:
             ui->tb_console->append("RPD_ERROR | Command ID: " + system_parameter->COMMAND_STRING[data.Command_ID] + " | " + "Detail: " + system_parameter->DETAIL_STATUS[data.Respond_Type]);
@@ -94,16 +95,12 @@ void MainWindow::received_callback(QByteArray data)
 
 void MainWindow::on_bt_robot_stop_clicked()
 {
-//    QByteArray command;
-//    command.append(0x28);
-//    command.append(COMMAND_TRANSMISION);
-//    command.append(CMD_STOPNOW);
-//    command.append(0x29);
-//    mSerial->write(command, command.length());
-    int32_t testing = 1234;
-    QByteArray tt;
-    tt.append(reinterpret_cast<const char*>(&testing), 4);
-    qDebug()<<tt;
+    QByteArray command;
+    command.append(0x28);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_STOPNOW);
+    command.append(0x29);
+    mSerial->write(command, command.length());
 }
 
 
