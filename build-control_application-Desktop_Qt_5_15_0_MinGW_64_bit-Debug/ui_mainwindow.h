@@ -20,6 +20,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -90,6 +91,7 @@ public:
     QLabel *label_14;
     QLabel *label_15;
     QPushButton *bt_read_position;
+    QTextEdit *tb_console;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -97,7 +99,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(743, 430);
+        MainWindow->resize(1079, 430);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         com_list = new QComboBox(centralwidget);
@@ -287,10 +289,13 @@ public:
         bt_read_position = new QPushButton(groupBox_7);
         bt_read_position->setObjectName(QString::fromUtf8("bt_read_position"));
         bt_read_position->setGeometry(QRect(10, 140, 80, 21));
+        tb_console = new QTextEdit(centralwidget);
+        tb_console->setObjectName(QString::fromUtf8("tb_console"));
+        tb_console->setGeometry(QRect(760, 80, 261, 181));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 743, 20));
+        menubar->setGeometry(QRect(0, 0, 1079, 20));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

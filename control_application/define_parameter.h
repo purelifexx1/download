@@ -5,9 +5,11 @@
 #define SCARA_FOWARD_SCALE 1000000
 #define SCARA_INVERSE_SCALE 0.000001
 #define NUM_OF_STATUS 23
+#define NUM_OF_COMMAND_STRING 24
 typedef enum
 {
-    DISPLAY_POSITION
+    DISPLAY_POSITION,
+    DISPLAY_ERROR
 }display_id ;
 
 typedef enum
@@ -19,8 +21,30 @@ typedef enum
 
 typedef enum
 {
-    POSITION_DATA = 0x09
-}command_code ;
+    ACCEPT_COMMAND,
+    STUPID_CODE,
+    WRONG_SPACE_TYPE,
+    WRONG_TASK_TYPE,
+    WRONG_JOINT_TYPE,
+    WRONG_TRAJECTORY_TYPE,
+    WRONG_PARAMETER,
+    OVER_WORKSPACE,
+    WRONG_MODE_INIT,
+    OVER_VELOCITY,
+    OVER_ACCELERATE,
+    WRONG_JOINT_NUM,
+    WRONG_COORDINATE,
+    OUTPUT_ON,
+    OUTPUT_OFF,
+    WRONG_OUTPUT_VALUE,
+    ABSOLUTE,
+    RELATIVE,
+    LSPB,
+    S_CURVE,
+    CHECK_PARAMETER,
+    MANUAL_SPEED,
+    UNKNOW_COMMAND
+}Response_ID;
 
 typedef enum
 {
@@ -34,7 +58,7 @@ typedef enum
     RPD_ERROR	,
     RPD_OK 		,
     RPD_DUTY	,
-    NUM_OF_RESPO
+    NUM_OF_RESPOND
 }Robot_RespondTypedef;
 
 typedef enum
@@ -101,6 +125,7 @@ typedef enum
     CMD_KEYBOARD,// 2 key board
     CMD_KEY_SPEED,
     CMD_ERROR,
+    PROTOCOL_ERROR,
     NUM_OF_COMMAND
 }Robot_CommandTypedef ;
 
@@ -124,22 +149,23 @@ typedef enum
 
 typedef struct
 {
-    double current_time;
-    double total_time;
-    double x;
-    double y;
-    double z;
-    double roll;
-    double theta1;
-    double theta2;
-    double D3;
-    double theta4;
+    int32_t x;
+    int32_t y;
+    int32_t z;
+    int32_t roll;
+    int32_t theta1;
+    int32_t theta2;
+    int32_t D3;
+    int32_t theta4;
 }Scara_position_TypeDef ;
 
 typedef struct
 {
     display_id action_id;
     Scara_position_TypeDef Scara_position;
+    Robot_CommandTypedef Command_ID;
+    Robot_RespondTypedef Respond_Type;
+    Response_ID Reference_String;
 }Display_packet ;
 
 class define_parameter
@@ -170,6 +196,34 @@ public:
                                              "Manual speed ",
                                              "Unknow command"
                                             };
+    QString COMMAND_STRING[NUM_OF_COMMAND_STRING] = {
+        "CMD_STOPNOW",
+        "CMD_SCAN_LIMIT",
+        "CMD_MOVE_HOME",
+        "CMD_MOVE_LINE",
+        "CMD_MOVE_CIRCLE",
+        "CMD_MOVE_JOINT",
+        "CMD_ROTATE_SINGLE",
+        "CMD_OUTPUT",
+        "CMD_READ_STATUS",
+        "CMD_READ_POSITION",
+        "CMD_SETTING",
+        "CMD_METHOD_CHANGE",
+
+        "CMD_JOB_NEW",
+        "CMD_JOB_DELETE",
+        "CMD_JOB_PUSH_MOVE_LINE",
+        "CMD_JOB_PUSH_MOVE_JOINT",
+        "CMD_JOB_PUSH_OUTPUT",
+        "CMD_JOB_TEST",
+        "CMD_JOB_RUN",// 7 job
+
+        "CMD_KEYBOARD",// 2 key board
+        "CMD_KEY_SPEED",
+        "CMD_ERROR",
+        "PROTOCOL_ERROR",
+        "NUM_OF_COMMAND"
+    };
     define_parameter();
     void Convert_And_Append(QByteArray *object_array, QVariant convert_object, TypeDef_Conversion input_type);
 };

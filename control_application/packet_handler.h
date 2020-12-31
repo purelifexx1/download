@@ -13,6 +13,7 @@ public:
     define_parameter *system_parameter;
     void categorize(QByteArray packet);
     void Scara_position_received(QByteArray data);
+    void Error_Handler(QByteArray data);
 signals:
     void on_display_event(Display_packet);
 private:

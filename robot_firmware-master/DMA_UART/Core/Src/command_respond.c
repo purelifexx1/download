@@ -323,7 +323,7 @@ Robot_RespondTypedef	commandReply	(Robot_CommandTypedef cmd_type,
 			SCARA_PositionTypeDef position;
 			scaraGetPosition(&position);
 			//scaraPosition2String((char *)detail, position);
-			scaraPosition_packaging(detail, position);
+			*detail_length = scaraPosition_packaging(detail, position);
 			ret =  RPD_POSITION;
 		}
 		break;
@@ -442,6 +442,7 @@ int32_t				commandRespond1	(Robot_RespondTypedef rpd,
 	respond[out_length++] = 0x28;
 	respond[out_length++] = RESPONSE_TRANSMISION;
 	respond[out_length++] = rpd;
+	respond[out_length++] = id_command;
 	if(detail_length != 0){
 		memcpy(&respond[out_length], detail, detail_length);
 		out_length += detail_length;

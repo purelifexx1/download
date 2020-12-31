@@ -1374,6 +1374,7 @@ int32_t scaraPosition_packaging(uint8_t *data_packet, SCARA_PositionTypeDef posi
 	Append_Coordinate_Value((int32_t)(position.Theta2*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
 	Append_Coordinate_Value((int32_t)(position.v_d3*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
 	Append_Coordinate_Value((int32_t)(position.v_theta4*COR_FOWARD_SCALE), &data_packet[cur_ptr+=4]);
+	return cur_ptr;
 }
 
 void Append_Coordinate_Value(int32_t append_value, uint8_t* append_position)

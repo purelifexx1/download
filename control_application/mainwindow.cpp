@@ -39,6 +39,9 @@ void MainWindow::display_event(Display_packet data)
             ui->tb_theta4_cur_val->setText(QString::number(data.Scara_position.theta4));
             ui->tb_d3_cur_val->setText(QString::number(data.Scara_position.D3));
         break;
+        case DISPLAY_ERROR:
+            ui->tb_console->append("RPD_ERROR | Command ID: " + system_parameter->COMMAND_STRING[data.Command_ID] + " | " + "Detail: " + system_parameter->DETAIL_STATUS[data.Respond_Type]);
+        break;
     }
 }
 
