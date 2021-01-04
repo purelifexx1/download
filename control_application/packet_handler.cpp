@@ -7,11 +7,13 @@ packet_handler::packet_handler()
 
 void packet_handler::categorize(QByteArray packet)
 {
+
     int packet_length = packet.length();
-    if(packet.at(0) == 0x28 && packet.at(packet_length-1) == 0x29){
+    if(packet.at(0) == 0x28 && packet.at(packet_length-1) == 0x29){              
         //full packet receive
         archive_buffer.clear();
-        routing(packet.mid(1, packet_length - 2));
+        packet_extract(packet);
+        //routing(packet.mid(1, packet_length - 2));
     }else if(packet.at(0) == 0x28 && packet.at(packet_length-1) != 0x29){
         //packet to long, receive first half
         archive_buffer.append(packet);
@@ -21,14 +23,37 @@ void packet_handler::categorize(QByteArray packet)
         if(archive_status == true){
             archive_status = false;
             archive_buffer.append(packet);
-            routing(archive_buffer.mid(1, archive_buffer.length() - 2));
+            packet_extract(archive_buffer);
+            //routing(archive_buffer.mid(1, archive_buffer.length() - 2));
             archive_buffer.clear();
         }else{
-
+            //error packet format
         }
     }else{
         //error packet format
     }
+}
+
+void packet_handler::packet_extract(QByteArray packet)
+{
+    QList<QByteArray> processed_packet_list;
+    QList<QByteArray> raw_packet_list = packet.split(')');
+    int packet_ptr = -1;
+    //using traditional for loop is much faster than foreach loop when applying for list object
+    for(int i = 0; i < raw_packet_list.count() - 1; i++){ //detach the last empty component
+        if(raw_packet_list.at(i).at(0) == 0x28){
+            processed_packet_list.append(raw_packet_list.at(i));
+            packet_ptr++;
+        }else{
+            processed_packet_list[packet_ptr].append(raw_packet_list.at(i));
+        }
+    }
+    //action for each packet
+    number_of_packet = processed_packet_list.count();
+    for(int i = 0; i < processed_packet_list.count(); i++){
+        routing(processed_packet_list[i].mid(1, processed_packet_list[i].length()-1));
+    }
+
 }
 
 void packet_handler::routing(QByteArray packet)
@@ -57,26 +82,15 @@ void packet_handler::routing(QByteArray packet)
                     }
                 break;
                 case RPD_START:
-
-                break;
                 case RPD_RUNNING:
-
-                break;
                 case RPD_DONE:
-
-                break;
-                case RPD_STOP:
-
-                break;
-                case RPD_ERROR:
-                    Error_Handler(packet.mid(0, packet_length-2));
-                break;
                 case RPD_OK:
-
-                break;
                 case RPD_DUTY:
-
+                case RPD_STOP:
+                case RPD_ERROR:
+                    Detail_Statusr_Handler(packet.mid(1, packet_length-1));
                 break;
+
                 case NUM_OF_RESPOND:
 
                 break;
@@ -89,7 +103,6 @@ void packet_handler::Scara_position_received(QByteArray data)
 {
     Scara_Position_RawData *RawData = reinterpret_cast<Scara_Position_RawData*>(data.data());
     Display_packet display_packet;
-
     display_packet.RealData.theta1 = (double)(RawData->raw_theta1*SCARA_INVERSE_SCALE);
     display_packet.RealData.theta2 = (double)(RawData->raw_theta2*SCARA_INVERSE_SCALE);
     display_packet.RealData.theta4 = (double)(RawData->raw_theta4*SCARA_INVERSE_SCALE);
@@ -102,47 +115,15 @@ void packet_handler::Scara_position_received(QByteArray data)
     emit on_display_event(display_packet);
 }
 
-void packet_handler::Error_Handler(QByteArray data)
+void packet_handler::Detail_Statusr_Handler(QByteArray data)
 {
     Display_packet display_packet;
-    display_packet.Respond_Type = RPD_ERROR;
-    display_packet.action_id = DISPLAY_ERROR;
-    switch(data.at(0)){
-    case CMD_STOPNOW               :
-    {
-
-    }
-    break;
-    case CMD_SCAN_LIMIT            :
-    case CMD_MOVE_HOME             :
-    {
-        display_packet.Command_ID = CMD_MOVE_HOME;
-        display_packet.Reference_String = (Response_ID)data.at(1);
-    }
-    break;
-    case CMD_MOVE_LINE             :
-    case CMD_MOVE_CIRCLE           :
-    case CMD_MOVE_JOINT            :
-    case CMD_ROTATE_SINGLE         :
-    case CMD_OUTPUT                :
-    case CMD_READ_STATUS           :
-    case CMD_READ_POSITION         :
-    case CMD_SETTING               :
-    case CMD_METHOD_CHANGE         :
-    case CMD_JOB_NEW               :
-    case CMD_JOB_DELETE            :
-    case CMD_JOB_PUSH_MOVE_LINE    :
-    case CMD_JOB_PUSH_MOVE_JOINT   :
-    case CMD_JOB_PUSH_OUTPUT       :
-    case CMD_JOB_TEST              :
-    case CMD_JOB_RUN               :
-    case CMD_KEYBOARD              :
-    case CMD_KEY_SPEED             :
-    case CMD_ERROR                 :
-    case PROTOCOL_ERROR            :
-    case NUM_OF_COMMAND            :
-    break;
-
+    display_packet.Respond_Type = (Robot_RespondTypedef)data.at(0);
+    display_packet.action_id = DISPLAY_RPD_DETAIL;
+    display_packet.Command_ID = (Robot_CommandTypedef)data.at(1);
+    int packet_length = data.length();
+    for(int i = 2; i < packet_length; i++){
+        display_packet.Reference_String.append((Response_ID)data.at(i));
     }
     emit on_display_event(display_packet);
 }

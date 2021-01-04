@@ -775,11 +775,89 @@
    <widget class="QTextEdit" name="tb_console">
     <property name="geometry">
      <rect>
-      <x>760</x>
-      <y>80</y>
+      <x>730</x>
+      <y>40</y>
       <width>261</width>
       <height>181</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_8">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>250</y>
+      <width>101</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Change method</string>
+    </property>
+    <widget class="QRadioButton" name="rb_manual">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>84</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>MANUAL</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rb_semi_auto">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>84</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>SEMI-AUTO</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="rb_auto">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>84</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>AUTO</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="bt_set_method">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Set method</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="bt_clear_console">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>220</y>
+      <width>80</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear console</string>
     </property>
    </widget>
   </widget>

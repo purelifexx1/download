@@ -1,0 +1,20 @@
++ Standard input RIA form
+If the index of the inputs are the same for all equations.
+
++ Standard output RIA form
+If the output indices, i.e. indices on the left side, are the same
+====
+E.g. 
+FIR filter, RIA description is
+W(i+1,j) = W(i,j)
+X(i,j+1) = X(i,j)
+Y(i+1,j-1)=Y(i,j) + W(i+1,j-1)*X(i+1,j-1)
+
+Cannot expressed as standard input RIA form, but can be expressed as standard output RIA form
+W(i,j) = W(i-1,j)
+X(i,j) = X(i,j-1)
+Y(i,j)=Y(i-1,j+1) + W(i,j)*X(i,j)
+
+
+=====
+http://twins.ee.nctu.edu.tw/courses/dspic_14/class_note.htm

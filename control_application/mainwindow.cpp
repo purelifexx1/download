@@ -39,11 +39,25 @@ void MainWindow::display_event(Display_packet data)
             ui->tb_theta4_cur_val->setText(QString::number(data.RealData.theta4));
             ui->tb_d3_cur_val->setText(QString::number(data.RealData.D3));
             ui->tb_console->append("Position data received");
+            ui->tb_console->append("--------------------------");
         break;
-        case DISPLAY_ERROR:
-            ui->tb_console->append("RPD_ERROR | Command ID: " + system_parameter->COMMAND_STRING[data.Command_ID] + " | " + "Detail: " + system_parameter->DETAIL_STATUS[data.Respond_Type]);
+        case DISPLAY_RPD_DETAIL:
+            if(_packet_handler->number_of_packet != 0){
+                _packet_handler->number_of_packet--;
+            }
+            QString detail_string;
+            for(int t = 0; t < data.Reference_String.length(); t++){
+                detail_string += system_parameter->DETAIL_STATUS[data.Reference_String.at(t)] + "; ";
+            }
+            ui->tb_console->append(system_parameter->RDP_String[data.Respond_Type]
+                    + " | Command ID: " + system_parameter->COMMAND_STRING[data.Command_ID]
+                    + " | Detail: " + detail_string);
+            if(_packet_handler->number_of_packet == 0){
+                ui->tb_console->append("--------------------------");
+            }
         break;
     }
+
 }
 
 void MainWindow::QbyteArray_AddValue(QByteArray *object_array, QVariant convert_object, TypeDef_Conversion input_type)
@@ -120,8 +134,8 @@ void MainWindow::on_bt_home_clicked()
     command.append(0x28);
     command.append(COMMAND_TRANSMISION);
     command.append(CMD_MOVE_HOME);
-    QbyteArray_AddValue(&command, ui->tb_v_factor->text(), DOUBLE_STRING_VALUE);
-    QbyteArray_AddValue(&command, ui->tb_a_factor->text(), DOUBLE_STRING_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_v_factor->text(), SCARA_COR_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_a_factor->text(), SCARA_COR_VALUE);
     command.append(0x29);
     mSerial->write(command, command.length());
 }
@@ -132,17 +146,17 @@ void MainWindow::on_bt_movL_clicked()
     command.append(0x28);
     command.append(COMMAND_TRANSMISION);
     command.append(CMD_MOVE_LINE);
-    QbyteArray_AddValue(&command, ui->tb_x_cor->text(), DOUBLE_STRING_VALUE);
-    QbyteArray_AddValue(&command, ui->tb_y_cor->text(), DOUBLE_STRING_VALUE);
-    QbyteArray_AddValue(&command, ui->tb_z_cor->text(), DOUBLE_STRING_VALUE);
-    QbyteArray_AddValue(&command, ui->tb_roll_ang->text(), DOUBLE_STRING_VALUE);
-    QbyteArray_AddValue(&command, ui->tb_v_factor->text(), DOUBLE_STRING_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_x_cor->text(), SCARA_COR_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_y_cor->text(), SCARA_COR_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_z_cor->text(), SCARA_COR_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_roll_ang->text(), SCARA_COR_VALUE);
+    QbyteArray_AddValue(&command, ui->tb_v_factor->text(), SCARA_COR_VALUE);
     if(ui->rb_qva->isChecked() == true) {
         command.append(DUTY_MODE_INIT_QVA);
-        QbyteArray_AddValue(&command, ui->tb_a_factor->text(), DOUBLE_STRING_VALUE);
+        QbyteArray_AddValue(&command, ui->tb_a_factor->text(), SCARA_COR_VALUE);
     }else if(ui->rb_qvt->isChecked() == true){
         command.append(DUTY_MODE_INIT_QVT);
-        QbyteArray_AddValue(&command, ui->tb_time->text(), DOUBLE_STRING_VALUE);
+        QbyteArray_AddValue(&command, ui->tb_time->text(), SCARA_COR_VALUE);
     }
     command.append(0x29);
     mSerial->write(command, command.length());
@@ -208,7 +222,7 @@ void MainWindow::on_bt_keycommand()
     command.append(COMMAND_TRANSMISION);
     command.append(CMD_KEYBOARD);
     QPushButton *obj_sender = (QPushButton*)sender();
-    uint8_t selection = (uint8_t)obj_sender->objectName().split('_')[2].toInt();
+    uint8_t selection = (uint8_t)obj_sender->objectName().split('_')[2].toInt() - 1;
     command.append(selection);
     command.append(0x29);
     mSerial->write(command, command.length());
@@ -226,4 +240,30 @@ void MainWindow::on_bt_key_setsp_clicked()
     command.append(key_speed);
     command.append(0x29);
     mSerial->write(command, command.length());
+}
+
+void MainWindow::on_bt_set_method_clicked()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_METHOD_CHANGE);
+    if(ui->rb_manual->isChecked() == true){
+        command.append(SCARA_METHOD_MANUAL);
+    }else if(ui->rb_semi_auto->isChecked() == true){
+        command.append(SCARA_METHOD_SEMI_AUTO);
+    }else if(ui->rb_auto->isChecked() == true){
+        command.append(SCARA_METHOD_AUTO);
+    }else{
+        ui->tb_console->append("Please select method");
+        ui->tb_console->append("--------------------------");
+        return;
+    }
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}
+
+void MainWindow::on_bt_clear_console_clicked()
+{
+    ui->tb_console->clear();
 }

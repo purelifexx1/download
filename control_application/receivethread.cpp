@@ -25,7 +25,7 @@ void ReceiveThread::run()
                     attemp = 0;
                 }else
                     attemp++;
-                if (attemp == 5) break;
+                if (attemp == 4) break;
             }
             if (count == 500) {
                 receive_flag = over_length_packet;

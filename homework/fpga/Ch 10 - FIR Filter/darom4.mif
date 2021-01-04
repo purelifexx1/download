@@ -1,0 +1,24 @@
+-- This is the DA MIF table for the 4 coefficients: 0, 0, 0, 0
+-- automatically generated with dagen.exe -- DO NOT EDIT!
+WIDTH = 0
+DEPTH = 16
+ADDRESS_RADIX = dec;
+DATA_RADIX = dec;
+CONTENT BEGIN
+     0     :   0;
+     1     :   0;
+     2     :   0;
+     3     :   0;
+     4     :   0;
+     5     :   0;
+     6     :   0;
+     7     :   0;
+     8     :   0;
+     9     :   0;
+     10     :   0;
+     11     :   0;
+     12     :   0;
+     13     :   0;
+     14     :   0;
+     15     :   0;
+END;

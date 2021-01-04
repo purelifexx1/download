@@ -12,12 +12,14 @@ public:
     packet_handler();
     define_parameter *system_parameter;
     void categorize(QByteArray packet);
-    void Scara_position_received(QByteArray data);
-    void Error_Handler(QByteArray data);
+    int32_t number_of_packet;
 signals:
     void on_display_event(Display_packet);
 private:
     void routing(QByteArray packet);
+    void packet_extract(QByteArray packet);
+    void Scara_position_received(QByteArray data);
+    void Detail_Statusr_Handler(QByteArray data);
     QByteArray archive_buffer;
     bool archive_status = false;
 };

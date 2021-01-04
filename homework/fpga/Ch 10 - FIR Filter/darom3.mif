@@ -1,0 +1,16 @@
+-- This is the DA MIF table for the 3 coefficients: 1, 2, 3
+-- automatically generated with dagen.exe -- DO NOT EDIT!
+WIDTH = 3
+DEPTH = 8
+ADDRESS_RADIX = dec;
+DATA_RADIX = dec;
+CONTENT BEGIN
+     0     :   0;
+     1     :   1;
+     2     :   2;
+     3     :   3;
+     4     :   3;
+     5     :   4;
+     6     :   5;
+     7     :   6;
+END;

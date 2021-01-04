@@ -4,12 +4,11 @@
 #include <QtCore>
 #define SCARA_FOWARD_SCALE 1000000
 #define SCARA_INVERSE_SCALE 0.000001f
-#define NUM_OF_STATUS 23
-#define NUM_OF_COMMAND_STRING 24
+
 typedef enum
 {
     DISPLAY_POSITION,
-    DISPLAY_ERROR
+    DISPLAY_RPD_DETAIL
 }display_id ;
 
 typedef enum
@@ -18,6 +17,13 @@ typedef enum
     MAGNET_OFF,
     WRONG_VALUE_FOR_OUTPUT_LEVEL
 }Response_Detail_code;
+
+typedef enum
+{
+      SCARA_METHOD_MANUAL					= 0x00U,  /*!< Control by joy stick */
+      SCARA_METHOD_SEMI_AUTO				= 0x01U,  /*!< Control by single command: MOVJ, MOVL, MOVC   */
+      SCARA_METHOD_AUTO						= 0x02U   /*!< Control by job file  */
+}SCARA_MethodTypeDef;
 
 typedef enum
 {
@@ -43,7 +49,18 @@ typedef enum
     S_CURVE,
     CHECK_PARAMETER,
     MANUAL_SPEED,
-    UNKNOW_COMMAND
+    UNKNOW_COMMAND,
+    MANUAL_METHOD   ,
+    SEMI_AUTO_METHOD,
+    AUTO_METHOD     ,
+    STOP_NOW        ,
+    START_SCAN      ,
+    BUSY            ,
+    NOT_SCAN        ,
+    INCORRECT_METHOD,
+
+    NONE            ,
+    NUM_OF_STATUS
 }Response_ID;
 
 typedef enum
@@ -126,8 +143,28 @@ typedef enum
     CMD_KEY_SPEED,
     CMD_ERROR,
     PROTOCOL_ERROR,
-    NUM_OF_COMMAND
+    NUM_OF_COMMAND,
+
+    NUM_OF_COMMAND_STRING
 }Robot_CommandTypedef ;
+
+typedef enum
+{
+      SCARA_STATUS_OK				   ,
+      SCARA_STATUS_ERROR			   ,
+      SCARA_STATUS_ERROR_SPACE		   ,
+      SCARA_STATUS_ERROR_TASK		   ,
+      SCARA_STATUS_ERROR_JOINT		   ,
+      SCARA_STATUS_ERROR_TRAJECTORY	   ,
+      SCARA_STATUS_ERROR_PARA		   ,
+      SCARA_STATUS_ERROR_OVER_WORKSPACE,
+      SCARA_STATUS_ERROR_MODE_INIT 	   ,
+      SCARA_STATUS_ERROR_OVER_VELOC	   ,
+      SCARA_STATUS_ERROR_OVER_ACCEL	   ,
+      SCARA_STATUS_ERROR_JOINT_NUM	   ,
+      SCARA_STATUS_ERROR_COORDINATE	   ,
+      NUM_OF_MAIN_TASK_STATUS
+}SCARA_StatusTypeDef;
 
 typedef enum
 {
@@ -177,7 +214,7 @@ typedef struct
     Scara_Position_RealData RealData;
     Robot_CommandTypedef Command_ID;
     Robot_RespondTypedef Respond_Type;
-    Response_ID Reference_String;
+    QList<Response_ID> Reference_String;
 }Display_packet ;
 
 class define_parameter
@@ -206,7 +243,17 @@ public:
                                              "S-CURVE",
                                              "Check parameter",
                                              "Manual speed ",
-                                             "Unknow command"
+                                             "Unknow command",
+                                             "Changed MANUAL Method",
+                                             "Changed SEMI AUTO Method",
+                                             "Changed AUTO Method",
+                                             "Stop Now",
+                                             "Start scan",
+                                             "Busy",
+                                             "Has not SCAN yet",
+                                             "METHOD isn't correct",
+
+                                             ""
                                             };
     QString COMMAND_STRING[NUM_OF_COMMAND_STRING] = {
         "CMD_STOPNOW",
@@ -236,6 +283,19 @@ public:
         "PROTOCOL_ERROR",
         "NUM_OF_COMMAND"
     };
+    QString RDP_String[NUM_OF_RESPOND] = {
+        "RPD_IDLE"	  ,
+        "RPD_BUSY"	  ,
+        "RPD_POSITION",
+        "RPD_START"   ,
+        "RPD_RUNNING" ,
+        "RPD_DONE"	  ,
+        "RPD_STOP"	  ,
+        "RPD_ERROR"	  ,
+        "RPD_OK" 	  ,
+        "RPD_DUTY"
+    };
+
     define_parameter();
     void Convert_And_Append(QByteArray *object_array, QVariant convert_object, TypeDef_Conversion input_type);
 };

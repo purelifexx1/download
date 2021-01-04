@@ -92,6 +92,12 @@ public:
     QLabel *label_15;
     QPushButton *bt_read_position;
     QTextEdit *tb_console;
+    QGroupBox *groupBox_8;
+    QRadioButton *rb_manual;
+    QRadioButton *rb_semi_auto;
+    QRadioButton *rb_auto;
+    QPushButton *bt_set_method;
+    QPushButton *bt_clear_console;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -291,7 +297,25 @@ public:
         bt_read_position->setGeometry(QRect(10, 140, 80, 21));
         tb_console = new QTextEdit(centralwidget);
         tb_console->setObjectName(QString::fromUtf8("tb_console"));
-        tb_console->setGeometry(QRect(760, 80, 261, 181));
+        tb_console->setGeometry(QRect(730, 40, 261, 181));
+        groupBox_8 = new QGroupBox(centralwidget);
+        groupBox_8->setObjectName(QString::fromUtf8("groupBox_8"));
+        groupBox_8->setGeometry(QRect(750, 250, 101, 111));
+        rb_manual = new QRadioButton(groupBox_8);
+        rb_manual->setObjectName(QString::fromUtf8("rb_manual"));
+        rb_manual->setGeometry(QRect(10, 20, 84, 19));
+        rb_semi_auto = new QRadioButton(groupBox_8);
+        rb_semi_auto->setObjectName(QString::fromUtf8("rb_semi_auto"));
+        rb_semi_auto->setGeometry(QRect(10, 40, 84, 19));
+        rb_auto = new QRadioButton(groupBox_8);
+        rb_auto->setObjectName(QString::fromUtf8("rb_auto"));
+        rb_auto->setGeometry(QRect(10, 60, 84, 19));
+        bt_set_method = new QPushButton(groupBox_8);
+        bt_set_method->setObjectName(QString::fromUtf8("bt_set_method"));
+        bt_set_method->setGeometry(QRect(10, 80, 80, 21));
+        bt_clear_console = new QPushButton(centralwidget);
+        bt_clear_console->setObjectName(QString::fromUtf8("bt_clear_console"));
+        bt_clear_console->setGeometry(QRect(910, 220, 80, 21));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -354,6 +378,12 @@ public:
         label_14->setText(QCoreApplication::translate("MainWindow", "D3", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "theta2", nullptr));
         bt_read_position->setText(QCoreApplication::translate("MainWindow", "Read position", nullptr));
+        groupBox_8->setTitle(QCoreApplication::translate("MainWindow", "Change method", nullptr));
+        rb_manual->setText(QCoreApplication::translate("MainWindow", "MANUAL", nullptr));
+        rb_semi_auto->setText(QCoreApplication::translate("MainWindow", "SEMI-AUTO", nullptr));
+        rb_auto->setText(QCoreApplication::translate("MainWindow", "AUTO", nullptr));
+        bt_set_method->setText(QCoreApplication::translate("MainWindow", "Set method", nullptr));
+        bt_clear_console->setText(QCoreApplication::translate("MainWindow", "Clear console", nullptr));
     } // retranslateUi
 
 };
