@@ -49,6 +49,8 @@ private slots:
 
     void on_bt_clear_console_clicked();
 
+    void on_testing_clicked();
+
 public slots:
     void received_callback(QByteArray data);
     void display_event(Display_packet data);

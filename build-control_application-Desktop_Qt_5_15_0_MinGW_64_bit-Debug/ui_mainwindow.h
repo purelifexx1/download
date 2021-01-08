@@ -98,6 +98,7 @@ public:
     QRadioButton *rb_auto;
     QPushButton *bt_set_method;
     QPushButton *bt_clear_console;
+    QPushButton *testing;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -316,6 +317,9 @@ public:
         bt_clear_console = new QPushButton(centralwidget);
         bt_clear_console->setObjectName(QString::fromUtf8("bt_clear_console"));
         bt_clear_console->setGeometry(QRect(910, 220, 80, 21));
+        testing = new QPushButton(centralwidget);
+        testing->setObjectName(QString::fromUtf8("testing"));
+        testing->setGeometry(QRect(890, 310, 80, 21));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -384,6 +388,7 @@ public:
         rb_auto->setText(QCoreApplication::translate("MainWindow", "AUTO", nullptr));
         bt_set_method->setText(QCoreApplication::translate("MainWindow", "Set method", nullptr));
         bt_clear_console->setText(QCoreApplication::translate("MainWindow", "Clear console", nullptr));
+        testing->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };

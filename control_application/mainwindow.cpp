@@ -267,3 +267,46 @@ void MainWindow::on_bt_clear_console_clicked()
 {
     ui->tb_console->clear();
 }
+
+void MainWindow::on_testing_clicked()
+{
+    double current_theta2;
+    double d1, d4, a4, a1, a2;
+    double x, y, z, roll;
+    double s1, c1, s2, s2_positive, s2_negative, c2 , temp;
+    double theta1, theta2, theta2_positive, theta2_negative, d3, theta4 , pWx, pWy;
+    x = 120.0f; y = -20.23f; z = 5.23; roll = 2.23;
+    current_theta2 = 2.473f;
+    d1	=			211.0f   ;
+    a1	=			197.0f   ;
+    a2	=			160.0f   ;
+    d4	=			77.674f  ;
+    a4	=			32.36f   ;
+    d3  = d1 - d4 - z;
+    pWx = x - a4*cos(roll);
+    pWy = y - a4*sin(roll);
+    c2  = (pWx*pWx + pWy*pWy - a1*a1 - a2*a2) / (2*a1*a2);
+    temp = 1 - c2*c2;
+//    if ( temp < 0 ) {
+//        return false;
+//    }
+    s2_positive  = sqrt(temp); // Note that there are 2 solution: elbow up & elbow down
+    s2_negative	 = -s2_positive;
+
+    theta2_positive = atan2(s2_positive,c2);
+    theta2_negative = atan2(s2_negative,c2);
+    // Choose relevant situation : nearest
+    if ( fabs( theta2_positive - current_theta2) <= fabs( theta2_negative - current_theta2)) {
+        s2 		= s2_positive;
+        theta2 	= theta2_positive;
+    } else {
+        s2 		= s2_negative;
+        theta2 	= theta2_negative;
+    }
+
+    s1 = ((a1 + a2*c2)*pWy - a2*s2*pWx) / (pWx*pWx + pWy*pWy);
+    c1 = ((a1 + a2*c2)*pWx + a2*s2*pWy) / (pWx*pWx + pWy*pWy);
+    theta1 = atan2(s1,c1);
+    theta4 = theta1 + theta2 - roll;
+    qDebug() << "end";
+}
