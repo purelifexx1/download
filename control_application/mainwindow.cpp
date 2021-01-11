@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
         QPushButton *object_bt = this->findChild<QPushButton*>(temp + QString::number(i));
         connect(object_bt, SIGNAL(clicked()), this, SLOT(on_bt_keycommand()));
     }
+    connect(ui->bt_start_test, SIGNAL(clicked()), this, SLOT(on_bt_testmt()));
+    connect(ui->bt_stop_test, SIGNAL(clicked()), this, SLOT(on_bt_testmt()));
 }
 
 MainWindow::~MainWindow()
@@ -33,7 +35,7 @@ void MainWindow::display_event(Display_packet data)
             ui->tb_x_cur_cor->setText(QString::number(data.RealData.x));
             ui->tb_y_cur_cor->setText(QString::number(data.RealData.y));
             ui->tb_z_cur_cor->setText(QString::number(data.RealData.z));
-            ui->tb_roll_cur_cor->setText(QString::number(data.RealData.roll));
+            ui->tb_roll_cur_cor->setText(QString::number(data.RealData.roll*180.0f/3.141592f));
             ui->tb_theta1_cur_val->setText(QString::number(data.RealData.theta1));
             ui->tb_theta2_cur_val->setText(QString::number(data.RealData.theta2));
             ui->tb_theta4_cur_val->setText(QString::number(data.RealData.theta4));
@@ -268,6 +270,29 @@ void MainWindow::on_bt_clear_console_clicked()
     ui->tb_console->clear();
 }
 
+void MainWindow::on_bt_testmt()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_MOTOR_TEST);
+    uint8_t sign = (ui->hs_testmt_sign->value() == 1)?1:0;
+    uint8_t pos = (ui->rb_test_mt1->isChecked()==true)?0:
+                  (ui->rb_test_mt2->isChecked()==true)?1:
+                  (ui->rb_test_mt3->isChecked()==true)?2:
+                  (ui->rb_test_mt4->isChecked()==true)?3:0;
+    SCARA_TestMode test_mode = SCARA_TestMode(pos*2 + sign);
+    command.append(test_mode);
+    QPushButton *obj_sender = (QPushButton*)sender();
+    if(obj_sender->objectName() == "bt_start_test"){
+
+    }else if(obj_sender->objectName() == "bt_stop_test"){
+
+    }
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}
+
 void MainWindow::on_testing_clicked()
 {
     double current_theta2;
@@ -310,3 +335,4 @@ void MainWindow::on_testing_clicked()
     theta4 = theta1 + theta2 - roll;
     qDebug() << "end";
 }
+

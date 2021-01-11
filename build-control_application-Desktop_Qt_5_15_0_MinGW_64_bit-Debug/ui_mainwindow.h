@@ -19,7 +19,9 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
@@ -92,13 +94,26 @@ public:
     QLabel *label_15;
     QPushButton *bt_read_position;
     QTextEdit *tb_console;
+    QPushButton *bt_clear_console;
+    QPushButton *testing;
+    QTabWidget *tabWidget;
+    QWidget *tab;
     QGroupBox *groupBox_8;
     QRadioButton *rb_manual;
     QRadioButton *rb_semi_auto;
     QRadioButton *rb_auto;
     QPushButton *bt_set_method;
-    QPushButton *bt_clear_console;
-    QPushButton *testing;
+    QWidget *tab_2;
+    QGroupBox *groupBox_9;
+    QRadioButton *rb_test_mt1;
+    QRadioButton *rb_test_mt2;
+    QRadioButton *rb_test_mt3;
+    QRadioButton *rb_test_mt4;
+    QPushButton *bt_start_test;
+    QSlider *hs_testmt_sign;
+    QLabel *label_16;
+    QLabel *label_17;
+    QPushButton *bt_stop_test;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -106,7 +121,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1079, 430);
+        MainWindow->resize(1079, 424);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         com_list = new QComboBox(centralwidget);
@@ -156,7 +171,7 @@ public:
         tb_key_setsp->setGeometry(QRect(220, 100, 81, 21));
         groupBox_2 = new QGroupBox(centralwidget);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        groupBox_2->setGeometry(QRect(330, 10, 391, 341));
+        groupBox_2->setGeometry(QRect(330, 10, 391, 291));
         tb_x_cor = new QLineEdit(groupBox_2);
         tb_x_cor->setObjectName(QString::fromUtf8("tb_x_cor"));
         tb_x_cor->setGeometry(QRect(10, 30, 113, 21));
@@ -299,9 +314,20 @@ public:
         tb_console = new QTextEdit(centralwidget);
         tb_console->setObjectName(QString::fromUtf8("tb_console"));
         tb_console->setGeometry(QRect(730, 40, 261, 181));
-        groupBox_8 = new QGroupBox(centralwidget);
+        bt_clear_console = new QPushButton(centralwidget);
+        bt_clear_console->setObjectName(QString::fromUtf8("bt_clear_console"));
+        bt_clear_console->setGeometry(QRect(920, 10, 80, 21));
+        testing = new QPushButton(centralwidget);
+        testing->setObjectName(QString::fromUtf8("testing"));
+        testing->setGeometry(QRect(1000, 170, 80, 21));
+        tabWidget = new QTabWidget(centralwidget);
+        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setGeometry(QRect(730, 230, 241, 141));
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        groupBox_8 = new QGroupBox(tab);
         groupBox_8->setObjectName(QString::fromUtf8("groupBox_8"));
-        groupBox_8->setGeometry(QRect(750, 250, 101, 111));
+        groupBox_8->setGeometry(QRect(10, 0, 101, 111));
         rb_manual = new QRadioButton(groupBox_8);
         rb_manual->setObjectName(QString::fromUtf8("rb_manual"));
         rb_manual->setGeometry(QRect(10, 20, 84, 19));
@@ -314,12 +340,42 @@ public:
         bt_set_method = new QPushButton(groupBox_8);
         bt_set_method->setObjectName(QString::fromUtf8("bt_set_method"));
         bt_set_method->setGeometry(QRect(10, 80, 80, 21));
-        bt_clear_console = new QPushButton(centralwidget);
-        bt_clear_console->setObjectName(QString::fromUtf8("bt_clear_console"));
-        bt_clear_console->setGeometry(QRect(910, 220, 80, 21));
-        testing = new QPushButton(centralwidget);
-        testing->setObjectName(QString::fromUtf8("testing"));
-        testing->setGeometry(QRect(890, 310, 80, 21));
+        tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        groupBox_9 = new QGroupBox(tab_2);
+        groupBox_9->setObjectName(QString::fromUtf8("groupBox_9"));
+        groupBox_9->setGeometry(QRect(0, 0, 231, 101));
+        rb_test_mt1 = new QRadioButton(groupBox_9);
+        rb_test_mt1->setObjectName(QString::fromUtf8("rb_test_mt1"));
+        rb_test_mt1->setGeometry(QRect(10, 20, 61, 19));
+        rb_test_mt2 = new QRadioButton(groupBox_9);
+        rb_test_mt2->setObjectName(QString::fromUtf8("rb_test_mt2"));
+        rb_test_mt2->setGeometry(QRect(10, 40, 61, 19));
+        rb_test_mt3 = new QRadioButton(groupBox_9);
+        rb_test_mt3->setObjectName(QString::fromUtf8("rb_test_mt3"));
+        rb_test_mt3->setGeometry(QRect(10, 60, 61, 19));
+        rb_test_mt4 = new QRadioButton(groupBox_9);
+        rb_test_mt4->setObjectName(QString::fromUtf8("rb_test_mt4"));
+        rb_test_mt4->setGeometry(QRect(10, 80, 61, 19));
+        bt_start_test = new QPushButton(groupBox_9);
+        bt_start_test->setObjectName(QString::fromUtf8("bt_start_test"));
+        bt_start_test->setGeometry(QRect(80, 40, 61, 21));
+        hs_testmt_sign = new QSlider(groupBox_9);
+        hs_testmt_sign->setObjectName(QString::fromUtf8("hs_testmt_sign"));
+        hs_testmt_sign->setGeometry(QRect(130, 70, 41, 16));
+        hs_testmt_sign->setMaximum(1);
+        hs_testmt_sign->setOrientation(Qt::Horizontal);
+        label_16 = new QLabel(groupBox_9);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+        label_16->setGeometry(QRect(80, 70, 47, 13));
+        label_17 = new QLabel(groupBox_9);
+        label_17->setObjectName(QString::fromUtf8("label_17"));
+        label_17->setGeometry(QRect(180, 70, 47, 13));
+        bt_stop_test = new QPushButton(groupBox_9);
+        bt_stop_test->setObjectName(QString::fromUtf8("bt_stop_test"));
+        bt_stop_test->setGeometry(QRect(150, 40, 61, 21));
+        tabWidget->addTab(tab_2, QString());
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -330,6 +386,9 @@ public:
         MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
+
+        tabWidget->setCurrentIndex(1);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -382,13 +441,24 @@ public:
         label_14->setText(QCoreApplication::translate("MainWindow", "D3", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "theta2", nullptr));
         bt_read_position->setText(QCoreApplication::translate("MainWindow", "Read position", nullptr));
+        bt_clear_console->setText(QCoreApplication::translate("MainWindow", "Clear console", nullptr));
+        testing->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         groupBox_8->setTitle(QCoreApplication::translate("MainWindow", "Change method", nullptr));
         rb_manual->setText(QCoreApplication::translate("MainWindow", "MANUAL", nullptr));
         rb_semi_auto->setText(QCoreApplication::translate("MainWindow", "SEMI-AUTO", nullptr));
         rb_auto->setText(QCoreApplication::translate("MainWindow", "AUTO", nullptr));
         bt_set_method->setText(QCoreApplication::translate("MainWindow", "Set method", nullptr));
-        bt_clear_console->setText(QCoreApplication::translate("MainWindow", "Clear console", nullptr));
-        testing->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
+        groupBox_9->setTitle(QCoreApplication::translate("MainWindow", "Test motor", nullptr));
+        rb_test_mt1->setText(QCoreApplication::translate("MainWindow", "Motor1", nullptr));
+        rb_test_mt2->setText(QCoreApplication::translate("MainWindow", "Motor2", nullptr));
+        rb_test_mt3->setText(QCoreApplication::translate("MainWindow", "Motor3", nullptr));
+        rb_test_mt4->setText(QCoreApplication::translate("MainWindow", "Motor4", nullptr));
+        bt_start_test->setText(QCoreApplication::translate("MainWindow", "Start test", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "Positive", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "Negative", nullptr));
+        bt_stop_test->setText(QCoreApplication::translate("MainWindow", "Stop test", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "Tab 2", nullptr));
     } // retranslateUi
 
 };
