@@ -103,6 +103,7 @@ public:
     QRadioButton *rb_semi_auto;
     QRadioButton *rb_auto;
     QPushButton *bt_set_method;
+    QRadioButton *rb_test;
     QWidget *tab_2;
     QGroupBox *groupBox_9;
     QRadioButton *rb_test_mt1;
@@ -327,7 +328,7 @@ public:
         tab->setObjectName(QString::fromUtf8("tab"));
         groupBox_8 = new QGroupBox(tab);
         groupBox_8->setObjectName(QString::fromUtf8("groupBox_8"));
-        groupBox_8->setGeometry(QRect(10, 0, 101, 111));
+        groupBox_8->setGeometry(QRect(10, 0, 181, 111));
         rb_manual = new QRadioButton(groupBox_8);
         rb_manual->setObjectName(QString::fromUtf8("rb_manual"));
         rb_manual->setGeometry(QRect(10, 20, 84, 19));
@@ -340,6 +341,9 @@ public:
         bt_set_method = new QPushButton(groupBox_8);
         bt_set_method->setObjectName(QString::fromUtf8("bt_set_method"));
         bt_set_method->setGeometry(QRect(10, 80, 80, 21));
+        rb_test = new QRadioButton(groupBox_8);
+        rb_test->setObjectName(QString::fromUtf8("rb_test"));
+        rb_test->setGeometry(QRect(90, 20, 84, 19));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
@@ -387,7 +391,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -448,6 +452,7 @@ public:
         rb_semi_auto->setText(QCoreApplication::translate("MainWindow", "SEMI-AUTO", nullptr));
         rb_auto->setText(QCoreApplication::translate("MainWindow", "AUTO", nullptr));
         bt_set_method->setText(QCoreApplication::translate("MainWindow", "Set method", nullptr));
+        rb_test->setText(QCoreApplication::translate("MainWindow", "TEST", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
         groupBox_9->setTitle(QCoreApplication::translate("MainWindow", "Test motor", nullptr));
         rb_test_mt1->setText(QCoreApplication::translate("MainWindow", "Motor1", nullptr));

@@ -256,6 +256,8 @@ void MainWindow::on_bt_set_method_clicked()
         command.append(SCARA_METHOD_SEMI_AUTO);
     }else if(ui->rb_auto->isChecked() == true){
         command.append(SCARA_METHOD_AUTO);
+    }else if(ui->rb_test->isChecked() == true){
+        command.append(SCARA_METHOD_TEST);
     }else{
         ui->tb_console->append("Please select method");
         ui->tb_console->append("--------------------------");
@@ -281,13 +283,12 @@ void MainWindow::on_bt_testmt()
                   (ui->rb_test_mt2->isChecked()==true)?1:
                   (ui->rb_test_mt3->isChecked()==true)?2:
                   (ui->rb_test_mt4->isChecked()==true)?3:0;
-    SCARA_TestMode test_mode = SCARA_TestMode(pos*2 + sign);
-    command.append(test_mode);
+    SCARA_TestMode test_mode = SCARA_TestMode(pos*2 + sign);   
     QPushButton *obj_sender = (QPushButton*)sender();
     if(obj_sender->objectName() == "bt_start_test"){
-
+       command.append(test_mode);
     }else if(obj_sender->objectName() == "bt_stop_test"){
-
+       command.append(SCARA_TEST_MOTOR_STOP);
     }
     command.append(0x29);
     mSerial->write(command, command.length());

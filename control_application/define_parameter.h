@@ -22,7 +22,8 @@ typedef enum
 {
       SCARA_METHOD_MANUAL					= 0x00U,  /*!< Control by joy stick */
       SCARA_METHOD_SEMI_AUTO				= 0x01U,  /*!< Control by single command: MOVJ, MOVL, MOVC   */
-      SCARA_METHOD_AUTO						= 0x02U   /*!< Control by job file  */
+      SCARA_METHOD_AUTO						= 0x02U,   /*!< Control by job file  */
+      SCARA_METHOD_TEST                     = 0x03U
 }SCARA_MethodTypeDef;
 
 typedef enum
@@ -34,7 +35,8 @@ typedef enum
     SCARA_TEST_MOTOR3_POS,
     SCARA_TEST_MOTOR3_NEG,
     SCARA_TEST_MOTOR4_POS,
-    SCARA_TEST_MOTOR4_NEG
+    SCARA_TEST_MOTOR4_NEG,
+    SCARA_TEST_MOTOR_STOP,
 }SCARA_TestMode;
 typedef enum
 {
@@ -64,6 +66,7 @@ typedef enum
     MANUAL_METHOD   ,
     SEMI_AUTO_METHOD,
     AUTO_METHOD     ,
+    TEST_METHOD     ,
     STOP_NOW        ,
     START_SCAN      ,
     BUSY            ,
@@ -259,6 +262,7 @@ public:
                                              "Changed MANUAL Method",
                                              "Changed SEMI AUTO Method",
                                              "Changed AUTO Method",
+                                             "Changed TEST Method",
                                              "Stop Now",
                                              "Start scan",
                                              "Busy",
@@ -280,6 +284,7 @@ public:
         "CMD_READ_POSITION",
         "CMD_SETTING",
         "CMD_METHOD_CHANGE",
+        "CMD_MOTOR_TEST",
 
         "CMD_JOB_NEW",
         "CMD_JOB_DELETE",
