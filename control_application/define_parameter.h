@@ -23,7 +23,8 @@ typedef enum
       SCARA_METHOD_MANUAL					= 0x00U,  /*!< Control by joy stick */
       SCARA_METHOD_SEMI_AUTO				= 0x01U,  /*!< Control by single command: MOVJ, MOVL, MOVC   */
       SCARA_METHOD_AUTO						= 0x02U,   /*!< Control by job file  */
-      SCARA_METHOD_TEST                     = 0x03U
+      SCARA_METHOD_TEST                     = 0x03U,
+      SCARA_METHOD_PICK_AND_PLACE           = 0x04U
 }SCARA_MethodTypeDef;
 
 typedef enum
@@ -56,6 +57,7 @@ typedef enum
     OUTPUT_ON,
     OUTPUT_OFF,
     WRONG_OUTPUT_VALUE,
+    WRONG_READ_POSITION_TYPE,
     ABSOLUTE,
     RELATIVE,
     LSPB,
@@ -67,6 +69,7 @@ typedef enum
     SEMI_AUTO_METHOD,
     AUTO_METHOD     ,
     TEST_METHOD     ,
+    PICK_AND_PLACE_METHOD,
     STOP_NOW        ,
     START_SCAN      ,
     BUSY            ,
@@ -95,7 +98,9 @@ typedef enum
 typedef enum
 {
       DUTY_MODE_INIT_QVA				= 0x00U,  /*!< Consume A max, determine T max */
-      DUTY_MODE_INIT_QVT				= 0x01U  /*!< Consume T max, determine A max   */
+      DUTY_MODE_INIT_QVT				= 0x01U,  /*!< Consume T max, determine A max   */
+      DUTY_MODE_INIT_QV                 = 0x02U,
+      DUTY_MODE_INIT_QT                 = 0x03U
 }ModeInitTypeDef;
 
 typedef enum
@@ -107,7 +112,8 @@ typedef enum
 typedef enum
 {
       DUTY_TRAJECTORY_LSPB				= 0x00U,  /*!< Trajectory planning LSBP */
-      DUTY_TRAJECTORY_SCURVE			= 0x01U  /*!< Trajectory planning S-curve */
+      DUTY_TRAJECTORY_SCURVE			= 0x01U,  /*!< Trajectory planning S-curve */
+      DUTY_TRAJECTORY_LINEAR            = 0x02U
 }TrajectoryTypeDef;
 
 typedef enum
@@ -156,10 +162,12 @@ typedef enum
 
     CMD_KEYBOARD,// 2 key board
     CMD_KEY_SPEED,
+
     CMD_ERROR,
     PROTOCOL_ERROR,
-    NUM_OF_COMMAND,
 
+    CMD_OBJECT_DETECTED,
+    CMD_SETUP_CONVEYOR_SPEED,
     NUM_OF_COMMAND_STRING
 }Robot_CommandTypedef ;
 
@@ -232,6 +240,22 @@ typedef struct
     QList<Response_ID> Reference_String;
 }Display_packet ;
 
+typedef enum
+{
+    REAL_POSITION_DATA,
+    REAL_POSITION_DATA_PLUS_UPDATE,
+    ESTIMATE_POSITION_DATA
+}Position_DataType;
+
+typedef enum{
+    VIETNAM_FLAG,
+    JAPAN_FLAG,
+    KOREAN_FLAG,
+    ITALY_FLAG,
+
+    NUM_OF_OBJECT
+}ObjectType;
+
 class define_parameter
 {
 
@@ -252,6 +276,7 @@ public:
                                              "Output On",
                                              "Output Off",
                                              "Wrong output value",
+                                             "Wrong position type requirement",
                                              "Absolute",
                                              "Relative",
                                              "LSPB",
@@ -263,6 +288,7 @@ public:
                                              "Changed SEMI AUTO Method",
                                              "Changed AUTO Method",
                                              "Changed TEST Method",
+                                             "Changed PICK_AND_PLACE Method",
                                              "Stop Now",
                                              "Start scan",
                                              "Busy",
@@ -296,9 +322,12 @@ public:
 
         "CMD_KEYBOARD",// 2 key board
         "CMD_KEY_SPEED",
+
         "CMD_ERROR",
         "PROTOCOL_ERROR",
-        "NUM_OF_COMMAND"
+
+        "CMD_OBJECT_DETECTED",
+        "CMD_SETUP_CONVEYOR_SPEED",
     };
     QString RDP_String[NUM_OF_RESPOND] = {
         "RPD_IDLE"	  ,

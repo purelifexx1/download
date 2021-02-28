@@ -5,6 +5,7 @@
 #include "receivethread.h"
 #include "define_parameter.h"
 #include "packet_handler.h"
+#define log_console(content) ui->tb_console->append(content)
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -52,6 +53,8 @@ private slots:
     void on_testing_clicked();
 
     void on_bt_testmt();
+
+    void on_bt_conveyor_sp_clicked();
 
 public slots:
     void received_callback(QByteArray data);

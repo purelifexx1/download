@@ -40,8 +40,8 @@ void MainWindow::display_event(Display_packet data)
             ui->tb_theta2_cur_val->setText(QString::number(data.RealData.theta2));
             ui->tb_theta4_cur_val->setText(QString::number(data.RealData.theta4));
             ui->tb_d3_cur_val->setText(QString::number(data.RealData.D3));
-            ui->tb_console->append("Position data received");
-            ui->tb_console->append("--------------------------");
+            log_console("Position data received");
+            log_console("--------------------------");
         break;
         case DISPLAY_RPD_DETAIL:
             if(_packet_handler->number_of_packet != 0){
@@ -51,11 +51,11 @@ void MainWindow::display_event(Display_packet data)
             for(int t = 0; t < data.Reference_String.length(); t++){
                 detail_string += system_parameter->DETAIL_STATUS[data.Reference_String.at(t)] + "; ";
             }
-            ui->tb_console->append(system_parameter->RDP_String[data.Respond_Type]
+            log_console(system_parameter->RDP_String[data.Respond_Type]
                     + " | Command ID: " + system_parameter->COMMAND_STRING[data.Command_ID]
                     + " | Detail: " + detail_string);
             if(_packet_handler->number_of_packet == 0){
-                ui->tb_console->append("--------------------------");
+                log_console("--------------------------");
             }
         break;
     }
@@ -152,13 +152,34 @@ void MainWindow::on_bt_movL_clicked()
     QbyteArray_AddValue(&command, ui->tb_y_cor->text(), SCARA_COR_VALUE);
     QbyteArray_AddValue(&command, ui->tb_z_cor->text(), SCARA_COR_VALUE);
     QbyteArray_AddValue(&command, ui->tb_roll_ang->text(), SCARA_COR_VALUE);
-    QbyteArray_AddValue(&command, ui->tb_v_factor->text(), SCARA_COR_VALUE);
+    if(ui->tb_v_factor->text().toDouble() > 1 || ui->tb_v_factor->text().toDouble() < 0){
+        log_console("Invalid for velocity factor");
+        return;
+    }else{
+        QbyteArray_AddValue(&command, ui->tb_v_factor->text(), SCARA_COR_VALUE);
+    }
+
     if(ui->rb_qva->isChecked() == true) {
         command.append(DUTY_MODE_INIT_QVA);
         QbyteArray_AddValue(&command, ui->tb_a_factor->text(), SCARA_COR_VALUE);
     }else if(ui->rb_qvt->isChecked() == true){
         command.append(DUTY_MODE_INIT_QVT);
         QbyteArray_AddValue(&command, ui->tb_time->text(), SCARA_COR_VALUE);
+    }else if(ui->rb_qt->isChecked() == true){
+        command.append(DUTY_MODE_INIT_QT);
+        QbyteArray_AddValue(&command, ui->tb_time->text(), SCARA_COR_VALUE);
+    }
+    if(ui->rb_abs->isChecked() == true){
+       command.append(DUTY_COORDINATES_ABS);
+    }else if(ui->rb_inc->isChecked() == true){
+       command.append(DUTY_COORDINATES_REL);
+    }
+    if(ui->rb_lspb->isChecked() == true){
+       command.append(DUTY_TRAJECTORY_LSPB);
+    }else if(ui->rb_scur->isChecked() == true){
+       command.append(DUTY_TRAJECTORY_SCURVE);
+    }else if(ui->rb_linear->isChecked() == true){
+        command.append(DUTY_TRAJECTORY_LINEAR);
     }
     command.append(0x29);
     mSerial->write(command, command.length());
@@ -213,6 +234,15 @@ void MainWindow::on_bt_read_position_clicked()
     command.append(0x28);
     command.append(COMMAND_TRANSMISION);
     command.append(CMD_READ_POSITION);
+    if(ui->rb_real_type->isChecked() == true){
+        if(ui->cb_update_true_pos->isChecked() == true){
+            command.append(REAL_POSITION_DATA_PLUS_UPDATE);
+        }else{
+            command.append(REAL_POSITION_DATA);
+        }
+    }else if(ui->rb_estimate_type->isChecked() == true){
+        command.append(ESTIMATE_POSITION_DATA);
+    }
     command.append(0x29);
     mSerial->write(command, command.length());
 }
@@ -259,8 +289,8 @@ void MainWindow::on_bt_set_method_clicked()
     }else if(ui->rb_test->isChecked() == true){
         command.append(SCARA_METHOD_TEST);
     }else{
-        ui->tb_console->append("Please select method");
-        ui->tb_console->append("--------------------------");
+        log_console("Please select method");
+        log_console("--------------------------");
         return;
     }
     command.append(0x29);
@@ -296,44 +326,21 @@ void MainWindow::on_bt_testmt()
 
 void MainWindow::on_testing_clicked()
 {
-    double current_theta2;
-    double d1, d4, a4, a1, a2;
-    double x, y, z, roll;
-    double s1, c1, s2, s2_positive, s2_negative, c2 , temp;
-    double theta1, theta2, theta2_positive, theta2_negative, d3, theta4 , pWx, pWy;
-    x = 120.0f; y = -20.23f; z = 5.23; roll = 2.23;
-    current_theta2 = 2.473f;
-    d1	=			211.0f   ;
-    a1	=			197.0f   ;
-    a2	=			160.0f   ;
-    d4	=			77.674f  ;
-    a4	=			32.36f   ;
-    d3  = d1 - d4 - z;
-    pWx = x - a4*cos(roll);
-    pWy = y - a4*sin(roll);
-    c2  = (pWx*pWx + pWy*pWy - a1*a1 - a2*a2) / (2*a1*a2);
-    temp = 1 - c2*c2;
-//    if ( temp < 0 ) {
-//        return false;
-//    }
-    s2_positive  = sqrt(temp); // Note that there are 2 solution: elbow up & elbow down
-    s2_negative	 = -s2_positive;
-
-    theta2_positive = atan2(s2_positive,c2);
-    theta2_negative = atan2(s2_negative,c2);
-    // Choose relevant situation : nearest
-    if ( fabs( theta2_positive - current_theta2) <= fabs( theta2_negative - current_theta2)) {
-        s2 		= s2_positive;
-        theta2 	= theta2_positive;
-    } else {
-        s2 		= s2_negative;
-        theta2 	= theta2_negative;
-    }
-
-    s1 = ((a1 + a2*c2)*pWy - a2*s2*pWx) / (pWx*pWx + pWy*pWy);
-    c1 = ((a1 + a2*c2)*pWx + a2*s2*pWy) / (pWx*pWx + pWy*pWy);
-    theta1 = atan2(s1,c1);
-    theta4 = theta1 + theta2 - roll;
-    qDebug() << "end";
+//    uint16_t t = 16;
+//    double a = (double)t;
+//    uint16_t b = (uint16_t)a;
+//    uint16_t c = b - 12;
+//    qDebug() << "test";
 }
 
+
+void MainWindow::on_bt_conveyor_sp_clicked()
+{
+    QByteArray command;
+    command.append(0x28);
+    command.append(COMMAND_TRANSMISION);
+    command.append(CMD_SETUP_CONVEYOR_SPEED);
+    QbyteArray_AddValue(&command, ui->tb_conveyor_sp->text(), SCARA_COR_VALUE);
+    command.append(0x29);
+    mSerial->write(command, command.length());
+}

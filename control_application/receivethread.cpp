@@ -44,6 +44,7 @@ void ReceiveThread::run()
             attemp = 0;
             data.clear();
         }
+        //QThread::usleep(500);
     }
     //mutex.unlock();
 
